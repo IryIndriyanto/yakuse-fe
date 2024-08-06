@@ -5,7 +5,7 @@ interface RedTitleFormProps {
 const RedTitleForm = ({title}: RedTitleFormProps) => {
     return (
         <div>
-            <p className="text-[11px] text-[#FA657D]">{title}</p>
+            <p className="text-[14px] text-[#FA657D]">{title}</p>
         </div>
     )
 }

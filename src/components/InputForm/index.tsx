@@ -22,13 +22,13 @@ const InputForm = ({
   onChange,
 }: InputFormProps) => {
   return (
-    <div className={`flex flex-col ${className}`}>
+    <div className={`flex flex-col w-full ${className}`}>
       <div className="flex flex-col gap-2">
         <label>{label}</label>
         <input
           id={id}
           name={name}
-          className="w-[280px] h-[55px] border-[1.5px] rounded-[10px] p-3 border-[#D9D9D9]"
+          className="h-[35px] border-[1.5px] rounded-[10px] p-3 border-[#D9D9D9]"
           type={type}
           placeholder={placeholder}
           value={value}

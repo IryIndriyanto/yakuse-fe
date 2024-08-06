@@ -7,9 +7,9 @@ interface FormButtonProps {
 
 const FormButton = ({ text, onClick, type }: FormButtonProps) => {
   return (
-    <div>
+    <div className="w-full">
       <button
-        className="w-[280px] h-[54px] rounded-[10px] bg-[#FD5F00] text-[23px] text-[#FFFFFF] hover:bg-[#FD5F00]/80"
+        className="w-full h-[34px] rounded-[10px] bg-[#FD5F00] text-[18px] text-[#FFFFFF] hover:bg-[#FD5F00]/80"
         onClick={onClick}
         type={type}
       >
