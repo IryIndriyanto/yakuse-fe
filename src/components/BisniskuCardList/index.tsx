@@ -9,7 +9,7 @@ interface BisniskuCardListProps {
 
 const BisniskuCardList = ({ image, title, category, address }: BisniskuCardListProps) => {
   return (
-      <div className="flex items-center justify-between font-serif bg-[#E5F5FF] rounded-[8px] p-4">
+      <div className="flex items-center justify-between font-serif bg-[#E5F5FF] rounded-[8px] p-4 transform hover:scale-105 transition-all duration-300">
         <div className="flex items-center gap-8">
           <div>
             <Image
