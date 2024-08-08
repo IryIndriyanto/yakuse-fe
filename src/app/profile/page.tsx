@@ -1,7 +1,7 @@
-import BisniskuCardList from "@/components/BisniskuCardList";
+import BisniskuCardList from "@/components/BisniskuCardListUser";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import ProfileCard from "@/components/ProfileCard";
+import ProfileCard from "@/components/ProfileCardUser";
 
 const Profile = () => {
   return (
