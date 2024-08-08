@@ -20,6 +20,7 @@ const PermintaankuCardList = ({
         <div className="flex items-center gap-8">
           <div>
             <Image
+              className="rounded-full w-[150px] h-[150px] bg-image bg-cover bg-center object-cover"
               src={image}
               alt={title}
               width={100}
