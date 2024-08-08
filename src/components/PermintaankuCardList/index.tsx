@@ -23,8 +23,8 @@ const PermintaankuCardList = ({
               className="rounded-full w-[150px] h-[150px] bg-image bg-cover bg-center object-cover"
               src={image}
               alt={title}
-              width={100}
-              height={100}
+              width={150}
+              height={150}
             />
           </div>
 
