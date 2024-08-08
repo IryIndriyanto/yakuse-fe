@@ -1,10 +1,26 @@
 import BisniskuCardList from "@/components/BisniskuCardList";
-import PermintaankuCardList from "@/components/PermintaankuCardList";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import ProfileCard from "@/components/ProfileCard";
 
 const Profile = () => {
   return (
-    <div>
-      <div className="flex flex-col gap-4">
+    <div className="bg-[#FCFCFC]">
+      <div>
+        <Navbar />
+      </div>
+
+      <div className="flex justify-center items-center mt-10">
+        <ProfileCard />
+      </div>
+
+      <div className="flex justify-between items-center my-20 w-[1200px] mx-auto px-32">
+        <p className="text-[24px] font-bold hover:text-[#FD5F00] transition-all duration-300">Bisnisku</p>
+        <p className="text-[24px] font-bold hover:text-[#FD5F00] transition-all duration-300">Permintaanku</p>
+
+      </div>
+
+      <div className="flex flex-col gap-4 mt-10 w-[1200px] mx-auto">
         <BisniskuCardList
           image="/image-bisnis-card-list.svg"
           title="Popcorn"
@@ -25,25 +41,8 @@ const Profile = () => {
         />
       </div>
 
-      <div className="flex flex-col gap-4">
-        <PermintaankuCardList
-          image="/foto-munaroh.svg"
-          title="PO Jagung"
-          description="Membutuhkan 100Kg Jagung secepatnya sebelum bulan Desember"
-          postedAt="8 Agustus 2024"
-        />
-        <PermintaankuCardList
-          image="/foto-munaroh.svg"
-          title="PO Beras"
-          description="Membutuhkan 500Kg Beras untuk acara pernikahan"
-          postedAt="15 September 2023"
-        />
-        <PermintaankuCardList
-          image="/foto-munaroh.svg"
-          title="PO Telur Ayam"
-          description="Mencari 1000 butir telur ayam untuk industri kue"
-          postedAt="3 November 2023"
-        />
+      <div className="mt-10">
+        <Footer />
       </div>
     </div>
   );
