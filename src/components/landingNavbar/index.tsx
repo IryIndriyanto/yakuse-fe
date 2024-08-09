@@ -26,7 +26,7 @@ const LandingNavbar = () => {
         {/* Sign in Button */}
         <button
           onClick={handleSignIn}
-          className="font-para-date w-[110px] h-[42px] bg-white text-[#005792] border border-[#005792] font-semibold text-[19px] py-2 px-4 rounded-lg"
+          className="font-para-date w-[110px] h-[42px] bg-white text-[#005792] border border-[#005792] font-semibold text-[19px] py-2 px-4 rounded-lg hover:bg-white-w-two"
         >
           Sign In
         </button>
