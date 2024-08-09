@@ -2,7 +2,7 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import Image from "next/image";
 
-const DetailBisnis = () => {
+const DetailBisnisBuyer = () => {
   return (
     <div className="bg-[#FCFCFC] font-serif">
       <div>
@@ -65,23 +65,6 @@ const DetailBisnis = () => {
             </p>
           </div>
         </div>
-
-        <div className="flex justify-center items-start gap-10">
-          <Image
-            className="cursor-pointer"
-            src="/icon-pencil.svg"
-            alt="icon-pencil"
-            width={24}
-            height={24}
-          />
-          <Image
-            className="cursor-pointer"
-            src="/icon-trash.svg"
-            alt="icon-trash"
-            width={24}
-            height={24}
-          />
-        </div>
       </div>
 
       <div>
@@ -91,4 +74,4 @@ const DetailBisnis = () => {
   );
 };
 
-export default DetailBisnis;
+export default DetailBisnisBuyer;

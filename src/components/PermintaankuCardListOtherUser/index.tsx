@@ -1,22 +1,22 @@
 import Image from "next/image";
 import ButtonList from "../ButtonList";
 
-interface PermintaankuCardListUserProps {
+interface PermintaankuCardListOtherUserProps {
   image: string;
   title: string;
   description: string;
   postedAt: string;
 }
 
-const PermintaankuCardListUser = ({
+const PermintaankuCardListOtherUser = ({
   image,
   title,
   description,
   postedAt,
-}: PermintaankuCardListUserProps) => {
+}: PermintaankuCardListOtherUserProps) => {
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex items-center justify-between font-serif bg-[#E5F5FF] rounded-[8px] p-4">
+      <div className="flex items-center justify-between font-serif bg-[#E5F5FF] rounded-[8px] p-4 transform hover:scale-105 transition-all duration-300">
         <div className="flex items-center gap-8">
           <div>
             <Image
@@ -36,14 +36,9 @@ const PermintaankuCardListUser = ({
             </p>
           </div>
         </div>
-
-        <div className="flex items-center gap-4">
-          <ButtonList label="Edit" variant="Edit" />
-          <ButtonList label="Delete" variant="Delete" />
-        </div>
       </div>
     </div>
   );
 };
 
-export default PermintaankuCardListUser;
+export default PermintaankuCardListOtherUser;

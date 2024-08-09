@@ -17,14 +17,14 @@ const Navbar = () => {
 
       <div className="flex items-center justify-center">
         <ul className="flex items-center gap-4">
-          <li className="text-[18px] cursor-pointer hover:text-[#FD5F00] transition-all duration-300">
+          <li className="text-[18px] cursor-pointer hover:text-[#FD5F00] transition-all duration-300 mr-10">
             Temukan Kebutuhan
           </li>
-          <li className="text-[18px] cursor-pointer hover:text-[#FD5F00] transition-all duration-300">
+          <li className="text-[18px] cursor-pointer hover:text-[#FD5F00] transition-all duration-300 mr-10">
             Temukan Pembeli
           </li>
           <li className="text-[18px] cursor-pointer hover:text-[#FD5F00] transition-all duration-300">
-            Temukan Partner
+            Info UMKM
           </li>
         </ul>
       </div>

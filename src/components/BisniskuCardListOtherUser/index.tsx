@@ -3,23 +3,23 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-interface BisniskuCardListUserProps {
+interface BisniskuCardListOtherUserProps {
   image: string;
   title: string;
   category: string;
   address: string;
 }
 
-const BisniskuCardListUser = ({
+const BisniskuCardListOtherUser = ({
   image,
   title,
   category,
   address,
-}: BisniskuCardListUserProps) => {
+}: BisniskuCardListOtherUserProps) => {
   const router = useRouter();
 
   const handleChevronClick = () => {
-    router.push("/detail-bisnis");
+    router.push("/detail-bisnis-user-2");
   };
 
   return (
@@ -56,4 +56,4 @@ const BisniskuCardListUser = ({
   );
 };
 
-export default BisniskuCardListUser;
+export default BisniskuCardListOtherUser;
