@@ -11,7 +11,7 @@ const LoginPage = () => {
           width={700}
           height={700}
           alt="two businessman talking"
-          className="hidden lg:block lg:basis-1/2"
+          className="mq825:hidden block basis-1/2"
         />
       </div>
     </main>
