@@ -4,7 +4,7 @@ import ButtonList from "../ButtonList";
 const ProfileCard = () => {
   return (
     <div className="flex flex-col justify-between bg-[#E5F5FF] rounded-[10px] p-10 w-[1200px] h-[700px] font-serif">
-      <div className="flex gap-10 ml-80">
+      <div className="flex gap-10">
         <div>
           <Image
             src="/foto-munaroh.svg"
@@ -34,7 +34,7 @@ const ProfileCard = () => {
                 </span>
               </p>
               <p className="text-[14px] text-[#40ABFF] cursor-pointer">
-                #Kuliner
+                #Kuliner #Fashion #Tech
               </p>
             </div>
 
@@ -45,17 +45,25 @@ const ProfileCard = () => {
               </h1>
             </div>
           </div>
+
+          <div className="pt-4 pl-[500px]">
+            <Image
+              className="cursor-pointer"
+              src="/icon-pencil.svg"
+              alt="icon-pencil"
+              width={24}
+              height={24}
+            />
+          </div>
         </div>
       </div>
 
-      <div className="w-[827px] h-[165px] bg-[#E5F5FF] font-serif mt-6">
-        <h3 className="text-xl font-semibold mb-3 ml-80">Tentang Saya</h3>
-        <p className="text-lg ml-80">
-          Saya adalah pengusaha yang gigih dimulai sejak saat saya masih
-          dibangku sekolah, maka dari itu, bisnis yang saya dirikan tentunya
-          memiliki kualitas produk yang sangat baik dan tidak akan mengecewakan
-          pelanggan.
-        </p>
+      <div className="flex justify-center items-center">
+        <ButtonList
+          label="Daftarin Bisnis"
+          iconSrc="/icon-plus.svg"
+          variant="Daftar"
+        />
       </div>
     </div>
   );
