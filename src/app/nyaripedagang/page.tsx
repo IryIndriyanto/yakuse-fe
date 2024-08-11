@@ -7,7 +7,7 @@ import BusinessCard from "@/components/BusinessCard";
 
 const NyariPedagang = () => {
   return (
-    <div className="min-h-screen pb-24">
+    <div className="min-h-screen">
       <Navbarhome />
       <div className="flex justify-start gap-5 p-10 ">
         <div className="flex flex-col flex-wrap gap-3 max-w-full">
