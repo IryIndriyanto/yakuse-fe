@@ -36,6 +36,10 @@ const RegisterForm = ({ className }: { className: string }) => {
         "Password must contain at least one letter, one number, and one special character"
       )
       .required("Password is required"),
+    confirmPassword: Yup.string().oneOf(
+      [Yup.ref("password"), undefined],
+      "Passwords must match"
+    ),
   });
 
   const [showPopup, setShowPopup] = useState(false);
@@ -69,7 +73,7 @@ const RegisterForm = ({ className }: { className: string }) => {
 
   return (
     <div className={`w-full h-full ${className}`}>
-      <h1 className="text-[33px] font-[700]">Welcome to YAKUSE!</h1>
+      <h1 className="text-[33px] font-[700] text-primary-p-one">Welcome to YAKUSE!</h1>
 
       <Formik
         initialValues={initialValues}
@@ -174,7 +178,7 @@ const RegisterForm = ({ className }: { className: string }) => {
               </div>
 
               <FormButton
-                text={isLoading ? "Loading..." : "Register"}
+                text="Register"
                 type="submit"
                 disabled={isLoading}
                 isLoading={isLoading}
