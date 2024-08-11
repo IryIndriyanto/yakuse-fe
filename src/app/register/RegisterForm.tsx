@@ -21,8 +21,8 @@ const RegisterForm = ({ className }: { className: string }) => {
   };
 
   const validationSchema = Yup.object({
+    fullname: Yup.string().required("Full name is required"),
     username: Yup.string().required("Username is required"),
-    fullname: Yup.string().required("First name is required"),
     email: Yup.string()
       .matches(
         /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
@@ -86,16 +86,16 @@ const RegisterForm = ({ className }: { className: string }) => {
                 <div>
                   <Field
                     component={InputForm}
-                    id="firstname"
-                    name="firstname"
+                    id="fullname"
+                    name="fullname"
                     label="Full Name"
                     type="text"
-                    placeholder="First Name"
+                    placeholder="Full Name"
                     value={values.fullname}
                     onChange={handleChange}
                   />
                   <ErrorMessage
-                    name="firstname"
+                    name="fullname"
                     component="div"
                     className="text-red-500 text-[14px] font-[500] h-[20px] w-full"
                   />
@@ -173,12 +173,12 @@ const RegisterForm = ({ className }: { className: string }) => {
                 </div>
               </div>
 
-                <FormButton
-                  text={isLoading ? "Loading..." : "Register"}
-                  type="submit"
-                  disabled={isLoading}
-                />
-              
+              <FormButton
+                text={isLoading ? "Loading..." : "Register"}
+                type="submit"
+                disabled={isLoading}
+                isLoading={isLoading}
+              />
             </form>
           );
         }}
