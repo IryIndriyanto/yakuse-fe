@@ -24,12 +24,14 @@ const EditProfile = () => {
     birthYear: "",
     education: "",
     phoneNumber: "",
+    businessTag: "",
   };
 
   const validationSchema = Yup.object({
-    birthYear: Yup.string().required(),
-    education: Yup.string().required(),
-    phoneNumber: Yup.string().required(),
+    birthYear: Yup.string().required("Tahun lahir wajib diisi."),
+    education: Yup.string().required("Pendidikan wajib diisi."),
+    phoneNumber: Yup.string().required("Nomor handphone wajib diisi."),
+    businessTag: Yup.string().required("Bisnis tag wajib dipilih."),
   });
 
   function handleRegister() {}
@@ -45,7 +47,7 @@ const EditProfile = () => {
           validationSchema={validationSchema}
           onSubmit={handleRegister}
         >
-          {({ values, handleChange, handleSubmit }) => {
+          {({ values, handleChange, handleSubmit, setFieldValue }) => {
             return (
               <form
                 onSubmit={handleSubmit}
@@ -109,7 +111,12 @@ const EditProfile = () => {
                   {categories.map((category, index) => (
                     <button
                       key={index}
-                      className="border border-gray-400 rounded-full px-4 py-2 text-gray-700 hover:bg-gray-200 transition"
+                      className={`border border-gray-400 rounded-full px-4 py-2 text-gray-700 transition ${
+                        values.businessTag === category
+                          ? "bg-blue-400 text-white"
+                          : "hover:bg-gray-200"
+                      }`}
+                      onClick={() => setFieldValue("businessTag", category)}
                     >
                       {category}
                     </button>
