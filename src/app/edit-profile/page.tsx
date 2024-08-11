@@ -22,10 +22,14 @@ const EditProfile = () => {
 
   const initialValues = {
     birthYear: "",
+    education: "",
+    phoneNumber: "",
   };
 
   const validationSchema = Yup.object({
     birthYear: Yup.string().required(),
+    education: Yup.string().required(),
+    phoneNumber: Yup.string().required(),
   });
 
   function handleRegister() {}
@@ -47,53 +51,59 @@ const EditProfile = () => {
                 onSubmit={handleSubmit}
                 className="flex flex-col justify-center items-center gap-6 mt-[50px]"
               >
-                <Field
-                  component={InputForm}
-                  id="birthYear"
-                  name="birthYear"
-                  label="Tahun Lahir"
-                  type="text"
-                  placeholder="Tahun Lahir"
-                  value={values.birthYear}
-                  onChange={handleChange}
-                />
-                <ErrorMessage
-                  name="birthYear"
-                  component="div"
-                  className="text-red-500 text-[14px] font-[500] h-[20px] w-full"
-                />
+                <div className="w-full">
+                  <Field
+                    component={InputForm}
+                    id="birthYear"
+                    name="birthYear"
+                    label="Tahun Lahir"
+                    type="text"
+                    placeholder="Tahun Lahir"
+                    value={values.birthYear}
+                    onChange={handleChange}
+                  />
+                  <ErrorMessage
+                    name="birthYear"
+                    component="div"
+                    className="text-red-500 text-[14px] font-[500] h-[20px] w-full"
+                  />
+                </div>
 
-                <Field
-                  component={InputForm}
-                  id="birthYear"
-                  name="birthYear"
-                  label="Pendidikan"
-                  type="text"
-                  placeholder="Pendidikan"
-                  value={values.birthYear}
-                  onChange={handleChange}
-                />
-                <ErrorMessage
-                  name="birthYear"
-                  component="div"
-                  className="text-red-500 text-[14px] font-[500] h-[20px] w-full"
-                />
+                <div className="w-full">
+                  <Field
+                    component={InputForm}
+                    id="education"
+                    name="education"
+                    label="Pendidikan"
+                    type="text"
+                    placeholder="Pendidikan"
+                    value={values.education}
+                    onChange={handleChange}
+                  />
+                  <ErrorMessage
+                    name="education"
+                    component="div"
+                    className="text-red-500 text-[14px] font-[500] h-[20px] w-full"
+                  />
+                </div>
 
-                <Field
-                  component={InputForm}
-                  id="birthYear"
-                  name="birthYear"
-                  label="Nomor Handphone"
-                  type="text"
-                  placeholder="Nomor Handphone"
-                  value={values.birthYear}
-                  onChange={handleChange}
-                />
-                <ErrorMessage
-                  name="birthYear"
-                  component="div"
-                  className="text-red-500 text-[14px] font-[500] h-[20px] w-full"
-                />
+                <div className="w-full">
+                  <Field
+                    component={InputForm}
+                    id="phoneNumber"
+                    name="phoneNumber"
+                    label="Nomor Handphone"
+                    type="text"
+                    placeholder="Nomor Handphone"
+                    value={values.phoneNumber}
+                    onChange={handleChange}
+                  />
+                  <ErrorMessage
+                    name="phoneNumber"
+                    component="div"
+                    className="text-red-500 text-[14px] font-[500] h-[20px] w-full"
+                  />
+                </div>
 
                 <div className="flex flex-wrap justify-center gap-4">
                   {categories.map((category, index) => (
@@ -108,9 +118,10 @@ const EditProfile = () => {
                 <p className="font-bold">Bisnis Tag</p>
 
                 <FormButton
-                  text={isLoading ? "Loading..." : "Berikutnya"}
+                  text="Submit"
                   type="submit"
                   disabled={isLoading}
+                  isLoading={isLoading}
                 />
               </form>
             );
