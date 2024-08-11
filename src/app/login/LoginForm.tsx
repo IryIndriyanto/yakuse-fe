@@ -22,7 +22,7 @@ const LoginForm = ({ className }: { className: string }) => {
 
   const router = useRouter();
 
-  const baseUrl = "https://masakinprojectbe.vercel.app";
+  const baseUrl = "https://masakin-be.adaptable.app";
 
   useEffect(() => {
     setupInterceptors({ setShowPopup, setPopupMessage }, router);
@@ -32,7 +32,7 @@ const LoginForm = ({ className }: { className: string }) => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const response = await axios.post(`${baseUrl}/user/login`, {
+      const response = await axios.post(`${baseUrl}/api/auth/log-in`, {
         email: loginData.email,
         password: loginData.password,
       });
@@ -40,7 +40,7 @@ const LoginForm = ({ className }: { className: string }) => {
       const accessToken = response.data.access_token;
       if (accessToken) {
         localStorage.setItem("access_token", accessToken);
-        router.push("/home");
+        router.push("/nyaripedagang");
       } else {
         console.error("Access token tidak ditemukan dalam respons");
       }
