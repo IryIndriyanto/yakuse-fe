@@ -73,7 +73,7 @@ const RegisterForm = ({ className }: { className: string }) => {
 
   return (
     <div className={`w-full h-full ${className}`}>
-      <h1 className="text-[33px] font-[700]">Welcome to YAKUSE!</h1>
+      <h1 className="text-[33px] font-[700] text-primary-p-one">Welcome to YAKUSE!</h1>
 
       <Formik
         initialValues={initialValues}
