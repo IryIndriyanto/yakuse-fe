@@ -104,6 +104,7 @@ const LoginForm = ({ className }: { className: string }) => {
                 text={isLoading ? "Loading..." : "Login"}
                 type="submit"
                 disabled={isLoading}
+                isLoading={isLoading}
               />
               {/* <div className="flex items-center w-full">
                 <hr className="flex-grow border-t border-gray-300" />
