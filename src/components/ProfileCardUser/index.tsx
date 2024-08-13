@@ -42,15 +42,21 @@ const ProfileCard = ({ buttonLabel, onClick }: ProfileCardProps) => {
                 <p className="text-[14px] font-bold text-[#40ABFF]">Contact</p>
                 <p>
                   Email:{" "}
-                  <span className="text-[#40ABFF] cursor-pointer">
+                  <a
+                    href="mailto:jane.deo@gmail.com"
+                    className="text-[#40ABFF] cursor-pointer"
+                  >
                     jane.deo@gmail.com
-                  </span>
+                  </a>
                 </p>
                 <p>
                   Phone:{" "}
-                  <span className="text-[#40ABFF] cursor-pointer">
+                  <a
+                    href="https://wa.me/6281234567890"
+                    className="text-[#40ABFF] cursor-pointer"
+                  >
                     081234567890
-                  </span>
+                  </a>
                 </p>
               </div>
 
