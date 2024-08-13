@@ -11,10 +11,10 @@ const Navbar = () => {
   };
 
   return (
-    <div className="font-serif bg-[#FCFCFC] p-4 flex justify-between px-[50px]">
+    <div className="font-serif bg-[#FCFCFC] py-4 flex justify-between px-[50px]">
       <div className="flex flex-col justify-center gap-4">
         <div>
-          <h1 className="text-5xl font-bold text-[#40ABFF]">YAKUSE</h1>
+          <h1 className="text-[41px] font-bold text-[#40ABFF]">YAKUSE</h1>
         </div>
         <div className="flex items-center gap-2 cursor-pointer">
           <Image src="/move-left.svg" alt="move-left" width={24} height={24} />
@@ -38,8 +38,8 @@ const Navbar = () => {
         </ul>
       </div>
 
-      <div className="flex items-center gap-16">
-        <div className="cursor-pointer">
+      <div className="flex items-center gap-4">
+        <div className="cursor-pointer text-right">
           <p className="text-[18px] font-bold">Jane Deo</p>
           <p className="text-[12px]">Pedagang Jagung</p>
         </div>
