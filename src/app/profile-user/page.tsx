@@ -16,7 +16,7 @@ const Profile = () => {
       </div>
 
       <div className="flex justify-center items-center mt-10">
-        <ProfileCard />
+        <ProfileCard buttonLabel={activeSection === "Bisnisku" ? "Daftarin Bisnis" : "Daftarin Permintaan"} />
       </div>
 
       <div className="my-20 w-[1200px] mx-auto">

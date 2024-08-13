@@ -1,7 +1,7 @@
 import Image from "next/image";
 import ButtonList from "../ButtonList";
 
-const ProfileCard = () => {
+const ProfileCard = ({ buttonLabel }: { buttonLabel: string }) => {
   return (
     <div className="flex flex-col justify-between bg-[#E5F5FF] rounded-[10px] p-10 w-[1200px] font-serif min-h-[700px]">
       <div>
@@ -79,7 +79,7 @@ const ProfileCard = () => {
 
       <div className="flex justify-center items-center">
         <ButtonList
-          label="Daftarin Bisnis"
+          label={buttonLabel}
           iconSrc="/icon-plus.svg"
           variant="Daftar"
         />
