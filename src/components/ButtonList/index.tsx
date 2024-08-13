@@ -3,9 +3,10 @@ interface ButtonListProps {
   label: string;
   variant: "Edit" | "Delete" | "Daftar";
   iconSrc?: string;
+  onClick?: () => void;
 }
 
-const ButtonList = ({ label, variant, iconSrc }: ButtonListProps) => {
+const ButtonList = ({ label, variant, iconSrc, onClick }: ButtonListProps) => {
   const buttonStyles =
     variant === "Edit"
       ? "bg-transparent text-[#005792] border-[#005792] border-2 py-2 px-10 rounded-md hover:bg-[#005792] hover:text-white transition-all duration-300"
@@ -16,6 +17,7 @@ const ButtonList = ({ label, variant, iconSrc }: ButtonListProps) => {
   return (
     <button
       className={`${buttonStyles} flex justify-center items-center gap-2`}
+      onClick={onClick}
     >
       {label}
       {iconSrc && <Image src={iconSrc} alt="icon" width={24} height={40} />}
