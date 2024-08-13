@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import ButtonList from "../ButtonList";
 
 interface ProfileCardProps {
@@ -7,6 +8,11 @@ interface ProfileCardProps {
 }
 
 const ProfileCard = ({ buttonLabel, onClick }: ProfileCardProps) => {
+  const router = useRouter();
+  const handleEditProfile = () => {
+    router.push("/edit-profile");
+  };
+
   return (
     <div className="flex flex-col justify-between bg-[#E5F5FF] rounded-[10px] p-10 w-[1200px] font-serif min-h-[700px]">
       <div>
@@ -63,6 +69,7 @@ const ProfileCard = ({ buttonLabel, onClick }: ProfileCardProps) => {
               alt="icon-pencil"
               width={24}
               height={24}
+              onClick={handleEditProfile}
             />
           </div>
         </div>
