@@ -16,9 +16,9 @@ const Navbar = () => {
         <div>
           <h1 className="text-[41px] font-bold text-[#40ABFF]">YAKUSE</h1>
         </div>
-        <div className="flex items-center gap-2 cursor-pointer">
+        <div className="flex items-center gap-2 cursor-pointer" onClick={handleJelajahiKomunitas}>
           <Image src="/move-left.svg" alt="move-left" width={24} height={24} />
-          <p className="text-[#FD5F00] text-[23px] font-bold" onClick={handleJelajahiKomunitas}>
+          <p className="text-[#FD5F00] text-[23px] font-bold">
             Jelajahi Komunitas
           </p>
         </div>
