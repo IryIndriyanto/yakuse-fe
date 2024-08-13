@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { setupInterceptors } from "@/utils/AxiosInterceptor";
+import { BASE_URL } from "@/utils/constant";
 
 const LoginForm = ({ className }: { className: string }) => {
   const [loginData, setLoginData] = useState({
@@ -22,7 +23,6 @@ const LoginForm = ({ className }: { className: string }) => {
 
   const router = useRouter();
 
-  const baseUrl = "https://masakin-be.adaptable.app";
 
   useEffect(() => {
     setupInterceptors({ setShowPopup, setPopupMessage }, router);
@@ -32,10 +32,7 @@ const LoginForm = ({ className }: { className: string }) => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const response = await axios.post(`${baseUrl}/api/auth/log-in`, {
-        email: loginData.email,
-        password: loginData.password,
-      });
+      const response = await axios.post(`${BASE_URL}/user/login`, loginData);
       console.log("response", response.data);
       const accessToken = response.data.access_token;
       if (accessToken) {
