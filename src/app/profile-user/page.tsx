@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import BisniskuCardListUser from "../../components/BisniskuCardListUser";
 import PermintaankuCardListUser from "../../components/PermintaankuCardListUser";
 import Navbar from "../../components/Navbar";
@@ -8,6 +9,15 @@ import ProfileCard from "../../components/ProfileCardUser";
 
 const Profile = () => {
   const [activeSection, setActiveSection] = useState("Bisnisku");
+  const router = useRouter();
+
+  const handleClick = () => {
+    if (activeSection === "Bisnisku") {
+      router.push("/kemana-nih?");
+    } else {
+      router.push("/need-form");
+    }
+  };
 
   return (
     <div className="bg-[#FCFCFC]">
@@ -16,7 +26,10 @@ const Profile = () => {
       </div>
 
       <div className="flex justify-center items-center mt-10">
-        <ProfileCard buttonLabel={activeSection === "Bisnisku" ? "Daftarin Bisnis" : "Daftarin Permintaan"} />
+        <ProfileCard 
+          buttonLabel={activeSection === "Bisnisku" ? "Daftarin Bisnis" : "Daftarin Permintaan"} 
+          onClick={handleClick} // Tambahkan onClick di sini
+        />
       </div>
 
       <div className="my-20 w-[1200px] mx-auto">
