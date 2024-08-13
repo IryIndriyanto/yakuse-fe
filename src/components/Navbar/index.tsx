@@ -1,3 +1,5 @@
+"use client";
+
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
@@ -24,7 +26,7 @@ const Navbar = () => {
 
       <div className="flex items-center justify-center">
         <ul className="flex items-center gap-4">
-          <li className="text-[18px] cursor-pointer hover:text-[#FD5F00] transition-all duration-300 mr-10">
+          <li className="text-[18px] cursor-pointer hover:text-[#FD5F00] transition-all duration-300 mr-10" onClick={handleJelajahiKomunitas}>
             Temukan Kebutuhan
           </li>
           <li className="text-[18px] cursor-pointer hover:text-[#FD5F00] transition-all duration-300 mr-10">
