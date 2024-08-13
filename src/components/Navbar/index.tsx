@@ -1,6 +1,13 @@
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 const Navbar = () => {
+
+  const router = useRouter();
+  const handleJelajahiKomunitas = () => {
+    router.push("/nyaripedagang");
+  };
+
   return (
     <div className="font-serif bg-[#FCFCFC] p-4 flex justify-between px-[50px]">
       <div className="flex flex-col justify-center gap-4">
@@ -9,7 +16,7 @@ const Navbar = () => {
         </div>
         <div className="flex items-center gap-2 cursor-pointer">
           <Image src="/move-left.svg" alt="move-left" width={24} height={24} />
-          <p className="text-[#FD5F00] text-[23px] font-bold">
+          <p className="text-[#FD5F00] text-[23px] font-bold" onClick={handleJelajahiKomunitas}>
             Jelajahi Komunitas
           </p>
         </div>
