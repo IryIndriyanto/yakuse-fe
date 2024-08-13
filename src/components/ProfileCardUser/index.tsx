@@ -17,13 +17,20 @@ const ProfileCard = ({ buttonLabel, onClick }: ProfileCardProps) => {
     <div className="flex flex-col justify-between bg-[#E5F5FF] rounded-[10px] p-10 w-[1200px] font-serif min-h-[700px]">
       <div>
         <div className="flex gap-10">
-          <div>
-            <Image
-              src="/foto-munaroh.svg"
-              alt="foto-munaroh"
-              width={250}
-              height={250}
-            />
+          <div className="flex flex-col gap-2">
+            <div>
+              <Image
+                src="/foto-munaroh.svg"
+                alt="foto-munaroh"
+                width={250}
+                height={250}
+              />
+            </div>
+            <div>
+              <p className="text-[14px] text-[#40ABFF] cursor-pointer">
+                #Kuliner #Fashion #Tech
+              </p>
+            </div>
           </div>
 
           <div className="flex">
@@ -44,9 +51,6 @@ const ProfileCard = ({ buttonLabel, onClick }: ProfileCardProps) => {
                   <span className="text-[#40ABFF] cursor-pointer">
                     081234567890
                   </span>
-                </p>
-                <p className="text-[14px] text-[#40ABFF] cursor-pointer">
-                  #Kuliner #Fashion #Tech
                 </p>
               </div>
 
@@ -85,7 +89,7 @@ const ProfileCard = ({ buttonLabel, onClick }: ProfileCardProps) => {
           tawarkan tidak hanya harus memenuhi, tetapi juga melampaui ekspektasi
           pelanggan. Melalui inovasi dan pelayanan yang luar biasa, saya terus
           berusaha untuk memberikan yang terbaik dalam setiap aspek bisnis yang
-          saya jalankan. 
+          saya jalankan.
         </p>
       </div>
 
