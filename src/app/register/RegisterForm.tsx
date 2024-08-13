@@ -10,6 +10,7 @@ import axios from "axios";
 import * as Yup from "yup";
 import { useState, useEffect } from "react";
 import { setupInterceptors } from "@/utils/AxiosInterceptor";
+import { BASE_URL } from "@/utils/constant";
 
 const RegisterForm = ({ className }: { className: string }) => {
   const initialValues = {
@@ -33,13 +34,12 @@ const RegisterForm = ({ className }: { className: string }) => {
       .min(8, "Password must contain at least 8 characters")
       .matches(
         /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*(),.?":{}|<>])[a-zA-Z0-9!@#$%^&*(),.?":{}|<>]+$/,
-        "Password must contain at least one letter, one number, and one special character"
+        "Password must include letters, numbers, and a special character."
       )
       .required("Password is required"),
-    confirmPassword: Yup.string().oneOf(
-      [Yup.ref("password"), undefined],
-      "Passwords must match"
-    ),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref("password"), undefined], "Passwords must match")
+      .required(),
   });
 
   const [showPopup, setShowPopup] = useState(false);
@@ -53,11 +53,11 @@ const RegisterForm = ({ className }: { className: string }) => {
 
   const handleRegister = async (values: typeof initialValues) => {
     setIsLoading(true);
+
+    const { confirmPassword, ...dataToSend } = values;
+
     try {
-      const response = await axios.post(
-        "https://masakinprojectbe.vercel.app/user/register",
-        values
-      );
+      const response = await axios.post(`${BASE_URL}/user/register`, dataToSend);
       if (response.status === 201) {
         router.push("/login");
       }
@@ -73,7 +73,9 @@ const RegisterForm = ({ className }: { className: string }) => {
 
   return (
     <div className={`w-full h-full ${className}`}>
-      <h1 className="text-[33px] font-[700] text-primary-p-one">Welcome to YAKUSE!</h1>
+      <h1 className="text-[33px] font-[700] text-primary-p-one">
+        Welcome to YAKUSE!
+      </h1>
 
       <Formik
         initialValues={initialValues}
@@ -166,7 +168,6 @@ const RegisterForm = ({ className }: { className: string }) => {
                     label="Confirm Password"
                     type="password"
                     placeholder="Password"
-                    value={values.confirmPassword}
                     onChange={handleChange}
                   />
                   <ErrorMessage
