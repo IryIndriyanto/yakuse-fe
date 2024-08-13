@@ -17,12 +17,12 @@ const Navbar = () => {
         <a href="/nyaripedagang" onClick={() => handleClick(0)} className={`${activeIndex === 0 ? "text-orange-500 underline underline-offset-8" : "text-black"} text-xl font-light`}>
           Nyari Pedagang
         </a>
-        <a href="#" onClick={() => handleClick(1)} className={`${activeIndex === 1 ? "text-orange-500 underline underline-offset-8" : "text-black"} text-xl font-light`}>
+        <a href="/nyaripelanggan" onClick={() => handleClick(1)} className={`${activeIndex === 1 ? "text-orange-500 underline underline-offset-8" : "text-black"} text-xl font-light`}>
           Nyari Pelanggan
         </a>
-        <a href="#" onClick={() => handleClick(2)} className={`${activeIndex === 2 ? "text-orange-500 underline underline-offset-8" : "text-black"} text-xl font-light`}>
+        {/* <a href="#" onClick={() => handleClick(2)} className={`${activeIndex === 2 ? "text-orange-500 underline underline-offset-8" : "text-black"} text-xl font-light`}>
           Nyari Partner
-        </a>
+        </a> */}
       </div>
       <div className="flex space-between gap-4">
         <div className="flex flex-col text-lg">

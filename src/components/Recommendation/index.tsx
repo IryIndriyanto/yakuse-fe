@@ -1,44 +1,75 @@
 "use client";
+import { bisnisType } from "@/data/mock/type";
 import Image from "next/image";
 import React, { useState } from "react";
 
-const Recommendation = () => {
-  const categories = ["Kuliner", "Fashion", "Electronics", "Jasa", "Kesehatan"];
-  const businesses = ["Rumah Makan", "Warung", "Restoran", "Kedai Kopi", "Warung Makan", "Restoran Seafood"];
+interface rekomendasiDetailProps {
+  name: string;
+  desc: string;
+  handleClick: () => void;
+  isActive: boolean;
+}
 
-  const [activeCategory, setActiveCategory] = useState<number | null>(null);
-  const [activeBusiness, setActiveBusiness] = useState<number | null>(0);
+interface bisnisDetailProps {
+  filter: string[];
+  data: bisnisType[];
+}
 
-  const handleCategoryClick = (index: number) => {
-    setActiveCategory(index === activeCategory ? null : index);
-  };
+export function RekomendasiCard({
+  name,
+  desc,
+  handleClick,
+  isActive,
+}: rekomendasiDetailProps) {
+  return (
+    <div
+      onClick={handleClick}
+      className={`flex flex-col gap-3 p-3 rounded-xl cursor-pointer ${
+        isActive ? "bg-blue-200" : "bg-white"
+      }`}
+    >
+      <div className="flex justify-between items-center rounded-2xl">
+        <h3 className="text-xl font-bold">{name}</h3>
+        <Image
+          src="/vector.png"
+          alt="vector"
+          width={8}
+          height={14}
+          className="w-2 h-2"
+        />
+      </div>
+      <p className="text-sm text-justify">{desc}</p>
+    </div>
+  );
+}
+
+const Recommendation: React.FC<bisnisDetailProps> = ({ filter, data }) => {
+  const filteredItems = data.filter(
+    (item) =>
+      filter.length === 0 ||
+      filter.some((f) =>
+        item.category.toLowerCase().includes(f.toLowerCase())
+      )
+  );
+
+  const [activeBusiness, setActiveBusiness] = useState<number | null>(null);
 
   const handleBusinessClick = (index: number) => {
     setActiveBusiness(index);
   };
 
   return (
-    <div className="flex flex-col gap-5 max-w-96">
-      <div className="flex justify-start gap-5 flex-wrap">
-        {categories.map((category, index) => (
-          <button key={index} className={`${activeCategory === index ? "bg-orange-500 text-white" : "bg-white text-slate-400"} rounded-2xl p-2 border-2`} onClick={() => handleCategoryClick(index)}>
-            <p>{category}</p>
-          </button>
-        ))}
-      </div>
+    <div className="flex flex-col gap-5 w-full">
       <div className="overflow-auto max-h-[525px]">
         <div className="flex flex-col gap-3">
-          {businesses.map((business, index) => (
-            <div key={index} onClick={() => handleBusinessClick(index)} className={`flex flex-col gap-3 p-3 rounded-xl cursor-pointer ${activeBusiness === index ? "bg-blue-200" : "bg-white"}`}>
-              <div className="flex justify-between items-center rounded-2xl">
-                <h3 className="text-xl font-bold">{business}</h3>
-                <Image src="/vector.png" alt="vector" width={8} height={14} className="w-2 h-2" />
-              </div>
-              <p className="text-sm text-justify">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore eveniet odit natus saepe deserunt fugiat, magni exercitationem, sequi inventore tempore earum. Quam tempore pariatur, laborum quia voluptate explicabo
-                perferendis velit!
-              </p>
-            </div>
+          {filteredItems.map((item, index) => (
+            <RekomendasiCard
+              key={item.id}
+              name={item.name}
+              desc={item.description}
+              handleClick={() => handleBusinessClick(index)}
+              isActive={activeBusiness === index}
+            />
           ))}
         </div>
       </div>

@@ -20,7 +20,7 @@ const config: Config = {
         "p-four": "#fd5f00",
         // changing "white-w-..." to "w-..."
         "w-one": "#f6fceb",
-        "w-two": "#e6f5ff",
+        "w-two": "#e5f5ff",
         "steelblue": {
           "100": "#267db8",
           "200": "rgba(38, 125, 184, 0.09)",
