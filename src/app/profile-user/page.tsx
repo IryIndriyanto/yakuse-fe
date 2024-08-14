@@ -28,7 +28,7 @@ const Profile = () => {
       <div className="flex justify-center items-center mt-10">
         <ProfileCard 
           buttonLabel={activeSection === "Bisnisku" ? "Daftarin Bisnis" : "Daftarin Permintaan"} 
-          onClick={handleClick} // Tambahkan onClick di sini
+          onClick={handleClick}
         />
       </div>
 
