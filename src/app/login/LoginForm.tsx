@@ -23,7 +23,6 @@ const LoginForm = ({ className }: { className: string }) => {
 
   const router = useRouter();
 
-
   useEffect(() => {
     setupInterceptors({ setShowPopup, setPopupMessage }, router);
   }, [router]);
@@ -33,13 +32,10 @@ const LoginForm = ({ className }: { className: string }) => {
     setIsLoading(true);
     try {
       const response = await axios.post(`${BASE_URL}/user/login`, loginData);
-      console.log("response", response.data);
       const accessToken = response.data.access_token;
       if (accessToken) {
         localStorage.setItem("access_token", accessToken);
-        router.push("/nyaripedagang");
-      } else {
-        console.error("Access token tidak ditemukan dalam respons");
+        router.push("/kebutuhan");
       }
     } catch (error) {
       console.error(error);
@@ -67,7 +63,9 @@ const LoginForm = ({ className }: { className: string }) => {
         </div>
       )}
 
-      <h1 className="text-[33px] font-[700] text-blue-400">Welcome to Yakuse!</h1>
+      <h1 className="text-[33px] font-[700] text-blue-400">
+        Welcome to Yakuse!
+      </h1>
 
       <div>
         <form onSubmit={handleLogin}>
@@ -91,9 +89,6 @@ const LoginForm = ({ className }: { className: string }) => {
                   setLoginData({ ...loginData, password: e.target.value })
                 }
               />
-              <Link href="/resetpassword">
-                <RedTitleForm title="Forgot password?" />
-              </Link>
             </div>
 
             <div className="w-full flex flex-col gap-6 items-center">
