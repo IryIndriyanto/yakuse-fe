@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Image from "next/image";
 import ButtonList from "../ButtonList";
 import { useRouter } from "next/navigation";
@@ -15,15 +16,25 @@ const PermintaankuCardListUser = ({
   description,
   postedAt,
 }: PermintaankuCardListUserProps) => {
-
   const router = useRouter();
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleEditClick = () => {
     router.push("/belum-ada-nih");
   };
 
   const handleDeleteClick = () => {
+    setIsModalVisible(true);
+  };
+
+  const confirmDelete = () => {
+    setIsModalVisible(false);
     console.log("Pake API delete bro");
+    // Here you can call your delete API
+  };
+
+  const cancelDelete = () => {
+    setIsModalVisible(false);
   };
 
   return (
@@ -51,9 +62,39 @@ const PermintaankuCardListUser = ({
 
         <div className="flex items-center gap-4">
           <ButtonList label="Edit" variant="Edit" onClick={handleEditClick} />
-          <ButtonList label="Delete" variant="Delete" onClick={handleDeleteClick} />
+          <ButtonList
+            label="Delete"
+            variant="Delete"
+            onClick={handleDeleteClick}
+          />
         </div>
       </div>
+
+      {isModalVisible && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 w-[300px] sm:w-[400px]">
+            <h2 className="text-[20px] font-bold mb-4">Konfirmasi Hapus</h2>
+            <p className="text-[16px] mb-6">
+              Apakah Anda yakin ingin menghapus &quot;{title}&quot;?
+            </p>
+
+            <div className="flex justify-end gap-4">
+              <button
+                onClick={cancelDelete}
+                className="bg-gray-300 text-gray-800 py-2 px-4 rounded hover:bg-gray-400 transition-all duration-200"
+              >
+                Batal
+              </button>
+              <button
+                onClick={confirmDelete}
+                className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition-all duration-200"
+              >
+                Hapus
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
