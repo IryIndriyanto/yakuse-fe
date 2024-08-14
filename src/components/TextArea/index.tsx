@@ -1,6 +1,6 @@
 import React from "react";
 
-interface InputFormProps {
+interface TextAreaProps {
   id?: string;
   name?: string;
   label: string;
@@ -8,28 +8,26 @@ interface InputFormProps {
   placeholder: string;
   className?: string;
   value?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-const InputForm = ({
+const TextArea = ({
   id,
   name,
   label,
-  type,
   placeholder,
   className,
   value,
   onChange,
-}: InputFormProps) => {
+}: TextAreaProps) => {
   return (
-    <div className={`flex flex-col w-full ${className}`}>
-      <div className="flex flex-col gap-2">
+    <div className={`flex flex-col w-full h-full ${className}`}>
+      <div className="flex flex-col gap-2 h-full">
         <label>{label}</label>
-        <input
+        <textarea
           id={id}
           name={name}
-          className="h-[35px] border-[1.5px] rounded-[10px] p-3 border-[#D9D9D9]"
-          type={type}
+          className="h-full border-[1.5px] rounded-[10px] p-3 border-[#D9D9D9]"
           placeholder={placeholder}
           value={value}
           onChange={onChange}
@@ -39,4 +37,4 @@ const InputForm = ({
   );
 };
 
-export default InputForm;
+export default TextArea;

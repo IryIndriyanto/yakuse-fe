@@ -5,7 +5,7 @@ import BisniskuCardListUser from "../../components/BisniskuCardListUser";
 import PermintaankuCardListUser from "../../components/PermintaankuCardListUser";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import ProfileCard from "../../components/ProfileCardUser";
+import ProfileCardUser from "../../components/ProfileCardUser";
 
 const Profile = () => {
   const [activeSection, setActiveSection] = useState("Bisnisku");
@@ -26,13 +26,9 @@ const Profile = () => {
       </div>
 
       <div className="flex justify-center items-center mt-10">
-        <ProfileCard
-          buttonLabel={
-            activeSection === "Bisnisku"
-              ? "Daftarin Bisnis"
-              : "Daftarin Permintaan"
-          }
-          onClick={handleClick} // Tambahkan onClick di sini
+        <ProfileCardUser
+          buttonLabel={activeSection === "Bisnisku" ? "Daftarin Bisnis" : "Daftarin Permintaan"}
+          onClick={handleClick}
         />
       </div>
 

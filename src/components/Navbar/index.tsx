@@ -29,10 +29,7 @@ const Navbar = () => {
         <div>
           <h1 className="text-[41px] font-bold text-[#40ABFF]">YAKUSE</h1>
         </div>
-        <div
-          className="flex items-center gap-2 cursor-pointer"
-          onClick={handleJelajahiKomunitas}
-        >
+        <div className="flex items-center gap-2 cursor-pointer" onClick={handleJelajahiKomunitas}>
           <Image src="/move-left.svg" alt="move-left" width={24} height={24} />
           <p className="text-[#FD5F00] text-[23px] font-bold">
             Jelajahi Komunitas
@@ -42,10 +39,7 @@ const Navbar = () => {
 
       <div className="flex items-center justify-center">
         <ul className="flex items-center gap-4">
-          <li
-            className="text-[18px] cursor-pointer hover:text-[#FD5F00] transition-all duration-300 mr-10"
-            onClick={handleJelajahiKomunitas}
-          >
+          <li className="text-[18px] cursor-pointer hover:text-[#FD5F00] transition-all duration-300 mr-10" onClick={handleJelajahiKomunitas}>
             Temukan Kebutuhan
           </li>
           <li className="text-[18px] cursor-pointer hover:text-[#FD5F00] transition-all duration-300 mr-10">
@@ -75,17 +69,13 @@ const Navbar = () => {
           {dropdownVisible && (
             <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg">
               <ul>
-                <li
-                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                  onClick={handleProfile}
-                >
+                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={handleProfile}>
                   <p>Profile</p>
                 </li>
                 <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                   <p>Setting</p>
                 </li>
-                <li
-                  className="px-4 py-2 text-red-500 hover:bg-gray-100 cursor-pointer"
+                <li className="px-4 py-2 text-red-500 hover:bg-gray-100 cursor-pointer"
                   onClick={handleLogout}
                 >
                   Logout
