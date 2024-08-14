@@ -1,8 +1,8 @@
 "use client";
 
 import FormButton from "@/components/FormButton";
-import TextArea from "@/components/TextArea";
 import InputForm from "@/components/InputForm";
+import TextArea from "@/components/TextArea";
 import { ErrorMessage, Field, Formik } from "formik";
 import { useState } from "react";
 import * as Yup from "yup";
@@ -22,49 +22,67 @@ const EditProfile = () => {
   ];
 
   const initialValues = {
-    title: "",
-    description: "",
-    businessTag: "",
+    phoneNumber: "",
+    address: "",
+    aboutMe: "",
   };
 
   const validationSchema = Yup.object({
-    title: Yup.string().required("Title wajib diisi."),
-    description: Yup.string().required("Deskripsi wajib diisi."),
-    businessTag: Yup.string(),
+    phoneNumber: Yup.string().required("Nomor handphone wajib diisi."),
+    address: Yup.string().required("Alamat wajib diisi."),
+    aboutMe: Yup.string().required("About Me wajib diisi."),
   });
 
   function handleSubmit() {}
 
   return (
-    <main className="h-[100vh] flex items-center justify-center">
+    <main className="h-[70vh] flex items-center justify-center">
       <div className="max-w-[600px] flex flex-col justify-center items-center">
         <h1 className="text-[33px] font-[700] text-blue-400">
-          Bikin Permintaan
+          Perkenalkan Diri Kamu
         </h1>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
-          {({ values, handleChange, handleSubmit, setFieldValue }) => {
+          {({ values, handleChange, handleSubmit }) => {
             return (
               <form
                 onSubmit={handleSubmit}
-                className="flex flex-col justify-center items-center gap-6 mt-[50px]"
+                className="flex flex-col justify-center items-center gap-6 w-full mt-[50px]"
               >
                 <div className="w-full">
                   <Field
                     component={InputForm}
-                    id="title"
-                    name="title"
-                    label="Title"
+                    id="phoneNumber"
+                    name="phoneNumber"
+                    label="Nomor Handphone"
                     type="text"
-                    placeholder="Title"
-                    value={values.title}
+                    placeholder="Nomor Handphone"
+                    value={values.phoneNumber}
                     onChange={handleChange}
                   />
                   <ErrorMessage
-                    name="title"
+                    name="phoneNumber"
+                    component="div"
+                    className="text-red-500 text-[14px] font-[500] h-[20px] w-full"
+                  />
+                </div>
+
+                <div className="w-full">
+                  <Field
+                    component={InputForm}
+                    id="address"
+                    name="address"
+                    label="Alamat"
+                    type="text"
+                    placeholder="Alamat"
+                    value={values.address}
+                    onChange={handleChange}
+                  />
+                  <ErrorMessage
+                    name="address"
                     component="div"
                     className="text-red-500 text-[14px] font-[500] h-[20px] w-full"
                   />
@@ -73,38 +91,20 @@ const EditProfile = () => {
                 <div className="w-full">
                   <Field
                     component={TextArea}
-                    id="description"
-                    name="description"
-                    label="Description"
-                    placeholder="Description"
-                    value={values.description}
+                    id="aboutMe"
+                    name="aboutMe"
+                    label="About Me"
+                    placeholder="About Me"
+                    value={values.aboutMe}
                     onChange={handleChange}
-                    className="h-[220px]"
                   />
                   <ErrorMessage
-                    name="description"
+                    name="aboutMe"
                     component="div"
                     className="text-red-500 text-[14px] font-[500] h-[20px] w-full"
                   />
                 </div>
 
-                <div className="flex flex-wrap justify-center gap-4">
-                  {categories.map((category, index) => (
-                    <button
-                      type="button"
-                      key={index}
-                      className={`border border-gray-400 rounded-full px-4 py-2 text-gray-700 transition ${
-                        values.businessTag === category
-                          ? "bg-blue-400 text-white"
-                          : "hover:bg-gray-200"
-                      }`}
-                      onClick={() => setFieldValue("businessTag", category)}
-                    >
-                      {category}
-                    </button>
-                  ))}
-                </div>
-                <p className="font-bold">Bisnis Tag</p>
 
                 <FormButton
                   text="Submit"
