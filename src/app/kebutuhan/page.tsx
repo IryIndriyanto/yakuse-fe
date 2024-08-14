@@ -3,15 +3,16 @@ import Navbarhome from "@/components/Navbarhome";
 import Footer from "@/components/Footer";
 import Searchbar from "@/components/Searchbar";
 import Filter from "@/components/Filter";
-import PermintaanList from "@/components/PermintaanList";
-import { permintaan } from "@/data/mock/detail";
-import { permintaanType } from "@/data/mock/type";
+import Recommendation from "@/components/Recommendation";
+import BusinessCard from "@/components/BusinessCard";
 import { useState, useEffect } from "react";
+import { bisnis } from "@/data/mock/detail";
+import { bisnisType } from "@/data/mock/type";
 
-export default function NyariPelanggan() {
+export default function PageKebutuhan() {
   const [search, setSearch] = useState<string>("");
-  const [filteredData, setFilteredData] = useState<permintaanType[]>([]);
-  const [data, setData] = useState<permintaanType[]>([]);
+  const [filteredData, setFilteredData] = useState<bisnisType[]>([]);
+  const [data, setData] = useState<bisnisType[]>([]);
   const [shown, setShown] = useState<boolean>(false);
   const [activeFilters, setFilters] = useState<string[]>([]);
 
@@ -23,8 +24,8 @@ export default function NyariPelanggan() {
       //   setData(data);
       //   setFilteredData(data);
       // }
-      setData(permintaan);
-      setFilteredData(permintaan);
+      setData(bisnis);
+      setFilteredData(bisnis);
     } catch (err) {
       console.log(err);
     }
@@ -34,12 +35,12 @@ export default function NyariPelanggan() {
     fetchData();
   }, []);
 
-  function handleFilter(data: permintaanType[]) {
+  function handleFilter(data: bisnisType[]) {
     if (activeFilters.length === 0) return data;
 
-    return data.filter((item: permintaanType) =>
+    return data.filter((item: bisnisType) =>
       activeFilters.some((filter) =>
-        item.category.name.toLowerCase().includes(filter.toLowerCase())
+        item.category.toLowerCase().includes(filter.toLowerCase())
       )
     );
   }
@@ -50,8 +51,8 @@ export default function NyariPelanggan() {
     const filterData = handleFilter(data);
 
     const searchedData = filterData.filter(
-      (item: permintaanType) =>
-        item.title.toLowerCase().includes(value.toLowerCase()) ||
+      (item: bisnisType) =>
+        item.name.toLowerCase().includes(value.toLowerCase()) ||
         item.description.toLowerCase().includes(value.toLowerCase())
     );
     setFilteredData(searchedData);
@@ -65,22 +66,25 @@ export default function NyariPelanggan() {
   useEffect(() => {
     handleSearch(search);
   }, [search]);
-
+  
   return (
     <>
-      <Navbarhome />
-      <main className="w-full max-w-[800px] flex flex-col space-y-12 px-4 py-12 sm:px-6 md:px-10 lg:px-14">
-        <Searchbar
-          search={search}
-          shown={shown}
-          setSearch={setSearch}
-          fetchData={handleSearch}
-          // setFilter={setFilter}
-        />
-        <Filter setFilter={setFilters} />
-        <PermintaanList data={filteredData} filter={activeFilters} />
+      {/* <Navbarhome /> */}
+      <main className="w-5/6 sm:w-full max-w-[1500px] flex justify-start gap-5 p-10 min-h-[75vh]">
+        <div className="w-2/5 flex flex-col flex-wrap gap-3 ">
+          <Searchbar
+            search={search}
+            shown={shown}
+            setSearch={setSearch}
+            fetchData={handleSearch}
+          />
+          <Filter setFilter={setFilters} />
+          <Recommendation data={filteredData} filter={activeFilters} />
+        </div>
+        <BusinessCard data={filteredData} filter={activeFilters} />
       </main>
       <Footer />
     </>
   );
-}
+};
+
