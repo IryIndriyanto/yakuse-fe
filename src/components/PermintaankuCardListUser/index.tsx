@@ -1,5 +1,6 @@
 import Image from "next/image";
 import ButtonList from "../ButtonList";
+import { useRouter } from "next/navigation";
 
 interface PermintaankuCardListUserProps {
   image: string;
@@ -14,6 +15,17 @@ const PermintaankuCardListUser = ({
   description,
   postedAt,
 }: PermintaankuCardListUserProps) => {
+
+  const router = useRouter();
+
+  const handleEditClick = () => {
+    router.push("/belum-ada-nih");
+  };
+
+  const handleDeleteClick = () => {
+    console.log("Pake API delete bro");
+  };
+
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between font-serif bg-[#E5F5FF] rounded-[8px] p-4 transform hover:scale-105 transition-all duration-300">
@@ -38,8 +50,8 @@ const PermintaankuCardListUser = ({
         </div>
 
         <div className="flex items-center gap-4">
-          <ButtonList label="Edit" variant="Edit" />
-          <ButtonList label="Delete" variant="Delete" />
+          <ButtonList label="Edit" variant="Edit" onClick={handleEditClick} />
+          <ButtonList label="Delete" variant="Delete" onClick={handleDeleteClick} />
         </div>
       </div>
     </div>
