@@ -10,46 +10,57 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { setupInterceptors } from "@/utils/AxiosInterceptor";
 import { BASE_URL } from "@/utils/constant";
+import toast, { Toaster } from 'react-hot-toast';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 const LoginForm = ({ className }: { className: string }) => {
-  const [loginData, setLoginData] = useState({
-    email: "",
-    password: "",
-  });
-
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
 
-
   useEffect(() => {
     setupInterceptors({ setShowPopup, setPopupMessage }, router);
   }, [router]);
 
-  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsLoading(true);
-    try {
-      const response = await axios.post(`${BASE_URL}/user/login`, loginData);
-      console.log("response", response.data);
-      const accessToken = response.data.access_token;
-      if (accessToken) {
-        localStorage.setItem("access_token", accessToken);
-        router.push("/nyaripedagang");
-      } else {
-        console.error("Access token tidak ditemukan dalam respons");
+  const validationSchema = Yup.object({
+    email: Yup.string()
+      .email("Invalid email address")
+      .required("Email is required"),
+    password: Yup.string()
+      .min(6, "Password must be at least 6 characters")
+      .required("Password is required"),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: async (values) => {
+      setIsLoading(true);
+      try {
+        const response = await axios.post(`${BASE_URL}/user/login`, values);
+        const accessToken = response.data.access_token;
+        if (accessToken) {
+          toast.success('Login success');
+          localStorage.setItem("access_token", accessToken);
+          router.push("/kebutuhan");
+        }
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsLoading(false);
       }
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    },
+  });
 
   return (
     <div className={`w-full h-full ${className}`}>
+      <Toaster/>
       {showPopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-4 rounded shadow-lg">
@@ -67,55 +78,49 @@ const LoginForm = ({ className }: { className: string }) => {
         </div>
       )}
 
-      <h1 className="text-[33px] font-[700] text-blue-400">Welcome to Yakuse!</h1>
+      <h1 className="text-[33px] font-[700] text-blue-400">
+        Welcome to Yakuse!
+      </h1>
 
       <div>
-        <form onSubmit={handleLogin}>
+        <form onSubmit={formik.handleSubmit}>
           <div className="flex flex-col gap-6 items-center mt-[50px]">
             <InputForm
               label="Email"
               type="email"
               placeholder="Email"
-              value={loginData.email}
-              onChange={(e) =>
-                setLoginData({ ...loginData, email: e.target.value })
-              }
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              name="email"
             />
+            {formik.touched.email && formik.errors.email ? (
+              <div className="text-red-500 text-sm">{formik.errors.email}</div>
+            ) : null}
+
             <div className="flex flex-col gap-4 w-full">
               <InputForm
                 label="Password"
                 type="password"
                 placeholder="Password"
-                value={loginData.password}
-                onChange={(e) =>
-                  setLoginData({ ...loginData, password: e.target.value })
-                }
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                name="password"
               />
-              <Link href="/resetpassword">
-                <RedTitleForm title="Forgot password?" />
-              </Link>
+              {formik.touched.password && formik.errors.password ? (
+                <div className="text-red-500 text-sm">{formik.errors.password}</div>
+              ) : null}
             </div>
 
             <div className="w-full flex flex-col gap-6 items-center">
               <FormButton
-                text={isLoading ? "Loading..." : "Login"}
+                text="Login"
                 type="submit"
                 disabled={isLoading}
                 isLoading={isLoading}
               />
-              {/* <div className="flex items-center w-full">
-                <hr className="flex-grow border-t border-gray-300" />
-                <RedTitleForm title="Or Sign in With" />
-                <hr className="flex-grow border-t border-gray-300" />
-              </div> */}
             </div>
           </div>
         </form>
-
-        {/* <div className="flex justify-center items-center gap-6 mt-[20px] mb-[20px]">
-          <SocialIcon src="/assets/icons/google.png" alt="Google icon" />
-          <SocialIcon src="/assets/icons/facebook.png" alt="Facebook icon" />
-        </div> */}
 
         <div className="flex gap-2 mt-6">
           <p className="text-[14px] font-[500]">Don&#39;t have an account?</p>
