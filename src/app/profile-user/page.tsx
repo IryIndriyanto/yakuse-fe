@@ -13,7 +13,7 @@ const Profile = () => {
 
   const handleClick = () => {
     if (activeSection === "Bisnisku") {
-      router.push("/kemana-nih?");
+      router.push("/daftarin-bisnis");
     } else {
       router.push("/need-form");
     }
