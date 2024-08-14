@@ -8,6 +8,7 @@ import BusinessCard from "@/components/BusinessCard";
 import { useState, useEffect } from "react";
 import { bisnis } from "@/data/mock/detail";
 import { bisnisType } from "@/data/mock/type";
+import { Toaster } from "react-hot-toast";
 
 export default function PageKebutuhan() {
   const [search, setSearch] = useState<string>("");
@@ -66,11 +67,12 @@ export default function PageKebutuhan() {
   useEffect(() => {
     handleSearch(search);
   }, [search]);
-  
+
   return (
     <>
       {/* <Navbarhome /> */}
       <main className="w-5/6 sm:w-full max-w-[1500px] flex justify-start gap-5 p-10 min-h-[75vh]">
+        <Toaster />
         <div className="w-2/5 flex flex-col flex-wrap gap-3 ">
           <Searchbar
             search={search}
@@ -86,5 +88,4 @@ export default function PageKebutuhan() {
       <Footer />
     </>
   );
-};
-
+}

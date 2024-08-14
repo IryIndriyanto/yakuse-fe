@@ -10,6 +10,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { setupInterceptors } from "@/utils/AxiosInterceptor";
 import { BASE_URL } from "@/utils/constant";
+import toast, { Toaster } from 'react-hot-toast';
+
 
 const LoginForm = ({ className }: { className: string }) => {
   const [loginData, setLoginData] = useState({
@@ -34,6 +36,7 @@ const LoginForm = ({ className }: { className: string }) => {
       const response = await axios.post(`${BASE_URL}/user/login`, loginData);
       const accessToken = response.data.access_token;
       if (accessToken) {
+        toast.success('login success')
         localStorage.setItem("access_token", accessToken);
         router.push("/kebutuhan");
       }
@@ -46,6 +49,7 @@ const LoginForm = ({ className }: { className: string }) => {
 
   return (
     <div className={`w-full h-full ${className}`}>
+      <Toaster/>
       {showPopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-4 rounded shadow-lg">
