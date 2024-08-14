@@ -27,6 +27,7 @@ const ProfileCardUser = ({ buttonLabel, onClick }: ProfileCardProps) => {
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [isEditing, setIsEditing] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -52,11 +53,21 @@ const ProfileCardUser = ({ buttonLabel, onClick }: ProfileCardProps) => {
   }, []);
 
   const handleEditProfile = () => {
+    setIsEditing(true);
     router.push("/edit-profile");
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center items-center min-h-[700px]">
+        <Image
+          src="/loading-gear.gif"
+          alt="Loading..."
+          width={300}
+          height={300}
+        />
+      </div>
+    );
   }
 
   if (error) {
@@ -136,14 +147,23 @@ const ProfileCardUser = ({ buttonLabel, onClick }: ProfileCardProps) => {
             </div>
 
             <div className="pt-4">
-              <Image
-                className="cursor-pointer"
-                src="/icon-pencil.svg"
-                alt="icon-pencil"
-                width={24}
-                height={24}
-                onClick={handleEditProfile}
-              />
+              {isEditing ? (
+                <Image
+                  src="/loading-spinner-orange.gif"
+                  alt="Loading..."
+                  width={50}
+                  height={50}
+                />
+              ) : (
+                <Image
+                  className="cursor-pointer"
+                  src="/icon-pencil.svg"
+                  alt="icon-pencil"
+                  width={24}
+                  height={24}
+                  onClick={handleEditProfile}
+                />
+              )}
             </div>
           </div>
         </div>
@@ -154,12 +174,21 @@ const ProfileCardUser = ({ buttonLabel, onClick }: ProfileCardProps) => {
         </div>
 
         <div className="flex justify-center items-center">
-          <ButtonList
-            onClick={onClick}
-            label={buttonLabel}
-            iconSrc="/icon-plus.svg"
-            variant="Daftar"
-          />
+          {isEditing ? (
+            <Image
+              src="/loading-spinner-orange.gif"
+              alt="Loading..."
+              width={50}
+              height={50}
+            />
+          ) : (
+            <ButtonList
+              onClick={onClick}
+              label={buttonLabel}
+              iconSrc="/icon-plus.svg"
+              variant="Daftar"
+            />
+          )}
         </div>
       </div>
     </div>
