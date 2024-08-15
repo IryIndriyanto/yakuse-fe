@@ -1,6 +1,11 @@
 import Image from "next/image";
+import { OtherUserProfile } from "./types";
 
-const ProfileCardOtherUser = () => {
+interface ProfileCardOtherUserProps {
+  profile: OtherUserProfile | null;
+}
+
+const ProfileCardOtherUser = ({ profile }: ProfileCardOtherUserProps) => {
   return (
     <div className="flex flex-col justify-between bg-[#E5F5FF] rounded-[10px] p-10 w-[1200px] font-serif min-h-[700px]">
       <div>
@@ -8,8 +13,8 @@ const ProfileCardOtherUser = () => {
           <div className="flex flex-col gap-2">
             <div>
               <Image
-                src="/foto-munaroh.svg"
-                alt="foto-munaroh"
+                src={profile?.photo_url || "/default-gray-photo.webp"}
+                alt="foto-user"
                 width={250}
                 height={250}
               />
@@ -24,26 +29,28 @@ const ProfileCardOtherUser = () => {
           <div className="flex">
             <div className="flex flex-col gap-4">
               <div>
-                <h1 className="text-[41px] font-bold">Jane Deo</h1>
+                <h1 className="text-[41px] font-bold">{profile?.fullname}</h1>
               </div>
               <div className="flex flex-col gap-2">
-                <p className="text-[14px] font-bold text-[#40ABFF]">Contact</p>
+                <p className="text-[14px] font-bold text-[#40ABFF]">
+                  {profile?.phone}
+                </p>
                 <p>
                   Email:{" "}
                   <a
-                    href="mailto:jane.deo@gmail.com"
+                    href={`mailto:${profile?.email}`}
                     className="text-[#40ABFF] cursor-pointer"
                   >
-                    jane.deo@gmail.com
+                    {profile?.email}
                   </a>
                 </p>
                 <p>
                   Phone:{" "}
                   <a
-                    href="https://wa.me/6281234567890"
+                    href={`https://wa.me/${profile?.phone}`}
                     className="text-[#40ABFF] cursor-pointer"
                   >
-                    081234567890
+                    {profile?.phone}
                   </a>
                 </p>
               </div>
@@ -62,18 +69,9 @@ const ProfileCardOtherUser = () => {
         </div>
       </div>
 
-      <div className="font-serif my-5">
+      <div className="font-serif my-5 min-h-64">
         <h3 className="text-xl font-semibold">Tentang Saya</h3>
-        <p className="text-lg text-justify py-4">
-          Saya adalah pengusaha yang gigih, memulai perjalanan bisnis saya sejak
-          masih di bangku sekolah. Dengan dedikasi dan kerja keras, saya telah
-          berhasil membangun bisnis yang selalu mengedepankan kualitas produk
-          dan kepuasan pelanggan. Saya percaya bahwa setiap produk yang saya
-          tawarkan tidak hanya harus memenuhi, tetapi juga melampaui ekspektasi
-          pelanggan. Melalui inovasi dan pelayanan yang luar biasa, saya terus
-          berusaha untuk memberikan yang terbaik dalam setiap aspek bisnis yang
-          saya jalankan.
-        </p>
+        <p className="text-lg text-justify py-4">{profile?.about_me}</p>
       </div>
     </div>
   );

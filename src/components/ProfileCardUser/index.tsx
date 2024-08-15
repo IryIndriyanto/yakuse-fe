@@ -11,7 +11,12 @@ interface ProfileCardProps {
   profile: UserProfile | null;
 }
 
-const ProfileCardUser = ({ buttonLabel, onClick, setError, profile }: ProfileCardProps) => {
+const ProfileCardUser = ({
+  buttonLabel,
+  onClick,
+  setError,
+  profile,
+}: ProfileCardProps) => {
   const router = useRouter();
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
