@@ -39,14 +39,14 @@ const LandingMainContain = () => {
           <div className="self-stretch flex items-center justify-center gap-[50px] sm:gap-[25px]">
             <button
               onClick={handleSignUp}
-              className="bg-[#005792] text-white text-3xl sm:text-2xl xs:text-xl font-semibold py-[15px] px-[50px] sm:py-[10px] sm:px-[30px] xs:py-[8px] xs:px-[20px] rounded-[10px] hover:bg-[#40abff]"
+              className="bg-[#005792] text-white text-[20px] lg:text-[14px] xs:text-xl font-semibold py-[15px] px-[50px] sm:py-[10px] sm:px-[30px] xs:py-[8px] xs:px-[20px] rounded-[10px] hover:bg-[#40abff]"
             >
               Daftar Sekarang!
             </button>
 
             <button
               onClick={handleBenefit}
-              className="bg-white text-[#005792] border border-[#005792] text-3xl sm:text-2xl xs:text-xl font-semibold py-[15px] px-[50px] sm:py-[10px] sm:px-[30px] xs:py-[8px] xs:px-[20px] rounded-[10px] hover:bg-w-two"
+              className="bg-white text-[#005792] border border-[#005792] text-[20px] lg:text-[14px] xs:text-xl font-semibold py-[15px] px-[50px] sm:py-[10px] sm:px-[30px] xs:py-[8px] xs:px-[20px] rounded-[10px] hover:bg-w-two"
             >
               {`Pelajari Lebih Lanjut >`}
             </button>
