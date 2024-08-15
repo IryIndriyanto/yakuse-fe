@@ -20,7 +20,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="bg-[#FCFCFC]">
+    <div className="bg-[#FCFCFC] w-full">
       <div>
         <Navbar />
       </div>
