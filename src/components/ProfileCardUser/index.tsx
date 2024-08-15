@@ -1,78 +1,24 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState } from "react";
 import ButtonList from "../ButtonList";
-import { BASE_URL } from "../../utils/constant";
+import { UserProfile } from "./types";
+
 interface ProfileCardProps {
   buttonLabel: string;
   onClick: () => void;
+  setError: (error: string | null) => void;
+  profile: UserProfile | null;
 }
 
-interface UserProfile {
-  id: string;
-  username: string;
-  email: string;
-  fullname: string;
-  phone: string;
-  address: string;
-  photo_url: string;
-  about_me: string;
-  created_at: string;
-  updated_at: string;
-}
-
-const ProfileCardUser = ({ buttonLabel, onClick }: ProfileCardProps) => {
+const ProfileCardUser = ({ buttonLabel, onClick, setError, profile }: ProfileCardProps) => {
   const router = useRouter();
-  const [profile, setProfile] = useState<UserProfile | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
   const [isEditing, setIsEditing] = useState<boolean>(false);
-
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const response = await axios.get(`${BASE_URL}/user/profile`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("access_token")}`, // Jika menggunakan token
-          },
-        });
-        setProfile(response.data);
-      } catch (error) {
-        if (error instanceof Error) {
-          setError(error.message);
-        } else {
-          setError("Terjadi kesalahan yang tidak diketahui");
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProfile();
-  }, []);
 
   const handleEditProfile = () => {
     setIsEditing(true);
     router.push("/edit-profile");
   };
-
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center min-h-[700px]">
-        <Image
-          src="/loading-gear.gif"
-          alt="Loading..."
-          width={300}
-          height={300}
-        />
-      </div>
-    );
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
 
   if (!profile) {
     return <div>No profile data available</div>;

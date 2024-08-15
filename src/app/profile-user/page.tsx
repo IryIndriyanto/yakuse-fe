@@ -1,15 +1,71 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 import BisniskuCardListUser from "../../components/BisniskuCardListUser";
 import PermintaankuCardListUser from "../../components/PermintaankuCardListUser";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import ProfileCardUser from "../../components/ProfileCardUser";
+import { BASE_URL } from "../../utils/constant";
+import Image from "next/image";
+import { UserProfile } from "../../components/ProfileCardUser/types"; // Import UserProfile from types.ts
 
 const Profile = () => {
   const [activeSection, setActiveSection] = useState("Bisnisku");
+  const [error, setError] = useState<string | null>(null);
+  const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
   const router = useRouter();
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const response = await axios.get(`${BASE_URL}/user/profile`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`
+          },
+        });
+        setProfile(response.data);
+      } catch (error) {
+        if (axios.isAxiosError(error)) {
+          switch (error.response?.status) {
+            case 400:
+              setError("Bad Request - Permintaan tidak valid.");
+              break;
+            case 401:
+              setError("Unauthorized - Anda tidak memiliki akses.");
+              break;
+            case 403:
+              setError("Forbidden - Anda tidak memiliki izin untuk mengakses sumber daya ini.");
+              break;
+            case 404:
+              setError("Not Found - Profil tidak ditemukan.");
+              break;
+            case 408:
+              setError("Request Timeout - Permintaan ke server telah habis waktu.");
+              break;
+            case 429:
+              setError("Too Many Requests - Terlalu banyak permintaan dalam waktu singkat.");
+              break;
+            case 500:
+              setError("Internal Server Error - Terjadi kesalahan pada server.");
+              break;
+            default:
+              setError(`${error.response?.status} - ${error.response?.statusText} ${error.message}`);
+          }
+        } else if (error instanceof Error) {
+          setError(error.message);
+        } else {
+          setError("Terjadi kesalahan yang tidak diketahui");
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProfile();
+  }, []);
 
   const handleClick = () => {
     if (activeSection === "Bisnisku") {
@@ -18,6 +74,29 @@ const Profile = () => {
       router.push("/need-form");
     }
   };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-[700px]">
+        <Image
+          src="/loading-gear.gif"
+          alt="Loading..."
+          width={300}
+          height={300}
+        />
+      </div>
+    );
+  }
+
+  if (error) {
+    return <div className="bg-[#FCFCFC] w-full">
+      <Navbar />
+      <div className="flex justify-center items-center mt-10 h-[65vh]">
+        <p className="text-[24px] font-bold">Error: {error}</p>
+      </div>
+      <Footer />
+    </div>;
+  }
 
   return (
     <div className="bg-[#FCFCFC] w-full">
@@ -29,6 +108,8 @@ const Profile = () => {
         <ProfileCardUser
           buttonLabel={activeSection === "Bisnisku" ? "Daftarin Bisnis" : "Daftarin Permintaan"}
           onClick={handleClick}
+          setError={setError}
+          profile={profile}
         />
       </div>
 
