@@ -1,14 +1,18 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import BisniskuCardListUser from "../../components/BisniskuCardListUser";
-import PermintaankuCardListUser from "../../components/PermintaankuCardListUser";
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
-import ProfileCard from "../../components/ProfileCardUser";
+import useFetchProfile from "../../../hooks/useFetchProfile";
+import BisniskuCardListUser from "../../../components/BisniskuCardListUser";
+import PermintaankuCardListUser from "../../../components/PermintaankuCardListUser";
+import Navbar from "../../../components/Navbar";
+import Footer from "../../../components/Footer";
+import ProfileCardUser from "../../../components/ProfileCardUser";
+import Image from "next/image";
 
 const Profile = () => {
   const [activeSection, setActiveSection] = useState("Bisnisku");
+  const { profile, fetchError, loading } = useFetchProfile();
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   const handleClick = () => {
@@ -19,16 +23,39 @@ const Profile = () => {
     }
   };
 
-  return (
-    <div className="bg-[#FCFCFC]">
-      <div>
-        <Navbar />
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-[700px]">
+        <Image
+          src="/loading-gear.gif"
+          alt="Loading..."
+          width={300}
+          height={300}
+        />
       </div>
+    );
+  }
+
+  if (fetchError || error) {
+    return <div className="bg-[#FCFCFC] w-full">
+      <div className="flex justify-center items-center mt-10 h-[65vh]">
+        <p className="text-[24px] font-bold">Error: {fetchError || error}</p>
+      </div>
+    </div>;
+  }
+
+  return (
+    <div className="bg-[#FCFCFC] w-full">
+      {/* <div>
+        <Navbar />
+      </div> */}
 
       <div className="flex justify-center items-center mt-10">
-        <ProfileCard 
-          buttonLabel={activeSection === "Bisnisku" ? "Daftarin Bisnis" : "Daftarin Permintaan"} 
+        <ProfileCardUser
+          buttonLabel={activeSection === "Bisnisku" ? "Daftarin Bisnis" : "Daftarin Permintaan"}
           onClick={handleClick}
+          setError={setError}
+          profile={profile}
         />
       </div>
 
@@ -105,9 +132,9 @@ const Profile = () => {
         </div>
       )}
 
-      <div className="mt-10">
+      {/* <div className="mt-10">
         <Footer />
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -1,5 +1,5 @@
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
+import Navbar from "../../../components/Navbar";
+import Footer from "../../../components/Footer";
 import Image from "next/image";
 import Rating from "@mui/material/Rating";
 
@@ -15,43 +15,27 @@ const DetailBisnis = () => {
           <Image
             src="/image-bisnis-card-list.svg"
             alt="detail-bisnis-1"
-            width={800}
-            height={400}
+            width={500}
+            height={300}
           />
         </div>
 
         <div className="flex flex-col gap-6">
           <div className="flex justify-between">
             <h1 className="text-5xl font-bold">Jualan Jagung</h1>
-            <div className="flex justify-center items-start gap-10">
-              <Image
-                className="cursor-pointer"
-                src="/icon-pencil.svg"
-                alt="icon-pencil"
-                width={24}
-                height={24}
-              />
-              <Image
-                className="cursor-pointer"
-                src="/icon-trash.svg"
-                alt="icon-trash"
-                width={24}
-                height={24}
-              />
-            </div>
           </div>
 
           <div className="flex gap-20">
             <div className="flex flex-col justify-center gap-2">
               <p className="text-[18px] font-bold">Harga</p>
               <Rating defaultValue={5} precision={0.5} readOnly />
-              <p className="text-[18px] font-bold">Terjual</p>
+              {/* <p className="text-[18px] font-bold">Terjual</p> */}
             </div>
 
             <div className="flex flex-col justify-center gap-2">
               <p className="text-[18px]">Rp. 14.000 / Kg</p>
               <p className="text-[18px]">5/5 dari 1000 pengulas</p>
-              <p className="text-[18px]">1000</p>
+              {/* <p className="text-[18px]">1000</p> */}
             </div>
           </div>
           <div>

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Image from "next/image";
 import ButtonList from "../ButtonList";
 import { useRouter } from "next/navigation";
@@ -15,15 +16,25 @@ const PermintaankuCardListUser = ({
   description,
   postedAt,
 }: PermintaankuCardListUserProps) => {
-
   const router = useRouter();
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleEditClick = () => {
     router.push("/belum-ada-nih");
   };
 
   const handleDeleteClick = () => {
+    setIsModalVisible(true);
+  };
+
+  const confirmDelete = () => {
+    setIsModalVisible(false);
     console.log("Pake API delete bro");
+    // Here you can call your delete API
+  };
+
+  const cancelDelete = () => {
+    setIsModalVisible(false);
   };
 
   return (
@@ -51,9 +62,41 @@ const PermintaankuCardListUser = ({
 
         <div className="flex items-center gap-4">
           <ButtonList label="Edit" variant="Edit" onClick={handleEditClick} />
-          <ButtonList label="Delete" variant="Delete" onClick={handleDeleteClick} />
+          <ButtonList
+            label="Delete"
+            variant="Delete"
+            onClick={handleDeleteClick}
+          />
         </div>
       </div>
+
+      {isModalVisible && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 w-[300px] sm:w-[400px]">
+            <h2 className="text-[20px] font-bold mb-4 ml-6">
+              Konfirmasi Hapus
+            </h2>
+            <p className="text-[16px] mb-6 ml-6">
+              Apakah Anda yakin ingin menghapus &quot;{title}&quot;?
+            </p>
+
+            <div className="flex items-center justify-center gap-4 w-full">
+              <button
+                onClick={cancelDelete}
+                className="bg-transparent text-[#005792] border-[#005792] border-2 py-2 px-4 rounded-md hover:bg-[#005792] hover:text-white transition-all duration-300"
+              >
+                Batal
+              </button>
+              <button
+                onClick={confirmDelete}
+                className="bg-[#FD5F00] text-[#F6FCEB] border-[#FD5F00] border-2 py-2 px-4 rounded-md hover:bg-[#FF7F32] hover:text-white hover:border-[#FF7F32] transition-all duration-300"
+              >
+                Hapus
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
