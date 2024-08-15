@@ -18,7 +18,7 @@ const LandingMainContain = () => {
   return (
     <main className="self-stretch flex flex-col items-center justify-start py-[50px] px-5 box-border gap-[150px] max-w-full gap-[37px] mq825:pt-5 mq825:pb-5 mq825:box-border gap-[19px] gap-[75px] mq1450:pt-[21px] mq1450:pb-[21px] mq1450:box-border">
       {/* Main Section */}
-      <section className="w-[1520px] flex flex-row items-start justify-start gap-[100px] max-w-full text-center text-29xl text-primary-p-four font-para-date gap-[50px] gap-[25px] mq1450:flex-wrap">
+      <section className="w-[1520px] flex flex-row items-start justify-start gap-[100px] max-w-full text-center text-29xl text-p-four font-para-date gap-[50px] gap-[25px] mq1450:flex-wrap">
         {/* Main description */}
         <div className="self-stretch flex flex-col items-start justify-start gap-[50px] gap-[25px]">
           {/* Main headline */}
@@ -27,7 +27,7 @@ const LandingMainContain = () => {
           </h2>
 
           {/* Main description */}
-          <div className="self-stretch text-center relative text-9xl leading-[34px] text-black-b-two mq450:text-3xl mq450:leading-[27px]">
+          <div className="self-stretch text-center relative text-9xl leading-[34px] text-b-two mq450:text-3xl mq450:leading-[27px]">
             <p className="m-0">
               YAKUSE adalah aplikasi yang menghubungkan pelanggan dengan UMKM
               lokal. Pasarkan dan temukan produk dan layanan dari bisnis kecil
@@ -40,14 +40,14 @@ const LandingMainContain = () => {
           <div className="self-stretch flex items-center justify-center gap-[50px] gap-[25px]">
             <button
               onClick={handleSignUp}
-              className="bg-[#005792] text-white text-3xl font-semibold py-[15px] px-[50px] rounded-[10px] hover:bg-primary-p-two"
+              className="bg-[#005792] text-white text-3xl font-semibold py-[15px] px-[50px] rounded-[10px] hover:bg-[#40abff]"
             >
               Daftar Sekarang!
             </button>
 
             <button
               onClick={handleBenefit}
-              className="bg-white text-[#005792] border border-[#005792] text-3xl font-semibold py-[15px] px-[50px] rounded-[10px] hover:bg-white-w-two"
+              className="bg-white text-[#005792] border border-[#005792] text-3xl font-semibold py-[15px] px-[50px] rounded-[10px] hover:bg-w-two"
             >
               {`Pelajari Lebih Lanjut >`}
             </button>
