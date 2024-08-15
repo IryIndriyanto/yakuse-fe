@@ -15,7 +15,7 @@ const LandingNavbar = () => {
     router.push("/register");
   };
   return (
-    <header className="self-stretch flex flex-row items-center justify-between py-[50px] px-[65px] gap-5 text-left text-29xl text-primary-p-one font-para-date mq825:flex-wrap mq825:pl-8 mq825:pr-8 mq825:box-border">
+    <header className="self-stretch flex flex-row items-center justify-between py-[50px] px-[65px] gap-5 text-left text-29xl text-p-one font-para-date mq825:flex-wrap mq825:pl-8 mq825:pr-8 mq825:box-border">
       {/* Yakuse Logo */}
       <a className="[text-decoration:none] relative leading-[54px] font-semibold text-[inherit]">
         YAKUSE
@@ -26,7 +26,7 @@ const LandingNavbar = () => {
         {/* Sign in Button */}
         <button
           onClick={handleSignIn}
-          className="font-para-date w-[110px] h-[42px] bg-white text-[#005792] border border-[#005792] font-semibold text-[19px] py-2 px-4 rounded-lg hover:bg-white-w-two"
+          className="font-para-date w-[110px] h-[42px] bg-white text-[#005792] border border-[#005792] font-semibold text-[19px] py-2 px-4 rounded-lg hover:bg-w-two"
         >
           Sign In
         </button>
@@ -34,7 +34,7 @@ const LandingNavbar = () => {
         {/* Sign up Button */}
         <button
           onClick={handleSignUp}
-          className="font-para-date w-[110px] h-[42px] bg-[#fd5f00]  text-white font-semibold text-[19px] py-2 px-4 rounded-lg"
+          className="font-para-date w-[110px] h-[42px] bg-[#fd5f00]  text-white font-semibold text-[19px] py-2 px-4 rounded-lg hover:bg-[#ff7f32]"
         >
           Sign Up
         </button>
