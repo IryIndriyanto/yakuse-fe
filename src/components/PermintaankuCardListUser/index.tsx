@@ -2,28 +2,21 @@ import { useState } from "react";
 import Image from "next/image";
 import ButtonList from "../ButtonList";
 import { useRouter } from "next/navigation";
+import useFetchNeed from "../../hooks/useFetchNeeds";
+import { MyNeed } from "./types";
 
-interface PermintaankuCardListUserProps {
-  image: string;
-  title: string;
-  description: string;
-  postedAt: string;
-}
-
-const PermintaankuCardListUser = ({
-  image,
-  title,
-  description,
-  postedAt,
-}: PermintaankuCardListUserProps) => {
+const PermintaankuCardListUser = () => {
   const router = useRouter();
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const { needs, loadingNeeds, errorNeeds } = useFetchNeed();
+  const [selectedNeed, setSelectedNeed] = useState<MyNeed | null>(null); // Added state for selected need
 
   const handleEditClick = () => {
     router.push("/belum-ada-nih");
   };
 
-  const handleDeleteClick = () => {
+  const handleDeleteClick = (need: MyNeed) => {
+    setSelectedNeed(need); // Set selected need
     setIsModalVisible(true);
   };
 
@@ -35,49 +28,66 @@ const PermintaankuCardListUser = ({
 
   const cancelDelete = () => {
     setIsModalVisible(false);
+    setSelectedNeed(null); // Reset selected need
   };
 
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex items-center justify-between font-serif bg-[#E5F5FF] rounded-[8px] p-4 transform hover:scale-105 transition-all duration-300">
-        <div className="flex items-center gap-8">
-          <div>
-            <Image
-              className="rounded-full w-[150px] h-[150px] bg-image bg-cover bg-center object-cover"
-              src={image}
-              alt={title}
-              width={150}
-              height={150}
-            />
-          </div>
-
-          <div className="flex flex-col gap-4">
-            <h4 className="text-[28px] font-bold">{title}</h4>
-            <p className="text-[18px] text-[#525455]">{description}</p>
-            <p className="text-[18px] text-[#525455]">
-              Dibuat pada tanggal: {postedAt}
-            </p>
-          </div>
+    <div className="flex flex-col gap-4 mb-10">
+      {loadingNeeds ? (
+        <div className="flex flex-col items-center gap-4">
+          <Image src="/loading-spinner-orange.gif" alt="Loading..." width={100} height={100} />
+          <p className="text-[20px] font-bold">Loading</p>
         </div>
-
-        <div className="flex items-center gap-4">
-          <ButtonList label="Edit" variant="Edit" onClick={handleEditClick} />
-          <ButtonList
-            label="Delete"
-            variant="Delete"
-            onClick={handleDeleteClick}
-          />
+      ) : errorNeeds ? (
+        <div className="flex flex-col items-center gap-4">
+          <Image src="/icon-error.png" alt="Error" width={100} height={100} />
+          <p className="text-[20px] font-bold">Error loading data</p>
         </div>
-      </div>
+      ) : needs === null ? (
+        <p>Data tidak tersedia</p>
+      ) : (
+        needs?.map((need: MyNeed) => (
+          <div className="flex items-center justify-between font-serif bg-[#E5F5FF] rounded-[8px] p-4 transform hover:scale-105 transition-all duration-300" key={need.id}>
+            <div className="flex items-center gap-8">
+              <div>
+                <Image
+                  className="rounded-full w-[150px] h-[150px] bg-image bg-cover bg-center object-cover"
+                  src={need.user_info.user_profile_url}
+                  alt="Profile Picture"
+                  width={150}
+                  height={150}
+                />
+              </div>
 
-      {isModalVisible && (
+              <div className="flex flex-col gap-4">
+                <h4 className="text-[28px] font-bold">{need.title}</h4>
+                <p className="text-[18px] text-[#525455]">{need.description}</p>
+                <p className="text-[18px] text-[#525455]">
+                  Dibuat pada tanggal: {need.created_at}
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4">
+              <ButtonList label="Edit" variant="Edit" onClick={handleEditClick} />
+              <ButtonList
+                label="Delete"
+                variant="Delete"
+                onClick={() => handleDeleteClick(need)} // Pass need to handleDeleteClick
+              />
+            </div>
+          </div>
+        ))
+      )}
+
+      {isModalVisible && selectedNeed && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 w-[300px] sm:w-[400px]">
             <h2 className="text-[20px] font-bold mb-4 ml-6">
               Konfirmasi Hapus
             </h2>
             <p className="text-[16px] mb-6 ml-6">
-              Apakah Anda yakin ingin menghapus &quot;{title}&quot;?
+              Apakah Anda yakin ingin menghapus &quot;{selectedNeed.title}&quot;?
             </p>
 
             <div className="flex items-center justify-center gap-4 w-full">
