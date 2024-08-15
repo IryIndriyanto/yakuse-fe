@@ -73,21 +73,23 @@ const PermintaankuCardListUser = ({
       {isModalVisible && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 w-[300px] sm:w-[400px]">
-            <h2 className="text-[20px] font-bold mb-4">Konfirmasi Hapus</h2>
-            <p className="text-[16px] mb-6">
+            <h2 className="text-[20px] font-bold mb-4 ml-6">
+              Konfirmasi Hapus
+            </h2>
+            <p className="text-[16px] mb-6 ml-6">
               Apakah Anda yakin ingin menghapus &quot;{title}&quot;?
             </p>
 
-            <div className="flex justify-end gap-4">
+            <div className="flex items-center justify-center gap-4 w-full">
               <button
                 onClick={cancelDelete}
-                className="bg-gray-300 text-gray-800 py-2 px-4 rounded hover:bg-gray-400 transition-all duration-200"
+                className="bg-transparent text-[#005792] border-[#005792] border-2 py-2 px-4 rounded-md hover:bg-[#005792] hover:text-white transition-all duration-300"
               >
                 Batal
               </button>
               <button
                 onClick={confirmDelete}
-                className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition-all duration-200"
+                className="bg-[#FD5F00] text-[#F6FCEB] border-[#FD5F00] border-2 py-2 px-4 rounded-md hover:bg-[#FF7F32] hover:text-white hover:border-[#FF7F32] transition-all duration-300"
               >
                 Hapus
               </button>
