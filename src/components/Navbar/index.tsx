@@ -8,7 +8,7 @@ const Navbar = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const router = useRouter();
   const handleJelajahiKomunitas = () => {
-    router.push("/nyaripedagang");
+    router.push("/kebutuhan");
   };
 
   const toggleDropdown = () => {
@@ -24,20 +24,20 @@ const Navbar = () => {
   };
 
   return (
-    <div className="font-serif bg-[#FCFCFC] py-4 flex justify-between px-[50px]">
-      <div className="flex flex-col justify-center gap-4">
+    <div className="font-serif bg-[#FCFCFC] py-8 flex justify-between items-center px-[48px]">
+      <div className="flex flex-col justify-center">
         <div>
           <h1 className="text-[41px] font-bold text-[#40ABFF]">YAKUSE</h1>
         </div>
         <div className="flex items-center gap-2 cursor-pointer" onClick={handleJelajahiKomunitas}>
           <Image src="/move-left.svg" alt="move-left" width={24} height={24} />
-          <p className="text-[#FD5F00] text-[23px] font-bold">
+          <p className="text-[#FD5F00] text-[18px] font-bold">
             Jelajahi Komunitas
           </p>
         </div>
       </div>
 
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center flex-1">
         <ul className="flex items-center gap-4">
           <li className="text-[18px] cursor-pointer hover:text-[#FD5F00] transition-all duration-300 mr-10" onClick={handleJelajahiKomunitas}>
             Temukan Kebutuhan
