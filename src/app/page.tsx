@@ -2,6 +2,7 @@ import React from 'react';
 import LandingNavbar from '@/components/landingNavbar';
 import LandingMainContent from '@/components/landingMainContent';
 import { Toaster } from 'react-hot-toast';
+import Footer from '@/components/Footer';
 
 const landingpage = () => {
   return (
@@ -11,6 +12,7 @@ const landingpage = () => {
       <LandingNavbar />
       <LandingMainContent />
       <Toaster/>
+      <Footer />
     </div>
   );
 };
