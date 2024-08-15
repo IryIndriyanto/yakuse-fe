@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 const Navbar = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const router = useRouter();
+  const dropdownRef = useRef(null);
+
   const handleJelajahiKomunitas = () => {
     router.push("/kebutuhan");
   };
@@ -22,6 +24,23 @@ const Navbar = () => {
   const handleLogout = () => {
     console.log("Nanti hilangin token biar logout");
   };
+  const handleClickOutside = (event: MouseEvent) => {
+    if (dropdownRef.current && !(dropdownRef.current as HTMLElement).contains(event.target as Node)) {
+      setDropdownVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    if (dropdownVisible) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropdownVisible]);
 
   return (
     <div className="font-serif bg-[#FCFCFC] py-8 flex justify-between items-center px-[48px]">
@@ -52,12 +71,12 @@ const Navbar = () => {
       </div>
 
       <div className="flex items-center gap-4">
-        <div className="cursor-pointer text-right">
+        <div className="cursor-pointer text-right" onClick={toggleDropdown}>
           <p className="text-[18px] font-bold">Jane Deo</p>
           <p className="text-[12px]">Pedagang Jagung</p>
         </div>
 
-        <div className="relative">
+        <div className="relative" ref={dropdownRef}>
           <Image
             className="rounded-full w-[40px] h-[40px] bg-image bg-cover bg-center object-cover cursor-pointer"
             src="/foto-munaroh.svg"
@@ -71,9 +90,6 @@ const Navbar = () => {
               <ul>
                 <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={handleProfile}>
                   <p>Profile</p>
-                </li>
-                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                  <p>Setting</p>
                 </li>
                 <li className="px-4 py-2 text-red-500 hover:bg-gray-100 cursor-pointer"
                   onClick={handleLogout}
