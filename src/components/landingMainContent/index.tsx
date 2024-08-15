@@ -54,13 +54,13 @@ const LandingMainContain = () => {
         </div>
 
         {/* Image Container */}
-        <div className="h-[440px] w-[550px] relative min-w-[550px] max-w-full mq825:min-w-full mq1450:flex-1">
+        <div className="mt-10 sm:mt-[-20px] h-[290px] w-[550px] relative min-w-[500px]  mq825:min-w-full mq1450:flex-1">
           {/* Ellipse Image (Background) */}
           <Image
-            className="absolute inset-0 z-0"
+            className="absolute inset-0 z-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
             alt=""
             src="/ellipse-5.svg"
-            width={600}
+            width={500}
             height={440}
           />
 
