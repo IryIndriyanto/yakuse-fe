@@ -86,7 +86,7 @@ export default function PageKebutuhan() {
         </div>
         <BusinessCard data={filteredData} filter={activeFilters} />
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

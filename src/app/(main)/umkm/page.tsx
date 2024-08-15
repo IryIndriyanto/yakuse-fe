@@ -5,11 +5,11 @@ import Footer from "@/components/Footer";
 export default function PageUMKM() {
   return (
     <>
-      <Navbarhome />
+      {/* <Navbarhome /> */}
       <main className="h-[75vh] py-32">
         <h1>Coming Soon</h1>
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

@@ -11,6 +11,7 @@ import * as Yup from "yup";
 import { useState, useEffect } from "react";
 import { setupInterceptors } from "@/utils/AxiosInterceptor";
 import { BASE_URL } from "@/utils/constant";
+import toast from "react-hot-toast";
 
 const RegisterForm = ({ className }: { className: string }) => {
   const initialValues = {
@@ -39,7 +40,7 @@ const RegisterForm = ({ className }: { className: string }) => {
       .required("Password is required"),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password"), undefined], "Passwords must match")
-      .required(),
+      .required("Confirm Password is requiered"),
   });
 
   const [showPopup, setShowPopup] = useState(false);
@@ -57,14 +58,17 @@ const RegisterForm = ({ className }: { className: string }) => {
     const { confirmPassword, ...dataToSend } = values;
 
     try {
-      const response = await axios.post(`${BASE_URL}/user/register`, dataToSend);
-      if (response.status === 201) {
+      const response = await axios.post(
+        `${BASE_URL}/user/register`,
+        dataToSend
+      );
+      if (response.status === 200) {
+        toast.success("Register Success, Please Login");
         router.push("/login");
       }
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
-      } else {
-        console.error("An unexpected error occurred:", error);
+        toast.error(`${error.response.data.detail}`);
       }
     } finally {
       setIsLoading(false);
