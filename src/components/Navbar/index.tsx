@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import useFetchProfile from "../../hooks/useFetchProfile";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 
 const Navbar = () => {
@@ -10,6 +11,14 @@ const Navbar = () => {
   const router = useRouter();
   const dropdownRef = useRef(null);
   const { profile, loading } = useFetchProfile();
+
+  const currentPath = usePathname();
+  
+  const tabs = [
+    { name: "Temukan Kebutuhan", href: "/kebutuhan" },
+    { name: "Temukan Pembeli", href: "/pembeli" },
+    { name: "Info UMKM", href: "/umkm" }
+  ]; 
 
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
@@ -59,7 +68,7 @@ const Navbar = () => {
       </div>
 
       <div className="flex items-center justify-center flex-1">
-        <ul className="flex items-center gap-4">
+        {/* <ul className="flex items-center gap-4">
           <li
             className="text-[18px] cursor-pointer hover:text-[#FD5F00] transition-all duration-300 mr-10"
             onClick={() => handleNavigation("/kebutuhan")}
@@ -78,7 +87,16 @@ const Navbar = () => {
           >
             Info UMKM
           </li>
-        </ul>
+        </ul> */}
+        {tabs.map((tab, index) => (
+          <li
+            key={index}
+            className={`text-[20px] list-none cursor-pointer hover:text-[#FD5F00] mr-10 ${currentPath === tab.href ? "text-[#FD5F00] underline underline-offset-8" : ""}`}
+            onClick={() => handleNavigation(tab.href)}
+          >
+            {tab.name}
+          </li>
+        ))}
       </div>
 
       <div className="flex items-center gap-4">

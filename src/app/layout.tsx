@@ -16,10 +16,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${robotoSerif.className} min-h-screen flex flex-col items-center`}
-      >
-        {children}
+      <body className={`${robotoSerif.className}`}>
+          {children}
       </body>
     </html>
   );

@@ -1,79 +1,27 @@
 "use client";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import BisniskuCardListOtherUser from "../../components/BisniskuCardListOtherUser";
-import PermintaankuCardListOtherUser from "../../components/PermintaankuCardListOtherUser";
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
-import ProfileCardOtherUser from "../../components/ProfileCardOtherUser";
-import { BASE_URL } from "../../utils/constant";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import useFetchProfile from "../../../hooks/useFetchProfile";
+import BisniskuCardListUser from "../../../components/BisniskuCardListUser";
+import PermintaankuCardListUser from "../../../components/PermintaankuCardListUser";
+import Navbar from "../../../components/Navbar";
+import Footer from "../../../components/Footer";
+import ProfileCardUser from "../../../components/ProfileCardUser";
 import Image from "next/image";
-import { OtherUserProfile } from "../../components/ProfileCardOtherUser/types";
 
-const ProfilePage = () => {
+const Profile = () => {
   const [activeSection, setActiveSection] = useState("Bisnisku");
+  const { profile, fetchError, loading } = useFetchProfile();
   const [error, setError] = useState<string | null>(null);
-  const [profile, setProfile] = useState<OtherUserProfile | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const router = useRouter();
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const response = await axios.get(`${BASE_URL}/user/profile`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-          },
-        });
-        setProfile(response.data);
-      } catch (error) {
-        if (axios.isAxiosError(error)) {
-          switch (error.response?.status) {
-            case 400:
-              setError("Bad Request - Permintaan tidak valid.");
-              break;
-            case 401:
-              setError("Unauthorized - Anda tidak memiliki akses.");
-              break;
-            case 403:
-              setError(
-                "Forbidden - Anda tidak memiliki izin untuk mengakses sumber daya ini."
-              );
-              break;
-            case 404:
-              setError("Not Found - Profil tidak ditemukan.");
-              break;
-            case 408:
-              setError(
-                "Request Timeout - Permintaan ke server telah habis waktu."
-              );
-              break;
-            case 429:
-              setError(
-                "Too Many Requests - Terlalu banyak permintaan dalam waktu singkat."
-              );
-              break;
-            case 500:
-              setError(
-                "Internal Server Error - Terjadi kesalahan pada server."
-              );
-              break;
-            default:
-              setError(
-                `${error.response?.status} - ${error.response?.statusText} ${error.message}`
-              );
-          }
-        } else if (error instanceof Error) {
-          setError(error.message);
-        } else {
-          setError("Terjadi kesalahan yang tidak diketahui");
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProfile();
-  }, []);
+  const handleClick = () => {
+    if (activeSection === "Bisnisku") {
+      router.push("/daftarin-bisnis");
+    } else {
+      router.push("/need-form");
+    }
+  };
 
   if (loading) {
     return (
@@ -88,26 +36,27 @@ const ProfilePage = () => {
     );
   }
 
-  if (error) {
-    return (
-      <div className="bg-[#FCFCFC] w-full">
-        <Navbar />
-        <div className="flex justify-center items-center mt-10 h-[65vh]">
-          <p className="text-[24px] font-bold">Error: {error}</p>
-        </div>
-        <Footer />
+  if (fetchError || error) {
+    return <div className="bg-[#FCFCFC] w-full">
+      <div className="flex justify-center items-center mt-10 h-[65vh]">
+        <p className="text-[24px] font-bold">Error: {fetchError || error}</p>
       </div>
-    );
+    </div>;
   }
 
   return (
     <div className="bg-[#FCFCFC] w-full">
-      <div>
+      {/* <div>
         <Navbar />
-      </div>
+      </div> */}
 
       <div className="flex justify-center items-center mt-10">
-        <ProfileCardOtherUser profile={null} />
+        <ProfileCardUser
+          buttonLabel={activeSection === "Bisnisku" ? "Daftarin Bisnis" : "Daftarin Permintaan"}
+          onClick={handleClick}
+          setError={setError}
+          profile={profile}
+        />
       </div>
 
       <div className="my-20 w-[1200px] mx-auto">
@@ -139,19 +88,19 @@ const ProfilePage = () => {
 
       {activeSection === "Bisnisku" && (
         <div className="flex flex-col gap-4 mt-10 w-[1200px] mx-auto">
-          <BisniskuCardListOtherUser
+          <BisniskuCardListUser
             image="/image-bisnis-card-list.svg"
             title="Popcorn"
             category="#Kuliner"
             address="Jl. Raya Bogor No. 123, Kel. Ciracas, Kec. Ciracas, Jakarta Timur, DKI Jakarta 13740"
           />
-          <BisniskuCardListOtherUser
+          <BisniskuCardListUser
             image="/image-bisnis-card-list.svg"
             title="Caramel"
             category="#Kuliner"
             address="Jl. Raya Bogor Km. 30, Mekarsari, Kec. Cimanggis, Kota Depok, Jawa Barat 16452"
           />
-          <BisniskuCardListOtherUser
+          <BisniskuCardListUser
             image="/image-bisnis-card-list.svg"
             title="Makanan Burung"
             category="#PakanHewan"
@@ -162,19 +111,19 @@ const ProfilePage = () => {
 
       {activeSection === "Permintaanku" && (
         <div className="flex flex-col gap-4 mt-10 w-[1200px] mx-auto">
-          <PermintaankuCardListOtherUser
+          <PermintaankuCardListUser
             image="/image-bisnis-card-list.svg"
             title="PO Jagung Pipil"
             description="Butuh jagung pipil sebanyak 100 Kg selambatnya akhir Agustus 2024"
             postedAt="09 Agustus 2024"
           />
-          <PermintaankuCardListOtherUser
+          <PermintaankuCardListUser
             image="/image-bisnis-card-list.svg"
             title="PO Gula Pasir"
             description="Butuh gula pasir sebanyak 200 Kg selambatnya akhir Agustus 2024"
             postedAt="08 Agustus 2024"
           />
-          <PermintaankuCardListOtherUser
+          <PermintaankuCardListUser
             image="/image-bisnis-card-list.svg"
             title="PO Jagung Kering"
             description="Butuh jagung kering untuk pakan burung sebanyak 300 Kg selambatnya akhir Agustus 2024"
@@ -183,11 +132,11 @@ const ProfilePage = () => {
         </div>
       )}
 
-      <div className="mt-10">
+      {/* <div className="mt-10">
         <Footer />
-      </div>
+      </div> */}
     </div>
   );
 };
 
-export default ProfilePage;
+export default Profile;
