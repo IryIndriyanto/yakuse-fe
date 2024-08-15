@@ -150,7 +150,7 @@ const LandingMainContain = () => {
           id="Temukan-Kebutuhan"
           className="w-[1520px] flex flex-row items-start justify-start gap-[50px] max-w-full gap-[25px] mq1450:flex-wrap"
         >
-          <div className="flex-1 flex flex-col items-center justify-start pt-[118.5px] px-0 pb-0 box-border min-w-[695px] max-w-full mq825:min-w-full">
+          <div className="flex-1 flex flex-col items-center justify-start gap-[20px] pt-[118.5px] px-0 pb-0 box-border min-w-[695px] max-w-full mq825:min-w-full">
             <h4 className="text-29xl text-black font-semibold">
               Temukan Kebutuhan
             </h4>
@@ -160,7 +160,7 @@ const LandingMainContain = () => {
             </div>
           </div>
           <Image
-            className="relative max-h-full shrink-0 object-cover max-w-full mq1450:flex-1"
+            className="relative max-h-full max-w-full shrink-0 object-cover  mq1450:flex-1"
             src="/frame-80-1@2x.png"
             alt="Temukan Kebutuhan"
             width={400}
@@ -171,16 +171,9 @@ const LandingMainContain = () => {
         {/* Temukan Pembeli */}
         <div
           id="Temukan-Pembeli"
-          className="w-[1520px] flex flex-row items-start justify-start gap-[50px] max-w-full gap-[25px] mq1450:flex-wrap"
+          className="w-[1520px] flex flex-row-reverse items-start justify-start gap-[50px] max-w-full gap-[25px] mq1450:flex-wrap"
         >
-          <Image
-            className="relative max-h-full shrink-0 object-cover max-w-full mq1450:flex-1"
-            src="/frame-80-2@2x.png"
-            alt="Temukan Pembeli"
-            width={400}
-            height={400}
-          />
-          <div className="flex-1 flex flex-col items-center justify-start pt-[118.5px] px-0 pb-0 box-border min-w-[695px] max-w-full mq825:min-w-full">
+          <div className="flex-1 flex flex-col items-center justify-start gap-[20px] pt-[118.5px] px-0 pb-0 box-border min-w-[695px] max-w-full mq825:min-w-full">
             <h4 className="text-29xl text-black font-semibold">
               Temukan Pembeli
             </h4>
@@ -189,6 +182,13 @@ const LandingMainContain = () => {
               melihat kebutuhan pelaku UMKM lainnya
             </div>
           </div>
+          <Image
+            className="relative max-h-full shrink-0 object-cover max-w-full mq1450:flex-1"
+            src="/frame-80-2@2x.png"
+            alt="Temukan Pembeli"
+            width={400}
+            height={400}
+          />
         </div>
 
         {/* Info UMKM */}
@@ -196,7 +196,7 @@ const LandingMainContain = () => {
           id="Info-UMKM"
           className="w-[1520px] flex flex-row items-start justify-start gap-[50px] max-w-full gap-[25px] mq1450:flex-wrap"
         >
-          <div className="flex-1 flex flex-col items-center justify-start pt-[118.5px] px-0 pb-0 box-border min-w-[695px] max-w-full mq825:min-w-full">
+          <div className="flex-1 flex flex-col items-center justify-start gap-[20px] pt-[118.5px] px-0 pb-0 box-border min-w-[695px] max-w-full mq825:min-w-full">
             <h4 className="text-29xl text-black font-semibold">Info UMKM</h4>
             <div className="text-14xl text-black">
               Fitur yang memungkinkan UMKM untuk mendapatkan informasi terkait
