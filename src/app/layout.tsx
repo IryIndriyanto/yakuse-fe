@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Roboto_Serif } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "react-hot-toast";
 
 const robotoSerif = Roboto_Serif({ subsets: ["latin"] });
 
@@ -19,6 +20,7 @@ export default function RootLayout({
       <body
         className={`${robotoSerif.className} min-h-screen flex flex-col items-center`}
       >
+        <Toaster />
         {children}
       </body>
     </html>
