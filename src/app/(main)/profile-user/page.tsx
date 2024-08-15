@@ -4,8 +4,6 @@ import { useRouter } from "next/navigation";
 import useFetchProfile from "../../../hooks/useFetchProfile";
 import BisniskuCardListUser from "../../../components/BisniskuCardListUser";
 import PermintaankuCardListUser from "../../../components/PermintaankuCardListUser";
-import Navbar from "../../../components/Navbar";
-import Footer from "../../../components/Footer";
 import ProfileCardUser from "../../../components/ProfileCardUser";
 import Image from "next/image";
 
@@ -38,18 +36,15 @@ const Profile = () => {
 
   if (fetchError || error) {
     return <div className="bg-[#FCFCFC] w-full">
-      <div className="flex justify-center items-center mt-10 h-[65vh]">
-        <p className="text-[24px] font-bold">Error: {fetchError || error}</p>
+      <div className="flex flex-col justify-center items-center mt-10 h-[65vh] gap-4">
+        <Image src="/icon-error.png" alt="error" width={100} height={100} />
+        <p className="text-[24px] font-bold text-red-500">Error: {fetchError || error}</p>
       </div>
     </div>;
   }
 
   return (
     <div className="bg-[#FCFCFC] w-full">
-      {/* <div>
-        <Navbar />
-      </div> */}
-
       <div className="flex justify-center items-center mt-10">
         <ProfileCardUser
           buttonLabel={activeSection === "Bisnisku" ? "Daftarin Bisnis" : "Daftarin Permintaan"}
@@ -87,25 +82,8 @@ const Profile = () => {
       </div>
 
       {activeSection === "Bisnisku" && (
-        <div className="flex flex-col gap-4 mt-10 w-[1200px] mx-auto">
-          <BisniskuCardListUser
-            image="/image-bisnis-card-list.svg"
-            title="Popcorn"
-            category="#Kuliner"
-            address="Jl. Raya Bogor No. 123, Kel. Ciracas, Kec. Ciracas, Jakarta Timur, DKI Jakarta 13740"
-          />
-          <BisniskuCardListUser
-            image="/image-bisnis-card-list.svg"
-            title="Caramel"
-            category="#Kuliner"
-            address="Jl. Raya Bogor Km. 30, Mekarsari, Kec. Cimanggis, Kota Depok, Jawa Barat 16452"
-          />
-          <BisniskuCardListUser
-            image="/image-bisnis-card-list.svg"
-            title="Makanan Burung"
-            category="#PakanHewan"
-            address="Jl. Raya Serpong No. 89, Kel. Serpong, Kec. Serpong, Kota Tangerang Selatan, Banten 15310"
-          />
+        <div className="flex flex-col gap-4 mt-10 mb-10 w-[1200px] mx-auto">
+          <BisniskuCardListUser />
         </div>
       )}
 
@@ -131,10 +109,6 @@ const Profile = () => {
           />
         </div>
       )}
-
-      {/* <div className="mt-10">
-        <Footer />
-      </div> */}
     </div>
   );
 };
