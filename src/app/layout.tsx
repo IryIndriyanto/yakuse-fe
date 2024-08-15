@@ -18,7 +18,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${robotoSerif.className}`}>
-          {children}
+        <Toaster />
+        {children}
       </body>
     </html>
   );
