@@ -10,9 +10,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { setupInterceptors } from "@/utils/AxiosInterceptor";
 import { BASE_URL } from "@/utils/constant";
-import toast, { Toaster } from 'react-hot-toast';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
+import toast, { Toaster } from "react-hot-toast";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const LoginForm = ({ className }: { className: string }) => {
   const [showPopup, setShowPopup] = useState(false);
@@ -46,12 +46,14 @@ const LoginForm = ({ className }: { className: string }) => {
         const response = await axios.post(`${BASE_URL}/user/login`, values);
         const accessToken = response.data.access_token;
         if (accessToken) {
-          toast.success('Login success');
+          toast.success("Login success");
           localStorage.setItem("access_token", accessToken);
           router.push("/kebutuhan");
         }
       } catch (error) {
-        console.error(error);
+        if (axios.isAxiosError(error) && error.response) {
+          toast.error(`${error.response.data.detail}`);
+        }
       } finally {
         setIsLoading(false);
       }
@@ -60,23 +62,6 @@ const LoginForm = ({ className }: { className: string }) => {
 
   return (
     <div className={`w-full h-full ${className}`}>
-      {showPopup && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-4 rounded shadow-lg">
-            <h2 className="text-xl font-bold">Error</h2>
-            <div className="flex flex-col gap-4">
-              <p>{popupMessage}</p>
-              <button
-                className="mt-4 px-4 py-2 bg-red-500 text-white rounded"
-                onClick={() => setShowPopup(false)}
-              >
-                Tutup
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
       <h1 className="text-[33px] font-[700] text-blue-400">
         Welcome to Yakuse!
       </h1>
@@ -106,7 +91,9 @@ const LoginForm = ({ className }: { className: string }) => {
                 name="password"
               />
               {formik.touched.password && formik.errors.password ? (
-                <div className="text-red-500 text-sm">{formik.errors.password}</div>
+                <div className="text-red-500 text-sm">
+                  {formik.errors.password}
+                </div>
               ) : null}
             </div>
 

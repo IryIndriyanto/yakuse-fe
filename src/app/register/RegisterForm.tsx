@@ -40,7 +40,7 @@ const RegisterForm = ({ className }: { className: string }) => {
       .required("Password is required"),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password"), undefined], "Passwords must match")
-      .required(),
+      .required("Confirm Password is requiered"),
   });
 
   const [showPopup, setShowPopup] = useState(false);
@@ -68,9 +68,8 @@ const RegisterForm = ({ className }: { className: string }) => {
       }
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
-      } else {
-        console.error("An unexpected error occurred:", error);
-      }
+        toast.error(`${error.response.data.detail}`);
+      } 
     } finally {
       setIsLoading(false);
     }
