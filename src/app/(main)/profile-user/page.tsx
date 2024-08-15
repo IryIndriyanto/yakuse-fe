@@ -89,24 +89,7 @@ const Profile = () => {
 
       {activeSection === "Permintaanku" && (
         <div className="flex flex-col gap-4 mt-10 w-[1200px] mx-auto">
-          <PermintaankuCardListUser
-            image="/image-bisnis-card-list.svg"
-            title="PO Jagung Pipil"
-            description="Butuh jagung pipil sebanyak 100 Kg selambatnya akhir Agustus 2024"
-            postedAt="09 Agustus 2024"
-          />
-          <PermintaankuCardListUser
-            image="/image-bisnis-card-list.svg"
-            title="PO Gula Pasir"
-            description="Butuh gula pasir sebanyak 200 Kg selambatnya akhir Agustus 2024"
-            postedAt="08 Agustus 2024"
-          />
-          <PermintaankuCardListUser
-            image="/image-bisnis-card-list.svg"
-            title="PO Jagung Kering"
-            description="Butuh jagung kering untuk pakan burung sebanyak 300 Kg selambatnya akhir Agustus 2024"
-            postedAt="07 Agustus 2024"
-          />
+          <PermintaankuCardListUser />
         </div>
       )}
     </div>
