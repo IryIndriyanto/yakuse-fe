@@ -3,7 +3,7 @@
 import Image from "next/image";
 import React from "react";
 import Rating from "@mui/material/Rating";
-import { bisnisType } from "@/data/mock/type";
+import { bisnisType } from "@/data/type";
 
 interface bisnisProps {
   filter: string[];

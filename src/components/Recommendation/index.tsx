@@ -1,5 +1,5 @@
 "use client";
-import { bisnisType } from "@/data/mock/type";
+import { bisnisType } from "@/data/type";
 import Image from "next/image";
 import React, { useState } from "react";
 

@@ -1,7 +1,7 @@
 "use client";
 
 import PermintaanCard from "@/components/PermintaanCard";
-import { permintaanType } from "@/data/mock/type";
+import { permintaanType } from "@/data/type";
 import React from "react";
 
 interface permintaanProps {
