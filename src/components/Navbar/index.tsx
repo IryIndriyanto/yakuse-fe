@@ -9,10 +9,6 @@ const Navbar = () => {
   const router = useRouter();
   const dropdownRef = useRef(null);
 
-  const handleJelajahiKomunitas = () => {
-    router.push("/kebutuhan");
-  };
-
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
   };
@@ -36,6 +32,10 @@ const Navbar = () => {
     }
   };
 
+  const handleNavigation = (path: string) => {
+    router.push(path);
+  };
+
   useEffect(() => {
     if (dropdownVisible) {
       document.addEventListener("mousedown", handleClickOutside);
@@ -54,29 +54,26 @@ const Navbar = () => {
         <div>
           <h1 className="text-[38px] font-bold text-[#40ABFF]">YAKUSE</h1>
         </div>
-        <div
-          className="flex items-center gap-2 cursor-pointer"
-          onClick={handleJelajahiKomunitas}
-        >
-          <Image src="/move-left.svg" alt="move-left" width={24} height={24} />
-          <p className="text-[#FD5F00] text-[18px] font-bold">
-            Jelajahi Komunitas
-          </p>
-        </div>
       </div>
 
       <div className="flex items-center justify-center flex-1">
         <ul className="flex items-center gap-4">
           <li
             className="text-[18px] cursor-pointer hover:text-[#FD5F00] transition-all duration-300 mr-10"
-            onClick={handleJelajahiKomunitas}
+            onClick={() => handleNavigation("/kebutuhan")}
           >
             Temukan Kebutuhan
           </li>
-          <li className="text-[18px] cursor-pointer hover:text-[#FD5F00] transition-all duration-300 mr-10">
+          <li
+            className="text-[18px] cursor-pointer hover:text-[#FD5F00] transition-all duration-300 mr-10"
+            onClick={() => handleNavigation("/pembeli")}
+          >
             Temukan Pembeli
           </li>
-          <li className="text-[18px] cursor-pointer hover:text-[#FD5F00] transition-all duration-300">
+          <li
+            className="text-[18px] cursor-pointer hover:text-[#FD5F00] transition-all duration-300"
+            onClick={() => handleNavigation("/info-umkm")}
+          >
             Info UMKM
           </li>
         </ul>
