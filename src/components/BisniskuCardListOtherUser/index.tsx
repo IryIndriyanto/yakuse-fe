@@ -19,7 +19,7 @@ const BisniskuCardListOtherUser = ({
   const router = useRouter();
 
   const handleCardClick = () => {
-    router.push("/detail-bisnis-user-2");
+    router.push("/detail-bisnis-other-user");
   };
 
   return (

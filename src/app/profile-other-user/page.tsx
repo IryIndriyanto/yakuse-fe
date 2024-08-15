@@ -4,7 +4,7 @@ import BisniskuCardListOtherUser from "../../components/BisniskuCardListOtherUse
 import PermintaankuCardListOtherUser from "../../components/PermintaankuCardListOtherUser";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import ProfileCard from "../../components/ProfileCard";
+import ProfileCardOtherUser from "../../components/ProfileCardOtherUser";
 
 const ProfilePage = () => {
   const [activeSection, setActiveSection] = useState("Bisnisku");
@@ -16,7 +16,7 @@ const ProfilePage = () => {
       </div>
 
       <div className="flex justify-center items-center mt-10">
-        <ProfileCard />
+        <ProfileCardOtherUser />
       </div>
 
       <div className="my-20 w-[1200px] mx-auto">
