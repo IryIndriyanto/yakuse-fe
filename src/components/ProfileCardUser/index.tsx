@@ -14,7 +14,6 @@ interface ProfileCardProps {
 const ProfileCardUser = ({
   buttonLabel,
   onClick,
-  setError,
   profile,
 }: ProfileCardProps) => {
   const router = useRouter();
