@@ -74,7 +74,7 @@ const Navbar = () => {
           </li>
           <li
             className="text-[18px] cursor-pointer hover:text-[#FD5F00] transition-all duration-300"
-            onClick={() => handleNavigation("/info-umkm")}
+            onClick={() => handleNavigation("/umkm")}
           >
             Info UMKM
           </li>
