@@ -46,7 +46,7 @@ const Navbar = () => {
     <div className="font-serif bg-[#FCFCFC] py-8 flex justify-between items-center px-[48px]">
       <div className="flex flex-col justify-center">
         <div>
-          <h1 className="text-[41px] font-bold text-[#40ABFF]">YAKUSE</h1>
+          <h1 className="text-[38px] font-bold text-[#40ABFF]">YAKUSE</h1>
         </div>
         <div className="flex items-center gap-2 cursor-pointer" onClick={handleJelajahiKomunitas}>
           <Image src="/move-left.svg" alt="move-left" width={24} height={24} />
