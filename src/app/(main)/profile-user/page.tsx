@@ -25,10 +25,10 @@ const Profile = () => {
     return (
       <div className="flex justify-center items-center min-h-[700px]">
         <Image
-          src="/loading-gear.gif"
+          src="/loading-spinner-orange.gif"
           alt="Loading..."
-          width={300}
-          height={300}
+          width={150}
+          height={150}
         />
       </div>
     );
