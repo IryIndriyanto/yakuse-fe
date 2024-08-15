@@ -68,7 +68,7 @@ export default function PagePembeli() {
 
   return (
     <>
-      <Navbarhome />
+      {/* <Navbarhome /> */}
       <main className="w-full max-w-[800px] flex flex-col space-y-12 px-4 py-12 sm:px-6 md:px-10 lg:px-14">
         <Searchbar
           search={search}
@@ -80,7 +80,7 @@ export default function PagePembeli() {
         <Filter setFilter={setFilters} />
         <PermintaanList data={filteredData} filter={activeFilters} />
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

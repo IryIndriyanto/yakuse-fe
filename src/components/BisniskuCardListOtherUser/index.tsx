@@ -19,11 +19,11 @@ const BisniskuCardListOtherUser = ({
   const router = useRouter();
 
   const handleCardClick = () => {
-    router.push("/detail-bisnis-user-2");
+    router.push("/detail-bisnis-other-user");
   };
 
   return (
-    <div className="flex items-center justify-between font-serif bg-[#E5F5FF] rounded-[8px] p-4 transform hover:scale-105 transition-all duration-300">
+    <div className="flex items-center justify-between font-serif bg-[#E5F5FF] rounded-[8px] p-4 transform hover:scale-105 transition-all duration-300 cursor-pointer">
       <div className="flex items-center gap-8" onClick={handleCardClick}>
         <div>
           <Image
@@ -44,7 +44,6 @@ const BisniskuCardListOtherUser = ({
 
       <div>
         <Image
-          className="cursor-pointer"
           src="/chevron-right.svg"
           alt="chevron right"
           width={50}
