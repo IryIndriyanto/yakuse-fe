@@ -2,12 +2,14 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
+import useFetchProfile from "../../hooks/useFetchProfile";
 import Image from "next/image";
 
 const Navbar = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const router = useRouter();
   const dropdownRef = useRef(null);
+  const { profile, loading } = useFetchProfile();
 
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
@@ -81,14 +83,14 @@ const Navbar = () => {
 
       <div className="flex items-center gap-4">
         <div className="cursor-pointer text-right" onClick={toggleDropdown}>
-          <p className="text-[18px] font-bold">Jane Deo</p>
+          <p className="text-[18px] font-bold">{profile?.username}</p>
           <p className="text-[12px]">Pedagang Jagung</p>
         </div>
 
         <div className="relative" ref={dropdownRef}>
           <Image
             className="rounded-full w-[40px] h-[40px] bg-image bg-cover bg-center object-cover cursor-pointer"
-            src="/foto-munaroh.svg"
+            src={profile?.photo_url || "/default-gray-photo.webp"}
             alt="user"
             width={40}
             height={40}
