@@ -68,7 +68,7 @@ const LoginForm = ({ className }: { className: string }) => {
 
       <div>
         <form onSubmit={formik.handleSubmit}>
-          <div className="flex flex-col gap-6 items-center mt-[50px]">
+          <div className="flex flex-col mt-[50px]">
             <InputForm
               label="Email"
               type="email"
@@ -81,7 +81,7 @@ const LoginForm = ({ className }: { className: string }) => {
               <div className="text-red-500 text-sm">{formik.errors.email}</div>
             ) : null}
 
-            <div className="flex flex-col gap-4 w-full">
+            <div className="flex flex-col w-full my-4">
               <InputForm
                 label="Password"
                 type="password"
@@ -97,7 +97,7 @@ const LoginForm = ({ className }: { className: string }) => {
               ) : null}
             </div>
 
-            <div className="w-full flex flex-col gap-6 items-center">
+            <div className="w-full mt-4 items-center">
               <FormButton
                 text="Login"
                 type="submit"
