@@ -22,13 +22,14 @@ const ProfilePage = () => {
 
   if (loadingId || loadingBusinessId) {
     return (
-      <div className="flex justify-center items-center min-h-[700px]">
+      <div className="flex flex-col justify-center items-center min-h-[700px] gap-4">
         <Image
-          src="/loading-gear.gif"
+          src="/loading-spinner-orange.gif"
           alt="Loading..."
-          width={300}
-          height={300}
+          width={150}
+          height={150}
         />
+        <p className="text-[24px] font-bold">Loading</p>
       </div>
     );
   }
