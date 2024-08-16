@@ -3,7 +3,7 @@ import axios from "axios";
 import { MyBusinessId } from "../components/BisniskuCardListOtherUser/types";
 import { BASE_URL } from "../utils/constant";
 
-const useFetchBusinessesId = () => {
+const useFetchBusinessesId = (userId: string) => {
   const [businessesId, setBusinessesId] = useState<MyBusinessId[] | null>(null);
   const [loadingBusinessId, setLoadingBusinessId] = useState<boolean>(true);
   const [errorBusinessId, setErrorBusinessId] = useState<string | null>(null);
@@ -12,7 +12,7 @@ const useFetchBusinessesId = () => {
     const fetchBusinessesId = async () => {
       try {
         const response = await axios.get(
-          `${BASE_URL}/business/user/{user_Id}`,
+          `${BASE_URL}/business/user/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -73,7 +73,7 @@ const useFetchBusinessesId = () => {
     };
 
     fetchBusinessesId();
-  }, []);
+  }, [userId]);
 
   return { businessesId, loadingBusinessId, errorBusinessId };
 };
