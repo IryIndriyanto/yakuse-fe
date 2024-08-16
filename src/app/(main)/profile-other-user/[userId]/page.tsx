@@ -95,7 +95,7 @@ const ProfilePage = () => {
           )}
           {!errorBusinessId && (
             <div className="flex flex-col gap-4 mt-10 w-[1200px] mx-auto">
-              <BisniskuCardListOtherUser businessesId={businessesId} />
+              <BisniskuCardListOtherUser businessesId={businessesId || []} />
             </div>
           )}
         </>
