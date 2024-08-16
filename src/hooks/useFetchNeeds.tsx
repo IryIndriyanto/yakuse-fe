@@ -4,7 +4,7 @@ import { BASE_URL } from "../utils/constant";
 import { MyNeed } from "../components/PermintaankuCardListUser/types";
 
 const useFetchNeeds = () => {
-  const [needs, setNeeds] = useState<MyNeed | null>(null);
+  const [needs, setNeeds] = useState<MyNeed[] | null>(null);
   const [loadingNeeds, setLoadingNeeds] = useState<boolean>(true);
   const [errorNeeds, setErrorNeeds] = useState<string | null>(null);
 
