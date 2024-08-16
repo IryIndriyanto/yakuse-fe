@@ -1,41 +1,64 @@
+"use client";
 import Image from "next/image";
+import { MyNeedId } from "./types";
 
 interface PermintaankuCardListOtherUserProps {
-  image: string;
-  title: string;
-  description: string;
-  postedAt: string;
+  needsId: MyNeedId[] | null;
 }
 
 const PermintaankuCardListOtherUser = ({
-  image,
-  title,
-  description,
-  postedAt,
+  needsId,
 }: PermintaankuCardListOtherUserProps) => {
-  return (
-    <div className="flex flex-col gap-4 cursor-pointer">
-      <div className="flex items-center justify-between font-serif bg-[#E5F5FF] rounded-[8px] p-4 transform hover:scale-105 transition-all duration-300">
-        <div className="flex items-center gap-8">
-          <div>
-            <Image
-              className="rounded-full w-[150px] h-[150px] bg-image bg-cover bg-center object-cover"
-              src={image}
-              alt={title}
-              width={150}
-              height={150}
-            />
-          </div>
+  if (!needsId) {
+    return (
+      <div className="flex flex-col justify-center items-center gap-4">
+        <Image
+          src="/loading-spinner-orange.gif"
+          alt="loading"
+          width={100}
+          height={100}
+        />
+        <p className="text-[20px] font-bold">Loading</p>
+      </div>
+    );
+  }
 
-          <div className="flex flex-col gap-4">
-            <h4 className="text-[28px] font-bold">{title}</h4>
-            <p className="text-[18px] text-[#525455]">{description}</p>
-            <p className="text-[18px] text-[#525455]">
-              Dibuat pada tanggal: {postedAt}
-            </p>
+  return (
+    <div className="grid grid-cols-1 gap-4">
+      {needsId.map((needsId: MyNeedId) => (
+        <div
+          key={needsId.id}
+          className="flex items-center justify-between font-serif bg-[#E5F5FF] rounded-[8px] p-4 transform hover:scale-105 transition-all duration-300"
+          onClick={() => handleCardClick(needsId.id)}
+        >
+          <div className="flex items-center gap-8">
+            <div>
+              <Image
+                className="rounded-full w-[150px] h-[150px] bg-image bg-cover bg-center object-cover"
+                src={needsId.user_info.user_profile_url}
+                alt="Profile Picture"
+                width={150}
+                height={150}
+              />
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <h4 className="text-[28px] font-bold">{needsId.title}</h4>
+              <p className="text-[18px] text-[#525455]">
+                {needsId.description}
+              </p>
+              <p className="text-[18px] text-[#525455]">
+                Dibuat pada tanggal:{" "}
+                {new Date(needsId.created_at).toLocaleDateString("id-ID", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                })}
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      ))}
     </div>
   );
 };
