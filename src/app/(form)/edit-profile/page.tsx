@@ -44,7 +44,7 @@ const EditProfile = () => {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
       });
-      if (response.status === 201) {
+      if (response.status === 200) {
         toast.success("Profile Updated");
         router.push("/profile-user");
       }

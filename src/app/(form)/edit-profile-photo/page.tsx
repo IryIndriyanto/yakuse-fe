@@ -50,7 +50,7 @@ const EditProfilePhoto = () => {
         },
       });
 
-      if (response.status === 201) {
+      if (response.status === 200) {
         toast.success("Profile Updated");
         router.push("/profile-user");
       }
