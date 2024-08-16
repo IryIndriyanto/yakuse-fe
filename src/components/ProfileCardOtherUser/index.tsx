@@ -2,10 +2,14 @@ import Image from "next/image";
 import { OtherUserProfile } from "./types";
 
 interface ProfileCardOtherUserProps {
-  profile: OtherUserProfile | null;
+  profileId: OtherUserProfile | null;
 }
 
-const ProfileCardOtherUser = ({ profile }: ProfileCardOtherUserProps) => {
+const ProfileCardOtherUser = ({ profileId }: ProfileCardOtherUserProps) => {
+  if (!profileId) {
+    return <div>No profile data available</div>;
+  }
+
   return (
     <div className="flex flex-col justify-between bg-[#E5F5FF] rounded-[10px] p-10 w-[1200px] font-serif min-h-[700px]">
       <div>
@@ -13,7 +17,7 @@ const ProfileCardOtherUser = ({ profile }: ProfileCardOtherUserProps) => {
           <div className="flex flex-col gap-2">
             <div>
               <Image
-                src={profile?.photo_url || "/default-gray-photo.webp"}
+                src={profileId?.photo_url || "/default-gray-photo.webp"}
                 alt="foto-user"
                 width={250}
                 height={250}
@@ -29,28 +33,28 @@ const ProfileCardOtherUser = ({ profile }: ProfileCardOtherUserProps) => {
           <div className="flex">
             <div className="flex flex-col gap-4">
               <div>
-                <h1 className="text-[41px] font-bold">{profile?.fullname}</h1>
+                <h1 className="text-[41px] font-bold">{profileId?.fullname}</h1>
               </div>
               <div className="flex flex-col gap-2">
                 <p className="text-[14px] font-bold text-[#40ABFF]">
-                  {profile?.phone}
+                  {profileId?.phone}
                 </p>
                 <p>
                   Email:{" "}
                   <a
-                    href={`mailto:${profile?.email}`}
+                    href={`mailto:${profileId?.email}`}
                     className="text-[#40ABFF] cursor-pointer"
                   >
-                    {profile?.email}
+                    {profileId?.email}
                   </a>
                 </p>
                 <p>
                   Phone:{" "}
                   <a
-                    href={`https://wa.me/${profile?.phone}`}
+                    href={`https://wa.me/${profileId?.phone}`}
                     className="text-[#40ABFF] cursor-pointer"
                   >
-                    {profile?.phone}
+                    {profileId?.phone}
                   </a>
                 </p>
               </div>
@@ -71,7 +75,7 @@ const ProfileCardOtherUser = ({ profile }: ProfileCardOtherUserProps) => {
 
       <div className="font-serif my-5 min-h-64">
         <h3 className="text-xl font-semibold">Tentang Saya</h3>
-        <p className="text-lg text-justify py-4">{profile?.about_me}</p>
+        <p className="text-lg text-justify py-4">{profileId?.about_me_list}</p>
       </div>
     </div>
   );
