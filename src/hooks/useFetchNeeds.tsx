@@ -11,7 +11,7 @@ const useFetchNeeds = () => {
   useEffect(() => {
     const fetchNeeds = async () => {
       try {
-        const response = await axios.get(`${BASE_URL}/user-needs/my-needs`, {
+        const response = await axios.get(`${BASE_URL}/user-need/my-needs`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("access_token")}`,
           },
