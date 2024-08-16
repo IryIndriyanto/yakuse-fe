@@ -120,7 +120,11 @@ const ProfileCardUser = ({
 
         <div className="font-serif my-5 min-h-64">
           <h3 className="text-xl font-semibold">Tentang Saya</h3>
-          <p className="text-lg text-justify py-4">{profile.about_me}</p>
+          <p className="text-lg text-justify py-4">
+            {profile.about_me_list.map((item) => (
+              <p key={item}>{item}</p>
+            ))}
+          </p>
         </div>
 
         <div className="flex justify-center items-center">
