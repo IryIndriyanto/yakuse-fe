@@ -1,37 +1,45 @@
 "use client";
 import { useState, useEffect } from "react";
-import axios from "axios";
-import BisniskuCardListOtherUser from "../../../components/BisniskuCardListOtherUser";
-import PermintaankuCardListOtherUser from "../../../components/PermintaankuCardListOtherUser";
-import ProfileCardOtherUser from "../../../components/ProfileCardOtherUser";
-import { BASE_URL } from "../../../utils/constant";
+import { useParams } from "next/navigation";
+import useFetchProfileId from "../../../../hooks/useFetchProfileId";
+import useFetchBusinessesId from "../../../../hooks/useFetchBusinessId";
+import BisniskuCardListOtherUser from "../../../../components/BisniskuCardListOtherUser";
+import PermintaankuCardListOtherUser from "../../../../components/PermintaankuCardListOtherUser";
+import ProfileCardOtherUser from "../../../../components/ProfileCardOtherUser";
 import Image from "next/image";
-import { OtherUserProfile } from "../../../components/ProfileCardOtherUser/types";
 
 const ProfilePage = () => {
+  const { userId } = useParams();
+
   const [activeSection, setActiveSection] = useState("Bisnisku");
-  const [errorId, setErrorId] = useState<string | null>(null);
-  const [profileId, setProfileId] = useState<OtherUserProfile | null>(null);
-  const [loadingId, setLoadingId] = useState<boolean>(true);
 
-  // if (loadingId) {
-  //   return (
-  //     <div className="flex justify-center items-center min-h-[700px]">
-  //       <Image
-  //         src="/loading-gear.gif"
-  //         alt="Loading..."
-  //         width={300}
-  //         height={300}
-  //       />
-  //     </div>
-  //   );
-  // }
+  // Pastikan userId adalah string
+  const validUserId = Array.isArray(userId) ? userId[0] : userId || "";
 
-  if (errorId) {
+  const { profileId, fetchErrorId, loadingId } = useFetchProfileId(validUserId);
+  const { businessesId, loadingBusinessId, errorBusinessId } =
+    useFetchBusinessesId(validUserId);
+
+  if (loadingId || loadingBusinessId) {
+    return (
+      <div className="flex justify-center items-center min-h-[700px]">
+        <Image
+          src="/loading-gear.gif"
+          alt="Loading..."
+          width={300}
+          height={300}
+        />
+      </div>
+    );
+  }
+
+  if (fetchErrorId || errorBusinessId) {
     return (
       <div className="bg-[#FCFCFC] w-full">
         <div className="flex justify-center items-center mt-10 h-[65vh]">
-          <p className="text-[24px] font-bold">Error: {errorId}</p>
+          <p className="text-[24px] font-bold">
+            Error: {fetchErrorId || errorBusinessId}
+          </p>
         </div>
       </div>
     );
@@ -71,7 +79,7 @@ const ProfilePage = () => {
 
       {activeSection === "Bisnisku" && (
         <div className="flex flex-col gap-4 mt-10 w-[1200px] mx-auto">
-          <BisniskuCardListOtherUser />
+          <BisniskuCardListOtherUser businessesId={businessesId} />
         </div>
       )}
 
