@@ -5,16 +5,14 @@ import { useRouter } from "next/navigation";
 import useFetchBusinessesId from "../../hooks/useFetchBusinessId";
 import { MyBusinessId } from "./types";
 
-const BisniskuCardListOtherUser = () => {
+const BisniskuCardListOtherUser = ({ businessesId }: { businessesId: MyBusinessId[] }) => {
   const router = useRouter();
-  const { businessesId, loadingBusinessId, errorBusinessId } =
-    useFetchBusinessesId();
 
   const handleCardClick = (id: string) => {
     router.push(`/detail-bisnis-other-user/${id}`);
   };
 
-  if (loadingBusinessId)
+  if (!businessesId) {
     return (
       <div className="flex flex-col justify-center items-center gap-4">
         <Image
@@ -26,17 +24,11 @@ const BisniskuCardListOtherUser = () => {
         <p className="text-[20px] font-bold">Loading</p>
       </div>
     );
-  if (errorBusinessId)
-    return (
-      <div className="flex flex-col justify-center items-center text-[20px] font-bold gap-4">
-        <Image src="/icon-error.png" alt="error" width={100} height={100} />
-        <p>Error: {errorBusinessId}</p>
-      </div>
-    );
+  }
 
   return (
     <div className="grid grid-cols-1 gap-4">
-      {businessesId?.map((businessId: MyBusinessId) => (
+      {businessesId.map((businessId: MyBusinessId) => (
         <div
           key={businessId.id}
           className="flex items-center justify-between font-serif bg-[#E5F5FF] rounded-[8px] p-4 transform hover:scale-105 transition-all duration-300"
