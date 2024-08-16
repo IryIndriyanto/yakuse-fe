@@ -46,6 +46,8 @@ const RegisterForm = ({ className }: { className: string }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isDisable, setIsDisable] = useState(false);
+
   const router = useRouter();
 
   useEffect(() => {
@@ -54,6 +56,7 @@ const RegisterForm = ({ className }: { className: string }) => {
 
   const handleRegister = async (values: typeof initialValues) => {
     setIsLoading(true);
+    setIsDisable(true);
 
     const { confirmPassword, ...dataToSend } = values;
 
@@ -185,7 +188,7 @@ const RegisterForm = ({ className }: { className: string }) => {
               <FormButton
                 text="Register"
                 type="submit"
-                disabled={isLoading}
+                disabled={isDisable}
                 isLoading={isLoading}
               />
             </form>
