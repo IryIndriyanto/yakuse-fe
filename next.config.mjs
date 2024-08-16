@@ -6,6 +6,10 @@ const nextConfig = {
           protocol: 'https',
           hostname: 'revou-finalproject-backend-production.up.railway.app',
         },
+        {
+          protocol: 'https',
+          hostname: 'example.com',
+        },
       ],
     },
   };
