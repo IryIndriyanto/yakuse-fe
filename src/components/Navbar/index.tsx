@@ -82,7 +82,7 @@ const Navbar = () => {
       <div className="flex items-center gap-4">
         <div className="cursor-pointer text-right" onClick={toggleDropdown}>
           <p className="text-[18px] font-bold">{profile?.username}</p>
-          <p className="text-[12px]">Pedagang Jagung</p>
+          <p className="text-[12px]">UMKM</p>
         </div>
 
         <div className="relative" ref={dropdownRef}>
