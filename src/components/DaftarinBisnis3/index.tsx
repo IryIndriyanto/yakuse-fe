@@ -10,6 +10,7 @@ import { useState } from 'react';
 
 const DaftarinBisnis3 = ({ submit, prev, data }: any) => {
   const [fotoUploaded, setFotoUploaded] = useState(false);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
   const initialValues = {
     photo_url: data.photo_url || '',
@@ -56,8 +57,10 @@ const DaftarinBisnis3 = ({ submit, prev, data }: any) => {
                       event.currentTarget.files &&
                       event.currentTarget.files.length > 0
                     ) {
-                      setFieldValue('photo_url', event.currentTarget.files[0]);
+                      const file = event.currentTarget.files[0];
+                      setFieldValue('photo_url', file);
                       setFotoUploaded(true);
+                      setPreviewUrl(URL.createObjectURL(file));
                     }
                   }}
                   className="block w-full text-[14px] text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 border-2 border-gray-300"
@@ -71,6 +74,15 @@ const DaftarinBisnis3 = ({ submit, prev, data }: any) => {
                   <p className="text-center text-green-500 mt-2">
                     Foto berhasil diunggah
                   </p>
+                )}
+                {previewUrl && (
+                  <div className="mt-4">
+                    <img
+                      src={previewUrl}
+                      alt="Preview"
+                      className="max-w-full h-auto"
+                    />
+                  </div>
                 )}
               </div>
               <div className="flex flex-row gap-4">

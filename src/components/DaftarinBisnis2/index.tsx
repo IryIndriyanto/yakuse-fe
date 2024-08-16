@@ -103,6 +103,7 @@ const DaftarinBisnis2 = ({ next, prev, data }: any) => {
               </div>
 
               {/* Bisnis Tag */}
+              <p className="font-bold">Bisnis Tag</p>
               <div className="flex flex-wrap justify-center gap-4">
                 {categories.map((category, index) => (
                   <button
@@ -113,13 +114,14 @@ const DaftarinBisnis2 = ({ next, prev, data }: any) => {
                         ? 'bg-blue-400 text-white'
                         : 'hover:bg-gray-200'
                     }`}
-                    onClick={() => setFieldValue('fk_business_category_id', index)}// 
+                    onClick={() =>
+                      setFieldValue('fk_business_category_id', index)
+                    } //
                   >
                     {category}
                   </button>
                 ))}
               </div>
-              <p className="font-bold">Bisnis Tag</p>
 
               <div className="flex flex-row gap-4">
                 {/* Button sebelumnya */}
