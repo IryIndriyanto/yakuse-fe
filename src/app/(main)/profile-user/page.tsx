@@ -23,13 +23,14 @@ const Profile = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-[700px]">
+      <div className="flex flex-col justify-center items-center min-h-[700px]">
         <Image
           src="/loading-spinner-orange.gif"
           alt="Loading..."
           width={150}
           height={150}
         />
+        <p className="text-[24px] font-bold">Loading</p>
       </div>
     );
   }
