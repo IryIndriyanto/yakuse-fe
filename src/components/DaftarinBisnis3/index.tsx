@@ -16,7 +16,7 @@ const DaftarinBisnis3 = ({ submit, prev, data }: any) => {
   };
 
   const validationSchema = Yup.object({
-    fotoBisnis: Yup.mixed().required('Foto bisnis wajib diunggah.'),
+    photo_url: Yup.mixed().required('Foto bisnis wajib diunggah.'),
   });
 
   const handleSubmit = (values: any) => {
@@ -41,29 +41,29 @@ const DaftarinBisnis3 = ({ submit, prev, data }: any) => {
             >
               <div className="w-full">
                 <label
-                  htmlFor="fotoBisnis"
+                  htmlFor="photo_url"
                   className="block text-[18px] font-[500] mb-2"
                 >
                   Unggah Foto Bisnis
                 </label>
                 <input
-                  id="fotoBisnis"
-                  name="fotoBisnis"
+                  id="photo_url"
+                  name="photo_url"
                   type="file"
-                  accept="image/*"
+                  // accept="image/*"
                   onChange={(event) => {
                     if (
                       event.currentTarget.files &&
                       event.currentTarget.files.length > 0
                     ) {
-                      setFieldValue('fotoBisnis', event.currentTarget.files[0]);
+                      setFieldValue('photo_url', event.currentTarget.files[0]);
                       setFotoUploaded(true);
                     }
                   }}
                   className="block w-full text-[14px] text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 border-2 border-gray-300"
                 />
                 <ErrorMessage
-                  name="fotoBisnis"
+                  name="photo_url"
                   component="div"
                   className="text-red-500 text-[14px] font-[500] h-[20px] w-full"
                 />

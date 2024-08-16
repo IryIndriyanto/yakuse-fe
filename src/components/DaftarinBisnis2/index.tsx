@@ -31,7 +31,7 @@ const DaftarinBisnis2 = ({ next, prev, data }: any) => {
   const initialValues = {
     location: data.location || '',
     contact: data.contact || '',
-    businessTag: data.businessTag || '',
+    fk_business_category_id: data.fk_business_category_id || '',
   };
 
   const validationSchema = Yup.object({
@@ -109,11 +109,11 @@ const DaftarinBisnis2 = ({ next, prev, data }: any) => {
                     type="button"
                     key={index}
                     className={`border border-gray-400 rounded-full px-4 py-2 text-gray-700 transition ${
-                      values.businessTag === category
+                      values.fk_business_category_id === index
                         ? 'bg-blue-400 text-white'
                         : 'hover:bg-gray-200'
                     }`}
-                    onClick={() => setFieldValue('businessTag', category)}
+                    onClick={() => setFieldValue('fk_business_category_id', index)}// 
                   >
                     {category}
                   </button>

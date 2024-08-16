@@ -11,6 +11,7 @@ import * as Yup from 'yup';
 // body yang di perlukan untuk endpoint ini adalah
 // {
 //   name: string,
+//   omset: string,
 //   description: string
 // }
 
@@ -20,6 +21,7 @@ const DaftarinBisnis1 = ({ next, data }: any) => {
 
   const initialValues = {
     name: data.name || '',
+    omset: data.omset || '', // Tambahkan field omset
     description: data.description || '',
   };
 
@@ -27,6 +29,9 @@ const DaftarinBisnis1 = ({ next, data }: any) => {
     name: Yup.string()
       .typeError('Nama Bisnis harus berupa teks.')
       .required('Nama Bisnis anda wajib diisi.'),
+    omset: Yup.number()
+      .typeError('Omset harus berupa angka.')
+      .required('Omset anda wajib diisi.'),
     description: Yup.string()
       .typeError('Deskripsi Bisnis harus berupa teks.')
       .required('Deskripsi Bisnis anda wajib diisi.'),
@@ -54,6 +59,7 @@ const DaftarinBisnis1 = ({ next, data }: any) => {
                 onSubmit={handleSubmit}
                 className="m-0 w-[715px] flex flex-col items-center justify-center py-0 px-5 box-border gap-[50px] max-w-full mq750:gap-[25px]"
               >
+                {/* Input Nama Bisnis */}
                 <div className="w-full">
                   <Field
                     component={InputForm}
@@ -71,7 +77,27 @@ const DaftarinBisnis1 = ({ next, data }: any) => {
                     className="text-red-500 text-[14px] font-[500] h-[20px] w-full"
                   />
                 </div>
+                  
+                {/* Input Omset */}
+                <div className="w-full">
+                  <Field
+                    component={InputForm}
+                    id="omset"
+                    name="omset"
+                    label="Omset"
+                    type="number"
+                    placeholder="Omset Bisnis Anda"
+                    value={values.omset}
+                    onChange={handleChange}
+                  />
+                  <ErrorMessage
+                    name="omset"
+                    component="div"
+                    className="text-red-500 text-[14px] font-[500] h-[20px] w-full"
+                  />
+                </div>
 
+                {/*  input deskripsi bisnis */}
                 <div className="w-full">
                   <Field
                     component={TextArea}
