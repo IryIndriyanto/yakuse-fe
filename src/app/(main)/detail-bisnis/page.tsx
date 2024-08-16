@@ -1,18 +1,13 @@
-import Navbar from "../../../components/Navbar";
-import Footer from "../../../components/Footer";
 import Image from "next/image";
 import Rating from "@mui/material/Rating";
 
 const DetailBisnis = () => {
   return (
     <div className="bg-[#FCFCFC] font-serif">
-      <div>
-        <Navbar />
-      </div>
-
-      <div className="flex justify-center gap-20 p-10">
+      <div className="grid grid-cols-2 gap-20 p-10">
         <div>
           <Image
+            className="sticky top-8"
             src="/image-bisnis-card-list.svg"
             alt="detail-bisnis-1"
             width={500}
@@ -78,14 +73,46 @@ const DetailBisnis = () => {
               Memilih Jagung Kami? Jagung kami ditanam dengan metode pertanian
               berkelanjutan yang menghormati alam. Kami bekerja sama langsung
               dengan petani lokal untuk memastikan bahwa setiap butir jagung
+              yang Anda nikmati adalah hasil terbaik dari bumi Indonesia. Deskripsi Produk Jagung Manis Segar Jagung Manis Segar dari Petani
+              Lokal - Pilihan Terbaik untuk Keluarga Anda! 🍃 Asal & Kualitas:
+              Ditanam dengan penuh cinta di ladang-ladang subur Indonesia.
+              Dipanen pada puncak kematangan untuk memastikan rasa manis dan
+              tekstur renyah yang sempurna. 🍂 Keunggulan Produk: 100% Organik
+              dan Bebas Pestisida. Rasanya Manis Alami, tidak perlu tambahan
+              gula. Cocok untuk berbagai jenis masakan, seperti jagung rebus,
+              bakar, sup, dan salad.Cocok untuk berbagai jenis masakan, seperti
+              jagung rebus, bakar, sup, dan salad. 🌽 Manfaat Kesehatan: Kaya
+              akan serat yang baik untuk pencernaan. Sumber Vitamin B dan C yang
+              tinggi. Mengandung antioksidan yang membantu melindungi tubuh dari
+              radikal bebas. 📦 Kemasan & Pengiriman: Dikemas rapi dan higienis
+              untuk menjaga kesegaran. Pengiriman cepat dan aman, langsung dari
+              ladang ke rumah Anda. 📣 Promo & Penawaran Khusus: Diskon spesial
+              untuk pembelian grosir. Garansi kepuasan atau uang kembali. Kenapa
+              Memilih Jagung Kami? Jagung kami ditanam dengan metode pertanian
+              berkelanjutan yang menghormati alam. Kami bekerja sama langsung
+              dengan petani lokal untuk memastikan bahwa setiap butir jagung
+              yang Anda nikmati adalah hasil terbaik dari bumi Indonesia. Deskripsi Produk Jagung Manis Segar Jagung Manis Segar dari Petani
+              Lokal - Pilihan Terbaik untuk Keluarga Anda! 🍃 Asal & Kualitas:
+              Ditanam dengan penuh cinta di ladang-ladang subur Indonesia.
+              Dipanen pada puncak kematangan untuk memastikan rasa manis dan
+              tekstur renyah yang sempurna. 🍂 Keunggulan Produk: 100% Organik
+              dan Bebas Pestisida. Rasanya Manis Alami, tidak perlu tambahan
+              gula. Cocok untuk berbagai jenis masakan, seperti jagung rebus,
+              bakar, sup, dan salad.Cocok untuk berbagai jenis masakan, seperti
+              jagung rebus, bakar, sup, dan salad. 🌽 Manfaat Kesehatan: Kaya
+              akan serat yang baik untuk pencernaan. Sumber Vitamin B dan C yang
+              tinggi. Mengandung antioksidan yang membantu melindungi tubuh dari
+              radikal bebas. 📦 Kemasan & Pengiriman: Dikemas rapi dan higienis
+              untuk menjaga kesegaran. Pengiriman cepat dan aman, langsung dari
+              ladang ke rumah Anda. 📣 Promo & Penawaran Khusus: Diskon spesial
+              untuk pembelian grosir. Garansi kepuasan atau uang kembali. Kenapa
+              Memilih Jagung Kami? Jagung kami ditanam dengan metode pertanian
+              berkelanjutan yang menghormati alam. Kami bekerja sama langsung
+              dengan petani lokal untuk memastikan bahwa setiap butir jagung
               yang Anda nikmati adalah hasil terbaik dari bumi Indonesia.
             </p>
           </div>
         </div>
-      </div>
-
-      <div>
-        <Footer />
       </div>
     </div>
   );
