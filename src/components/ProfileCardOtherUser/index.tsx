@@ -23,11 +23,11 @@ const ProfileCardOtherUser = ({ profileId }: ProfileCardOtherUserProps) => {
                 height={250}
               />
             </div>
-            <div>
+            {/* <div>
               <p className="text-[14px] text-[#40ABFF] cursor-pointer">
                 #Kuliner #Fashion #Tech
               </p>
-            </div>
+            </div> */}
           </div>
 
           <div className="flex">
@@ -36,9 +36,7 @@ const ProfileCardOtherUser = ({ profileId }: ProfileCardOtherUserProps) => {
                 <h1 className="text-[41px] font-bold">{profileId?.fullname}</h1>
               </div>
               <div className="flex flex-col gap-2">
-                <p className="text-[14px] font-bold text-[#40ABFF]">
-                  Contact
-                </p>
+                <p className="text-[14px] font-bold text-[#40ABFF]">Contact</p>
                 <p>
                   Email:{" "}
                   <a
