@@ -25,11 +25,8 @@ const DaftarinBisnis3 = ({ submit, prev, data }: any) => {
   };
 
   return (
-    <main className="h-[100vh] flex items-center justify-center">
+    <main className="flex items-center justify-center">
       <div className="max-w-[600px] flex flex-col justify-center items-center">
-        <h1 className="text-[33px] font-[700] text-blue-400">
-          Daftarin Foto Bisnis
-        </h1>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}

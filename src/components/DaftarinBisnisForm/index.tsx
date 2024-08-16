@@ -102,6 +102,26 @@ const DaftarinBisnisForm: React.FC = () => {
 
   return (
     <div>
+      <h1 className="text-[33px] font-[700] text-blue-400 flex justify-center mb-8">
+        Daftarin Bisnis
+      </h1>
+      <div className="flex justify-center mb-8">
+        <div
+          className={`mx-4 ${step === 1 ? 'text-[#FD5F00]' : 'text-gray-500'}`}
+        >
+          Gambaran Umum
+        </div>
+        <div
+          className={`mx-4 ${step === 2 ? 'text-[#FD5F00]' : 'text-gray-500'}`}
+        >
+          Detail Bisnis
+        </div>
+        <div
+          className={`mx-4 ${step === 3 ? 'text-[#FD5F00]' : 'text-gray-500'}`}
+        >
+          Photo Bisnis
+        </div>
+      </div>
       {step === 1 && <DaftarinBisnis1 next={handleNext} data={formData} />}
       {step === 2 && (
         <DaftarinBisnis2
