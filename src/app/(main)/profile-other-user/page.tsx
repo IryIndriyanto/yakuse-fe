@@ -3,8 +3,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import BisniskuCardListOtherUser from "../../../components/BisniskuCardListOtherUser";
 import PermintaankuCardListOtherUser from "../../../components/PermintaankuCardListOtherUser";
-import Navbar from "../../../components/Navbar";
-import Footer from "../../../components/Footer";
 import ProfileCardOtherUser from "../../../components/ProfileCardOtherUser";
 import { BASE_URL } from "../../../utils/constant";
 import Image from "next/image";
@@ -12,104 +10,38 @@ import { OtherUserProfile } from "../../../components/ProfileCardOtherUser/types
 
 const ProfilePage = () => {
   const [activeSection, setActiveSection] = useState("Bisnisku");
-  const [error, setError] = useState<string | null>(null);
-  const [profile, setProfile] = useState<OtherUserProfile | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [errorId, setErrorId] = useState<string | null>(null);
+  const [profileId, setProfileId] = useState<OtherUserProfile | null>(null);
+  const [loadingId, setLoadingId] = useState<boolean>(true);
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const response = await axios.get(`${BASE_URL}/user/profile`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-          },
-        });
-        setProfile(response.data);
-      } catch (error) {
-        if (axios.isAxiosError(error)) {
-          switch (error.response?.status) {
-            case 400:
-              setError("Bad Request - Permintaan tidak valid.");
-              break;
-            case 401:
-              setError("Unauthorized - Anda tidak memiliki akses.");
-              break;
-            case 403:
-              setError(
-                "Forbidden - Anda tidak memiliki izin untuk mengakses sumber daya ini."
-              );
-              break;
-            case 404:
-              setError("Not Found - Profil tidak ditemukan.");
-              break;
-            case 408:
-              setError(
-                "Request Timeout - Permintaan ke server telah habis waktu."
-              );
-              break;
-            case 429:
-              setError(
-                "Too Many Requests - Terlalu banyak permintaan dalam waktu singkat."
-              );
-              break;
-            case 500:
-              setError(
-                "Internal Server Error - Terjadi kesalahan pada server."
-              );
-              break;
-            default:
-              setError(
-                `${error.response?.status} - ${error.response?.statusText} ${error.message}`
-              );
-          }
-        } else if (error instanceof Error) {
-          setError(error.message);
-        } else {
-          setError("Terjadi kesalahan yang tidak diketahui");
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
+  // if (loadingId) {
+  //   return (
+  //     <div className="flex justify-center items-center min-h-[700px]">
+  //       <Image
+  //         src="/loading-gear.gif"
+  //         alt="Loading..."
+  //         width={300}
+  //         height={300}
+  //       />
+  //     </div>
+  //   );
+  // }
 
-    fetchProfile();
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center min-h-[700px]">
-        <Image
-          src="/loading-gear.gif"
-          alt="Loading..."
-          width={300}
-          height={300}
-        />
-      </div>
-    );
-  }
-
-  if (error) {
+  if (errorId) {
     return (
       <div className="bg-[#FCFCFC] w-full">
-        <Navbar />
         <div className="flex justify-center items-center mt-10 h-[65vh]">
-          <p className="text-[24px] font-bold">Error: {error}</p>
+          <p className="text-[24px] font-bold">Error: {errorId}</p>
         </div>
-        <Footer />
       </div>
     );
   }
 
   return (
     <div className="bg-[#FCFCFC] w-full">
-      <div>
-        <Navbar />
-      </div>
-
       <div className="flex justify-center items-center mt-10">
-        <ProfileCardOtherUser profile={null} />
+        <ProfileCardOtherUser profileId={profileId} />
       </div>
-
       <div className="my-20 w-[1200px] mx-auto">
         <div className="flex justify-between w-[800px] mx-auto pb-4">
           <p
@@ -139,24 +71,7 @@ const ProfilePage = () => {
 
       {activeSection === "Bisnisku" && (
         <div className="flex flex-col gap-4 mt-10 w-[1200px] mx-auto">
-          <BisniskuCardListOtherUser
-            image="/image-bisnis-card-list.svg"
-            title="Popcorn"
-            category="#Kuliner"
-            address="Jl. Raya Bogor No. 123, Kel. Ciracas, Kec. Ciracas, Jakarta Timur, DKI Jakarta 13740"
-          />
-          <BisniskuCardListOtherUser
-            image="/image-bisnis-card-list.svg"
-            title="Caramel"
-            category="#Kuliner"
-            address="Jl. Raya Bogor Km. 30, Mekarsari, Kec. Cimanggis, Kota Depok, Jawa Barat 16452"
-          />
-          <BisniskuCardListOtherUser
-            image="/image-bisnis-card-list.svg"
-            title="Makanan Burung"
-            category="#PakanHewan"
-            address="Jl. Raya Serpong No. 89, Kel. Serpong, Kec. Serpong, Kota Tangerang Selatan, Banten 15310"
-          />
+          <BisniskuCardListOtherUser />
         </div>
       )}
 
@@ -183,9 +98,7 @@ const ProfilePage = () => {
         </div>
       )}
 
-      <div className="mt-10">
-        <Footer />
-      </div>
+      <div className="mt-10"></div>
     </div>
   );
 };
