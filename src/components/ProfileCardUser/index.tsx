@@ -47,11 +47,11 @@ const ProfileCardUser = ({
                     height={250}
                   />
                 </div>
-                <div>
+                {/* <div>
                   <p className="text-[14px] text-[#40ABFF] cursor-pointer">
                     #Kuliner #Fashion #Tech
                   </p>
-                </div>
+                </div> */}
               </div>
 
               <div className="flex">
