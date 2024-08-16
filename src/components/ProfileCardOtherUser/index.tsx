@@ -37,7 +37,7 @@ const ProfileCardOtherUser = ({ profileId }: ProfileCardOtherUserProps) => {
               </div>
               <div className="flex flex-col gap-2">
                 <p className="text-[14px] font-bold text-[#40ABFF]">
-                  {profileId?.phone}
+                  Contact
                 </p>
                 <p>
                   Email:{" "}
