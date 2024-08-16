@@ -33,12 +33,12 @@ const ProfilePage = () => {
     );
   }
 
-  if (fetchErrorId || errorBusinessId) {
+  if (fetchErrorId) {
     return (
       <div className="bg-[#FCFCFC] w-full">
         <div className="flex justify-center items-center mt-10 h-[65vh]">
           <p className="text-[24px] font-bold">
-            Error: {fetchErrorId || errorBusinessId}
+            Error: {fetchErrorId}
           </p>
         </div>
       </div>
@@ -78,9 +78,26 @@ const ProfilePage = () => {
       </div>
 
       {activeSection === "Bisnisku" && (
-        <div className="flex flex-col gap-4 mt-10 w-[1200px] mx-auto">
-          <BisniskuCardListOtherUser businessesId={businessesId} />
-        </div>
+        <>
+          {errorBusinessId && (
+            <div className="flex flex-col justify-center items-center mt-10 gap-4">
+              <Image
+                src="/icon-error.png"
+                alt="Error"
+                width={100}
+                height={100}
+              />
+              <p className="text-[24px] font-bold">
+                Error: {errorBusinessId}
+              </p>
+            </div>
+          )}
+          {!errorBusinessId && (
+            <div className="flex flex-col gap-4 mt-10 w-[1200px] mx-auto">
+              <BisniskuCardListOtherUser businessesId={businessesId} />
+            </div>
+          )}
+        </>
       )}
 
       {activeSection === "Permintaanku" && (
