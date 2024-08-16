@@ -6,6 +6,7 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { BASE_URL } from "@/utils/constant";
+import Link from "next/link";
 
 const EditProfilePhoto = () => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
@@ -66,9 +67,14 @@ const EditProfilePhoto = () => {
   return (
     <div className="min-h-[80vh] flex items-center justify-center ">
       <div className="bg-white p-12 rounded-lg shadow-lg max-w-md w-full">
-        <h2 className="text-[33px] font-[700] text-blue-400 text-center mb-12">
+        <h2 className="text-[33px] font-[700] text-blue-400 text-center">
           Edit Profile Photo
         </h2>
+        <div className="w-full my-2 flex justify-between  mb-12">
+          <Link className="hover:text-p-four hover:underline " href="/edit-profile">Gambaran Umum</Link>
+          <p className="text-p-four underline">Foto Kamu</p>
+        </div>
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="flex flex-col items-center mb-12">
             <label htmlFor="fileUpload" className="cursor-pointer">
