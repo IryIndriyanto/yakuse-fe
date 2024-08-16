@@ -6,9 +6,9 @@ import React from 'react'
 const DaftarinBisnis = () => {
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       <DaftarinBisnisForm />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
