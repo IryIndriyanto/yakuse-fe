@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { permintaanType } from "../../data/mock/type";
+import { permintaanType } from "../../data/type";
 
 interface userDetailProps {
   username: string;

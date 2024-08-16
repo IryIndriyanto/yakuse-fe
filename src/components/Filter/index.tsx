@@ -50,7 +50,7 @@ export default function Filter({ setFilter }: FilterProps) {
               activeTabs.includes(tab.path)
                 ? "bg-orange-500 text-white"
                 : "bg-white text-[#525455] border-[#948A8A]"
-            } rounded-full py-2 px-4 border-[1px]`}
+            } rounded-full py-2 px-4 border-[1px] text-[14px]`}
           >
             {tab.name}
           </button>
