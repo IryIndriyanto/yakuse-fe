@@ -5,16 +5,18 @@ import React from "react";
 import Rating from "@mui/material/Rating";
 import { bisnisType } from "@/data/type";
 
+interface BusinessCardProps {
+  business: bisnisType | null;
+}
+
 interface bisnisProps {
   filter: string[];
   data: bisnisType[];
 }
 
-interface bisnisDetailProps {
-  item: bisnisType;
-}
+const BusinessCard = ({ business }: BusinessCardProps) => {
+  if (!business) return <div>Select a business to see details</div>;
 
-const BusinessCard = ({ item }: bisnisDetailProps) => {
   return (
     <div className="w-full h-auto bg-w-two rounded-xl flex flex-col space-y-4 p-7">
       <div className="flex justify-between items-center">
@@ -32,9 +34,7 @@ const BusinessCard = ({ item }: bisnisDetailProps) => {
             </p>
           </div>
           <div className="flex flex-col justify-start">
-            <h2 className="text-5xl font-normal text-b-two">
-              {item.owner}
-            </h2>
+            <h2 className="text-5xl font-normal text-b-two">{business.owner}</h2>
             {/* <p className="text-sm text-center text-gray-800 font-semibold">
             {}
           </p> */}
@@ -51,18 +51,18 @@ const BusinessCard = ({ item }: bisnisDetailProps) => {
 
       <div className="flex flex-col gap-3">
         <Image
-          src={item.photo_url}
+          src={business.photo_url}
           alt="business"
           width={980}
           height={300}
           className="w-full h-auto max-w-full object-cover rounded-lg"
         />
         <div className="flex flex-col gap-3">
-          <h1 className="text-4xl font-extrabold">{item.name}</h1>
+          <h1 className="text-4xl font-extrabold">{business.name}</h1>
           <div className="flex gap-3 items-center">
-            <Rating name="size-small" defaultValue={item.rating} readOnly />
+            <Rating name="size-small" defaultValue={business.rating} readOnly />
             <p className="text-lg font-bold">
-              {item.rating_list.length} pengulas
+              {business.rating_list.length} pengulas
             </p>
           </div>
           <div className="flex gap-3 flex-wrap">
@@ -71,31 +71,31 @@ const BusinessCard = ({ item }: bisnisDetailProps) => {
               // key={index}
               className="w-fit h-fit font-normal text-[16px] md:text-[14px] text-b-two border-[1px] border-b-two rounded-full py-2 px-4"
             >
-              {item.category}
+              {business.category}
             </p>
             {/* ))} */}
           </div>
-          <p className="text-xl font-normal text-justify">{item.description}</p>
+          <p className="text-xl font-normal text-justify">{business.description}</p>
         </div>
       </div>
     </div>
   );
 };
 
-const BusinessCardList: React.FC<bisnisProps> = ({ filter, data }) => {
-  const filteredItems = data.filter(
-    (item) =>
-      filter.length === 0 ||
-      filter.some((f) => item.category.toLowerCase().includes(f.toLowerCase()))
-  );
+// const BusinessCardList: React.FC<bisnisProps> = ({ filter, data }) => {
+//   const filteredItems = data.filter(
+//     (item) =>
+//       filter.length === 0 ||
+//       filter.some((f) => item.category.toLowerCase().includes(f.toLowerCase()))
+//   );
 
-  return (
-    <div className="w-full flex flex-col gap-10">
-      {filteredItems.map((item, index) => (
-        <BusinessCard key={index} item={item} />
-      ))}
-    </div>
-  );
-};
+//   return (
+//     <div className="w-full flex flex-col gap-10">
+//       {filteredItems.map((item, index) => (
+//         <BusinessCard key={index} item={item} />
+//       ))}
+//     </div>
+//   );
+// };
 
-export default BusinessCardList;
+export default BusinessCard;

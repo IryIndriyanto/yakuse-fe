@@ -4,18 +4,21 @@ import Image from "next/image";
 import React, { useState } from "react";
 
 interface rekomendasiDetailProps {
+  id: number;
   name: string;
   desc: string;
-  handleClick: () => void;
+  handleClick: Function;
   isActive: boolean;
 }
 
 interface bisnisDetailProps {
   filter: string[];
   data: bisnisType[];
+  onClick: (id: string) => void;
 }
 
 export function RekomendasiCard({
+  id,
   name,
   desc,
   handleClick,
@@ -23,7 +26,7 @@ export function RekomendasiCard({
 }: rekomendasiDetailProps) {
   return (
     <div
-      onClick={handleClick}
+      onClick={handleClick(id)}
       className={`flex flex-col gap-3 p-3 rounded-xl cursor-pointer ${
         isActive ? "bg-blue-200" : "bg-white"
       }`}
@@ -43,7 +46,7 @@ export function RekomendasiCard({
   );
 }
 
-const Recommendation: React.FC<bisnisDetailProps> = ({ filter, data }) => {
+const Recommendation: React.FC<bisnisDetailProps> = ({ filter, data, onClick }) => {
   const filteredItems = data.filter(
     (item) =>
       filter.length === 0 ||
@@ -56,6 +59,7 @@ const Recommendation: React.FC<bisnisDetailProps> = ({ filter, data }) => {
 
   const handleBusinessClick = (index: number) => {
     setActiveBusiness(index);
+    onClick;
   };
 
   return (
@@ -65,9 +69,10 @@ const Recommendation: React.FC<bisnisDetailProps> = ({ filter, data }) => {
           {filteredItems.map((item, index) => (
             <RekomendasiCard
               key={item.id}
+              id={item.id}
               name={item.name}
               desc={item.description}
-              handleClick={() => handleBusinessClick(index)}
+              handleClick={onClick}
               isActive={activeBusiness === index}
             />
           ))}
