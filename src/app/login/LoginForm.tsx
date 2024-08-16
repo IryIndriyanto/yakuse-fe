@@ -18,6 +18,7 @@ const LoginForm = ({ className }: { className: string }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isDisable, setIsDisable] = useState(false);
 
   const router = useRouter();
 
@@ -42,6 +43,7 @@ const LoginForm = ({ className }: { className: string }) => {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       setIsLoading(true);
+      setIsDisable(true)
       try {
         const response = await axios.post(`${BASE_URL}/user/login`, values);
         const accessToken = response.data.access_token;
@@ -101,7 +103,7 @@ const LoginForm = ({ className }: { className: string }) => {
               <FormButton
                 text="Login"
                 type="submit"
-                disabled={isLoading}
+                disabled={isDisable}
                 isLoading={isLoading}
               />
             </div>

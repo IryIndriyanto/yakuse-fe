@@ -31,7 +31,7 @@ const DaftarinBisnis2 = ({ next, prev, data }: any) => {
   const initialValues = {
     location: data.location || '',
     contact: data.contact || '',
-    businessTag: data.businessTag || '',
+    fk_business_category_id: data.fk_business_category_id || '',
   };
 
   const validationSchema = Yup.object({
@@ -49,11 +49,8 @@ const DaftarinBisnis2 = ({ next, prev, data }: any) => {
   };
 
   return (
-    <main className="h-[100vh] flex items-center justify-center">
+    <main className="flex items-center justify-center">
       <div className="max-w-[600px] flex flex-col justify-center items-center">
-        <h1 className="text-[33px] font-[700] text-blue-400">
-          Daftarin Bisnis
-        </h1>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -103,23 +100,25 @@ const DaftarinBisnis2 = ({ next, prev, data }: any) => {
               </div>
 
               {/* Bisnis Tag */}
+              <p className="font-bold">Bisnis Tag</p>
               <div className="flex flex-wrap justify-center gap-4">
                 {categories.map((category, index) => (
                   <button
                     type="button"
                     key={index}
                     className={`border border-gray-400 rounded-full px-4 py-2 text-gray-700 transition ${
-                      values.businessTag === category
+                      values.fk_business_category_id === index
                         ? 'bg-blue-400 text-white'
                         : 'hover:bg-gray-200'
                     }`}
-                    onClick={() => setFieldValue('businessTag', category)}
+                    onClick={() =>
+                      setFieldValue('fk_business_category_id', index)
+                    } //
                   >
                     {category}
                   </button>
                 ))}
               </div>
-              <p className="font-bold">Bisnis Tag</p>
 
               <div className="flex flex-row gap-4">
                 {/* Button sebelumnya */}

@@ -4,9 +4,10 @@ import Footer from "@/components/Footer";
 import Searchbar from "@/components/Searchbar";
 import Filter from "@/components/Filter";
 import PermintaanList from "@/components/PermintaanList";
-import { permintaan } from "@/data/mock/detail";
-import { permintaanType } from "@/data/mock/type";
+import { permintaan } from "@/data/mock";
+import { permintaanType } from "@/data/type";
 import { useState, useEffect } from "react";
+import { fetchAllNeeds } from "@/data/api";
 
 export default function PagePembeli() {
   const [search, setSearch] = useState<string>("");
@@ -17,14 +18,14 @@ export default function PagePembeli() {
 
   async function fetchData() {
     try {
-      // const token = localStorage.getItem("access_token");
-      // if (token) {
-      //   const data = await fetchRecipeByUpdate(token);
-      //   setData(data);
-      //   setFilteredData(data);
-      // }
-      setData(permintaan);
-      setFilteredData(permintaan);
+      const token = localStorage.getItem("access_token");
+      if (token) {
+        const data = await fetchAllNeeds(token);
+        setData(data);
+        setFilteredData(data);
+      }
+      // setData(permintaan);
+      // setFilteredData(permintaan);
     } catch (err) {
       console.log(err);
     }

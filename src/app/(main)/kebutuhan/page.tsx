@@ -6,27 +6,31 @@ import Filter from "@/components/Filter";
 import Recommendation from "@/components/Recommendation";
 import BusinessCard from "@/components/BusinessCard";
 import { useState, useEffect } from "react";
-import { bisnis } from "@/data/mock/detail";
-import { bisnisType } from "@/data/mock/type";
+import { bisnis } from "@/data/mock";
+import { bisnisType } from "@/data/type";
 import { Toaster } from "react-hot-toast";
+import { fetchAllBusiness, fetchBusinessById } from "@/data/api";
 
 export default function PageKebutuhan() {
   const [search, setSearch] = useState<string>("");
-  const [filteredData, setFilteredData] = useState<bisnisType[]>([]);
   const [data, setData] = useState<bisnisType[]>([]);
+  const [filteredData, setFilteredData] = useState<bisnisType[]>([]);
+  const [activeBusinessId, setActiveBusinessId] = useState<string | null>(null);
+  const [activeBusinessData, setActiveBusinessData] =
+    useState<bisnisType | null>(null);
   const [shown, setShown] = useState<boolean>(false);
   const [activeFilters, setFilters] = useState<string[]>([]);
 
   async function fetchData() {
     try {
-      // const token = localStorage.getItem("access_token");
-      // if (token) {
-      //   const data = await fetchRecipeByUpdate(token);
-      //   setData(data);
-      //   setFilteredData(data);
-      // }
-      setData(bisnis);
-      setFilteredData(bisnis);
+      const token = localStorage.getItem("access_token");
+      if (token) {
+        const data = await fetchAllBusiness(token);
+        setData(data);
+        setFilteredData(data);
+      }
+      // setData(bisnis);
+      // setFilteredData(bisnis);
     } catch (err) {
       console.log(err);
     }
@@ -68,6 +72,36 @@ export default function PageKebutuhan() {
     handleSearch(search);
   }, [search]);
 
+  const handleBusinessClick = (id: string) => {
+    setActiveBusinessId(id);
+  };
+
+  async function fetchActiveBusiness() {
+    if (activeBusinessId) {
+      try {
+        const token = localStorage.getItem("access_token");
+        if (token) {
+          const data = await fetchBusinessById(activeBusinessId, token);
+          setActiveBusinessData(data);
+        // }
+        // const businessData = bisnis.find(
+        //   (bisnis) => bisnis.id === activeBusinessId
+        // );
+        // if (businessData) {
+        //   setActiveBusinessData(businessData);
+        } else {
+          console.log(`No mock data found for ID ${activeBusinessId}`);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  }
+
+  useEffect(() => {
+    fetchActiveBusiness();
+  }, [activeBusinessId]);
+
   return (
     <>
       {/* <Navbarhome /> */}
@@ -81,9 +115,13 @@ export default function PageKebutuhan() {
             fetchData={handleSearch}
           />
           <Filter setFilter={setFilters} />
-          <Recommendation data={filteredData} filter={activeFilters} />
+          <Recommendation
+            data={filteredData}
+            filter={activeFilters}
+            onClick={handleBusinessClick}
+          />
         </div>
-        <BusinessCard data={filteredData} filter={activeFilters} />
+        <BusinessCard business={activeBusinessData} />
       </main>
       {/* <Footer /> */}
     </>
