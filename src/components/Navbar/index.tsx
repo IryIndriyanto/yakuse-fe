@@ -68,26 +68,6 @@ const Navbar = () => {
       </div>
 
       <div className="flex items-center justify-center flex-1">
-        {/* <ul className="flex items-center gap-4">
-          <li
-            className="text-[18px] cursor-pointer hover:text-[#FD5F00] transition-all duration-300 mr-10"
-            onClick={() => handleNavigation("/kebutuhan")}
-          >
-            Temukan Kebutuhan
-          </li>
-          <li
-            className="text-[18px] cursor-pointer hover:text-[#FD5F00] transition-all duration-300 mr-10"
-            onClick={() => handleNavigation("/pembeli")}
-          >
-            Temukan Pembeli
-          </li>
-          <li
-            className="text-[18px] cursor-pointer hover:text-[#FD5F00] transition-all duration-300"
-            onClick={() => handleNavigation("/umkm")}
-          >
-            Info UMKM
-          </li>
-        </ul> */}
         {tabs.map((tab, index) => (
           <li
             key={index}
@@ -122,6 +102,9 @@ const Navbar = () => {
                   onClick={handleProfile}
                 >
                   <p>Profile</p>
+                </li>
+                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  <p>Ubah Foto Profile</p>
                 </li>
                 <li
                   className="px-4 py-2 text-red-500 hover:bg-gray-100 cursor-pointer"
