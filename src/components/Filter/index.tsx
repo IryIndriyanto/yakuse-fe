@@ -1,35 +1,45 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { BASE_URL } from "@/utils/constant";
 
 interface FilterProps {
   setFilter: (filter: string[]) => void;
 }
 
+interface Tab {
+  id: number;
+  name: string;
+  path: string;
+}
+
 export default function Filter({ setFilter }: FilterProps) {
-  const tabs = [
-    { name: "Kuliner", path: "kuliner" },
-    { name: "Fashion", path: "fashion" },
-    { name: "Elektronik", path: "elektronik" },
-    { name: "Jasa", path: "jasa" },
-    { name: "Kreatif", path: "kreatif" },
-    { name: "Properti", path: "properti" },
-    { name: "Entertaiment", path: "entertaiment" },
-  ];
-
+  const [tabs, setTabs] = useState<Tab[]>([]);
   const [activeTabs, setActiveTabs] = useState<string[]>([]);
-
-  //   const fetchData = async (item: string) => {
-  //     try {
-  //       const token = localStorage.getItem("access_token");
-  //       if (token) {
-  //         setFilter(item);
-  //         setActiveTab(item);
-  //       }
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   };
-
+  
+  useEffect(() => {
+    const fetchTabs = async () => {
+      try {
+        const token = localStorage.getItem("access_token");
+        console.log("Access Token:", token);
+        const response = await axios.get(`${BASE_URL}/business_category/`, {
+          headers: {
+            Authorization: `Bearer ${token}`, 
+          },
+        }); 
+        const tabData = response.data.map((item: any) => ({
+          id: item.id,
+          name: item.name,
+          path: item.name.toLowerCase(),
+        }));
+        setTabs(tabData);
+      } catch (err) {
+        console.error("Error fetching data:", err);
+      }
+    };
+  
+    fetchTabs();
+  }, []);
   const handleFilter = (item: string) => {
     const updatedTabs = activeTabs.includes(item)
       ? activeTabs.filter((tab) => tab !== item)
@@ -41,7 +51,7 @@ export default function Filter({ setFilter }: FilterProps) {
 
   return (
     <>
-      <div className="flex justify-evenly gap-3 flex-wrap">
+      <div className="flex justify-items-start gap-5 flex-wrap">
         {tabs.map((tab, index) => (
           <button
             key={index}
@@ -50,7 +60,7 @@ export default function Filter({ setFilter }: FilterProps) {
               activeTabs.includes(tab.path)
                 ? "bg-orange-500 text-white"
                 : "bg-white text-[#525455] border-[#948A8A]"
-            } rounded-full py-2 px-4 border-[1px] text-[14px]`}
+            } rounded-full py-2 px-4 border-[1px]`}
           >
             {tab.name}
           </button>
