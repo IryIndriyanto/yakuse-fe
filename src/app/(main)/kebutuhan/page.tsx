@@ -123,7 +123,6 @@ export default function PageKebutuhan() {
         </div>
         <BusinessCard business={activeBusinessData} />
       </main>
-      {/* <Footer /> */}
     </>
   );
 }

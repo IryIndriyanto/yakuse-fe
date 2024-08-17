@@ -6,7 +6,7 @@ export interface OtherUserProfile {
   phone: string;
   address: string;
   photo_url: string;
-  about_me: string;
+  about_me_list: string[];
   created_at: string;
   updated_at: string;
 }

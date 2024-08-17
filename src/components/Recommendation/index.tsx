@@ -98,7 +98,7 @@ const Recommendation: React.FC<bisnisDetailProps> = ({
   return (
     <div className="flex flex-col gap-5 w-full">
       <div className="overflow-auto max-h-[525px]">
-        <div className="flex flex-col space-y-3 overflow-x-auto no-scrollbar">
+        <div className="flex flex-col space-y-3 overflow-x-auto hide-scrollbar">
           {filteredItems.map((item, index) => (
             <RekomendasiCard
               key={item.id}

@@ -17,10 +17,14 @@ const ProfileCardUser = ({
   profile,
 }: ProfileCardProps) => {
   const router = useRouter();
-  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [isButtonLoading, setIsButtonLoading] = useState<boolean>(false);
+
+  const handleButtonClick = () => {
+    setIsButtonLoading(true);
+    onClick();
+  };
 
   const handleEditProfile = () => {
-    setIsEditing(true);
     router.push("/edit-profile");
   };
 
@@ -43,11 +47,11 @@ const ProfileCardUser = ({
                     height={250}
                   />
                 </div>
-                <div>
+                {/* <div>
                   <p className="text-[14px] text-[#40ABFF] cursor-pointer">
                     #Kuliner #Fashion #Tech
                   </p>
-                </div>
+                </div> */}
               </div>
 
               <div className="flex">
@@ -97,34 +101,25 @@ const ProfileCardUser = ({
             </div>
 
             <div className="pt-4">
-              {isEditing ? (
-                <Image
-                  src="/loading-spinner-orange.gif"
-                  alt="Loading..."
-                  width={50}
-                  height={50}
-                />
-              ) : (
-                <Image
-                  className="cursor-pointer"
-                  src="/icon-pencil.svg"
-                  alt="icon-pencil"
-                  width={24}
-                  height={24}
-                  onClick={handleEditProfile}
-                />
-              )}
+              <Image
+                className="cursor-pointer"
+                src="/icon-pencil.svg"
+                alt="icon-pencil"
+                width={24}
+                height={24}
+                onClick={handleEditProfile}
+              />
             </div>
           </div>
         </div>
 
         <div className="font-serif my-5 min-h-64">
           <h3 className="text-xl font-semibold">Tentang Saya</h3>
-          <p className="text-lg text-justify py-4">{profile.about_me}</p>
+          <p className="text-lg text-justify py-4">{profile.about_me_list}</p>
         </div>
 
         <div className="flex justify-center items-center">
-          {isEditing ? (
+          {isButtonLoading ? (
             <Image
               src="/loading-spinner-orange.gif"
               alt="Loading..."
@@ -133,7 +128,7 @@ const ProfileCardUser = ({
             />
           ) : (
             <ButtonList
-              onClick={onClick}
+              onClick={handleButtonClick}
               label={buttonLabel}
               iconSrc="/icon-plus.svg"
               variant="Daftar"
