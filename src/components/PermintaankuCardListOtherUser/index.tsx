@@ -6,6 +6,10 @@ interface PermintaankuCardListOtherUserProps {
   needsId: MyNeedId[] | null;
 }
 
+const handleCardClick = (id: string) => {
+  console.log(`Card with id ${id} clicked`);
+};
+
 const PermintaankuCardListOtherUser = ({
   needsId,
 }: PermintaankuCardListOtherUserProps) => {
@@ -29,7 +33,7 @@ const PermintaankuCardListOtherUser = ({
         <div
           key={needsId.id}
           className="flex items-center justify-between font-serif bg-[#E5F5FF] rounded-[8px] p-4 transform hover:scale-105 transition-all duration-300"
-          onClick={() => handleCardClick(needsId.id)}
+          onClick={() => handleCardClick(needsId.id.toString())} // Convert id to string
         >
           <div className="flex items-center gap-8">
             <div>

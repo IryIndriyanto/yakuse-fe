@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import useFetchProfileId from "../../../../hooks/useFetchProfileId";
 import useFetchBusinessesId from "../../../../hooks/useFetchBusinessId";
+import useFetchNeedsId from "../../../../hooks/useFetchNeedsId";
 import BisniskuCardListOtherUser from "../../../../components/BisniskuCardListOtherUser";
 import PermintaankuCardListOtherUser from "../../../../components/PermintaankuCardListOtherUser";
 import ProfileCardOtherUser from "../../../../components/ProfileCardOtherUser";
@@ -19,8 +20,10 @@ const ProfilePage = () => {
   const { profileId, fetchErrorId, loadingId } = useFetchProfileId(validUserId);
   const { businessesId, loadingBusinessId, errorBusinessId } =
     useFetchBusinessesId(validUserId);
+  const { needsId, loadingNeedsId, errorNeedsId } =
+    useFetchNeedsId(validUserId);
 
-  if (loadingId || loadingBusinessId) {
+  if (loadingId || loadingBusinessId || loadingNeedsId) {
     return (
       <div className="flex flex-col justify-center items-center min-h-[700px] gap-4">
         <Image
@@ -34,12 +37,12 @@ const ProfilePage = () => {
     );
   }
 
-  if (fetchErrorId) {
+  if (fetchErrorId || errorBusinessId || errorNeedsId) {
     return (
       <div className="bg-[#FCFCFC] w-full">
         <div className="flex justify-center items-center mt-10 h-[65vh]">
           <p className="text-[24px] font-bold">
-            Error: {fetchErrorId}
+            Error: {fetchErrorId || errorBusinessId || errorNeedsId}
           </p>
         </div>
       </div>
@@ -88,9 +91,7 @@ const ProfilePage = () => {
                 width={100}
                 height={100}
               />
-              <p className="text-[24px] font-bold">
-                Error: {errorBusinessId}
-              </p>
+              <p className="text-[24px] font-bold">Error: {errorBusinessId}</p>
             </div>
           )}
           {!errorBusinessId && (
@@ -103,24 +104,7 @@ const ProfilePage = () => {
 
       {activeSection === "Permintaanku" && (
         <div className="flex flex-col gap-4 mt-10 w-[1200px] mx-auto">
-          <PermintaankuCardListOtherUser
-            image="/image-bisnis-card-list.svg"
-            title="PO Jagung Pipil"
-            description="Butuh jagung pipil sebanyak 100 Kg selambatnya akhir Agustus 2024"
-            postedAt="09 Agustus 2024"
-          />
-          <PermintaankuCardListOtherUser
-            image="/image-bisnis-card-list.svg"
-            title="PO Gula Pasir"
-            description="Butuh gula pasir sebanyak 200 Kg selambatnya akhir Agustus 2024"
-            postedAt="08 Agustus 2024"
-          />
-          <PermintaankuCardListOtherUser
-            image="/image-bisnis-card-list.svg"
-            title="PO Jagung Kering"
-            description="Butuh jagung kering untuk pakan burung sebanyak 300 Kg selambatnya akhir Agustus 2024"
-            postedAt="07 Agustus 2024"
-          />
+          <PermintaankuCardListOtherUser needsId={needsId || []} />
         </div>
       )}
 

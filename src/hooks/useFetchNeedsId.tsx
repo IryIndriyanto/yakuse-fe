@@ -12,7 +12,7 @@ const useFetchNeedsId = (userId: string) => {
     const fetchNeedsId = async () => {
       try {
         const response = await axios.get(
-          `${BASE_URL}/user-need/{user_id}/needs/${userId}`,
+          `${BASE_URL}/user-need/${userId}/needs`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("access_token")}`,
