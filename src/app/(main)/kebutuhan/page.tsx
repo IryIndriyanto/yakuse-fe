@@ -57,8 +57,7 @@ export default function PageKebutuhan() {
 
     const searchedData = filterData.filter(
       (item: bisnisType) =>
-        item.name.toLowerCase().includes(value.toLowerCase()) ||
-        item.description.toLowerCase().includes(value.toLowerCase())
+        item.name.toLowerCase().includes(value.toLowerCase())
     );
     setFilteredData(searchedData);
   }
