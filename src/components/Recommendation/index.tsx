@@ -64,7 +64,7 @@ const Recommendation: React.FC<bisnisDetailProps> = ({ filter, data, onClick }) 
 
   return (
     <div className="flex flex-col gap-5 w-full">
-      <div className="overflow-auto max-h-[525px]">
+      <div className="overflow-auto max-h-[525px] hide-scrollbar">
         <div className="flex flex-col gap-3">
           {filteredItems.map((item, index) => (
             <RekomendasiCard

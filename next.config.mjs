@@ -4,7 +4,11 @@ const nextConfig = {
       remotePatterns: [
         {
           protocol: 'https',
-          hostname: 'revou-finalproject-backend-production.up.railway.app',
+          hostname: 'revou-finalproject-backend-production.up.railway.app', 
+        },
+        {
+          protocol: 'https',
+          hostname: 'example.com', 
         },
         {
           protocol: 'https',
