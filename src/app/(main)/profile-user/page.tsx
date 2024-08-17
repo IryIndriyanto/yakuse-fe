@@ -83,7 +83,7 @@ const Profile = () => {
       </div>
 
       {activeSection === "Bisnisku" && (
-        <div className="flex flex-col gap-4 mt-10 mb-10 w-[1200px] mx-auto">
+        <div className="flex flex-col gap-4 mt-10 mb-10 w-[1200px] mx-auto cursor-pointer">
           <BisniskuCardListUser />
         </div>
       )}

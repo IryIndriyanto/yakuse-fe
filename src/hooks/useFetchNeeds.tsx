@@ -4,14 +4,14 @@ import { BASE_URL } from "../utils/constant";
 import { MyNeed } from "../components/PermintaankuCardListUser/types";
 
 const useFetchNeeds = () => {
-  const [needs, setNeeds] = useState<MyNeed | null>(null);
+  const [needs, setNeeds] = useState<MyNeed[] | null>(null);
   const [loadingNeeds, setLoadingNeeds] = useState<boolean>(true);
   const [errorNeeds, setErrorNeeds] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchNeeds = async () => {
       try {
-        const response = await axios.get(`${BASE_URL}/user-needs/my-needs`, {
+        const response = await axios.get(`${BASE_URL}/user-need/my-needs`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("access_token")}`,
           },
