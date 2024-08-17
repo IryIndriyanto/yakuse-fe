@@ -40,7 +40,9 @@ export default function PagePembeli() {
 
     return data.filter((item: permintaanType) =>
       activeFilters.some((filter) =>
-        item.category.name.toLowerCase().includes(filter.toLowerCase())
+        item.category.name
+          ? item.category.name.toLowerCase().includes(filter.toLowerCase())
+          : false
       )
     );
   }

@@ -18,7 +18,7 @@ const BusinessCard = ({ business }: BusinessCardProps) => {
   if (!business) return <div>Select a business to see details</div>;
 
   return (
-    <div className="w-full h-auto bg-w-two rounded-xl flex flex-col space-y-4 p-7">
+    <div className="w-full h-fit bg-w-two rounded-xl flex flex-col space-y-4 p-7">
       <div className="flex justify-between items-center">
         <div className="flex flex-row space-x-5 items-center">
           <div className="flex flex-col gap-1 justify-center">
@@ -34,7 +34,9 @@ const BusinessCard = ({ business }: BusinessCardProps) => {
             </p>
           </div>
           <div className="flex flex-col justify-start">
-            <h2 className="text-5xl font-normal text-b-two">{business.owner}</h2>
+            <h2 className="text-5xl font-normal text-b-two">
+              {business.owner_info.fullname}
+            </h2>
             {/* <p className="text-sm text-center text-gray-800 font-semibold">
             {}
           </p> */}
@@ -67,15 +69,19 @@ const BusinessCard = ({ business }: BusinessCardProps) => {
           </div>
           <div className="flex gap-3 flex-wrap">
             {/* {business.tags.map((tag: string, index: number) => ( */}
-            <p
-              // key={index}
-              className="w-fit h-fit font-normal text-[16px] md:text-[14px] text-b-two border-[1px] border-b-two rounded-full py-2 px-4"
-            >
-              {business.category}
-            </p>
+            {business.category && (
+              <p
+                // key={index}
+                className="w-fit h-fit font-normal text-[16px] md:text-[14px] text-b-two border-[1px] border-b-two rounded-full py-2 px-4"
+              >
+                {business.category}
+              </p>
+            )}
             {/* ))} */}
           </div>
-          <p className="text-xl font-normal text-justify">{business.description}</p>
+          <p className="text-xl font-normal text-justify">
+            {business.description_list}
+          </p>
         </div>
       </div>
     </div>

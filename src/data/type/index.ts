@@ -12,7 +12,7 @@ export interface profilType {
 }
 
 export interface bisnisType {
-  id: number,
+  id: string,
   name: string,
   omset: number,
   description_list: string[],
@@ -41,7 +41,7 @@ export interface bisnisType {
 }
 
 export interface categoryType {
-  id: number;
+  id: string;
   name: string;
   describe: string;
   created_at: string;
@@ -58,7 +58,7 @@ export interface ratingType {
 }
 
 export interface permintaanType {
-  id: number;
+  id: string;
   title: string;
   user_info: {
     user_id: number;
@@ -68,7 +68,7 @@ export interface permintaanType {
   description: string;
   is_visible: boolean;
   category: {
-    id: number;
+    id: string;
     name: string;
   };
   created_at: string;

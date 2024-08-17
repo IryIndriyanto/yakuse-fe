@@ -5,7 +5,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 
 interface rekomendasiDetailProps {
-  id: number;
+  id: string;
   name: string;
   // desc: string;
   category: string;
@@ -27,7 +27,6 @@ export function RekomendasiCard({
   handleClick,
   isActive,
 }: rekomendasiDetailProps) {
-
   // const { loadingBusiness, errorBusiness } = useFetchBusinesses();
 
   // if (loadingBusiness)
@@ -42,7 +41,7 @@ export function RekomendasiCard({
   //       <p className="text-[20px] font-bold">Loading</p>
   //     </div>
   //   );
-    
+
   // if (errorBusiness)
   //   return (
   //     <div className="flex flex-col justify-center items-center text-[20px] font-bold gap-4">
@@ -68,23 +67,25 @@ export function RekomendasiCard({
           className="w-2 h-2"
         />
       </div>
-      <p
-        className="w-fit h-fit font-normal text-[16px] md:text-[14px] text-b-two"
-      >
-        #{category}
-      </p>
+      {category && (
+        <p className="w-fit h-fit font-normal text-[16px] md:text-[14px] text-b-two">
+          #{category}
+        </p>
+      )}
       {/* <p className="text-sm text-justify">{desc}</p> */}
     </div>
   );
 }
 
-const Recommendation: React.FC<bisnisDetailProps> = ({ filter, data, onClick }) => {
+const Recommendation: React.FC<bisnisDetailProps> = ({
+  filter,
+  data,
+  onClick,
+}) => {
   const filteredItems = data.filter(
     (item) =>
       filter.length === 0 ||
-      filter.some((f) =>
-        item.category.toLowerCase().includes(f.toLowerCase())
-      )
+      filter.some((f) => item.category.toLowerCase().includes(f.toLowerCase()))
   );
 
   const [activeBusiness, setActiveBusiness] = useState<string | null>(null);
@@ -105,8 +106,8 @@ const Recommendation: React.FC<bisnisDetailProps> = ({ filter, data, onClick }) 
               name={item.name}
               // desc={item.description}
               category={item.category}
-              handleClick={() => handleBusinessClick(item.id.toString())}
-              isActive={Number(activeBusiness) === index}
+              handleClick={() => handleBusinessClick(item.id)}
+              isActive={activeBusiness === item.id}
             />
           ))}
         </div>
