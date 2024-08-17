@@ -1,5 +1,6 @@
-'use client'
+'use client';
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import DaftarinBisnis1 from '../DaftarinBisnis1';
 import DaftarinBisnis2 from '../DaftarinBisnis2';
 import DaftarinBisnis3 from '../DaftarinBisnis3';
@@ -37,6 +38,8 @@ const DaftarinBisnisForm: React.FC = () => {
     photo_url: '',
   });
 
+  const router = useRouter();
+
   const handleNext = (newData: any) => {
     setFormData((prev) => ({ ...prev, ...newData }));
     setStep((prev) => prev + 1);
@@ -50,29 +53,29 @@ const DaftarinBisnisForm: React.FC = () => {
     setFormData((prev) => ({ ...prev, ...newData }));
     // get image file input  element          //correct id name
     const fileInput = document.getElementById('photo_url')! as HTMLInputElement;
-    console.log(formData.photo_url)
+    console.log(formData.photo_url);
 
     const form = new FormData();
 
     // Make conditional if fileInput is not null and fileInput.files
     if (fileInput && fileInput.files && fileInput.files.length > 0) {
       console.log(fileInput.files[0]);
-      console.log(formData.photo_url)
+      console.log(formData.photo_url);
       form.append('file', fileInput.files[0], fileInput.files[0].name);
     }
 
     try {
       const token = localStorage.getItem('access_token'); // Get token from localStorage
-      console.log(formData.fk_business_category_id)
+      console.log(formData.fk_business_category_id);
       const queryCreateBusiness =
         `?name=${encodeURIComponent(formData.name)}` +
         `&omset=${formData.omset}` +
         `&description=${encodeURIComponent(formData.description)}` +
         `&location=${encodeURIComponent(formData.location)}` +
         `&contact=${encodeURIComponent(formData.contact)}` +
-        `&fk_business_category_id=${encodeURIComponent(formData.fk_business_category_id)}`;//
-
-      
+        `&fk_business_category_id=${encodeURIComponent(
+          formData.fk_business_category_id
+        )}`; //
 
       const response = await fetch(
         `${BASE_URL}/business/create${queryCreateBusiness}`,
@@ -80,16 +83,17 @@ const DaftarinBisnisForm: React.FC = () => {
           method: 'POST',
           body: form,
           headers: {
-            Authorization: `Bearer ${token}`,//Accept: 'application/json', // Accept header
+            Authorization: `Bearer ${token}`, //Accept: 'application/json', // Accept header
           },
         }
       );
 
       if (response.ok) {
         alert('Business successfully registered!');
+        router.push('/profile-user'); // Redirect to profile-user page
       } else {
         const resData = await response.json();
-        console.log(response)
+        console.log(response);
         console.log(response.statusText);
         console.log(resData);
         alert('Failed to register business');
