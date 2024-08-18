@@ -3,13 +3,24 @@
 import Image from "next/image";
 import Rating from "@mui/material/Rating";
 import useFetchBusinessById from "../../../../hooks/useFetchBusinessById";
-import { formatRupiah } from '../../../../utils/currencyFormatter';
+import { formatRupiah } from "../../../../utils/currencyFormatter";
 
 const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
   const { businessId } = params;
   const { business, loading, error } = useFetchBusinessById(businessId);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading)
+    return (
+      <div className="flex flex-col justify-center items-center h-[80vh]">
+        <Image
+          src="/loading-spinner-orange.gif"
+          alt="loading"
+          width={150}
+          height={150}
+        />
+        <p className="text-[#40ABFF] text-[24px] font-bold">Loading</p>
+      </div>
+    );
   if (error) return <p>{error}</p>;
 
   return (
@@ -55,7 +66,9 @@ const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
             </div>
 
             <div className="flex flex-col justify-center gap-2">
-              <p className="text-[18px]">{formatRupiah(business?.omset || 0)}</p>
+              <p className="text-[18px]">
+                {formatRupiah(business?.omset || 0)}
+              </p>
               <p className="text-[18px]">
                 {business?.rating}/5 dari {business?.total_rater} pengulas
               </p>
