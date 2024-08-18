@@ -43,8 +43,10 @@ const PermintaankuCardListUser = () => {
           <Image src="/icon-error.png" alt="Error" width={100} height={100} />
           <p className="text-[20px] font-bold">Error: {errorNeeds}</p>
         </div>
-      ) : needs === null ? (
-        <p>Data tidak tersedia</p>
+      ) : needs?.length === 0 ? (
+        <div className="flex flex-col items-center gap-4">
+          <p className="text-[20px] font-bold">Anda belum memiliki permintaan</p>
+        </div>
       ) : (
         needs?.map((need: MyNeed) => (
           <div className="flex items-center justify-between font-serif bg-[#E5F5FF] rounded-[8px] p-4 transform hover:scale-105 transition-all duration-300" key={need.id}>
