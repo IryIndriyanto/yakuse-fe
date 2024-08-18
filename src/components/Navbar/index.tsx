@@ -26,12 +26,14 @@ const Navbar = () => {
 
   const handleProfile = () => {
     router.push("/profile-user");
+    setDropdownVisible(false); // Tambahkan ini
   };
 
   const handleLogout = () => {
     localStorage.removeItem("access_token");
     console.log("Token telah dihapus, user logout");
     router.push("/login");
+    setDropdownVisible(false); // Tambahkan ini
   };
 
   const handleClickOutside = (event: MouseEvent) => {
