@@ -17,7 +17,7 @@ const BisniskuCardListUser = () => {
     return (
       <div className="flex flex-col justify-center items-center gap-4">
         <Image src="/loading-spinner-orange.gif" alt="loading" width={100} height={100} />
-        <p className="text-[20px] font-bold">Loading</p>
+        <p className="text-[20px] text-[#40ABFF] font-bold">Loading</p>
       </div>
     );
   if (errorBusiness)

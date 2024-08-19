@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import ButtonList from "../ButtonList";
 import { useRouter } from "next/navigation";
@@ -36,7 +36,7 @@ const PermintaankuCardListUser = () => {
       {loadingNeeds ? (
         <div className="flex flex-col items-center gap-4">
           <Image src="/loading-spinner-orange.gif" alt="Loading..." width={100} height={100} />
-          <p className="text-[20px] font-bold">Loading</p>
+          <p className="text-[20px] text-[#40ABFF] font-bold">Loading</p>
         </div>
       ) : errorNeeds ? (
         <div className="flex flex-col items-center gap-4">
