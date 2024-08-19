@@ -6,6 +6,7 @@ import EditBisnis2 from "../EditBisnis2";
 import EditBisnis3 from "../EditBisnis3";
 import { BASE_URL } from "@/utils/constant";
 import useFetchBusinessById from "../../hooks/useFetchBusinessById";
+import Image from "next/image";
 
 const EditBisnisForm: React.FC<{ businessId: string }> = ({ businessId }) => {
   const [step, setStep] = useState(1);
@@ -61,7 +62,7 @@ const EditBisnisForm: React.FC<{ businessId: string }> = ({ businessId }) => {
     try {
       const token = localStorage.getItem("access_token");
       console.log(formData.fk_business_category_id);
-      const queryCreateBusiness =
+      const queryUpdateBusiness =
         `?name=${encodeURIComponent(formData.name)}` +
         `&omset=${formData.omset}` +
         `&description=${encodeURIComponent(formData.description)}` +
@@ -72,9 +73,9 @@ const EditBisnisForm: React.FC<{ businessId: string }> = ({ businessId }) => {
         )}`;
 
       const response = await fetch(
-        `${BASE_URL}/business/create${queryCreateBusiness}`,
+        `${BASE_URL}/business/edit/${businessId}${queryUpdateBusiness}`,
         {
-          method: "POST",
+          method: "PUT",
           body: form,
           headers: {
             Authorization: `Bearer ${token}`,
@@ -98,7 +99,18 @@ const EditBisnisForm: React.FC<{ businessId: string }> = ({ businessId }) => {
     console.log("button clicked");
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading)
+    return (
+      <div className="flex flex-col justify-center items-center h-[80vh]">
+        <Image
+          src="/loading-spinner-orange.gif"
+          alt="loading"
+          width={150}
+          height={150}
+        />
+        <p className="text-[#40ABFF] text-[24px] font-bold">Loading</p>
+      </div>
+    );
   if (error) return <p>{error}</p>;
 
   return (
