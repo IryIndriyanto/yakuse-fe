@@ -30,9 +30,9 @@ const EditBisnis3 = ({ submit, prev, data }: any) => {
           {({ setFieldValue, handleSubmit }) => (
             <form
               onSubmit={handleSubmit}
-              className="m-0 w-[715px] flex flex-col items-center justify-center py-0 px-5 box-border gap-[50px] max-w-full mq750:gap-[25px]"
+              className="m-0 w-[715px] flex flex-col items-center justify-center box-border gap-10 max-w-full mq750:gap-[25px]"
             >
-              <div className="w-full flex flex-col gap-2">
+              <div className="w-full flex flex-col gap-4">
                 <label
                   htmlFor="photo_url"
                   className="text-[#333333] font-bold"
