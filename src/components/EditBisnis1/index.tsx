@@ -39,7 +39,7 @@ const EditBisnis1 = ({ next, data }: any) => {
             return (
               <form
                 onSubmit={handleSubmit}
-                className="m-0 w-[715px] flex flex-col items-center justify-center py-0 px-5 box-border gap-[50px] max-w-full mq750:gap-[25px]"
+                className="m-0 w-[715px] flex flex-col items-center justify-center p-10 box-border gap-[50px] max-w-full mq750:gap-[25px] shadow-[0_0_10px_rgba(0,0,0,0.1)] rounded-[10px]"
               >
                 <div className="w-full">
                   <Field
@@ -86,7 +86,7 @@ const EditBisnis1 = ({ next, data }: any) => {
                     placeholder="Deskripsi Bisnis Anda"
                     onChange={handleChange}
                     value={values.description}
-                    className="h-[calc(100vh*0.4)]"
+                    className="h-[calc(100vh/3)]"
                   />
                   <ErrorMessage
                     name="description"
