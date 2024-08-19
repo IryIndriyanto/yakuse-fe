@@ -23,7 +23,7 @@ const Profile = () => {
 
   if (loading) {
     return (
-      <div className="flex flex-col justify-center items-center min-h-[700px]">
+      <div className="flex justify-center items-center h-screen">
         <Image
           src="/loading-spinner-orange.gif"
           alt="Loading..."
@@ -36,22 +36,31 @@ const Profile = () => {
   }
 
   if (fetchError || error) {
-    return <div className="bg-[#FCFCFC] w-full">
-      <div className="flex flex-col justify-center items-center mt-10 h-[65vh] gap-4">
-        <Image src="/icon-error.png" alt="error" width={100} height={100} />
-        <p className="text-[24px] font-bold text-red-500">Error: {fetchError || error}</p>
+    return (
+      <div className="bg-[#FCFCFC] w-full">
+        <div className="flex flex-col justify-center items-center mt-10 h-[65vh] gap-4">
+          <Image src="/icon-error.png" alt="error" width={100} height={100} />
+          <p className="text-[24px] font-bold text-red-500">
+            Error: {fetchError || error}
+          </p>
+        </div>
       </div>
-    </div>;
+    );
   }
 
   return (
     <div className="bg-[#FCFCFC] w-full">
       <div className="flex justify-center items-center mt-10">
         <ProfileCardUser
-          buttonLabel={activeSection === "Bisnisku" ? "Daftarin Bisnis" : "Daftarin Permintaan"}
+          buttonLabel={
+            activeSection === "Bisnisku"
+              ? "Daftarin Bisnis"
+              : "Daftarin Permintaan"
+          }
           onClick={handleClick}
           setError={setError}
           profile={profile}
+          business={null}
         />
       </div>
 
