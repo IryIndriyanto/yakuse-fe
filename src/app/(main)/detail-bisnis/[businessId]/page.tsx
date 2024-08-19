@@ -5,14 +5,39 @@ import Rating from "@mui/material/Rating";
 import { useRouter } from "next/navigation";
 import useFetchBusinessById from "../../../../hooks/useFetchBusinessById";
 import { formatRupiah } from "../../../../utils/currencyFormatter";
+import { BASE_URL } from "@/utils/constant";
+import axios from "axios";
+import { useState } from "react";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 
 const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
   const { businessId } = params;
   const router = useRouter();
   const { business, loading, error } = useFetchBusinessById(businessId);
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const handleEdit = () => {
     router.push(`/edit-bisnis/${businessId}`);
+  };
+
+  const handleDelete = async () => {
+    const response = await axios.delete(
+      `${BASE_URL}/business/delete/${businessId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      }
+    );
+    if (response.status === 200) {
+      router.push("/profile-user");
+    }
+    handleClose();
   };
 
   if (loading)
@@ -62,6 +87,7 @@ const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
                 alt="icon-trash"
                 width={24}
                 height={24}
+                onClick={handleOpen}
               />
             </div>
           </div>
@@ -92,6 +118,22 @@ const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
           </div>
         </div>
       </div>
+      <Modal open={open} onClose={handleClose}>
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+            <h2 className="text-xl font-bold mb-4">Konfirmasi Hapus</h2>
+            <p className="mb-6">Apakah Anda yakin ingin menghapus bisnis ini?</p>
+            <div className="flex justify-end gap-4">
+              <Button onClick={handleDelete} variant="contained" color="error">
+                Hapus
+              </Button>
+              <Button onClick={handleClose} variant="outlined">
+                Batal
+              </Button>
+            </div>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };
