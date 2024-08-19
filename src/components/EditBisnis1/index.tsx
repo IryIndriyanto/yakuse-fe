@@ -7,13 +7,6 @@ import * as Yup from "yup";
 import { useState, useEffect } from "react";
 
 const EditBisnis1 = ({ next, data }: any) => {
-  const [initialValues, setInitialValues] = useState({
-    name: data.name,
-    omset: data.omset,
-    description: data.description,
-  });
-
-  console.log("initialValues", initialValues);
 
   const validationSchema = Yup.object({
     name: Yup.string()
@@ -30,12 +23,15 @@ const EditBisnis1 = ({ next, data }: any) => {
   const handleSubmit = (values: any) => {
     next(values);
   };
+  if (!data.name) {
+    return null;
+  }
 
   return (
     <main className="flex items-center justify-center">
       <div className="max-w-[600px] flex flex-col justify-center items-center">
         <Formik
-          initialValues={initialValues}
+          initialValues={data}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
@@ -90,7 +86,7 @@ const EditBisnis1 = ({ next, data }: any) => {
                     placeholder="Deskripsi Bisnis Anda"
                     onChange={handleChange}
                     value={values.description}
-                    className="h-[220px]"
+                    className="h-[calc(100vh*0.4)]"
                   />
                   <ErrorMessage
                     name="description"
