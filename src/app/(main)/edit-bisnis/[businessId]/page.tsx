@@ -1,10 +1,12 @@
 import EditBisnisForm from '@/components/EditBisnisForm';
 import React from 'react'
 
-const EditBisnis = () => {
+const EditBisnis = ({ params }: { params: { businessId: string } }) => {
+  const { businessId } = params;
+
   return (
     <div>
-      <EditBisnisForm />
+      <EditBisnisForm businessId={businessId} />
     </div>
   );
 }

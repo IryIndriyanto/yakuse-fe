@@ -1,12 +1,13 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import DaftarinBisnis1 from "../DaftarinBisnis1";
-import DaftarinBisnis2 from "../DaftarinBisnis2";
-import DaftarinBisnis3 from "../DaftarinBisnis3";
+import EditBisnis1 from "../EditBisnis1";
+import EditBisnis2 from "../EditBisnis2";
+import EditBisnis3 from "../EditBisnis3";
 import { BASE_URL } from "@/utils/constant";
+import useFetchBusinessById from "../../hooks/useFetchBusinessById";
 
-const DaftarinBisnisForm: React.FC = () => {
+const EditBisnisForm: React.FC<{ businessId: string }> = ({ businessId }) => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     name: "",
@@ -19,6 +20,22 @@ const DaftarinBisnisForm: React.FC = () => {
   });
 
   const router = useRouter();
+  const { business, loading, error } = useFetchBusinessById(businessId);
+
+  useEffect(() => {
+    if (business) {
+      console.log("Business data:", business);
+      setFormData({
+        name: business.name,
+        omset: business.omset,
+        description: business.description_list.join(", "),
+        location: business.location,
+        contact: business.contact,
+        fk_business_category_id: business.category,
+        photo_url: business.photo_url,
+      });
+    }
+  }, [business]);
 
   const handleNext = (newData: any) => {
     setFormData((prev) => ({ ...prev, ...newData }));
@@ -66,7 +83,7 @@ const DaftarinBisnisForm: React.FC = () => {
       );
 
       if (response.ok) {
-        alert("Business successfully registered!");
+        alert("Business successfully Updated!");
         router.push("/profile-user");
       } else {
         const resData = await response.json();
@@ -80,6 +97,9 @@ const DaftarinBisnisForm: React.FC = () => {
     }
     console.log("button clicked");
   };
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <div>
@@ -103,9 +123,9 @@ const DaftarinBisnisForm: React.FC = () => {
           Photo Bisnis
         </div>
       </div>
-      {step === 1 && <DaftarinBisnis1 next={handleNext} data={formData} />}
+      {step === 1 && <EditBisnis1 next={handleNext} data={formData} />}
       {step === 2 && (
-        <DaftarinBisnis2
+        <EditBisnis2
           next={handleNext}
           prev={handlePrev}
           submit={handleSubmit}
@@ -113,7 +133,7 @@ const DaftarinBisnisForm: React.FC = () => {
         />
       )}
       {step === 3 && (
-        <DaftarinBisnis3
+        <EditBisnis3
           submit={handleSubmit}
           prev={handlePrev}
           data={formData}
@@ -123,4 +143,4 @@ const DaftarinBisnisForm: React.FC = () => {
   );
 };
 
-export default DaftarinBisnisForm;
+export default EditBisnisForm;
