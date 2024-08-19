@@ -13,12 +13,12 @@ const Navbar = () => {
   const { profile, loading } = useFetchProfile();
 
   const currentPath = usePathname();
-  
+
   const tabs = [
     { name: "Temukan Kebutuhan", href: "/kebutuhan" },
     { name: "Temukan Pembeli", href: "/pembeli" },
-    { name: "Info UMKM", href: "/umkm" }
-  ]; 
+    { name: "Info UMKM", href: "/umkm" },
+  ];
 
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
@@ -27,6 +27,11 @@ const Navbar = () => {
   const handleProfile = () => {
     router.push("/profile-user");
     setDropdownVisible(false); // Tambahkan ini
+  };
+
+  const handlePhotoProfile = () => {
+    router.push("/edit-profile-photo");
+    setDropdownVisible(false);
   };
 
   const handleLogout = () => {
@@ -73,7 +78,11 @@ const Navbar = () => {
         {tabs.map((tab, index) => (
           <li
             key={index}
-            className={`text-[20px] list-none cursor-pointer hover:text-[#FD5F00] mr-10 ${currentPath === tab.href ? "text-[#FD5F00] underline underline-offset-8" : ""}`}
+            className={`text-[20px] list-none cursor-pointer hover:text-[#FD5F00] mr-10 ${
+              currentPath === tab.href
+                ? "text-[#FD5F00] underline underline-offset-8"
+                : ""
+            }`}
             onClick={() => handleNavigation(tab.href)}
           >
             {tab.name}
@@ -105,7 +114,10 @@ const Navbar = () => {
                 >
                   <p>Profile</p>
                 </li>
-                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                <li
+                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  onClick={handlePhotoProfile}
+                >
                   <p>Ubah Foto Profile</p>
                 </li>
                 <li
