@@ -27,7 +27,7 @@ const TextArea = ({
         <textarea
           id={id}
           name={name}
-          className="h-full border-[1.5px] rounded-[10px] p-3 border-[#D9D9D9]"
+          className="h-full border-[1.5px] rounded-[10px] p-3 border-[#D9D9D9] text-justify"
           placeholder={placeholder}
           value={value}
           onChange={onChange}
