@@ -2,12 +2,18 @@
 
 import Image from "next/image";
 import Rating from "@mui/material/Rating";
+import { useRouter } from "next/navigation";
 import useFetchBusinessById from "../../../../hooks/useFetchBusinessById";
 import { formatRupiah } from "../../../../utils/currencyFormatter";
 
 const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
   const { businessId } = params;
+  const router = useRouter();
   const { business, loading, error } = useFetchBusinessById(businessId);
+
+  const handleEdit = () => {
+    router.push(`/edit-bisnis/${businessId}`);
+  };
 
   if (loading)
     return (
@@ -48,6 +54,7 @@ const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
                 alt="icon-pencil"
                 width={24}
                 height={24}
+                onClick={handleEdit}
               />
               <Image
                 className="cursor-pointer"
