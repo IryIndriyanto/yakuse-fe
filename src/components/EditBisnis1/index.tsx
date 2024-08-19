@@ -4,13 +4,16 @@ import TextArea from "@/components/TextArea";
 import InputForm from "@/components/InputForm";
 import { ErrorMessage, Field, Formik } from "formik";
 import * as Yup from "yup";
+import { useState, useEffect } from "react";
 
 const EditBisnis1 = ({ next, data }: any) => {
-  const initialValues = {
-    name: data.name || "",
-    omset: data.omset || "",
-    description: data.description || "",
-  };
+  const [initialValues, setInitialValues] = useState({
+    name: data.name,
+    omset: data.omset,
+    description: data.description,
+  });
+
+  console.log("initialValues", initialValues);
 
   const validationSchema = Yup.object({
     name: Yup.string()

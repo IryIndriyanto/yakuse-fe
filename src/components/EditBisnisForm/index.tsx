@@ -90,7 +90,7 @@ const EditBisnisForm: React.FC<{ businessId: string }> = ({ businessId }) => {
         console.log(response);
         console.log(response.statusText);
         console.log(resData);
-        alert("Failed to register business");
+        alert("Failed to update business");
       }
     } catch (error) {
       console.error("An unexpected error occurred:", error);
