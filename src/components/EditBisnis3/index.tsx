@@ -21,7 +21,7 @@ const EditBisnis3 = ({ submit, prev, data }: any) => {
 
   return (
     <main className="flex items-center justify-center">
-      <div className="max-w-[600px] flex flex-col justify-center items-center">
+      <div className="max-w-[600px] flex flex-col justify-center items-center rounded-[10px] p-10 shadow-[0_0_10px_rgba(0,0,0,0.1)]">
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -32,10 +32,10 @@ const EditBisnis3 = ({ submit, prev, data }: any) => {
               onSubmit={handleSubmit}
               className="m-0 w-[715px] flex flex-col items-center justify-center py-0 px-5 box-border gap-[50px] max-w-full mq750:gap-[25px]"
             >
-              <div className="w-full">
+              <div className="w-full flex flex-col gap-2">
                 <label
                   htmlFor="photo_url"
-                  className="block text-[18px] font-[500] mb-2"
+                  className="text-[#333333] font-bold"
                 >
                   Unggah Foto Bisnis
                 </label>
@@ -79,16 +79,16 @@ const EditBisnis3 = ({ submit, prev, data }: any) => {
               <div className="flex flex-row gap-4">
                 <button
                   type="button"
-                  className="w-full h-[40px] flex justify-center items-center rounded-[10px] bg-[#525455] hover:bg-[#525455]/80 text-[18px] text-[#FFFFFF]"
+                  className="w-[150px] h-[40px] flex justify-center items-center rounded-[10px] p-4 bg-[#40ABFF] hover:bg-[#40ABFF]/80 text-[18px] text-[#FFFFFF]"
                   onClick={prev}
                 >
                   sebelumnya
                 </button>
                 <button
                   type="submit"
-                  className="w-full h-[40px] flex justify-center items-center rounded-[10px] bg-[#FD5F00] hover:bg-[#FD5F00]/80 text-[18px] text-[#FFFFFF]"
+                  className="w-[150px] h-[40px] flex justify-center items-center rounded-[10px] p-4 bg-[#FD5F00] hover:bg-[#FD5F00]/80 text-[18px] text-[#FFFFFF]"
                 >
-                  Perbarui Bisnis
+                  Perbarui
                 </button>
               </div>
             </form>

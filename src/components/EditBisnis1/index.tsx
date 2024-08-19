@@ -4,7 +4,6 @@ import TextArea from "@/components/TextArea";
 import InputForm from "@/components/InputForm";
 import { ErrorMessage, Field, Formik } from "formik";
 import * as Yup from "yup";
-import { useState, useEffect } from "react";
 
 const EditBisnis1 = ({ next, data }: any) => {
 
@@ -39,7 +38,7 @@ const EditBisnis1 = ({ next, data }: any) => {
             return (
               <form
                 onSubmit={handleSubmit}
-                className="m-0 w-[715px] flex flex-col items-center justify-center p-10 box-border gap-[50px] max-w-full mq750:gap-[25px] shadow-[0_0_10px_rgba(0,0,0,0.1)] rounded-[10px]"
+                className="m-0 w-[715px] flex flex-col items-center justify-center p-10 box-border gap-10 max-w-full mq750:gap-[25px] shadow-[0_0_10px_rgba(0,0,0,0.1)] rounded-[10px]"
               >
                 <div className="w-full">
                   <Field
@@ -97,7 +96,7 @@ const EditBisnis1 = ({ next, data }: any) => {
 
                 <button
                   type="submit"
-                  className="w-full h-[34px] flex justify-center items-center rounded-[10px] bg-[#525455] hover:bg-[#525455]/80 text-[18px] text-[#FFFFFF]"
+                  className="w-full h-[34px] flex justify-center items-center rounded-[10px] bg-[#FD5F00] hover:bg-[#FD5F00]/80 text-[18px] text-[#FFFFFF]"
                 >
                   Berikutnya
                 </button>

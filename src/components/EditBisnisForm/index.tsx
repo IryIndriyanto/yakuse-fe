@@ -102,23 +102,35 @@ const EditBisnisForm: React.FC<{ businessId: string }> = ({ businessId }) => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div>
+    <div className="flex flex-col justify-center items-center">
       <h1 className="text-[33px] font-[700] text-blue-400 flex justify-center mb-8">
         Perbarui Bisnis
       </h1>
       <div className="flex justify-center mb-8">
         <div
-          className={`mx-4 ${step === 1 ? "text-[#FD5F00]" : "text-gray-500"}`}
+          className={`mx-4 ${
+            step === 1
+              ? "text-[#FD5F00] underline underline-offset-4 font-bold"
+              : "text-gray-500"
+          }`}
         >
           Gambaran Umum
         </div>
         <div
-          className={`mx-4 ${step === 2 ? "text-[#FD5F00]" : "text-gray-500"}`}
+          className={`mx-4 ${
+            step === 2
+              ? "text-[#FD5F00] underline underline-offset-4 font-bold"
+              : "text-gray-500"
+          }`}
         >
           Detail Bisnis
         </div>
         <div
-          className={`mx-4 ${step === 3 ? "text-[#FD5F00]" : "text-gray-500"}`}
+          className={`mx-4 ${
+            step === 3
+              ? "text-[#FD5F00] underline underline-offset-4 font-bold"
+              : "text-gray-500"
+          }`}
         >
           Photo Bisnis
         </div>
@@ -133,11 +145,7 @@ const EditBisnisForm: React.FC<{ businessId: string }> = ({ businessId }) => {
         />
       )}
       {step === 3 && (
-        <EditBisnis3
-          submit={handleSubmit}
-          prev={handlePrev}
-          data={formData}
-        />
+        <EditBisnis3 submit={handleSubmit} prev={handlePrev} data={formData} />
       )}
     </div>
   );
