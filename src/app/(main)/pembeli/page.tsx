@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import Searchbar from "@/components/Searchbar";
 import Filter from "@/components/Filter";
 import PermintaanList from "@/components/PermintaanList";
-import { permintaan } from "@/data/mock";
+// import { permintaan } from "@/data/mock";
 import { permintaanType } from "@/data/type";
 import { useState, useEffect } from "react";
 import { fetchAllNeeds } from "@/data/api";
@@ -40,7 +40,9 @@ export default function PagePembeli() {
 
     return data.filter((item: permintaanType) =>
       activeFilters.some((filter) =>
-        item.category.name.toLowerCase().includes(filter.toLowerCase())
+        item.category.name
+          ? item.category.name.toLowerCase().includes(filter.toLowerCase())
+          : false
       )
     );
   }
