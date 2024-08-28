@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import Searchbar from "@/components/Searchbar";
 import Filter from "@/components/Filter";
 import PermintaanList from "@/components/PermintaanList";
-import { permintaan } from "@/data/mock";
+// import { permintaan } from "@/data/mock";
 import { permintaanType } from "@/data/type";
 import { useState, useEffect } from "react";
 import { fetchAllNeeds } from "@/data/api";

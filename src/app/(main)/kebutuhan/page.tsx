@@ -6,7 +6,7 @@ import Filter from "@/components/Filter";
 import Recommendation from "@/components/Recommendation";
 import BusinessCard from "@/components/BusinessCard";
 import { useState, useEffect } from "react";
-import { bisnis } from "@/data/mock";
+// import { bisnis } from "@/data/mock";
 import { bisnisType } from "@/data/type";
 import { Toaster } from "react-hot-toast";
 import { fetchAllBusiness, fetchBusinessById } from "@/data/api";
