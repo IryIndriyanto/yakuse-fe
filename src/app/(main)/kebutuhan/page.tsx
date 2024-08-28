@@ -6,7 +6,7 @@ import Filter from "@/components/Filter";
 import Recommendation from "@/components/Recommendation";
 import BusinessCard from "@/components/BusinessCard";
 import { useState, useEffect } from "react";
-import { bisnis } from "@/data/mock";
+// import { bisnis } from "@/data/mock";
 import { bisnisType } from "@/data/type";
 import { Toaster } from "react-hot-toast";
 import { fetchAllBusiness, fetchBusinessById } from "@/data/api";
@@ -45,7 +45,9 @@ export default function PageKebutuhan() {
 
     return data.filter((item: bisnisType) =>
       activeFilters.some((filter) =>
-        item.category.toLowerCase().includes(filter.toLowerCase())
+        item.category
+          ? item.category.toLowerCase().includes(filter.toLowerCase())
+          : false
       )
     );
   }
@@ -55,10 +57,8 @@ export default function PageKebutuhan() {
 
     const filterData = handleFilter(data);
 
-    const searchedData = filterData.filter(
-      (item: bisnisType) =>
-        item.name.toLowerCase().includes(value.toLowerCase()) ||
-        item.description.toLowerCase().includes(value.toLowerCase())
+    const searchedData = filterData.filter((item: bisnisType) =>
+      item.name.toLowerCase().includes(value.toLowerCase())
     );
     setFilteredData(searchedData);
   }
@@ -83,12 +83,12 @@ export default function PageKebutuhan() {
         if (token) {
           const data = await fetchBusinessById(activeBusinessId, token);
           setActiveBusinessData(data);
-        // }
-        // const businessData = bisnis.find(
-        //   (bisnis) => bisnis.id === activeBusinessId
-        // );
-        // if (businessData) {
-        //   setActiveBusinessData(businessData);
+          // }
+          // const businessData = bisnis.find(
+          //   (bisnis) => bisnis.id === activeBusinessId
+          // );
+          // if (businessData) {
+          //   setActiveBusinessData(businessData);
         } else {
           console.log(`No mock data found for ID ${activeBusinessId}`);
         }

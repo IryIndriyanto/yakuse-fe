@@ -33,7 +33,7 @@ export default function PermintaanCard({ item }: permintaanDetailProps) {
   return (
     <div className="w-full h-auto bg-w-two rounded-xl">
       <ProfilePelanggan
-        username={item.user_info.owner_username}
+        username={item.user_info.username}
         // userDetail={item.profile.description}
         userProfile={item.user_info.user_profile_url}
       />
