@@ -35,7 +35,7 @@ export default function PermintaanCard({ item }: permintaanDetailProps) {
       <ProfilePelanggan
         username={item.user_info.username}
         // userDetail={item.profile.description}
-        userProfile={item.user_info.user_profile_url}
+        userProfile={item.user_info.user_profile_url || "/default-gray-photo.webp"}
       />
       <div className="w-full h-auto pb-9 px-9 space-y-5 md:space-y-3">
         <div>
