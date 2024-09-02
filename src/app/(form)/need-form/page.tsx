@@ -1,14 +1,20 @@
 "use client";
 
 import FormButton from "@/components/FormButton";
-import TextArea from "@/components/TextArea";
 import InputForm from "@/components/InputForm";
+import TextArea from "@/components/TextArea";
+import { BASE_URL } from "@/utils/constant";
+import axios from "axios";
 import { ErrorMessage, Field, Formik } from "formik";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import * as Yup from "yup";
 
 const EditProfile = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [isDisable, setIsDisable] = useState(false);
+  const router = useRouter();
 
   const categories = [
     "Industri",
@@ -33,24 +39,46 @@ const EditProfile = () => {
     businessTag: Yup.string(),
   });
 
-  function handleSubmit() {}
+  async function handleSubmit(values: typeof initialValues) {
+    setIsLoading(true);
+    setIsDisable(true);
+
+    try {
+      const response = await axios.post(`${BASE_URL}/user-need/`, values, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      });
+      if (response.status === 201) {
+        toast.success("Permintaan Created");
+        router.push("/profile-user");
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        toast.error(`${error.response.data.detail}`);
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   return (
-    <main className="h-[80vh] flex items-center justify-center">
-      <div className="max-w-[600px] flex flex-col justify-center items-center">
+    <main className="min-h-[70vh] pt-4 flex items-center justify-center">
+      <div className="w-[550px] p-12 flex flex-col justify-center items-center shadow-lg">
         <h1 className="text-[33px] font-[700] text-blue-400">
           Bikin Permintaan
         </h1>
+
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
-          {({ values, handleChange, handleSubmit, setFieldValue }) => {
+          {({ values, handleChange, handleSubmit }) => {
             return (
               <form
                 onSubmit={handleSubmit}
-                className="flex flex-col justify-center items-center gap-6 mt-[50px]"
+                className="flex flex-col justify-center items-center gap-6 w-full mt-[50px]"
               >
                 <div className="w-full">
                   <Field
@@ -66,7 +94,7 @@ const EditProfile = () => {
                   <ErrorMessage
                     name="title"
                     component="div"
-                    className="text-red-500 text-[14px] font-[500] h-[20px] w-full"
+                    className="text-red-500 text-[14px] font-[500] h-[20px] text-wrap"
                   />
                 </div>
 
@@ -79,7 +107,6 @@ const EditProfile = () => {
                     placeholder="Description"
                     value={values.description}
                     onChange={handleChange}
-                    className="h-[220px]"
                   />
                   <ErrorMessage
                     name="description"
@@ -88,28 +115,10 @@ const EditProfile = () => {
                   />
                 </div>
 
-                <div className="flex flex-wrap justify-center gap-4">
-                  {categories.map((category, index) => (
-                    <button
-                      type="button"
-                      key={index}
-                      className={`border border-gray-400 rounded-full px-4 py-2 text-gray-700 transition ${
-                        values.businessTag === category
-                          ? "bg-blue-400 text-white"
-                          : "hover:bg-gray-200"
-                      }`}
-                      onClick={() => setFieldValue("businessTag", category)}
-                    >
-                      {category}
-                    </button>
-                  ))}
-                </div>
-                <p className="font-bold">Bisnis Tag</p>
-
                 <FormButton
                   text="Submit"
                   type="submit"
-                  disabled={isLoading}
+                  disabled={isDisable}
                   isLoading={isLoading}
                 />
               </form>
