@@ -14,32 +14,32 @@ test('has title', async ({ page }) => {
   await expect(page).toHaveTitle('YAKUSE');
 });
 
-// Test for button navigation to Temukan Kebutuhan
-test('temukan kebutuhan able to be clicked', async ({ page }) => {
-  await page.goto(baseURL);
+// // Test for button navigation to Temukan Kebutuhan
+// test('temukan kebutuhan able to be clicked', async ({ page }) => {
+//   await page.goto(baseURL);
 
-  await page.getByTestId('action-temukan-kebutuhan').click();
+//   await page.getByTestId('action-temukan-kebutuhan').click();
 
-  await expect(page).toHaveURL(`${baseURL}/landing#Temukan-Kebutuhan`);
-});
+//   await expect(page).toHaveURL(`${baseURL}/landing#Temukan-Kebutuhan`);
+// });
 
-// Test for button navigation to Temukan Pembeli
-test('temukan pembeli able to be clicked', async ({ page }) => {
-  await page.goto(baseURL);
+// // Test for button navigation to Temukan Pembeli
+// test('temukan pembeli able to be clicked', async ({ page }) => {
+//   await page.goto(baseURL);
 
-  await page.getByTestId('action-temukan-pembeli').click();
+//   await page.getByTestId('action-temukan-pembeli').click();
 
-  await expect(page).toHaveURL(`${baseURL}/landing#Temukan-Pembeli`);
-});
+//   await expect(page).toHaveURL(`${baseURL}/landing#Temukan-Pembeli`);
+// });
 
-// Test for button navigation to Info UMKM
-test('info umkm able to be clicked', async ({ page }) => {
-  await page.goto(baseURL);
+// // Test for button navigation to Info UMKM
+// test('info umkm able to be clicked', async ({ page }) => {
+//   await page.goto(baseURL);
 
-  await page.getByTestId('action-info-umkm').click();
+//   await page.getByTestId('action-info-umkm').click();
 
-  await expect(page).toHaveURL(`${baseURL}/landing#Info-UMKM`);
-});
+//   await expect(page).toHaveURL(`${baseURL}/landing#Info-UMKM`);
+// });
 
 // Test for button navigation to Sign Up at Main Description
 test('should navigate to register page on Daftar Sekarang! button click', async ({

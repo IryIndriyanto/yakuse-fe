@@ -37,4 +37,4 @@ next-env.d.ts
 /test-results/
 /playwright-report/
 /blob-report/
-/playwright/.cache/
+# /playwright/.cache/ di comment karena ingin berada di dalam repo
