@@ -35,9 +35,7 @@ const DaftarinBisnis2 = ({ next, prev, data }: any) => {
   };
 
   const validationSchema = Yup.object({
-    location: Yup.string().required(
-      'Alamat lokasi bisnis anda wajib diisi.'
-    ),
+    location: Yup.string().required('Alamat lokasi bisnis anda wajib diisi.'),
     contact: Yup.string()
       .typeError('Nomor telepon harus berupa angka.')
       .required('Nomor telepon bisnis anda wajib diisi.'),
@@ -50,7 +48,7 @@ const DaftarinBisnis2 = ({ next, prev, data }: any) => {
 
   return (
     <main className="flex items-center justify-center">
-      <div className="max-w-[600px] flex flex-col justify-center items-center">
+      <div className="max-w-[600px] flex flex-col justify-center items-center shadow-[0_0_10px_rgba(0,0,0,0.1)] rounded-[10px] p-10">
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -59,81 +57,80 @@ const DaftarinBisnis2 = ({ next, prev, data }: any) => {
           {({ values, handleChange, handleSubmit, setFieldValue }) => (
             <form
               onSubmit={handleSubmit}
-              className="m-0 w-[715px] flex flex-col items-center justify-center py-0 px-5 box-border gap-[10px] max-w-full mq750:gap-[25px]"
+              className="m-0 w-[715px] flex flex-col items-center justify-center box-border gap-5 max-w-full mq750:gap-[25px]"
             >
-              {/* Alamat Lokasi */}
-              <div className="w-full">
-                <Field
-                  component={InputForm}
-                  id="location"
-                  name="location"
-                  label="Alamat Lokasi"
-                  type="text"
-                  placeholder="Alamat Lokasi Bisnis"
-                  value={values.location}
-                  onChange={handleChange}
-                />
-                <ErrorMessage
-                  name="location"
-                  component="div"
-                  className="text-red-500 text-[14px] font-[500] h-[20px] w-full"
-                />
+              <div className="w-full flex flex-col gap-10">
+                <div className="w-full">
+                  <Field
+                    component={InputForm}
+                    id="location"
+                    name="location"
+                    label="Alamat Lokasi"
+                    type="text"
+                    placeholder="Alamat Lokasi Bisnis"
+                    value={values.location}
+                    onChange={handleChange}
+                  />
+                  <ErrorMessage
+                    name="location"
+                    component="div"
+                    className="text-red-500 text-[14px] font-[500] h-[20px] w-full"
+                  />
+                </div>
+
+                <div className="w-full">
+                  <Field
+                    component={InputForm}
+                    id="contact"
+                    name="contact"
+                    label="Nomor Telepon Bisnis"
+                    type="string"
+                    placeholder="Nomor Telepon aktif"
+                    value={values.contact}
+                    onChange={handleChange}
+                  />
+                  <ErrorMessage
+                    name="contact"
+                    component="div"
+                    className="text-red-500 text-[14px] font-[500] h-[20px] w-full"
+                  />
+                </div>
               </div>
 
-              {/* Nomor Telepon */}
-              <div className="w-full">
-                <Field
-                  component={InputForm}
-                  id="contact"
-                  name="contact"
-                  label="Nomor Telepon Bisnis"
-                  type="string"
-                  placeholder="Nomor Telepon aktif"
-                  value={values.contact}
-                  onChange={handleChange}
-                />
-                <ErrorMessage
-                  name="contact"
-                  component="div"
-                  className="text-red-500 text-[14px] font-[500] h-[20px] w-full"
-                />
+              <div className="w-full justify-center items-center flex flex-col gap-4 mt-4">
+                <p className="font-bold">Bisnis Tag</p>
+                <div className="flex flex-wrap justify-center gap-2">
+                  {categories.map((category, index) => (
+                    <button
+                      type="button"
+                      key={index}
+                      className={`border border-gray-400 rounded-full px-4 py-2 text-gray-700 transition ${
+                        values.fk_business_category_id === index
+                          ? 'bg-blue-400 text-white'
+                          : 'hover:bg-gray-200'
+                      }`}
+                      onClick={() =>
+                        setFieldValue('fk_business_category_id', index)
+                      } //
+                    >
+                      {category}
+                    </button>
+                  ))}
+                </div>
               </div>
 
-              {/* Bisnis Tag */}
-              <p className="font-bold">Bisnis Tag</p>
-              <div className="flex flex-wrap justify-center gap-4">
-                {categories.map((category, index) => (
-                  <button
-                    type="button"
-                    key={index}
-                    className={`border border-gray-400 rounded-full px-4 py-2 text-gray-700 transition ${
-                      values.fk_business_category_id === index
-                        ? 'bg-blue-400 text-white'
-                        : 'hover:bg-gray-200'
-                    }`}
-                    onClick={() =>
-                      setFieldValue('fk_business_category_id', index)
-                    } //
-                  >
-                    {category}
-                  </button>
-                ))}
-              </div>
-
-              <div className="flex flex-row gap-4">
-                {/* Button sebelumnya */}
+              <div className="flex flex-row gap-4 mt-4">
                 <button
                   type="button"
-                  className="w-full h-[40px] flex justify-center items-center rounded-[10px] bg-[#525455] hover:bg-[#525455]/80 text-[18px] text-[#FFFFFF]"
+                  className="w-full h-[40px] flex justify-center items-center rounded-[10px] p-4 bg-[#40ABFF] hover:bg-[#40ABFF]/80 text-[18px] text-[#FFFFFF]"
                   onClick={prev}
                 >
                   Sebelumnya
                 </button>
 
-                {/* Button berikutnya */}
                 <button
                   type="submit"
-                  className="w-full h-[40px] flex justify-center items-center rounded-[10px] bg-[#525455] hover:bg-[#525455]/80 text-[18px] text-[#FFFFFF]"
+                  className="w-full h-[40px] flex justify-center items-center rounded-[10px] p-4 bg-[#FD5F00] hover:bg-[#FD5F00]/80 text-[18px] text-[#FFFFFF]"
                 >
                   Berikutnya
                 </button>
