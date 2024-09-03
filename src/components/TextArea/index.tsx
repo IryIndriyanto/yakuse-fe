@@ -23,11 +23,11 @@ const TextArea = ({
   return (
     <div className={`flex flex-col w-full h-full ${className}`}>
       <div className="flex flex-col gap-2 h-full">
-        <label>{label}</label>
+        <label className="text-[#333333] font-bold">{label}</label>
         <textarea
           id={id}
           name={name}
-          className="h-full border-[1.5px] rounded-[10px] p-3 border-[#D9D9D9]"
+          className="h-full border-[1.5px] rounded-[10px] p-3 border-[#D9D9D9] text-justify"
           placeholder={placeholder}
           value={value}
           onChange={onChange}

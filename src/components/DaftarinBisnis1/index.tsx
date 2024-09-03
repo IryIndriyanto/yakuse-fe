@@ -4,21 +4,9 @@ import FormButton from '@/components/FormButton';
 import TextArea from '@/components/TextArea';
 import InputForm from '@/components/InputForm';
 import { ErrorMessage, Field, Formik } from 'formik';
-import { useState } from 'react';
 import * as Yup from 'yup';
 
-// Pada file ini, kita akan membuat form untuk mengisi nama bisnis dan deskripsi bisnis
-// body yang di perlukan untuk endpoint ini adalah
-// {
-//   name: string,
-//   omset: string,
-//   description: string
-// }
-
-
 const DaftarinBisnis1 = ({ next, data }: any) => {
-  //   const [isLoading, setIsLoading] = useState(false);
-
   const initialValues = {
     name: data.name || '',
     omset: data.omset || '', // Tambahkan field omset
@@ -38,7 +26,7 @@ const DaftarinBisnis1 = ({ next, data }: any) => {
   });
 
   // submit menggunakan baseurl yang di env.local
-  const handleSubmit = (values:any) => {
+  const handleSubmit = (values: any) => {
     next(values);
   };
 
@@ -50,79 +38,73 @@ const DaftarinBisnis1 = ({ next, data }: any) => {
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
-          {({ values, handleChange, handleSubmit }) => {
-            return (
-              <form
-                onSubmit={handleSubmit}
-                className="m-0 w-[715px] flex flex-col items-center justify-center py-0 px-5 box-border gap-[50px] max-w-full mq750:gap-[25px]"
+          {({ values, handleChange, handleSubmit }) => (
+            <form
+              onSubmit={handleSubmit}
+              className="m-0 w-[715px] flex flex-col items-center justify-center p-10 box-border gap-10 max-w-full mq750:gap-[25px] shadow-[0_0_10px_rgba(0,0,0,0.1)] rounded-[10px]"
+            >
+              <div className="w-full">
+                <Field
+                  component={InputForm}
+                  id="name"
+                  name="name"
+                  label="Nama Bisnis"
+                  type="text"
+                  placeholder="Nama Bisnis Anda"
+                  value={values.name}
+                  onChange={handleChange}
+                />
+                <ErrorMessage
+                  name="name"
+                  component="div"
+                  className="text-red-500 text-[14px] font-[500] h-[20px] w-full"
+                />
+              </div>
+
+              <div className="w-full">
+                <Field
+                  component={InputForm}
+                  id="omset"
+                  name="omset"
+                  label="Omset"
+                  type="number"
+                  placeholder="Omset Bisnis Anda"
+                  value={values.omset}
+                  onChange={handleChange}
+                />
+                <ErrorMessage
+                  name="omset"
+                  component="div"
+                  className="text-red-500 text-[14px] font-[500] h-[20px] w-full"
+                />
+              </div>
+
+              <div className="w-full">
+                <Field
+                  component={TextArea}
+                  id="description"
+                  name="description"
+                  label="Deskripsi Bisnis"
+                  placeholder="Deskripsi Bisnis Anda"
+                  onChange={handleChange}
+                  value={values.description}
+                  className="h-[calc(100vh/3)]"
+                />
+                <ErrorMessage
+                  name="description"
+                  component="div"
+                  className="text-red-500 text-[14px] font-[500] h-[20px] w-full"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full h-[34px] flex justify-center items-center rounded-[10px] bg-[#FD5F00] hover:bg-[#FD5F00]/80 text-[18px] text-[#FFFFFF]"
               >
-                {/* Input Nama Bisnis */}
-                <div className="w-full">
-                  <Field
-                    component={InputForm}
-                    id="name"
-                    name="name"
-                    label="Nama Bisnis"
-                    type="text"
-                    placeholder="Nama Bisnis Anda"
-                    value={values.name}
-                    onChange={handleChange}
-                  />
-                  <ErrorMessage
-                    name="name"
-                    component="div"
-                    className="text-red-500 text-[14px] font-[500] h-[20px] w-full"
-                  />
-                </div>
-                  
-                {/* Input Omset */}
-                <div className="w-full">
-                  <Field
-                    component={InputForm}
-                    id="omset"
-                    name="omset"
-                    label="Omset"
-                    type="number"
-                    placeholder="Omset Bisnis Anda"
-                    value={values.omset}
-                    onChange={handleChange}
-                  />
-                  <ErrorMessage
-                    name="omset"
-                    component="div"
-                    className="text-red-500 text-[14px] font-[500] h-[20px] w-full"
-                  />
-                </div>
-
-                {/*  input deskripsi bisnis */}
-                <div className="w-full">
-                  <Field
-                    component={TextArea}
-                    id="description"
-                    name="description"
-                    label="Deskripsi Bisnis"
-                    placeholder="Deskripsi Bisnis Anda"
-                    value={values.description}
-                    onChange={handleChange}
-                    className="h-[220px]"
-                  />
-                  <ErrorMessage
-                    name="description"
-                    component="div"
-                    className="text-red-500 text-[14px] font-[500] h-[20px] w-full"
-                  />
-                </div>
-
-                {/* Button berikutnya */}
-                <button
-                  type="submit"
-                  className="w-full h-[34px] flex justify-center items-center rounded-[10px] bg-[#525455] hover:bg-[#525455]/80 text-[18px] text-[#FFFFFF]"
-                >
-                  Berikutnya
-                </button>
-              </form>
-            );
-          }}
+                Berikutnya
+              </button>
+            </form>
+          )}
         </Formik>
       </div>
     </main>
