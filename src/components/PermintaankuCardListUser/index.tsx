@@ -74,7 +74,7 @@ const PermintaankuCardListUser = () => {
           <Image src="/icon-error.png" alt="Error" width={100} height={100} />
           <p className="text-[20px] font-bold">Error: {errorNeeds}</p>
         </div>
-      ) : needs?.length === 0 ? (
+      ) : needs?.filter(need => need.is_visible === true).length === 0 ? (
         <div className="flex flex-col items-center gap-4">
           <p className="text-[20px] font-bold">
             Anda belum memiliki permintaan
@@ -82,51 +82,53 @@ const PermintaankuCardListUser = () => {
         </div>
       ) : (
         needs?.map((need: MyNeed) => (
-          <div
-            className="flex items-center justify-between font-serif bg-[#E5F5FF] rounded-[8px] p-4 transform hover:scale-105 transition-all duration-300"
-            key={need.id}
-          >
-            <div className="flex items-center gap-8">
-              <div>
-                <Image
-                  className="rounded-full w-[150px] h-[150px] bg-image bg-cover bg-center object-cover"
-                  src={
-                    need.user_info.user_profile_url ||
-                    "/default-gray-photo.webp"
-                  }
-                  alt="Profile Picture"
-                  width={150}
-                  height={150}
+          need?.is_visible ? (
+            <div
+              className="flex items-center justify-between font-serif bg-[#E5F5FF] rounded-[8px] p-4 transform hover:scale-105 transition-all duration-300"
+              key={need.id}
+            >
+              <div className="flex items-center gap-8">
+                <div>
+                  <Image
+                    className="rounded-full w-[150px] h-[150px] bg-image bg-cover bg-center object-cover"
+                    src={
+                      need.user_info.user_profile_url ||
+                      "/default-gray-photo.webp"
+                    }
+                    alt="Profile Picture"
+                    width={150}
+                    height={150}
+                  />
+                </div>
+
+                <div className="flex flex-col gap-4 max-w-[700px] text-justify">
+                  <h4 className="text-[28px] font-bold">{need.title}</h4>
+                  <p className="text-[18px] text-[#525455]">{need.description}</p>
+                  <p className="text-[18px] text-[#525455]">
+                    Dibuat pada tanggal:{" "}
+                    {new Date(need.created_at).toLocaleDateString("id-ID", {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    })}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <ButtonList
+                  label="Edit"
+                  variant="Edit"
+                  onClick={() => handleEditClick(need.id.toString())}
+                />
+                <ButtonList
+                  label="Delete"
+                  variant="Delete"
+                  onClick={() => handleDeleteClick(need)}
                 />
               </div>
-
-              <div className="flex flex-col gap-4 max-w-[700px] text-justify">
-                <h4 className="text-[28px] font-bold">{need.title}</h4>
-                <p className="text-[18px] text-[#525455]">{need.description}</p>
-                <p className="text-[18px] text-[#525455]">
-                  Dibuat pada tanggal:{" "}
-                  {new Date(need.created_at).toLocaleDateString("id-ID", {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric",
-                  })}
-                </p>
-              </div>
             </div>
-
-            <div className="flex items-center gap-4">
-              <ButtonList
-                label="Edit"
-                variant="Edit"
-                onClick={() => handleEditClick(need.id.toString())}
-              />
-              <ButtonList
-                label="Delete"
-                variant="Delete"
-                onClick={() => handleDeleteClick(need)}
-              />
-            </div>
-          </div>
+          ) : null
         ))
       )}
 
