@@ -4,6 +4,7 @@ import Image from "next/image";
 import React from "react";
 import Rating from "@mui/material/Rating";
 import { bisnisType } from "@/data/type";
+import { useRouter } from "next/navigation";
 
 interface BusinessCardProps {
   business: bisnisType | null;
@@ -15,18 +16,38 @@ interface bisnisProps {
 }
 
 const BusinessCard = ({ business }: BusinessCardProps) => {
-  if (!business) return <div>Select a business to see details</div>;
+  const router = useRouter();
+
+  if (!business) return (
+    <div className="w-full h-full bg-w-two rounded-xl flex flex-col justify-items-center space-y-4 p-7">
+      <h2 className="text-5xl font-normal text-gray-800 ">
+        {`<- Pilih Kebutuhanmu`}
+      </h2>
+      <p className="text-sm  text-b-two font-semibold">
+        Tampilkan detail disini
+      </p>
+    </div>
+  );
+
+  const handleBusinessClick = () => {
+    router.push(`/detail-bisnis-other-user/${business.id}`);
+  };
+
+  const handleProfileClick = () => {
+    router.push(`/profile-other-user/${business.owner_info.user_id}`);
+  };
 
   return (
-    <div className="w-full h-fit bg-w-two rounded-xl flex flex-col space-y-4 p-7">
+    <div className="w-full h-fit bg-w-two rounded-xl flex flex-col space-y-4 p-7" >
       <div className="flex justify-between items-center">
         <div className="flex flex-row space-x-5 items-center">
-          <div className="flex flex-col gap-1 justify-center">
+          <div className="flex flex-col gap-1 justify-center hover:cursor-pointer" onClick={handleProfileClick}>
             <Image
-              src="/profile.png"
+              src={business.owner_info.photo_url || "/default-gray-photo.webp"}
               alt="user-profile"
-              width={25}
-              height={25}
+              width={0}
+              height={0}
+              sizes="100vw"
               className="w-16 h-auto border-blue-500 border-4 rounded-full"
             />
             <p className="text-sm text-center text-blue-950 font-light900 font-serif">
@@ -51,9 +72,9 @@ const BusinessCard = ({ business }: BusinessCardProps) => {
         />
       </div>
 
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 hover:cursor-pointer" onClick={handleBusinessClick}>
         <Image
-          src={business.photo_url || "/default-gray-photo.webp"}
+          src={business.photo_url || "/empty-business-image.jpg" }
           alt="business"
           width={980}
           height={300}
