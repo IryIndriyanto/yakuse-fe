@@ -4,10 +4,12 @@ import ButtonList from "../ButtonList";
 import { useRouter } from "next/navigation";
 import { MyNeed } from "./types";
 import useFetchNeeds from "../../hooks/useFetchNeeds";
+import axios from "axios";
+import { BASE_URL } from "@/utils/constant";
 
 const PermintaankuCardListUser = () => {
   const router = useRouter();
-  const { needs, loadingNeeds, errorNeeds } = useFetchNeeds();
+  const { needs, setNeeds, loadingNeeds, errorNeeds } = useFetchNeeds();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedNeed, setSelectedNeed] = useState<MyNeed | null>(null);
 
@@ -22,8 +24,30 @@ const PermintaankuCardListUser = () => {
 
   const confirmDelete = () => {
     setIsModalVisible(false);
-    console.log("Pake API delete bro");
-    // Here you can call your delete API
+    const deleteNeed = async () => {
+      if (selectedNeed) {
+        try {
+          const response = await axios.delete(`${BASE_URL}/user-need/hide/my-need/${selectedNeed.id}`, {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+          });
+          if (response.status === 204) {
+            alert("Permintaan berhasil dihapus");
+            setNeeds((needs || []).filter(need => need.id !== selectedNeed.id));
+            router.push("/profile-user");
+          } else {
+            alert("Gagal menghapus permintaan");
+            console.log(response);
+            console.log(response.statusText);
+            console.log(response.data);
+          }
+        } catch (error) {
+          console.error("Error deleting need:", error);
+        }
+      }
+    };
+    deleteNeed();
   };
 
   const cancelDelete = () => {
