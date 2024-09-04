@@ -54,7 +54,7 @@ const PermintaankuCardListUser = () => {
               <div>
                 <Image
                   className="rounded-full w-[150px] h-[150px] bg-image bg-cover bg-center object-cover"
-                  src={need.user_info.user_profile_url}
+                  src={need.user_info.user_profile_url || "/default-gray-photo.webp"}
                   alt="Profile Picture"
                   width={150}
                   height={150}
