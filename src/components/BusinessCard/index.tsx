@@ -53,7 +53,7 @@ const BusinessCard = ({ business }: BusinessCardProps) => {
 
       <div className="flex flex-col gap-3">
         <Image
-          src={business.photo_url}
+          src={business.photo_url || "/default-gray-photo.webp"}
           alt="business"
           width={980}
           height={300}

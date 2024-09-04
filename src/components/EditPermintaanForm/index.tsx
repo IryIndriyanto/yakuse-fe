@@ -10,12 +10,13 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import * as Yup from "yup";
+import useFetchNeedsById from "@/hooks/useFetchNeedsById";  
 
-const EditProfile = () => {
+const EditPermintaanForm: React.FC<{ needId: string }> = ({ needId }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isDisable, setIsDisable] = useState(false);
+  const { need, loading, error } = useFetchNeedsById(needId);
   const router = useRouter();
-
   const categories = [
     "kuliner",
     "industri",
@@ -30,10 +31,11 @@ const EditProfile = () => {
   ];
 
   const initialValues = {
-    title: "",
-    description: "",
-    fk_business_category_id: 1,
+    title: need?.title,
+    description: need?.description,
+    fk_business_category_id: need?.category.id,
   };
+  console.log(initialValues);
 
   const validationSchema = Yup.object({
     title: Yup.string().required("Title wajib diisi."),
@@ -46,13 +48,14 @@ const EditProfile = () => {
     setIsDisable(true);
 
     try {
-      const response = await axios.post(`${BASE_URL}/user-need/`, values, {
+      const response = await axios.put(`${BASE_URL}/user-need/my-need/${needId}`, values, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
       });
-      if (response.status === 201) {
-        toast.success("Permintaan Created");
+
+      if (response.status === 200) {
+        toast.success("Permintaan telah diperbarui");
         router.push("/profile-user");
       }
     } catch (error) {
@@ -68,13 +71,14 @@ const EditProfile = () => {
     <main className="min-h-[70vh] pt-4 flex items-center justify-center">
       <div className="w-[550px] p-12 flex flex-col justify-center items-center shadow-lg">
         <h1 className="text-[33px] font-[700] text-blue-400">
-          Bikin Permintaan
+          Perbarui Permintaan
         </h1>
 
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
+          enableReinitialize={true}
         >
           {({ values, handleChange, handleSubmit, setFieldValue }) => {
             return (
@@ -135,7 +139,7 @@ const EditProfile = () => {
                   ))}
                 </div>
                 <FormButton
-                  text="Submit"
+                  text="Perbarui"
                   type="submit"
                   disabled={isDisable}
                   isLoading={isLoading}
@@ -149,4 +153,4 @@ const EditProfile = () => {
   );
 };
 
-export default EditProfile;
+export default EditPermintaanForm;
