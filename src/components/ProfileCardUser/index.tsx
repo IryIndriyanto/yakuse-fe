@@ -55,7 +55,7 @@ const ProfileCardUser = ({
                   <Image src="/star.svg" alt="star" width={50} height={50} />
                   <div className="flex items-end">
                     <p className="text-[41px] font-bold">
-                      {business?.rating !== undefined ? business.rating : "0.0"}
+                      {business?.avg_rating !== undefined ? business.avg_rating : "0.0"}
                       <span className="text-[#FD5F00]">/</span>
                     </p>
                     <p className="text-[#FD5F00] text-[24px] font-bold">5.0</p>

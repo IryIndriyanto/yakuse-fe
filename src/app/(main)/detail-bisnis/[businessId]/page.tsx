@@ -9,8 +9,8 @@ import { BASE_URL } from "@/utils/constant";
 import axios from "axios";
 import { useState } from "react";
 import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import { BusinessById } from "@/components/BisniskuCardListUser/types";
 
 const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
   const { businessId } = params;
@@ -95,7 +95,7 @@ const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
           <div className="flex gap-20">
             <div className="flex flex-col justify-center gap-2">
               <p className="text-[18px] font-bold">Omset</p>
-              <Rating value={business?.rating} precision={0.5} readOnly />
+              <Rating value={business?.avg_rating} precision={0.5} readOnly />
             </div>
 
             <div className="flex flex-col justify-center gap-2">
@@ -103,7 +103,7 @@ const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
                 {formatRupiah(business?.omset || 0)}
               </p>
               <p className="text-[18px]">
-                {business?.rating}/5 dari {business?.total_rater} pengulas
+                {business?.avg_rating} dari {business?.total_rater} pengulas
               </p>
             </div>
           </div>
