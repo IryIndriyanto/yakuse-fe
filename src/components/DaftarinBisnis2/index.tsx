@@ -1,31 +1,26 @@
 'use client';
 
-import FormButton from '@/components/FormButton';
-import TextArea from '@/components/TextArea';
 import InputForm from '@/components/InputForm';
 import { ErrorMessage, Field, Formik } from 'formik';
 import { useState } from 'react';
 import * as Yup from 'yup';
 
-// Pada file ini, kita akan membuat form untuk mengisi alamat lokasi dan nomor telepon bisnis
-// body yang di perlukan untuk endpoint ini adalah
-// {
-//   location: string,
-//   contact: string
-// }
 
 const DaftarinBisnis2 = ({ next, prev, data }: any) => {
   const [isLoading, setIsLoading] = useState(false);
 
+
   const categories = [
-    'Industri',
-    'Kreatif',
-    'Pertanian',
-    'Teknologi',
-    'Pendidikan',
-    'Transportasi',
-    'Properti',
-    'Kuliner',
+    'kuliner',
+    'industri',
+    'kreative',
+    'jasa',
+    'pertanian',
+    'teknologi',
+    'pendidikan',
+    'kesehatan',
+    'transportasi',
+    'properti',
   ];
 
   const initialValues = {
@@ -105,12 +100,12 @@ const DaftarinBisnis2 = ({ next, prev, data }: any) => {
                       type="button"
                       key={index}
                       className={`border border-gray-400 rounded-full px-4 py-2 text-gray-700 transition ${
-                        values.fk_business_category_id === index
+                        values.fk_business_category_id === index + 1
                           ? 'bg-blue-400 text-white'
                           : 'hover:bg-gray-200'
                       }`}
                       onClick={() =>
-                        setFieldValue('fk_business_category_id', index)
+                        setFieldValue('fk_business_category_id', index + 1)
                       } //
                     >
                       {category}

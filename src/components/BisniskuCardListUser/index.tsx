@@ -39,8 +39,8 @@ const BisniskuCardListUser = () => {
           <div className="flex items-center gap-8">
             <div>
               <Image
-                className="rounded-full w-[150px] h-[150px] bg-image bg-cover bg-center object-cover"
-                src={business.photo_url}
+                className="rounded-full w-[150px] h-[150px] bg-image bg-cover bg-center object-cover max-w-none"
+                src={business.photo_url || "/default-gray-photo.webp"}
                 alt={business.name}
                 width={150}
                 height={150}

@@ -40,7 +40,7 @@ const EditBisnis3 = ({ submit, prev, data }: any) => {
                   Unggah Foto Bisnis
                 </label>
                 <input
-                  id="photo_url"
+                  id="photo_url_edit"
                   name="photo_url"
                   type="file"
                   onChange={(event) => {

@@ -4,6 +4,7 @@ import { useState } from "react";
 import ButtonList from "../ButtonList";
 import { UserProfile } from "./types";
 import { MyBusiness } from "@/components/BisniskuCardListUser/types";
+import { Span } from "next/dist/trace";
 
 interface ProfileCardProps {
   buttonLabel: string;
@@ -36,7 +37,7 @@ const ProfileCardUser = ({
   }
 
   return (
-    <div className="flex flex-col justify-between bg-[#E5F5FF] rounded-[10px] p-10 w-[1200px] font-serif min-h-[700px]">
+    <div className="flex flex-col justify-between bg-[#E5F5FF] rounded-[10px] p-10 w-[1200px] font-serif min-h-[500px]">
       <div>
         <div>
           <div className="flex justify-between gap-10">
@@ -85,14 +86,18 @@ const ProfileCardUser = ({
                       <div className="flex items-start gap-2">
                         <p className="w-20">Phone:</p>
                         <p className="text-[#40ABFF]">
-                          <a href={`https://wa.me/${profile.phone}`}>
-                            {profile.phone}
-                          </a>
+                          {profile.phone ? (
+                            <a href={`https://wa.me/${profile.phone}`}>
+                              {profile.phone}
+                            </a>
+                          ) : (
+                            <span style={{ color: 'black' }}>-</span>
+                          )}
                         </p>
                       </div>
                       <div className="flex items-start gap-2">
                         <p className="w-20">Alamat:</p>
-                        <p className="max-w-[500px]">{profile.address}</p>
+                        <p className="max-w-[500px]">{profile.address || "-"}</p>
                       </div>
                     </div>
                   </div>
@@ -113,11 +118,12 @@ const ProfileCardUser = ({
           </div>
         </div>
 
-        <div className="font-serif my-5 min-h-64">
+        <div className="font-serif my-5">
           <h3 className="text-xl font-semibold">Tentang Saya</h3>
-          <p className="text-lg text-justify py-4">{profile.about_me_list}</p>
+          <p className="text-lg text-justify py-4">
+            {profile.about_me_list ? profile.about_me_list : "Belum ada informasi tentang saya."}
+          </p>
         </div>
-
         <div className="flex justify-center items-center">
           {isButtonLoading ? (
             <Image
