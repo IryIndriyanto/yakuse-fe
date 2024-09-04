@@ -3,8 +3,7 @@ import { ErrorMessage, Field, Formik } from 'formik';
 import * as Yup from 'yup';
 import { useState } from 'react';
 
-
-const DaftarinBisnis3 = ({ submit, prev, data }: any) => {
+const EditBisnis3 = ({ submit, prev, data }: any) => {
   const [fotoUploaded, setFotoUploaded] = useState(false);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
@@ -31,17 +30,19 @@ const DaftarinBisnis3 = ({ submit, prev, data }: any) => {
           {({ setFieldValue, handleSubmit }) => (
             <form
               onSubmit={handleSubmit}
-              className="m-0 w-[715px] flex flex-col items-center justify-center py-0 px-5 box-border gap-[50px] max-w-full mq750:gap-[25px]"
+              className="m-0 w-[715px] flex flex-col items-center justify-center box-border gap-10 max-w-full mq750:gap-[25px]"
             >
               <div className="w-full flex flex-col gap-4">
-                <label htmlFor="photo_url" className="text-[#333333] font-bold">
+                <label
+                  htmlFor="photo_url"
+                  className="text-[#333333] font-bold"
+                >
                   Unggah Foto Bisnis
                 </label>
                 <input
                   id="photo_url"
                   name="photo_url"
                   type="file"
-                  // accept="image/*"
                   onChange={(event) => {
                     if (
                       event.currentTarget.files &&
@@ -76,7 +77,6 @@ const DaftarinBisnis3 = ({ submit, prev, data }: any) => {
                 )}
               </div>
               <div className="flex flex-row gap-4">
-                {/* Button untuk halaman sebelumnya */}
                 <button
                   type="button"
                   className="w-[150px] h-[40px] flex justify-center items-center rounded-[10px] p-4 bg-[#40ABFF] hover:bg-[#40ABFF]/80 text-[18px] text-[#FFFFFF]"
@@ -84,12 +84,11 @@ const DaftarinBisnis3 = ({ submit, prev, data }: any) => {
                 >
                   sebelumnya
                 </button>
-                {/*  button untuk submit */}
                 <button
                   type="submit"
                   className="w-[150px] h-[40px] flex justify-center items-center rounded-[10px] p-4 bg-[#FD5F00] hover:bg-[#FD5F00]/80 text-[18px] text-[#FFFFFF]"
                 >
-                  Buat Bisnis
+                  Perbarui
                 </button>
               </div>
             </form>
@@ -100,4 +99,4 @@ const DaftarinBisnis3 = ({ submit, prev, data }: any) => {
   );
 };
 
-export default DaftarinBisnis3;
+export default EditBisnis3;

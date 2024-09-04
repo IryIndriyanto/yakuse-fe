@@ -23,35 +23,44 @@ const Profile = () => {
 
   if (loading) {
     return (
-      <div className="flex flex-col justify-center items-center min-h-[700px]">
+      <div className="flex flex-col justify-center items-center h-[75vh]">
         <Image
           src="/loading-spinner-orange.gif"
-          alt="Loading..."
+          alt="loading"
           width={150}
           height={150}
         />
-        <p className="text-[24px] font-bold">Loading</p>
+        <p className="text-[#40ABFF] text-[24px] font-bold">Loading</p>
       </div>
     );
   }
 
   if (fetchError || error) {
-    return <div className="bg-[#FCFCFC] w-full">
-      <div className="flex flex-col justify-center items-center mt-10 h-[65vh] gap-4">
-        <Image src="/icon-error.png" alt="error" width={100} height={100} />
-        <p className="text-[24px] font-bold text-red-500">Error: {fetchError || error}</p>
+    return (
+      <div className="bg-[#FCFCFC] w-full">
+        <div className="flex flex-col justify-center items-center mt-10 h-[65vh] gap-4">
+          <Image src="/icon-error.png" alt="error" width={100} height={100} />
+          <p className="text-[24px] font-bold text-red-500">
+            Error: {fetchError || error}
+          </p>
+        </div>
       </div>
-    </div>;
+    );
   }
 
   return (
     <div className="bg-[#FCFCFC] w-full">
       <div className="flex justify-center items-center mt-10">
         <ProfileCardUser
-          buttonLabel={activeSection === "Bisnisku" ? "Daftarin Bisnis" : "Daftarin Permintaan"}
+          buttonLabel={
+            activeSection === "Bisnisku"
+              ? "Daftarin Bisnis"
+              : "Daftarin Permintaan"
+          }
           onClick={handleClick}
           setError={setError}
           profile={profile}
+          business={null}
         />
       </div>
 
@@ -98,3 +107,4 @@ const Profile = () => {
 };
 
 export default Profile;
+// test akun by Sarra

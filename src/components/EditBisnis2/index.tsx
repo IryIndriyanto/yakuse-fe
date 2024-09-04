@@ -1,44 +1,37 @@
-'use client';
+"use client";
 
-import FormButton from '@/components/FormButton';
-import TextArea from '@/components/TextArea';
-import InputForm from '@/components/InputForm';
-import { ErrorMessage, Field, Formik } from 'formik';
-import { useState } from 'react';
-import * as Yup from 'yup';
+import FormButton from "@/components/FormButton";
+import TextArea from "@/components/TextArea";
+import InputForm from "@/components/InputForm";
+import { ErrorMessage, Field, Formik } from "formik";
+import { useState } from "react";
+import * as Yup from "yup";
 
-// Pada file ini, kita akan membuat form untuk mengisi alamat lokasi dan nomor telepon bisnis
-// body yang di perlukan untuk endpoint ini adalah
-// {
-//   location: string,
-//   contact: string
-// }
-
-const DaftarinBisnis2 = ({ next, prev, data }: any) => {
+const EditBisnis2 = ({ next, prev, data }: any) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const categories = [
-    'Industri',
-    'Kreatif',
-    'Pertanian',
-    'Teknologi',
-    'Pendidikan',
-    'Transportasi',
-    'Properti',
-    'Kuliner',
+    "Industri",
+    "Kreatif",
+    "Pertanian",
+    "Teknologi",
+    "Pendidikan",
+    "Transportasi",
+    "Properti",
+    "Kuliner",
   ];
 
   const initialValues = {
-    location: data.location || '',
-    contact: data.contact || '',
-    fk_business_category_id: data.fk_business_category_id || '',
+    location: data.location,
+    contact: data.contact,
+    fk_business_category_id: data.fk_business_category_id,
   };
 
   const validationSchema = Yup.object({
-    location: Yup.string().required('Alamat lokasi bisnis anda wajib diisi.'),
+    location: Yup.string().required("Alamat lokasi bisnis anda wajib diisi."),
     contact: Yup.string()
-      .typeError('Nomor telepon harus berupa angka.')
-      .required('Nomor telepon bisnis anda wajib diisi.'),
+      .typeError("Nomor telepon harus berupa angka.")
+      .required("Nomor telepon bisnis anda wajib diisi."),
     businessTag: Yup.string(),
   });
 
@@ -54,7 +47,7 @@ const DaftarinBisnis2 = ({ next, prev, data }: any) => {
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
-          {({ values, handleChange, handleSubmit, setFieldValue }) => (
+          {({ handleChange, handleSubmit, setFieldValue }) => (
             <form
               onSubmit={handleSubmit}
               className="m-0 w-[715px] flex flex-col items-center justify-center box-border gap-5 max-w-full mq750:gap-[25px]"
@@ -68,7 +61,7 @@ const DaftarinBisnis2 = ({ next, prev, data }: any) => {
                     label="Alamat Lokasi"
                     type="text"
                     placeholder="Alamat Lokasi Bisnis"
-                    value={values.location}
+                    value={data.location}
                     onChange={handleChange}
                   />
                   <ErrorMessage
@@ -86,7 +79,7 @@ const DaftarinBisnis2 = ({ next, prev, data }: any) => {
                     label="Nomor Telepon Bisnis"
                     type="string"
                     placeholder="Nomor Telepon aktif"
-                    value={values.contact}
+                    value={data.contact}
                     onChange={handleChange}
                   />
                   <ErrorMessage
@@ -105,12 +98,12 @@ const DaftarinBisnis2 = ({ next, prev, data }: any) => {
                       type="button"
                       key={index}
                       className={`border border-gray-400 rounded-full px-4 py-2 text-gray-700 transition ${
-                        values.fk_business_category_id === index
-                          ? 'bg-blue-400 text-white'
-                          : 'hover:bg-gray-200'
+                        data.fk_business_category_id === index
+                          ? "bg-blue-400 text-white"
+                          : "hover:bg-gray-200"
                       }`}
                       onClick={() =>
-                        setFieldValue('fk_business_category_id', index)
+                        setFieldValue("fk_business_category_id", index)
                       } //
                     >
                       {category}
@@ -143,4 +136,4 @@ const DaftarinBisnis2 = ({ next, prev, data }: any) => {
   );
 };
 
-export default DaftarinBisnis2;
+export default EditBisnis2;

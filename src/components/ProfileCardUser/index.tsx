@@ -3,18 +3,21 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import ButtonList from "../ButtonList";
 import { UserProfile } from "./types";
+import { MyBusiness } from "@/components/BisniskuCardListUser/types";
 
 interface ProfileCardProps {
   buttonLabel: string;
   onClick: () => void;
   setError: (error: string | null) => void;
   profile: UserProfile | null;
+  business: MyBusiness | null;
 }
 
 const ProfileCardUser = ({
   buttonLabel,
   onClick,
   profile,
+  business,
 }: ProfileCardProps) => {
   const router = useRouter();
   const [isButtonLoading, setIsButtonLoading] = useState<boolean>(false);
@@ -47,53 +50,50 @@ const ProfileCardUser = ({
                     height={250}
                   />
                 </div>
-                {/* <div>
-                  <p className="text-[14px] text-[#40ABFF] cursor-pointer">
-                    #Kuliner #Fashion #Tech
-                  </p>
-                </div> */}
+                <div className="flex gap-2 items-center">
+                  <Image src="/star.svg" alt="star" width={50} height={50} />
+                  <div className="flex items-end">
+                    <p className="text-[41px] font-bold">
+                      {business?.rating !== undefined ? business.rating : "0.0"}
+                      <span className="text-[#FD5F00]">/</span>
+                    </p>
+                    <p className="text-[#FD5F00] text-[24px] font-bold">5.0</p>
+                  </div>
+                </div>
               </div>
 
-              <div className="flex">
-                <div className="flex flex-col gap-4">
-                  <div>
-                    <h1 className="text-[41px] font-bold">
-                      {profile.fullname}
-                    </h1>
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <p className="text-[14px] font-bold text-[#40ABFF]">
-                      Contact
-                    </p>
-                    <p>
-                      Email:{" "}
-                      <a
-                        href={`mailto:${profile.email}`}
-                        className="text-[#40ABFF] cursor-pointer"
-                      >
-                        {profile.email}
-                      </a>
-                    </p>
-                    <p>
-                      Phone:{" "}
-                      <a
-                        href={`https://wa.me/${profile.phone}`}
-                        className="text-[#40ABFF] cursor-pointer"
-                      >
-                        {profile.phone}
-                      </a>
-                    </p>
-                  </div>
-
-                  <div className="flex gap-2 items-center">
-                    <Image src="/star.svg" alt="star" width={50} height={50} />
-                    <div className="flex items-end">
-                      <p className="text-[41px] font-bold">
-                        5.0<span className="text-[#FD5F00]">/</span>
+              <div className="flex flex-col gap-4">
+                <div>
+                  <h1 className="text-[41px] font-bold">{profile.fullname}</h1>
+                </div>
+                <div className="flex">
+                  <div className="flex flex-col gap-4">
+                    <div>
+                      <p className="text-[#40ABFF] font-bold">
+                        Contact
                       </p>
-                      <p className="text-[#FD5F00] text-[24px] font-bold">
-                        5.0
-                      </p>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <div className="flex items-start gap-2">
+                        <p className="w-20">Email:</p>
+                        <p className="text-[#40ABFF]">
+                          <a href={`mailto:${profile.email}`}>
+                            {profile.email}
+                          </a>
+                        </p>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <p className="w-20">Phone:</p>
+                        <p className="text-[#40ABFF]">
+                          <a href={`https://wa.me/${profile.phone}`}>
+                            {profile.phone}
+                          </a>
+                        </p>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <p className="w-20">Alamat:</p>
+                        <p className="max-w-[500px]">{profile.address}</p>
+                      </div>
                     </div>
                   </div>
                 </div>

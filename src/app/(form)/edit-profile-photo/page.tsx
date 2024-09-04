@@ -16,19 +16,33 @@ const EditProfilePhoto = () => {
 
   const router = useRouter();
 
-  const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setSelectedImage(file);
+const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
+  const file = e.target.files?.[0];
 
-      const fileReader = new FileReader();
-      fileReader.onload = () => {
-        setPreview(fileReader.result as string);
-      };
-      fileReader.readAsDataURL(file);
+  if (file) {
+    const allowedFileTypes = ['image/png', 'image/jpeg']; 
+
+    if (!allowedFileTypes.includes(file.type)) {
+      toast.error("Please select a valid image file (PNG or JPG).");
+      return;
     }
-  };
 
+    const maxFileSize = 1024 * 1024; 
+
+    if (file.size > maxFileSize) {
+      toast.error("File size exceeds the maximum allowed size (1MB).");
+      return;
+    }
+
+    setSelectedImage(file);
+
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      setPreview(fileReader.result as string);
+    };
+    fileReader.readAsDataURL(file);
+  }
+};
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!selectedImage) {
@@ -43,7 +57,7 @@ const EditProfilePhoto = () => {
       const formData = new FormData();
       formData.append("file", selectedImage);
 
-      const response = await axios.put(`${BASE_URL}/user/edit/photo`, formData, {
+      const response = await axios.put(`${BASE_URL}/user/edit/photo-profile`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
           "Content-Type": "multipart/form-data",
@@ -62,6 +76,7 @@ const EditProfilePhoto = () => {
       }
     } finally {
       setIsLoading(false);
+      setIsDisable(false);
     }
   };
   return (
@@ -93,10 +108,11 @@ const EditProfilePhoto = () => {
                 </div>
               )}
             </label>
+            <p className="mt-4 text-xs text-gray-500">Select a PNG or JPG file (max 1MB)</p>
             <input
               type="file"
               id="fileUpload"
-              accept="image/*"
+              accept=".png, .jpg, .jpeg"
               className="hidden"
               onChange={handleImageUpload}
             />
