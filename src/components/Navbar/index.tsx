@@ -70,7 +70,7 @@ const Navbar = () => {
     <div className="font-serif bg-[#FCFCFC] py-8 flex justify-between items-center px-[48px]">
       <div className="flex flex-col justify-center">
         <div>
-          <h1 className="text-[38px] font-bold text-[#40ABFF]">YAKUSE</h1>
+          <h1 className="text-[38px] font-bold text-[#40ABFF] cursor-pointer" onClick={() => handleNavigation('/kebutuhan')}>YAKUSE</h1>
         </div>
       </div>
 
