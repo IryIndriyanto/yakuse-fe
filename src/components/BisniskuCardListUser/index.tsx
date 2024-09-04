@@ -40,7 +40,7 @@ const BisniskuCardListUser = () => {
             <div>
               <Image
                 className="rounded-full w-[150px] h-[150px] bg-image bg-cover bg-center object-cover"
-                src={business.photo_url}
+                src={business.photo_url || "/default-gray-photo.webp"}
                 alt={business.name}
                 width={150}
                 height={150}

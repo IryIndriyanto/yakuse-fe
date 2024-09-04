@@ -11,14 +11,16 @@ const EditBisnis2 = ({ next, prev, data }: any) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const categories = [
-    "Industri",
-    "Kreatif",
-    "Pertanian",
-    "Teknologi",
-    "Pendidikan",
-    "Transportasi",
-    "Properti",
-    "Kuliner",
+    'kuliner',
+    'industri',
+    'kreative',
+    'jasa',
+    'pertanian',
+    'teknologi',
+    'pendidikan',
+    'kesehatan',
+    'transportasi',
+    'properti',
   ];
 
   const initialValues = {
@@ -47,7 +49,7 @@ const EditBisnis2 = ({ next, prev, data }: any) => {
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
-          {({ handleChange, handleSubmit, setFieldValue }) => (
+          {({ handleChange, handleSubmit, setFieldValue, values }) => (
             <form
               onSubmit={handleSubmit}
               className="m-0 w-[715px] flex flex-col items-center justify-center box-border gap-5 max-w-full mq750:gap-[25px]"
@@ -61,7 +63,7 @@ const EditBisnis2 = ({ next, prev, data }: any) => {
                     label="Alamat Lokasi"
                     type="text"
                     placeholder="Alamat Lokasi Bisnis"
-                    value={data.location}
+                    value={values.location}
                     onChange={handleChange}
                   />
                   <ErrorMessage
@@ -79,7 +81,7 @@ const EditBisnis2 = ({ next, prev, data }: any) => {
                     label="Nomor Telepon Bisnis"
                     type="string"
                     placeholder="Nomor Telepon aktif"
-                    value={data.contact}
+                    value={values.contact}
                     onChange={handleChange}
                   />
                   <ErrorMessage
@@ -98,12 +100,13 @@ const EditBisnis2 = ({ next, prev, data }: any) => {
                       type="button"
                       key={index}
                       className={`border border-gray-400 rounded-full px-4 py-2 text-gray-700 transition ${
-                        data.fk_business_category_id === index
+                        values.fk_business_category_id === index + 1
                           ? "bg-blue-400 text-white"
                           : "hover:bg-gray-200"
                       }`}
-                      onClick={() =>
-                        setFieldValue("fk_business_category_id", index)
+                      onClick={() => 
+                        {setFieldValue("fk_business_category_id", index + 1)
+                          console.log(index)} // code block ini di jadiinn {} console.log
                       } //
                     >
                       {category}

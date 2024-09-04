@@ -6,7 +6,6 @@ import { ErrorMessage, Field, Formik } from "formik";
 import * as Yup from "yup";
 
 const EditBisnis1 = ({ next, data }: any) => {
-
   const validationSchema = Yup.object({
     name: Yup.string()
       .typeError("Nama Bisnis harus berupa teks.")
@@ -22,19 +21,25 @@ const EditBisnis1 = ({ next, data }: any) => {
   const handleSubmit = (values: any) => {
     next(values);
   };
-  if (!data.name) {
-    return null;
+  if (!data) {
+    console.log("ini datanya bro", data);
+    return <div>Data tidak ditemukan!</div>;
   }
 
   return (
     <main className="flex items-center justify-center">
-      <div className="max-w-[600px] flex flex-col justify-center items-center">
+      <div
+        key={data.id}
+        className="max-w-[600px] flex flex-col justify-center items-center"
+      >
         <Formik
           initialValues={data}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
+          enableReinitialize={true} // Add this line
         >
           {({ values, handleChange, handleSubmit }) => {
+            console.log("ini data ketika klik edit bisnis", data);
             return (
               <form
                 onSubmit={handleSubmit}

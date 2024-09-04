@@ -4,15 +4,17 @@ import ButtonList from "../ButtonList";
 import { useRouter } from "next/navigation";
 import { MyNeed } from "./types";
 import useFetchNeeds from "../../hooks/useFetchNeeds";
+import axios from "axios";
+import { BASE_URL } from "@/utils/constant";
 
 const PermintaankuCardListUser = () => {
   const router = useRouter();
-  const { needs, loadingNeeds, errorNeeds } = useFetchNeeds();
+  const { needs, setNeeds, loadingNeeds, errorNeeds } = useFetchNeeds();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedNeed, setSelectedNeed] = useState<MyNeed | null>(null);
 
-  const handleEditClick = () => {
-    // router.push("/belum-ada-nih");
+  const handleEditClick = (needId: string) => {
+    router.push(`/edit-permintaan/${needId}`);
   };
 
   const handleDeleteClick = (need: MyNeed) => {
@@ -22,8 +24,30 @@ const PermintaankuCardListUser = () => {
 
   const confirmDelete = () => {
     setIsModalVisible(false);
-    console.log("Pake API delete bro");
-    // Here you can call your delete API
+    const deleteNeed = async () => {
+      if (selectedNeed) {
+        try {
+          const response = await axios.delete(`${BASE_URL}/user-need/hide/my-need/${selectedNeed.id}`, {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+          });
+          if (response.status === 204) {
+            alert("Permintaan berhasil dihapus");
+            setNeeds((needs || []).filter(need => need.id !== selectedNeed.id));
+            router.push("/profile-user");
+          } else {
+            alert("Gagal menghapus permintaan");
+            console.log(response);
+            console.log(response.statusText);
+            console.log(response.data);
+          }
+        } catch (error) {
+          console.error("Error deleting need:", error);
+        }
+      }
+    };
+    deleteNeed();
   };
 
   const cancelDelete = () => {
@@ -35,7 +59,12 @@ const PermintaankuCardListUser = () => {
     <div className="flex flex-col gap-4 mb-10">
       {loadingNeeds ? (
         <div className="flex flex-col items-center gap-4">
-          <Image src="/loading-spinner-orange.gif" alt="Loading..." width={100} height={100} />
+          <Image
+            src="/loading-spinner-orange.gif"
+            alt="Loading..."
+            width={100}
+            height={100}
+          />
           <p className="text-[20px] text-[#40ABFF] font-bold">Loading</p>
         </div>
       ) : errorNeeds ? (
@@ -45,16 +74,24 @@ const PermintaankuCardListUser = () => {
         </div>
       ) : needs?.length === 0 ? (
         <div className="flex flex-col items-center gap-4">
-          <p className="text-[20px] font-bold">Anda belum memiliki permintaan</p>
+          <p className="text-[20px] font-bold">
+            Anda belum memiliki permintaan
+          </p>
         </div>
       ) : (
         needs?.map((need: MyNeed) => (
-          <div className="flex items-center justify-between font-serif bg-[#E5F5FF] rounded-[8px] p-4 transform hover:scale-105 transition-all duration-300" key={need.id}>
+          <div
+            className="flex items-center justify-between font-serif bg-[#E5F5FF] rounded-[8px] p-4 transform hover:scale-105 transition-all duration-300"
+            key={need.id}
+          >
             <div className="flex items-center gap-8">
               <div>
                 <Image
                   className="rounded-full w-[150px] h-[150px] bg-image bg-cover bg-center object-cover"
-                  src={need.user_info.user_profile_url}
+                  src={
+                    need.user_info.user_profile_url ||
+                    "/default-gray-photo.webp"
+                  }
                   alt="Profile Picture"
                   width={150}
                   height={150}
@@ -65,13 +102,22 @@ const PermintaankuCardListUser = () => {
                 <h4 className="text-[28px] font-bold">{need.title}</h4>
                 <p className="text-[18px] text-[#525455]">{need.description}</p>
                 <p className="text-[18px] text-[#525455]">
-                  Dibuat pada tanggal: {new Date(need.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
+                  Dibuat pada tanggal:{" "}
+                  {new Date(need.created_at).toLocaleDateString("id-ID", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                  })}
                 </p>
               </div>
             </div>
 
             <div className="flex items-center gap-4">
-              <ButtonList label="Edit" variant="Edit" onClick={handleEditClick} />
+              <ButtonList
+                label="Edit"
+                variant="Edit"
+                onClick={() => handleEditClick(need.id.toString())}
+              />
               <ButtonList
                 label="Delete"
                 variant="Delete"
@@ -89,7 +135,8 @@ const PermintaankuCardListUser = () => {
               Konfirmasi Hapus
             </h2>
             <p className="text-[16px] mb-6 ml-6">
-              Apakah Anda yakin ingin menghapus &quot;{selectedNeed.title}&quot;?
+              Apakah Anda yakin ingin menghapus &quot;{selectedNeed.title}
+              &quot;?
             </p>
 
             <div className="flex items-center justify-center gap-4 w-full">
