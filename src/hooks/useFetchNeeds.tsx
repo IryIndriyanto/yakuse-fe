@@ -60,7 +60,7 @@ const useFetchNeeds = () => {
     fetchNeeds();
   }, []);
 
-  return { needs, loadingNeeds, errorNeeds };
+  return { needs, setNeeds, loadingNeeds, errorNeeds };
 };
 
 export default useFetchNeeds;
