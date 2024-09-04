@@ -100,7 +100,7 @@ const PermintaankuCardListUser = () => {
                 />
               </div>
 
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-4 max-w-[700px] text-justify">
                 <h4 className="text-[28px] font-bold">{need.title}</h4>
                 <p className="text-[18px] text-[#525455]">{need.description}</p>
                 <p className="text-[18px] text-[#525455]">
