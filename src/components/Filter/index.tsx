@@ -51,7 +51,7 @@ export default function Filter({ setFilter }: FilterProps) {
 
   return (
     <>
-      <div className="flex justify-items-start gap-5 flex-wrap">
+      <div className="flex justify-items-start overflow-x-auto gap-5 max-w-full pt-2 hide-scrollbar">
         {tabs.map((tab, index) => (
           <button
             key={index}
