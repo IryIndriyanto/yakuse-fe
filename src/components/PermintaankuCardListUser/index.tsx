@@ -6,6 +6,7 @@ import { MyNeed } from "./types";
 import useFetchNeeds from "../../hooks/useFetchNeeds";
 import axios from "axios";
 import { BASE_URL } from "@/utils/constant";
+import toast from "react-hot-toast";
 
 const PermintaankuCardListUser = () => {
   const router = useRouter();
@@ -33,17 +34,18 @@ const PermintaankuCardListUser = () => {
             },
           });
           if (response.status === 204) {
-            alert("Permintaan berhasil dihapus");
+            toast.success("Permintaan berhasil dihapus");
             setNeeds((needs || []).filter(need => need.id !== selectedNeed.id));
             router.push("/profile-user");
           } else {
-            alert("Gagal menghapus permintaan");
+            toast.error("Gagal menghapus permintaan");
             console.log(response);
             console.log(response.statusText);
             console.log(response.data);
           }
         } catch (error) {
           console.error("Error deleting need:", error);
+          toast.error("Terjadi kesalahan saat menghapus permintaan");
         }
       }
     };

@@ -6,6 +6,7 @@ import EditBisnis2 from "../EditBisnis2";
 import EditBisnis3 from "../EditBisnis3";
 import { BASE_URL } from "@/utils/constant";
 import useFetchBusinessById from "../../hooks/useFetchBusinessById";
+import toast from "react-hot-toast";
 import Image from "next/image";
 
 const tagBusiness: {[key: string]: number} = {
@@ -95,14 +96,14 @@ const EditBisnisForm: React.FC<{ businessId: string }> = ({ businessId }) => {
       );
 
       if (response.ok) {
-        alert("Business successfully Updated!");
+        toast.success("Bisnis berhasil diperbarui!");
         router.push("/profile-user");
       } else {
         const resData = await response.json();
         console.log(response);
         console.log(response.statusText);
         console.log(resData);
-        alert("Failed to update business");
+        toast.error("Gagal memperbarui bisnis");
       }
     } catch (error) {
       console.error("An unexpected error occurred:", error);
