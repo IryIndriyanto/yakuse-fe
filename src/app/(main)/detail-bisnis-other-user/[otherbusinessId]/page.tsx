@@ -6,6 +6,7 @@ import useFetchBusinessById from "../../../../hooks/useFetchBusinessById";
 import { formatRupiah } from "../../../../utils/currencyFormatter";
 import { useRouter } from "next/navigation";
 import CircularIndeterminate from "@/components/BisniskuCardListUser/CircularIndeterminate";
+import { useState } from "react";
 
 const DetailBisnisOtherUser = ({
   params,
@@ -15,6 +16,12 @@ const DetailBisnisOtherUser = ({
   const { otherbusinessId } = params;
   const { business, loading, error } = useFetchBusinessById(otherbusinessId);
   const router = useRouter();
+  const [isButtonLoading, setIsButtonLoading] = useState<boolean>(false);
+
+  const handleContactClick = () => {
+    setIsButtonLoading(true);
+    router.push(`/profile-other-user/${business?.owner_info.user_id}`);
+  };
 
   if (loading)
     return (
@@ -23,10 +30,6 @@ const DetailBisnisOtherUser = ({
       </div>
     );
   if (error) return <p>{error}</p>;
-
-  const handleContactClick = () => {
-    router.push(`/profile-other-user/${business?.owner_info.user_id}`);
-  };
 
   return (
     <div className="bg-[#FCFCFC] font-serif">
@@ -72,14 +75,21 @@ const DetailBisnisOtherUser = ({
           </div>
 
           <div className="w-[500px] text-justify">
-          <p dangerouslySetInnerHTML={{ __html: (business?.description_list?.join("\n") || "").replace(/\n/g, "<br><br>") }} />
+            <p dangerouslySetInnerHTML={{ __html: (business?.description_list?.join("\n") || "").replace(/\n/g, "<br><br>") }} />
           </div>
-          <button
-            onClick={handleContactClick}
-            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
-          >
-            Hubungi Kami
-          </button>
+          <div className="flex justify-center items-center">
+            {isButtonLoading ? (
+              <CircularIndeterminate />
+            ) : (
+              <button
+                onClick={handleContactClick}
+                className="mt-4 px-4 py-2 w-full bg-blue-600 text-white rounded hover:bg-blue-500 transition-all duration-300"
+                disabled={loading}
+              >
+                Hubungi Kami
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>
