@@ -7,7 +7,7 @@ import EditBisnis3 from "../EditBisnis3";
 import { BASE_URL } from "@/utils/constant";
 import useFetchBusinessById from "../../hooks/useFetchBusinessById";
 import toast from "react-hot-toast";
-import Image from "next/image";
+import CircularIndeterminate from "@/components/BisniskuCardListUser/CircularIndeterminate";
 
 const tagBusiness: { [key: string]: number } = {
   kuliner: 1,
@@ -116,13 +116,7 @@ const EditBisnisForm: React.FC<{ businessId: string }> = ({ businessId }) => {
   if (loading)
     return (
       <div className="flex flex-col justify-center items-center h-[80vh]">
-        <Image
-          src="/loading-spinner-orange.gif"
-          alt="loading"
-          width={150}
-          height={150}
-        />
-        <p className="text-[#40ABFF] text-[24px] font-bold">Loading</p>
+        <CircularIndeterminate />
       </div>
     );
   if (error) return <p>{error}</p>;
