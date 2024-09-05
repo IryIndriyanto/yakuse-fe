@@ -61,7 +61,7 @@ const PermintaankuCardListUser = () => {
   return (
     <div className="flex flex-col gap-4 mb-10">
       {loadingNeeds ? (
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center mt-[-50px]">
             <CircularIndeterminate />
           </div>
       ) : errorNeeds ? (
