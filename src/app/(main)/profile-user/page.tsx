@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import useFetchProfile from "../../../hooks/useFetchProfile";
 import BisniskuCardListUser from "../../../components/BisniskuCardListUser";
@@ -7,18 +7,38 @@ import PermintaankuCardListUser from "../../../components/PermintaankuCardListUs
 import ProfileCardUser from "../../../components/ProfileCardUser";
 import Image from "next/image";
 import CircularIndeterminate from "@/components/BisniskuCardListUser/CircularIndeterminate";
+import Modal from "@mui/material/Modal";
+import Button from "@mui/material/Button";
 
 const Profile = () => {
   const [activeSection, setActiveSection] = useState("Bisnisku");
   const { profile, fetchError, loading } = useFetchProfile();
   const [error, setError] = useState<string | null>(null);
+  const [errorModalOpen, setErrorModalOpen] = useState(false);
   const router = useRouter();
 
+  useEffect(() => {
+    if (fetchError || error) {
+      setErrorModalOpen(true);
+    }
+  }, [fetchError, error]);
+
   const handleClick = () => {
-    if (activeSection === "Bisnisku") {
-      router.push("/daftarin-bisnis");
-    } else {
-      router.push("/need-form");
+    try {
+      if (activeSection === "Bisnisku") {
+        router.push("/daftarin-bisnis");
+      } else {
+        router.push("/need-form");
+      }
+    } catch (err) {
+      setError("Terjadi kesalahan saat mengarahkan halaman.");
+    }
+  };
+
+  const handleErrorModalClose = () => {
+    setErrorModalOpen(false);
+    if (fetchError?.includes("Unauthorized") || fetchError?.includes("Forbidden")) {
+      router.push("/login");
     }
   };
 
@@ -26,19 +46,6 @@ const Profile = () => {
     return (
       <div className="flex flex-col justify-center items-center h-[75vh]">
         <CircularIndeterminate />
-      </div>
-    );
-  }
-
-  if (fetchError || error) {
-    return (
-      <div className="bg-[#FCFCFC] w-full">
-        <div className="flex flex-col justify-center items-center mt-10 h-[65vh] gap-4">
-          <Image src="/icon-error.png" alt="error" width={100} height={100} />
-          <p className="text-[24px] font-bold text-red-500">
-            Error: {fetchError || error}
-          </p>
-        </div>
       </div>
     );
   }
@@ -97,6 +104,20 @@ const Profile = () => {
           <PermintaankuCardListUser />
         </div>
       )}
+
+      <Modal open={errorModalOpen} onClose={handleErrorModalClose}>
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+            <h2 className="text-xl font-bold mb-4">Error</h2>
+            <p className="mb-6">{fetchError || error}</p>
+            <div className="flex justify-end">
+              <Button onClick={handleErrorModalClose} variant="outlined">
+                Tutup
+              </Button>
+            </div>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };

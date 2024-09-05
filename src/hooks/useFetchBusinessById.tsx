@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { BusinessById } from "../components/BisniskuCardListUser/types";
 import { BASE_URL } from "../utils/constant";
+import { useRouter } from "next/navigation";
 
 const useFetchBusinessById = (businessId: string) => {
   const [business, setBusiness] = useState<BusinessById | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchBusiness = async () => {
@@ -24,10 +26,16 @@ const useFetchBusinessById = (businessId: string) => {
               setError("Bad Request. Silakan periksa permintaan Anda.");
               break;
             case 401:
-              setError("Unauthorized. Silakan login kembali.");
+              setError("Unauthorized. Anda tidak memiliki akses. Silakan login kembali.");
+              setTimeout(() => {
+                router.push("/login");
+              }, 10000);
               break;
             case 403:
-              setError("Forbidden. Anda tidak memiliki akses. Silakan login kembali.");
+              setError("Forbidden. Anda tidak memiliki izin untuk mengakses sumber daya ini. Silakan login kembali.");
+              setTimeout(() => {
+                router.push("/login");
+              }, 10000);
               break;
             case 404:
               setError("Data bisnis tidak ditemukan.");

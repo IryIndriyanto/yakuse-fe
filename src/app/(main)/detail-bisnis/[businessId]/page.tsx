@@ -21,20 +21,14 @@ const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
 
   useEffect(() => {
     if (error) {
-      const errorResponse = (error as any).response;
-      if (errorResponse?.status === 401 || errorResponse?.status === 403) {
-        setErrorModalOpen(true);
-      } else {
-        setErrorModalOpen(false);
-      }
+      setErrorModalOpen(true);
     }
   }, [error]);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const handleErrorModalClose = () => {
-    const errorResponse = (error as any).response;
-    if (errorResponse?.status === 401 || errorResponse?.status === 403) {
+    if (error?.includes("Unauthorized") || error?.includes("Forbidden")) {
       router.push("/login");
     }
     setErrorModalOpen(false);
