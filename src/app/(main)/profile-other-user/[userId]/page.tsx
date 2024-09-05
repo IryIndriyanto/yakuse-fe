@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import useFetchProfileId from "../../../../hooks/useFetchProfileId";
 import useFetchBusinessesId from "../../../../hooks/useFetchBusinessId";
 import useFetchNeedsId from "../../../../hooks/useFetchNeedsId";
@@ -9,11 +9,16 @@ import PermintaankuCardListOtherUser from "../../../../components/PermintaankuCa
 import ProfileCardOtherUser from "../../../../components/ProfileCardOtherUser";
 import Image from "next/image";
 import CircularIndeterminate from "@/components/BisniskuCardListUser/CircularIndeterminate";
+import Modal from "@mui/material/Modal";
+import Button from "@mui/material/Button";
 
 const ProfilePage = () => {
   const { userId } = useParams();
+  const router = useRouter();
 
   const [activeSection, setActiveSection] = useState("Bisnisku");
+  const [error, setError] = useState<string | null>(null);
+  const [errorModalOpen, setErrorModalOpen] = useState(false);
 
   // Pastikan userId adalah string
   const validUserId = Array.isArray(userId) ? userId[0] : userId || "";
@@ -24,22 +29,26 @@ const ProfilePage = () => {
   const { needsId, loadingNeedsId, errorNeedsId } =
     useFetchNeedsId(validUserId);
 
+  useEffect(() => {
+    if (fetchErrorId || errorBusinessId || errorNeedsId || error) {
+      setErrorModalOpen(true);
+    }
+  }, [fetchErrorId, errorBusinessId, errorNeedsId, error]);
+
+  const handleErrorModalClose = () => {
+    setErrorModalOpen(false);
+    if (
+      fetchErrorId?.includes("Unauthorized") ||
+      fetchErrorId?.includes("Forbidden")
+    ) {
+      router.push("/login");
+    }
+  };
+
   if (loadingId || loadingBusinessId || loadingNeedsId) {
     return (
       <div className="flex flex-col justify-center items-center h-[75vh]">
         <CircularIndeterminate />
-      </div>
-    );
-  }
-
-  if (fetchErrorId || errorBusinessId || errorNeedsId) {
-    return (
-      <div className="bg-[#FCFCFC] w-full">
-        <div className="flex justify-center items-center mt-10 h-[65vh]">
-          <p className="text-[24px] font-bold">
-            Error: {fetchErrorId || errorBusinessId || errorNeedsId}
-          </p>
-        </div>
       </div>
     );
   }
@@ -104,9 +113,24 @@ const ProfilePage = () => {
       )}
 
       <div className="mt-10"></div>
+
+      <Modal open={errorModalOpen} onClose={handleErrorModalClose}>
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+            <h2 className="text-xl font-bold mb-4">Error</h2>
+            <p className="mb-6">
+              {fetchErrorId || errorBusinessId || errorNeedsId || error}
+            </p>
+            <div className="flex justify-end">
+              <Button onClick={handleErrorModalClose} variant="outlined">
+                Tutup
+              </Button>
+            </div>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };
 
 export default ProfilePage;
-// test akun

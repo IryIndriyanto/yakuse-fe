@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { BASE_URL } from "../utils/constant";
 import { OtherUserProfile } from "../components/ProfileCardOtherUser/types";
+import { useRouter } from "next/navigation";
 
 const useFetchProfileId = (userId: string) => {
   const [profileId, setProfileId] = useState<OtherUserProfile | null>(null);
   const [fetchErrorId, setFetchErrorId] = useState<string | null>(null);
   const [loadingId, setLoadingId] = useState<boolean>(true);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchProfileId = async () => {
@@ -25,12 +27,20 @@ const useFetchProfileId = (userId: string) => {
               setFetchErrorId("Bad Request - Permintaan tidak valid.");
               break;
             case 401:
-              setFetchErrorId("Unauthorized - Anda tidak memiliki akses.");
+              setFetchErrorId(
+                "Unauthorized - Anda tidak memiliki akses. Silahkan login kembali"
+              );
+              setTimeout(() => {
+                router.push("/login");
+              }, 10000);
               break;
             case 403:
               setFetchErrorId(
-                "Forbidden - Anda tidak memiliki izin untuk mengakses sumber daya ini."
+                "Forbidden - Anda tidak memiliki izin untuk mengakses sumber daya ini. Silahkan login kembali"
               );
+              setTimeout(() => {
+                router.push("/login");
+              }, 10000);
               break;
             case 404:
               setFetchErrorId("Not Found - Profil tidak ditemukan.");

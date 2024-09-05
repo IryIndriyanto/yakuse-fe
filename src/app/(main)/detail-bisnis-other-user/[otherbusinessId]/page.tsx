@@ -6,7 +6,9 @@ import useFetchBusinessById from "../../../../hooks/useFetchBusinessById";
 import { formatRupiah } from "../../../../utils/currencyFormatter";
 import { useRouter } from "next/navigation";
 import CircularIndeterminate from "@/components/BisniskuCardListUser/CircularIndeterminate";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Modal from "@mui/material/Modal";
+import Button from "@mui/material/Button";
 
 const DetailBisnisOtherUser = ({
   params,
@@ -17,6 +19,20 @@ const DetailBisnisOtherUser = ({
   const { business, loading, error } = useFetchBusinessById(otherbusinessId);
   const router = useRouter();
   const [isButtonLoading, setIsButtonLoading] = useState<boolean>(false);
+  const [errorModalOpen, setErrorModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (error) {
+      setErrorModalOpen(true);
+    }
+  }, [error]);
+
+  const handleErrorModalClose = () => {
+    if (error?.includes("Unauthorized") || error?.includes("Forbidden")) {
+      router.push("/login");
+    }
+    setErrorModalOpen(false);
+  };
 
   const handleContactClick = () => {
     setIsButtonLoading(true);
@@ -29,7 +45,6 @@ const DetailBisnisOtherUser = ({
         <CircularIndeterminate />
       </div>
     );
-  if (error) return <p>{error}</p>;
 
   return (
     <div className="bg-[#FCFCFC] font-serif">
@@ -38,7 +53,7 @@ const DetailBisnisOtherUser = ({
           <Image
             className="sticky top-8"
             src={business?.photo_url || "/default-gray-photo.png"}
-            alt="detail-bisnis-1"
+            alt="Foto Bisnis"
             width={500}
             height={300}
           />
@@ -92,6 +107,19 @@ const DetailBisnisOtherUser = ({
           </div>
         </div>
       </div>
+      <Modal open={errorModalOpen} onClose={handleErrorModalClose}>
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+            <h2 className="text-xl font-bold mb-4">Error</h2>
+            <p className="mb-6">{error}</p>
+            <div className="flex justify-end">
+              <Button onClick={handleErrorModalClose} variant="outlined">
+                Tutup
+              </Button>
+            </div>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };
