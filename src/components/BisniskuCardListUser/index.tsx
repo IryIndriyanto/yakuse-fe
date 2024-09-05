@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import useFetchBusinesses from "../../hooks/useFetchBusiness";
 import { MyBusiness } from "./types";
-import CircularWithValueLabel from './CircularWithValueLabel';
+import CircularIndeterminate from './CircularIndeterminate';
 
 const BisniskuCardListUser = () => {
   const router = useRouter();
@@ -17,7 +17,7 @@ const BisniskuCardListUser = () => {
   if (loadingBusiness)
     return (
       <div className="flex flex-col justify-center items-center gap-4">
-        <CircularWithValueLabel />
+        <CircularIndeterminate />
       </div>
     );
   if (errorBusiness)
