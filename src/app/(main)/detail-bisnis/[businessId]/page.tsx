@@ -10,7 +10,6 @@ import axios from "axios";
 import { useState } from "react";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
-import { BusinessById } from "@/components/BisniskuCardListUser/types";
 import CircularIndeterminate from "@/components/BisniskuCardListUser/CircularIndeterminate";
 
 const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
