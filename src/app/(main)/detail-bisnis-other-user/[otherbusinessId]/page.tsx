@@ -4,6 +4,7 @@ import Image from "next/image";
 import Rating from "@mui/material/Rating";
 import useFetchBusinessById from "../../../../hooks/useFetchBusinessById";
 import { formatRupiah } from "../../../../utils/currencyFormatter";
+import { useRouter } from "next/navigation";
 
 const DetailBisnisOtherUser = ({
   params,
@@ -12,6 +13,7 @@ const DetailBisnisOtherUser = ({
 }) => {
   const { otherbusinessId } = params;
   const { business, loading, error } = useFetchBusinessById(otherbusinessId);
+  const router = useRouter();
 
   if (loading)
     return (
@@ -26,6 +28,10 @@ const DetailBisnisOtherUser = ({
       </div>
     );
   if (error) return <p>{error}</p>;
+
+  const handleContactClick = () => {
+    router.push(`/profile-other-user/${business?.owner_info.user_id}`);
+  };
 
   return (
     <div className="bg-[#FCFCFC] font-serif">
@@ -51,6 +57,7 @@ const DetailBisnisOtherUser = ({
             <div className="flex flex-col justify-center gap-2">
               <p className="text-[18px] font-bold">Omset</p>
               <Rating value={business?.avg_rating} precision={0.5} readOnly />
+              <p className="text-[18px] font-bold">Alamat</p>
             </div>
 
             <div className="flex flex-col justify-center gap-2">
@@ -60,6 +67,7 @@ const DetailBisnisOtherUser = ({
               <p className="text-[18px]">
                 {business?.avg_rating} dari {business?.total_rater} pengulas
               </p>
+              <p className="text-[18px]">{business?.location}</p>
             </div>
           </div>
           <div>
@@ -71,6 +79,12 @@ const DetailBisnisOtherUser = ({
           <div className="w-[500px] text-justify">
             <p>{business?.description_list}</p>
           </div>
+          <button
+            onClick={handleContactClick}
+            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+          >
+            Hubungi Kami
+          </button>
         </div>
       </div>
     </div>
