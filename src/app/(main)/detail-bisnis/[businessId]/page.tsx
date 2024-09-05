@@ -109,7 +109,7 @@ const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
           </div>
 
           <div className="w-[500px] text-justify">
-            <p>{business?.description_list}</p>
+            <p dangerouslySetInnerHTML={{ __html: (business?.description_list?.join("\n") || "").replace(/\n/g, "<br><br>") }} />
           </div>
         </div>
       </div>
