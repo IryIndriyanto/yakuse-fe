@@ -8,7 +8,6 @@ export interface Rating {
   id: string;
   rating_count: number;
   review_description: string;
-  business_name: string;
   rater_name: string;
 }
 
@@ -24,7 +23,7 @@ export interface MyBusinessId {
   updated_at: string;
   category: string;
   owner_info: OwnerInfo;
-  rating: number;
+  avg_rating: number;
   total_rater: number;
   rating_list: Rating[];
 }

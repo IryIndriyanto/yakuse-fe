@@ -7,6 +7,7 @@ import useFetchNeeds from "../../hooks/useFetchNeeds";
 import axios from "axios";
 import { BASE_URL } from "@/utils/constant";
 import toast from "react-hot-toast";
+import CircularIndeterminate from '../BisniskuCardListUser/CircularIndeterminate';
 
 const PermintaankuCardListUser = () => {
   const router = useRouter();
@@ -60,15 +61,9 @@ const PermintaankuCardListUser = () => {
   return (
     <div className="flex flex-col gap-4 mb-10">
       {loadingNeeds ? (
-        <div className="flex flex-col items-center gap-4">
-          <Image
-            src="/loading-spinner-orange.gif"
-            alt="Loading..."
-            width={100}
-            height={100}
-          />
-          <p className="text-[20px] text-[#40ABFF] font-bold">Loading</p>
-        </div>
+        <div className="flex flex-col items-center mt-[-50px]">
+            <CircularIndeterminate />
+          </div>
       ) : errorNeeds ? (
         <div className="flex flex-col items-center gap-4">
           <Image src="/icon-error.png" alt="Error" width={100} height={100} />

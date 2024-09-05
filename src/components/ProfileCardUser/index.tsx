@@ -3,8 +3,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import ButtonList from "../ButtonList";
 import { UserProfile } from "./types";
-import { MyBusiness } from "@/components/BisniskuCardListUser/types";
-import { Span } from "next/dist/trace";
+import { MyBusiness } from "../BisniskuCardListUser/types";
+import CircularIndeterminate from "../BisniskuCardListUser/CircularIndeterminate";
 
 interface ProfileCardProps {
   buttonLabel: string;
@@ -55,7 +55,7 @@ const ProfileCardUser = ({
                   <Image src="/star.svg" alt="star" width={50} height={50} />
                   <div className="flex items-end">
                     <p className="text-[41px] font-bold">
-                      {business?.rating !== undefined ? business.rating : "0.0"}
+                      {business?.avg_rating !== undefined ? business.avg_rating : "0.0"}
                       <span className="text-[#FD5F00]">/</span>
                     </p>
                     <p className="text-[#FD5F00] text-[24px] font-bold">5.0</p>
@@ -126,12 +126,7 @@ const ProfileCardUser = ({
         </div>
         <div className="flex justify-center items-center">
           {isButtonLoading ? (
-            <Image
-              src="/loading-spinner-orange.gif"
-              alt="Loading..."
-              width={50}
-              height={50}
-            />
+            <CircularIndeterminate />
           ) : (
             <ButtonList
               onClick={handleButtonClick}

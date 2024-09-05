@@ -9,8 +9,8 @@ import { BASE_URL } from "@/utils/constant";
 import axios from "axios";
 import { useState } from "react";
 import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import CircularIndeterminate from "@/components/BisniskuCardListUser/CircularIndeterminate";
 
 const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
   const { businessId } = params;
@@ -43,13 +43,7 @@ const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
   if (loading)
     return (
       <div className="flex flex-col justify-center items-center h-[80vh]">
-        <Image
-          src="/loading-spinner-orange.gif"
-          alt="loading"
-          width={150}
-          height={150}
-        />
-        <p className="text-[#40ABFF] text-[24px] font-bold">Loading</p>
+        <CircularIndeterminate />
       </div>
     );
   if (error) return <p>{error}</p>;
@@ -92,10 +86,11 @@ const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
             </div>
           </div>
 
-          <div className="flex gap-20">
+          <div className="flex items-start max-w-[400px] gap-20">
             <div className="flex flex-col justify-center gap-2">
               <p className="text-[18px] font-bold">Omset</p>
-              <Rating value={business?.rating} precision={0.5} readOnly />
+              <Rating value={business?.avg_rating} precision={0.5} readOnly />
+              <p className="text-[18px] font-bold">Alamat</p>
             </div>
 
             <div className="flex flex-col justify-center gap-2">
@@ -103,8 +98,9 @@ const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
                 {formatRupiah(business?.omset || 0)}
               </p>
               <p className="text-[18px]">
-                {business?.rating}/5 dari {business?.total_rater} pengulas
+                {business?.avg_rating} dari {business?.total_rater} pengulas
               </p>
+              <p className="text-[18px] text-justify">{business?.location}</p>
             </div>
           </div>
           <div>
@@ -114,7 +110,14 @@ const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
           </div>
 
           <div className="w-[500px] text-justify">
-            <p>{business?.description_list}</p>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: (business?.description_list?.join("\n") || "").replace(
+                  /\n/g,
+                  "<br><br>"
+                ),
+              }}
+            />
           </div>
         </div>
       </div>
@@ -122,7 +125,9 @@ const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-96">
             <h2 className="text-xl font-bold mb-4">Konfirmasi Hapus</h2>
-            <p className="mb-6">Apakah Anda yakin ingin menghapus bisnis ini?</p>
+            <p className="mb-6">
+              Apakah Anda yakin ingin menghapus bisnis ini?
+            </p>
             <div className="flex justify-end gap-4">
               <Button onClick={handleDelete} variant="contained" color="error">
                 Hapus

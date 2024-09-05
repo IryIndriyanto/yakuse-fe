@@ -7,20 +7,20 @@ import EditBisnis3 from "../EditBisnis3";
 import { BASE_URL } from "@/utils/constant";
 import useFetchBusinessById from "../../hooks/useFetchBusinessById";
 import toast from "react-hot-toast";
-import Image from "next/image";
+import CircularIndeterminate from "@/components/BisniskuCardListUser/CircularIndeterminate";
 
-const tagBusiness: {[key: string]: number} = {
-  'kuliner' : 1,
-  'industri' : 2,
-  'kreative' : 3,
-  'jasa' : 4,
-  'pertanian' : 5,
-  'teknologi' : 6,
-  'pendidikan' : 7,
-  'kesehatan' : 8,
-  'transportasi' : 9,
-  'properti' : 10,
-}
+const tagBusiness: { [key: string]: number } = {
+  kuliner: 1,
+  industri: 2,
+  kreative: 3,
+  jasa: 4,
+  pertanian: 5,
+  teknologi: 6,
+  pendidikan: 7,
+  kesehatan: 8,
+  transportasi: 9,
+  properti: 10,
+};
 
 const EditBisnisForm: React.FC<{ businessId: string }> = ({ businessId }) => {
   const [step, setStep] = useState(1);
@@ -30,10 +30,10 @@ const EditBisnisForm: React.FC<{ businessId: string }> = ({ businessId }) => {
     description: "",
     location: "",
     contact: "",
-    fk_business_category_id: 0,// ganti jadi no 1
+    fk_business_category_id: 0,
     photo_url: "",
   });
-  
+
   const router = useRouter();
   const { business, loading, error } = useFetchBusinessById(businessId);
   useEffect(() => {
@@ -41,27 +41,29 @@ const EditBisnisForm: React.FC<{ businessId: string }> = ({ businessId }) => {
       setFormData({
         name: business.name,
         omset: business.omset,
-        description: business.description_list.join(", "),
+        description: business.description_list.join("\n"),
         location: business.location,
         contact: business.contact,
-        fk_business_category_id: tagBusiness[business.category], // ini apa yaa
+        fk_business_category_id: tagBusiness[business.category],
         photo_url: business.photo_url,
       });
     }
   }, [business]);
-  
+
   const handleNext = (newData: any) => {
     setFormData((prev) => ({ ...prev, ...newData }));
     setStep((prev) => prev + 1);
   };
-  
+
   const handlePrev = () => {
     setStep((prev) => prev - 1);
   };
 
   const handleSubmit = async (newData: any) => {
     setFormData((prev) => ({ ...prev, ...newData }));
-    const fileInput = document.getElementById("photo_url_edit")! as HTMLInputElement;
+    const fileInput = document.getElementById(
+      "photo_url_edit"
+    )! as HTMLInputElement;
     console.log(formData.photo_url);
 
     const form = new FormData();
@@ -114,13 +116,7 @@ const EditBisnisForm: React.FC<{ businessId: string }> = ({ businessId }) => {
   if (loading)
     return (
       <div className="flex flex-col justify-center items-center h-[80vh]">
-        <Image
-          src="/loading-spinner-orange.gif"
-          alt="loading"
-          width={150}
-          height={150}
-        />
-        <p className="text-[#40ABFF] text-[24px] font-bold">Loading</p>
+        <CircularIndeterminate />
       </div>
     );
   if (error) return <p>{error}</p>;

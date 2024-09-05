@@ -8,6 +8,7 @@ import BisniskuCardListOtherUser from "../../../../components/BisniskuCardListOt
 import PermintaankuCardListOtherUser from "../../../../components/PermintaankuCardListOtherUser";
 import ProfileCardOtherUser from "../../../../components/ProfileCardOtherUser";
 import Image from "next/image";
+import CircularIndeterminate from "@/components/BisniskuCardListUser/CircularIndeterminate";
 
 const ProfilePage = () => {
   const { userId } = useParams();
@@ -25,14 +26,8 @@ const ProfilePage = () => {
 
   if (loadingId || loadingBusinessId || loadingNeedsId) {
     return (
-      <div className="flex flex-col justify-center items-center min-h-[700px] gap-4">
-        <Image
-          src="/loading-spinner-orange.gif"
-          alt="Loading..."
-          width={150}
-          height={150}
-        />
-        <p className="text-[24px] font-bold">Loading</p>
+      <div className="flex flex-col justify-center items-center h-[75vh]">
+        <CircularIndeterminate />
       </div>
     );
   }
@@ -52,7 +47,7 @@ const ProfilePage = () => {
   return (
     <div className="bg-[#FCFCFC] w-full">
       <div className="flex justify-center items-center mt-10">
-        <ProfileCardOtherUser profileId={profileId} />
+        <ProfileCardOtherUser profileId={profileId} business={null} />
       </div>
       <div className="my-20 w-[1200px] mx-auto">
         <div className="flex justify-between w-[800px] mx-auto pb-4">

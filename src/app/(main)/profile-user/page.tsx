@@ -6,6 +6,7 @@ import BisniskuCardListUser from "../../../components/BisniskuCardListUser";
 import PermintaankuCardListUser from "../../../components/PermintaankuCardListUser";
 import ProfileCardUser from "../../../components/ProfileCardUser";
 import Image from "next/image";
+import CircularIndeterminate from "@/components/BisniskuCardListUser/CircularIndeterminate";
 
 const Profile = () => {
   const [activeSection, setActiveSection] = useState("Bisnisku");
@@ -24,13 +25,7 @@ const Profile = () => {
   if (loading) {
     return (
       <div className="flex flex-col justify-center items-center h-[75vh]">
-        <Image
-          src="/loading-spinner-orange.gif"
-          alt="loading"
-          width={150}
-          height={150}
-        />
-        <p className="text-[#40ABFF] text-[24px] font-bold">Loading</p>
+        <CircularIndeterminate />
       </div>
     );
   }

@@ -2,10 +2,14 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import useFetchBusinessesId from "../../hooks/useFetchBusinessId";
 import { MyBusinessId } from "./types";
+import CircularIndeterminate from "../BisniskuCardListUser/CircularIndeterminate";
 
-const BisniskuCardListOtherUser = ({ businessesId }: { businessesId: MyBusinessId[] }) => {
+const BisniskuCardListOtherUser = ({
+  businessesId,
+}: {
+  businessesId: MyBusinessId[];
+}) => {
   const router = useRouter();
 
   const handleCardClick = (id: string) => {
@@ -14,14 +18,8 @@ const BisniskuCardListOtherUser = ({ businessesId }: { businessesId: MyBusinessI
 
   if (!businessesId) {
     return (
-      <div className="flex flex-col justify-center items-center gap-4">
-        <Image
-          src="/loading-spinner-orange.gif"
-          alt="loading"
-          width={100}
-          height={100}
-        />
-        <p className="text-[20px] font-bold">Loading</p>
+      <div className="flex flex-col justify-center items-center mt-[-50px]">
+        <CircularIndeterminate />
       </div>
     );
   }
@@ -37,8 +35,8 @@ const BisniskuCardListOtherUser = ({ businessesId }: { businessesId: MyBusinessI
           <div className="flex items-center gap-8">
             <div>
               <Image
-                className="rounded-full w-[150px] h-[150px] bg-image bg-cover bg-center object-cover"
-                src={businessId.photo_url}
+                className="rounded-full w-[150px] h-[150px] bg-image bg-cover bg-center object-cover max-w-none"
+                src={businessId.photo_url || "/default-gray-photo.webp"}
                 alt={businessId.name}
                 width={150}
                 height={150}
@@ -48,7 +46,7 @@ const BisniskuCardListOtherUser = ({ businessesId }: { businessesId: MyBusinessI
             <div className="flex flex-col gap-4">
               <h4 className="text-[28px] font-bold">{businessId.name}</h4>
               <p className="text-[18px] text-[#005792]">
-                {businessId.category}
+                #{businessId.category}
               </p>
               <p className="text-[18px] text-[#525455]">
                 {businessId.location}
