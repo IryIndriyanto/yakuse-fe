@@ -22,9 +22,19 @@ const PermintaankuCardListOtherUser = ({
     );
   }
 
+  const visibleNeeds = needsId.filter((needsId: MyNeedId) => needsId.is_visible);
+
+  if (visibleNeeds.length === 0) {
+    return (
+      <div className="flex flex-col items-center gap-4">
+        <p className="text-[20px] font-bold">Pemilik belum memiliki permintaan</p>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col gap-4 mb-10">
-      {needsId.map((needsId: MyNeedId) => (
+      {visibleNeeds.map((needsId: MyNeedId) => (
         <div
           key={needsId.id}
           className="flex items-center justify-between font-serif bg-[#E5F5FF] rounded-[8px] p-4 transform hover:scale-105 transition-all duration-300"
