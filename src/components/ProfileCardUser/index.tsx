@@ -3,8 +3,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import ButtonList from "../ButtonList";
 import { UserProfile } from "./types";
-import { MyBusiness } from "@/components/BisniskuCardListUser/types";
-import { Span } from "next/dist/trace";
+import { MyBusiness } from "../BisniskuCardListUser/types";
+import CircularIndeterminate from "../BisniskuCardListUser/CircularIndeterminate";
 
 interface ProfileCardProps {
   buttonLabel: string;
@@ -126,12 +126,7 @@ const ProfileCardUser = ({
         </div>
         <div className="flex justify-center items-center">
           {isButtonLoading ? (
-            <Image
-              src="/loading-spinner-orange.gif"
-              alt="Loading..."
-              width={50}
-              height={50}
-            />
+            <CircularIndeterminate />
           ) : (
             <ButtonList
               onClick={handleButtonClick}
