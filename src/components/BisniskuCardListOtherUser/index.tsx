@@ -24,6 +24,16 @@ const BisniskuCardListOtherUser = ({
     );
   }
 
+  if (businessesId.length === 0) {
+    return (
+      <div className="flex flex-col items-center gap-4">
+        <p className="text-[20px] font-bold">
+          Pemilik belum memiliki bisnis.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="grid grid-cols-1 gap-4">
       {businessesId.map((businessId: MyBusinessId) => (
