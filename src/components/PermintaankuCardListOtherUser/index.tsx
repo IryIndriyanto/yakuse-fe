@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { MyNeedId } from "./types";
+import CircularIndeterminate from "../BisniskuCardListUser/CircularIndeterminate";
 
 interface PermintaankuCardListOtherUserProps {
   needsId: MyNeedId[] | null;
@@ -15,14 +16,8 @@ const PermintaankuCardListOtherUser = ({
 }: PermintaankuCardListOtherUserProps) => {
   if (!needsId) {
     return (
-      <div className="flex flex-col items-center gap-4">
-        <Image
-          src="/loading-spinner-orange.gif"
-          alt="loading"
-          width={100}
-          height={100}
-        />
-        <p className="text-[20px] text-[#40ABFF] font-bold">Loading</p>
+      <div className="flex flex-col items-center mt-[-50px]">
+        <CircularIndeterminate />
       </div>
     );
   }

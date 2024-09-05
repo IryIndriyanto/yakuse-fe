@@ -11,6 +11,7 @@ import { useState } from "react";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import { BusinessById } from "@/components/BisniskuCardListUser/types";
+import CircularIndeterminate from "@/components/BisniskuCardListUser/CircularIndeterminate";
 
 const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
   const { businessId } = params;
@@ -43,13 +44,7 @@ const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
   if (loading)
     return (
       <div className="flex flex-col justify-center items-center h-[80vh]">
-        <Image
-          src="/loading-spinner-orange.gif"
-          alt="loading"
-          width={150}
-          height={150}
-        />
-        <p className="text-[#40ABFF] text-[24px] font-bold">Loading</p>
+        <CircularIndeterminate />
       </div>
     );
   if (error) return <p>{error}</p>;
@@ -122,7 +117,9 @@ const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-96">
             <h2 className="text-xl font-bold mb-4">Konfirmasi Hapus</h2>
-            <p className="mb-6">Apakah Anda yakin ingin menghapus bisnis ini?</p>
+            <p className="mb-6">
+              Apakah Anda yakin ingin menghapus bisnis ini?
+            </p>
             <div className="flex justify-end gap-4">
               <Button onClick={handleDelete} variant="contained" color="error">
                 Hapus

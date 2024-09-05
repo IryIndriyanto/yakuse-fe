@@ -3,8 +3,13 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { MyBusinessId } from "./types";
+import CircularIndeterminate from "../BisniskuCardListUser/CircularIndeterminate";
 
-const BisniskuCardListOtherUser = ({ businessesId }: { businessesId: MyBusinessId[] }) => {
+const BisniskuCardListOtherUser = ({
+  businessesId,
+}: {
+  businessesId: MyBusinessId[];
+}) => {
   const router = useRouter();
 
   const handleCardClick = (id: string) => {
@@ -13,14 +18,8 @@ const BisniskuCardListOtherUser = ({ businessesId }: { businessesId: MyBusinessI
 
   if (!businessesId) {
     return (
-      <div className="flex flex-col justify-center items-center gap-4">
-        <Image
-          src="/loading-spinner-orange.gif"
-          alt="loading"
-          width={100}
-          height={100}
-        />
-        <p className="text-[20px] text-[#40ABFF] font-bold">Loading</p>
+      <div className="flex flex-col justify-center items-center mt-[-50px]">
+        <CircularIndeterminate />
       </div>
     );
   }
@@ -46,8 +45,12 @@ const BisniskuCardListOtherUser = ({ businessesId }: { businessesId: MyBusinessI
 
             <div className="flex flex-col gap-4">
               <h4 className="text-[28px] font-bold">{businessId.name}</h4>
-              <p className="text-[18px] text-[#005792]">#{businessId.category}</p>
-              <p className="text-[18px] text-[#525455]">{businessId.location}</p>
+              <p className="text-[18px] text-[#005792]">
+                #{businessId.category}
+              </p>
+              <p className="text-[18px] text-[#525455]">
+                {businessId.location}
+              </p>
             </div>
           </div>
 
