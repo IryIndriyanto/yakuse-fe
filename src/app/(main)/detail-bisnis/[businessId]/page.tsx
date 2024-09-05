@@ -87,10 +87,11 @@ const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
             </div>
           </div>
 
-          <div className="flex gap-20">
+          <div className="flex items-start max-w-[400px] gap-20">
             <div className="flex flex-col justify-center gap-2">
               <p className="text-[18px] font-bold">Omset</p>
               <Rating value={business?.avg_rating} precision={0.5} readOnly />
+              <p className="text-[18px] font-bold">Alamat</p>
             </div>
 
             <div className="flex flex-col justify-center gap-2">
@@ -100,6 +101,7 @@ const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
               <p className="text-[18px]">
                 {business?.avg_rating} dari {business?.total_rater} pengulas
               </p>
+              <p className="text-[18px] text-justify">{business?.location}</p>
             </div>
           </div>
           <div>
@@ -109,7 +111,14 @@ const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
           </div>
 
           <div className="w-[500px] text-justify">
-            <p dangerouslySetInnerHTML={{ __html: (business?.description_list?.join("\n") || "").replace(/\n/g, "<br><br>") }} />
+            <p
+              dangerouslySetInnerHTML={{
+                __html: (business?.description_list?.join("\n") || "").replace(
+                  /\n/g,
+                  "<br><br>"
+                ),
+              }}
+            />
           </div>
         </div>
       </div>
