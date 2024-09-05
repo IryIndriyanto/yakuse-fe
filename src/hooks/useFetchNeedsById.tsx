@@ -19,7 +19,38 @@ const useFetchNeedsById = (needId: string) => {
         setNeed(response.data);
         console.log("response.data", response.data);
       } catch (err) {
-        setError("Failed to fetch need data");
+        if (axios.isAxiosError(err) && err.response) {
+          switch (err.response.status) {
+            case 400:
+              setError("Bad Request. Silakan periksa permintaan Anda.");
+              break;
+            case 401:
+              setError("Unauthorized. Silakan login kembali.");
+              break;
+            case 403:
+              setError("Forbidden. Anda tidak memiliki akses. Silakan login kembali.");
+              break;
+            case 404:
+              setError("Data kebutuhan tidak ditemukan.");
+              break;
+            case 500:
+              setError("Internal Server Error. Silakan coba lagi nanti.");
+              break;
+            case 502:
+              setError("Bad Gateway. Silakan coba lagi nanti.");
+              break;
+            case 503:
+              setError("Service Unavailable. Silakan coba lagi nanti.");
+              break;
+            case 504:
+              setError("Gateway Timeout. Silakan coba lagi nanti.");
+              break;
+            default:
+              setError("Terjadi kesalahan. Silakan coba lagi.");
+          }
+        } else {
+          setError("Failed to fetch need data");
+        }
       } finally {
         setLoading(false);
       }
@@ -27,7 +58,7 @@ const useFetchNeedsById = (needId: string) => {
 
     fetchNeed();
   }, [needId]);
-  
+
   return { need, loading, error };
 };
 

@@ -7,7 +7,7 @@ import useFetchBusinessById from "../../../../hooks/useFetchBusinessById";
 import { formatRupiah } from "../../../../utils/currencyFormatter";
 import { BASE_URL } from "@/utils/constant";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import CircularIndeterminate from "@/components/BisniskuCardListUser/CircularIndeterminate";
@@ -17,9 +17,20 @@ const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
   const router = useRouter();
   const { business, loading, error } = useFetchBusinessById(businessId);
   const [open, setOpen] = useState(false);
+  const [errorModalOpen, setErrorModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (error) {
+      setErrorModalOpen(true);
+    }
+  }, [error]);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const handleErrorModalClose = () => {
+    setErrorModalOpen(false);
+    router.push("/login");
+  };
 
   const handleEdit = () => {
     router.push(`/edit-bisnis/${businessId}`);
@@ -46,7 +57,6 @@ const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
         <CircularIndeterminate />
       </div>
     );
-  if (error) return <p>{error}</p>;
 
   return (
     <div className="bg-[#FCFCFC] font-serif">
@@ -55,7 +65,7 @@ const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
           <Image
             className="sticky top-8"
             src={business?.photo_url || "/default-gray-photo.png"}
-            alt="detail-bisnis-1"
+            alt="Foto Bisnis"
             width={500}
             height={300}
           />
@@ -134,6 +144,19 @@ const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
               </Button>
               <Button onClick={handleClose} variant="outlined">
                 Batal
+              </Button>
+            </div>
+          </div>
+        </div>
+      </Modal>
+      <Modal open={errorModalOpen} onClose={handleErrorModalClose}>
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+            <h2 className="text-xl font-bold mb-4">Error</h2>
+            <p className="mb-6">{error}</p>
+            <div className="flex justify-end">
+              <Button onClick={handleErrorModalClose} variant="outlined">
+                Tutup
               </Button>
             </div>
           </div>
