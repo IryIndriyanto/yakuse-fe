@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import useFetchBusinesses from "../../hooks/useFetchBusiness";
 import { MyBusiness } from "./types";
+import CircularWithValueLabel from './CircularWithValueLabel';
 
 const BisniskuCardListUser = () => {
   const router = useRouter();
@@ -16,14 +17,12 @@ const BisniskuCardListUser = () => {
   if (loadingBusiness)
     return (
       <div className="flex flex-col justify-center items-center gap-4">
-        <Image src="/loading-spinner-orange.gif" alt="loading" width={100} height={100} />
-        <p className="text-[20px] text-[#40ABFF] font-bold">Loading</p>
+        <CircularWithValueLabel />
       </div>
     );
   if (errorBusiness)
     return (
       <div className="flex flex-col justify-center items-center text-[20px] font-bold gap-4">
-        {/* <Image src="/icon-error.png" alt="error" width={100} height={100} /> */}
         <p>Anda belum memiliki bisnis</p>
       </div>
     );
