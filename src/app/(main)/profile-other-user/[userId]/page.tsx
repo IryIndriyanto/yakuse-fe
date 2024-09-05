@@ -30,7 +30,7 @@ const ProfilePage = () => {
     useFetchNeedsId(validUserId);
 
   useEffect(() => {
-    if (fetchErrorId || errorBusinessId || errorNeedsId || error) {
+    if (fetchErrorId || error) {
       setErrorModalOpen(true);
     }
   }, [fetchErrorId, errorBusinessId, errorNeedsId, error]);
@@ -86,24 +86,9 @@ const ProfilePage = () => {
       </div>
 
       {activeSection === "Bisnisku" && (
-        <>
-          {errorBusinessId && (
-            <div className="flex flex-col justify-center items-center mt-10 gap-4">
-              <Image
-                src="/icon-error.png"
-                alt="Error"
-                width={100}
-                height={100}
-              />
-              <p className="text-[24px] font-bold">Error: {errorBusinessId}</p>
-            </div>
-          )}
-          {!errorBusinessId && (
-            <div className="flex flex-col gap-4 mt-10 w-[1200px] mx-auto">
-              <BisniskuCardListOtherUser businessesId={businessesId || []} />
-            </div>
-          )}
-        </>
+        <div className="flex flex-col gap-4 mt-10 mb-10 w-[1200px] mx-auto cursor-pointer">
+          <BisniskuCardListOtherUser businessesId={businessesId || []} />
+        </div>
       )}
 
       {activeSection === "Permintaanku" && (
@@ -111,8 +96,6 @@ const ProfilePage = () => {
           <PermintaankuCardListOtherUser needsId={needsId || []} />
         </div>
       )}
-
-      <div className="mt-10"></div>
 
       <Modal open={errorModalOpen} onClose={handleErrorModalClose}>
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
