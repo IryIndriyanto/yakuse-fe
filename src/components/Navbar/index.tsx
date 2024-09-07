@@ -17,7 +17,7 @@ const Navbar = () => {
   const tabs = [
     { name: "Temukan Kebutuhan", href: "/kebutuhan" },
     { name: "Temukan Pembeli", href: "/pembeli" },
-    { name: "Info UMKM", href: "/umkm" },
+    // { name: "Info UMKM", href: "/umkm" }, // Belum ada
   ];
 
   const toggleDropdown = () => {
@@ -26,7 +26,7 @@ const Navbar = () => {
 
   const handleProfile = () => {
     router.push("/profile-user");
-    setDropdownVisible(false); // Tambahkan ini
+    setDropdownVisible(false);
   };
 
   const handlePhotoProfile = () => {
@@ -38,7 +38,7 @@ const Navbar = () => {
     localStorage.removeItem("access_token");
     console.log("Token telah dihapus, user logout");
     router.push("/login");
-    setDropdownVisible(false); // Tambahkan ini
+    setDropdownVisible(false);
   };
 
   const handleClickOutside = (event: MouseEvent) => {
