@@ -102,7 +102,7 @@ const ProfileCardUser = ({
                       </div>
                       <div className="flex items-start gap-2">
                         <p className="w-20">Alamat:</p>
-                        <p className="max-w-[500px]">{profile.address || "-"}</p>
+                        <p className="max-w-[500px] text-justify">{profile.address || "-"}</p>
                       </div>
                     </div>
                   </div>
