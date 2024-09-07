@@ -11,6 +11,7 @@ import { useState, useEffect } from "react";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import CircularIndeterminate from "@/components/BisniskuCardListUser/CircularIndeterminate";
+import DOMPurify from 'dompurify';
 
 const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
   const { businessId } = params;
@@ -52,6 +53,10 @@ const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
     }
     handleClose();
   };
+
+  const sanitizedDescription = DOMPurify.sanitize(
+    (business?.description_list?.join("\n") || "").replace(/\n/g, "<br><br>")
+  );
 
   if (loading)
     return (
@@ -124,10 +129,7 @@ const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
           <div className="w-[500px] text-justify">
             <p
               dangerouslySetInnerHTML={{
-                __html: (business?.description_list?.join("\n") || "").replace(
-                  /\n/g,
-                  "<br><br>"
-                ),
+                __html: sanitizedDescription,
               }}
             />
           </div>

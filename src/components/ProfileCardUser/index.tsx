@@ -5,6 +5,7 @@ import ButtonList from "../ButtonList";
 import { UserProfile } from "./types";
 import { MyBusiness } from "../BisniskuCardListUser/types";
 import CircularIndeterminate from "../BisniskuCardListUser/CircularIndeterminate";
+import DOMPurify from 'dompurify';
 
 interface ProfileCardProps {
   buttonLabel: string;
@@ -36,6 +37,10 @@ const ProfileCardUser = ({
     return <div>No profile data available</div>;
   }
 
+  const sanitizedAboutMe = DOMPurify.sanitize(
+    (profile.about_me_list?.join("\n") || "").replace(/\n/g, "<br><br>")
+  );
+
   return (
     <div className="flex flex-col justify-between bg-[#E5F5FF] rounded-[10px] p-10 w-[1200px] font-serif min-h-[500px]">
       <div>
@@ -52,13 +57,13 @@ const ProfileCardUser = ({
                   />
                 </div>
                 <div className="flex gap-2 items-center">
-                  <Image src="/star.svg" alt="star" width={50} height={50} />
+                  <Image src="/star.svg" alt="star" width={40} height={40} />
                   <div className="flex items-end">
                     <p className="text-[41px] font-bold">
-                      {business?.avg_rating !== undefined ? business.avg_rating : "0.0"}
-                      <span className="text-[#FD5F00]">/</span>
+                      {business?.avg_rating !== undefined ? business.avg_rating : "0"}
+                      {/* <span className="text-[#FD5F00]">/</span> */}
                     </p>
-                    <p className="text-[#FD5F00] text-[24px] font-bold">5.0</p>
+                    <p className="text-[#FD5F00] text-[24px] font-bold">/5</p>
                   </div>
                 </div>
               </div>
@@ -120,9 +125,10 @@ const ProfileCardUser = ({
 
         <div className="font-serif my-5">
           <h3 className="text-xl font-semibold">Tentang Saya</h3>
-          <p className="text-lg text-justify py-4">
-            {profile.about_me_list ? profile.about_me_list : "Belum ada informasi tentang saya."}
-          </p>
+          <p
+            className="text-lg text-justify py-4"
+            dangerouslySetInnerHTML={{ __html: sanitizedAboutMe }}
+          />
         </div>
         <div className="flex justify-center items-center">
           {isButtonLoading ? (
