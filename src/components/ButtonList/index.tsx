@@ -9,9 +9,9 @@ interface ButtonListProps {
 const ButtonList = ({ label, variant, iconSrc, onClick }: ButtonListProps) => {
   const buttonStyles =
     variant === "Edit"
-      ? "bg-transparent text-[#005792] border-[#005792] border-2 py-2 px-10 rounded-md hover:bg-[#005792] hover:text-white transition-all duration-300"
+      ? "bg-transparent text-[#005792] border-[#005792] border-2 py-2 px-10 rounded-md hover:bg-[#005792] hover:text-white transition-all duration-300 w-[100px]"
       : variant === "Delete"
-      ? "bg-[#FD5F00] text-[#F6FCEB] border-[#FD5F00] border-2 py-2 px-10 rounded-md hover:bg-[#FF7F32] hover:text-white hover:border-[#FF7F32] transition-all duration-300"
+      ? "bg-[#FD5F00] text-[#F6FCEB] border-[#FD5F00] border-2 py-2 px-10 rounded-md hover:bg-[#FF7F32] hover:text-white hover:border-[#FF7F32] transition-all duration-300 w-[100px]"
       : "bg-transparent text-[#FD5F00] border-[#FD5F00] border-2 py-2 px-10 min-w-[300px] rounded-md hover:bg-[#FF7F32] hover:text-white hover:border-[#FF7F32] transition-all duration-300";
 
   return (

@@ -79,13 +79,13 @@ const PermintaankuCardListUser = () => {
         needs?.map((need: MyNeed) => (
           need?.is_visible ? (
             <div
-              className="flex items-center justify-between font-serif bg-[#E5F5FF] rounded-[8px] p-4 transform hover:scale-105 transition-all duration-300"
+              className="flex items-center justify-between font-serif bg-[#E5F5FF] rounded-[8px] p-4 transform hover:scale-105 transition-all duration-300 lg:mx-5"
               key={need.id}
             >
               <div className="flex items-center gap-8">
                 <div>
                   <Image
-                    className="rounded-full w-[150px] h-[150px] bg-image bg-cover bg-center object-cover"
+                    className="rounded-full w-[150px] h-[150px] bg-image bg-cover bg-center object-cover max-w-none"
                     src={
                       need.user_info.user_profile_url ||
                       "/default-gray-photo.webp"
@@ -96,8 +96,8 @@ const PermintaankuCardListUser = () => {
                   />
                 </div>
 
-                <div className="flex flex-col gap-4 max-w-[700px] text-justify">
-                  <h4 className="text-[28px] font-bold">{need.title}</h4>
+                <div className="flex flex-col gap-4">
+                  <h4 className="text-[28px] font-bold lg:text-[26px]">{need.title}</h4>
                   <p className="text-[18px] text-[#525455]">{need.description}</p>
                   <p className="text-[18px] text-[#525455]">
                     Dibuat pada tanggal:{" "}
@@ -110,7 +110,7 @@ const PermintaankuCardListUser = () => {
                 </div>
               </div>
 
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4 lg:flex-col lg:gap-2">
                 <ButtonList
                   label="Edit"
                   variant="Edit"
