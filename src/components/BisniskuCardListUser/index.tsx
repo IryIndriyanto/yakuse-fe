@@ -38,9 +38,7 @@ const BisniskuCardListUser = () => {
   if (!businesses || businesses.length === 0)
     return (
       <div className="flex flex-col items-center gap-4">
-        <p className="text-[20px] font-bold">
-          Anda belum memiliki bisnis.
-        </p>
+        <p className="text-[20px] font-bold">Anda belum memiliki bisnis.</p>
       </div>
     );
 
@@ -68,11 +66,11 @@ const BisniskuCardListUser = () => {
     );
 
   return (
-    <div className="grid grid-cols-1 gap-4">
+    <div className="grid grid-cols-1 gap-4 lg:max-w-[750px] lg:mx-auto">
       {businesses?.map((business: MyBusiness) => (
         <div
           key={business.id}
-          className="flex items-center justify-between font-serif bg-[#E5F5FF] rounded-[8px] p-4 transform hover:scale-105 transition-all duration-300"
+          className="flex items-center justify-between font-serif bg-[#E5F5FF] rounded-[8px] p-4 transform hover:scale-105 transition-all duration-300 lg:max-w-[750px] lg:mx-auto"
           onClick={() => handleCardClick(business.id)}
         >
           <div className="flex items-center gap-8">
@@ -87,7 +85,7 @@ const BisniskuCardListUser = () => {
             </div>
 
             <div className="flex flex-col gap-4">
-              <h4 className="text-[28px] font-bold">{business.name}</h4>
+              <h4 className="text-[28px] font-bold lg:text-[26px]">{business.name}</h4>
               <p className="text-[18px] text-[#005792]">#{business.category}</p>
               <p className="text-[18px] text-[#525455]">{business.location}</p>
             </div>

@@ -42,7 +42,7 @@ const ProfileCardUser = ({
   );
 
   return (
-    <div className="flex flex-col justify-between bg-[#E5F5FF] rounded-[10px] p-10 w-[1200px] font-serif min-h-[500px]">
+    <div className="flex flex-col justify-between bg-[#E5F5FF] rounded-[10px] p-10 w-[1200px] font-serif min-h-[500px] lg:max-w-[750px]">
       <div>
         <div>
           <div className="flex justify-between gap-10">
@@ -70,7 +70,7 @@ const ProfileCardUser = ({
 
               <div className="flex flex-col gap-4">
                 <div>
-                  <h1 className="text-[41px] font-bold">{profile.fullname}</h1>
+                  <h1 className="text-[41px] font-bold lg:text-[28px]">{profile.fullname}</h1>
                 </div>
                 <div className="flex">
                   <div className="flex flex-col gap-4">
@@ -102,7 +102,7 @@ const ProfileCardUser = ({
                       </div>
                       <div className="flex items-start gap-2">
                         <p className="w-20">Alamat:</p>
-                        <p className="max-w-[500px] text-justify">{profile.address || "-"}</p>
+                        <p className="max-w-[500px] text-justify lg:max-w-[200px]">{profile.address || "-"}</p>
                       </div>
                     </div>
                   </div>
