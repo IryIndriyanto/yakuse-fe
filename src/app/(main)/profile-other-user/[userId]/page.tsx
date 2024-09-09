@@ -58,10 +58,10 @@ const ProfilePage = () => {
       <div className="flex justify-center items-center mt-10">
         <ProfileCardOtherUser profileId={profileId} business={null} />
       </div>
-      <div className="my-20 w-[1200px] mx-auto">
-        <div className="flex justify-between w-[800px] mx-auto pb-4">
+      <div className="my-20 w-[1200px] mx-auto lg:w-[800px] lg:mt-10 lg:mb-10">
+        <div className="flex justify-between w-[800px] mx-auto pb-4 lg:w-[600px]">
           <p
-            className={`text-[24px] font-bold cursor-pointer transition-all duration-300 relative ${
+            className={`text-[24px] font-bold cursor-pointer transition-all duration-300 relative lg:text-[20px] ${
               activeSection === "Bisnisku" ? "text-[#FD5F00]" : "text-black"
             }`}
             onClick={() => setActiveSection("Bisnisku")}
@@ -72,7 +72,7 @@ const ProfilePage = () => {
             )}
           </p>
           <p
-            className={`text-[24px] font-bold cursor-pointer transition-all duration-300 relative ${
+            className={`text-[24px] font-bold cursor-pointer transition-all duration-300 relative lg:text-[20px] ${
               activeSection === "Permintaanku" ? "text-[#FD5F00]" : "text-black"
             }`}
             onClick={() => setActiveSection("Permintaanku")}
@@ -86,13 +86,13 @@ const ProfilePage = () => {
       </div>
 
       {activeSection === "Bisnisku" && (
-        <div className="flex flex-col gap-4 mt-10 mb-10 w-[1200px] mx-auto cursor-pointer">
+        <div className="flex flex-col gap-4 mt-10 mb-10 w-[1200px] mx-auto cursor-pointer lg:max-w-[800px]">
           <BisniskuCardListOtherUser businessesId={businessesId || []} />
         </div>
       )}
 
       {activeSection === "Permintaanku" && (
-        <div className="flex flex-col gap-4 mt-10 w-[1200px] mx-auto">
+        <div className="flex flex-col gap-4 mt-10 w-[1200px] mx-auto lg:max-w-[800px]">
           <PermintaankuCardListOtherUser needsId={needsId || []} />
         </div>
       )}

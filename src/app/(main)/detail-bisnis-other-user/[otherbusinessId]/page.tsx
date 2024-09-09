@@ -48,8 +48,8 @@ const DetailBisnisOtherUser = ({
 
   return (
     <div className="bg-[#FCFCFC] font-serif">
-      <div className="grid grid-cols-2 gap-20 p-10">
-        <div>
+      <div className="grid grid-cols-2 gap-20 p-10 lg:flex lg:flex-col lg:gap-10 lg:p-0 lg:max-w-[800px] lg:mx-auto">
+        <div className="lg:flex lg:justify-center">
           <Image
             className="sticky top-8"
             src={business?.photo_url || "/default-gray-photo.png"}
@@ -60,13 +60,13 @@ const DetailBisnisOtherUser = ({
         </div>
 
         <div className="flex flex-col gap-6">
-          <div className="flex justify-between">
-            <div className="max-w-[400px]">
+          <div className="flex justify-between lg:w-[700px]">
+            <div className="max-w-[400px] lg:max-w-[700px]">
               <h1 className="text-5xl font-bold">{business?.name}</h1>
             </div>
           </div>
 
-          <div className="flex items-start max-w-[500px] gap-20">
+          <div className="flex items-start max-w-[400px] gap-20 lg:max-w-[700px]">
             <div className="flex flex-col justify-center gap-2">
               <p className="text-[18px] font-bold">Omset</p>
               <Rating value={business?.avg_rating} precision={0.5} readOnly />
@@ -89,8 +89,15 @@ const DetailBisnisOtherUser = ({
             </p>
           </div>
 
-          <div className="w-[500px] text-justify">
-            <p dangerouslySetInnerHTML={{ __html: (business?.description_list?.join("\n") || "").replace(/\n/g, "<br><br>") }} />
+          <div className="w-[500px] text-justify lg:w-[700px] lg:mb-10">
+            <p
+              dangerouslySetInnerHTML={{
+                __html: (business?.description_list?.join("\n") || "").replace(
+                  /\n/g,
+                  "<br><br>"
+                ),
+              }}
+            />
           </div>
           <div className="flex justify-center items-center">
             {isButtonLoading ? (
