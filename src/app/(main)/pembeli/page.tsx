@@ -72,7 +72,7 @@ export default function PagePembeli() {
   return (
     <>
       {/* <Navbarhome /> */}
-      <main className="w-full max-w-[800px] flex flex-col space-y-12 px-4 py-12 sm:px-6 md:px-10 lg:px-14">
+      <main className="w-full max-w-[800px] flex flex-col gap-3 px-4 pt-12 sm:px-6 md:px-10 lg:px-14">
         <Searchbar
           search={search}
           shown={shown}

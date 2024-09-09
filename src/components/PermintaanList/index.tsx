@@ -14,11 +14,12 @@ export default function PermintaanList({ filter, data }: permintaanProps) {
     (item) =>
       filter.length === 0 ||
       filter.some((f) =>
-        item.category.name.toLowerCase().includes(f.toLowerCase()))
+        item.category.name.toLowerCase().includes(f.toLowerCase())
+      )
   );
 
   return (
-    <div className="w-full pb-[81px]">
+    <div className="w-full pb-[81px] pt-2">
       <div className="flex flex-wrap space-y-7">
         {filteredItems.map((item: permintaanType) => (
           <PermintaanCard key={item.id} item={item} />
