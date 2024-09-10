@@ -5,11 +5,14 @@ import { useRouter } from "next/navigation";
 import useFetchProfile from "../../hooks/useFetchProfile";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { FaBars, FaTimes } from "react-icons/fa"; // Import icon hamburger dan close
 
 const Navbar = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [menuVisible, setMenuVisible] = useState(false); // State untuk visibilitas menu
   const router = useRouter();
   const dropdownRef = useRef(null);
+  const menuRef = useRef(null); // Ref untuk menu dropdown
   const { profile, loading } = useFetchProfile();
 
   const currentPath = usePathname();
@@ -48,14 +51,25 @@ const Navbar = () => {
     ) {
       setDropdownVisible(false);
     }
+    if (
+      menuRef.current &&
+      !(menuRef.current as HTMLElement).contains(event.target as Node)
+    ) {
+      setMenuVisible(false);
+    }
   };
 
   const handleNavigation = (path: string) => {
     router.push(path);
+    setMenuVisible(false);
+  };
+
+  const toggleMenu = () => {
+    setMenuVisible(!menuVisible);
   };
 
   useEffect(() => {
-    if (dropdownVisible) {
+    if (dropdownVisible || menuVisible) {
       document.addEventListener("mousedown", handleClickOutside);
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -64,17 +78,22 @@ const Navbar = () => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [dropdownVisible]);
+  }, [dropdownVisible, menuVisible]);
 
   return (
-    <div className="font-serif bg-[#FCFCFC] py-8 flex justify-between items-center px-[48px]">
+    <div className="font-serif bg-[#FCFCFC] py-8 flex justify-between items-center px-[48px] sm:px-2">
       <div className="flex flex-col justify-center">
         <div>
-          <h1 className="text-[38px] font-bold text-[#40ABFF] cursor-pointer" onClick={() => handleNavigation('/kebutuhan')}>YAKUSE</h1>
+          <h1
+            className="text-[38px] font-bold text-[#40ABFF] cursor-pointer"
+            onClick={() => handleNavigation("/kebutuhan")}
+          >
+            YAKUSE
+          </h1>
         </div>
       </div>
 
-      <div className="flex items-center justify-center flex-1">
+      <div className="md:hidden flex items-center justify-center flex-1">
         {tabs.map((tab, index) => (
           <li
             key={index}
@@ -90,7 +109,7 @@ const Navbar = () => {
         ))}
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 sm:relative sm:left-[40px]">
         <div className="cursor-pointer text-right" onClick={toggleDropdown}>
           <p className="text-[18px] font-bold">{profile?.username}</p>
           <p className="text-[12px]">UMKM</p>
@@ -130,6 +149,29 @@ const Navbar = () => {
             </div>
           )}
         </div>
+      </div>
+
+      <div className="hidden md:block relative" ref={menuRef}>
+        <button onClick={toggleMenu}>
+          {menuVisible ? <FaTimes size={24} /> : <FaBars size={24} />}
+        </button>
+        {menuVisible && (
+          <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50">
+            <ul>
+              {tabs.map((tab, index) => (
+                <li
+                  key={index}
+                  className={`px-4 py-2 hover:bg-gray-100 cursor-pointer ${
+                    currentPath === tab.href ? "text-[#FD5F00]" : ""
+                  }`}
+                  onClick={() => handleNavigation(tab.href)}
+                >
+                  {tab.name}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
