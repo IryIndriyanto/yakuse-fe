@@ -43,7 +43,7 @@ const LoginForm = ({ className }: { className: string }) => {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       setIsLoading(true);
-      setIsDisable(true)
+      setIsDisable(true);
       try {
         const response = await axios.post(`${BASE_URL}/user/login`, values);
         const accessToken = response.data.access_token;
@@ -55,6 +55,7 @@ const LoginForm = ({ className }: { className: string }) => {
       } catch (error) {
         if (axios.isAxiosError(error) && error.response) {
           toast.error(`${error.response.data.detail}`);
+          setIsDisable(true);
         }
       } finally {
         setIsLoading(false);
