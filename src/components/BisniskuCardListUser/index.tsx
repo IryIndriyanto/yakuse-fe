@@ -87,7 +87,7 @@ const BisniskuCardListUser = () => {
             <div className="flex flex-col gap-4">
               <h4 className="text-[28px] font-bold lg:text-[26px]">{business.name}</h4>
               <p className="text-[18px] text-[#005792]">#{business.category}</p>
-              <p className="text-[18px] text-[#525455]">{business.location}</p>
+              <p className="text-[18px] text-[#525455] md:hidden">{business.location}</p>
             </div>
           </div>
 

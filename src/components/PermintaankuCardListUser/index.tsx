@@ -7,7 +7,7 @@ import useFetchNeeds from "../../hooks/useFetchNeeds";
 import axios from "axios";
 import { BASE_URL } from "@/utils/constant";
 import toast from "react-hot-toast";
-import CircularIndeterminate from '../BisniskuCardListUser/CircularIndeterminate';
+import CircularIndeterminate from "../BisniskuCardListUser/CircularIndeterminate";
 
 const PermintaankuCardListUser = () => {
   const router = useRouter();
@@ -29,14 +29,19 @@ const PermintaankuCardListUser = () => {
     const deleteNeed = async () => {
       if (selectedNeed) {
         try {
-          const response = await axios.delete(`${BASE_URL}/user-need/hide/my-need/${selectedNeed.id}`, {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-            },
-          });
+          const response = await axios.delete(
+            `${BASE_URL}/user-need/hide/my-need/${selectedNeed.id}`,
+            {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+              },
+            }
+          );
           if (response.status === 204) {
             toast.success("Permintaan berhasil dihapus");
-            setNeeds((needs || []).filter(need => need.id !== selectedNeed.id));
+            setNeeds(
+              (needs || []).filter((need) => need.id !== selectedNeed.id)
+            );
             router.push("/profile-user");
           } else {
             toast.error("Gagal menghapus permintaan");
@@ -62,24 +67,24 @@ const PermintaankuCardListUser = () => {
     <div className="flex flex-col gap-4 mb-10">
       {loadingNeeds ? (
         <div className="flex flex-col items-center mt-[-50px]">
-            <CircularIndeterminate />
-          </div>
+          <CircularIndeterminate />
+        </div>
       ) : errorNeeds ? (
         <div className="flex flex-col items-center gap-4">
           <Image src="/icon-error.png" alt="Error" width={100} height={100} />
           <p className="text-[20px] font-bold">Error: {errorNeeds}</p>
         </div>
-      ) : needs?.filter(need => need.is_visible === true).length === 0 ? (
+      ) : needs?.filter((need) => need.is_visible === true).length === 0 ? (
         <div className="flex flex-col items-center gap-4">
           <p className="text-[20px] font-bold">
             Anda belum memiliki permintaan
           </p>
         </div>
       ) : (
-        needs?.map((need: MyNeed) => (
+        needs?.map((need: MyNeed) =>
           need?.is_visible ? (
             <div
-              className="flex items-center justify-between font-serif bg-[#E5F5FF] rounded-[8px] p-4 transform hover:scale-105 transition-all duration-300 lg:mx-5"
+              className="flex items-center justify-between font-serif bg-[#E5F5FF] rounded-[8px] p-4 transform hover:scale-105 transition-all duration-300 md:flex-col"
               key={need.id}
             >
               <div className="flex items-center gap-8">
@@ -97,8 +102,12 @@ const PermintaankuCardListUser = () => {
                 </div>
 
                 <div className="flex flex-col gap-4">
-                  <h4 className="text-[28px] font-bold lg:text-[26px]">{need.title}</h4>
-                  <p className="text-[18px] text-[#525455]">{need.description}</p>
+                  <h4 className="text-[28px] font-bold lg:text-[26px]">
+                    {need.title}
+                  </h4>
+                  <p className="text-[18px] text-[#525455]">
+                    {need.description}
+                  </p>
                   <p className="text-[18px] text-[#525455]">
                     Dibuat pada tanggal:{" "}
                     {new Date(need.created_at).toLocaleDateString("id-ID", {
@@ -110,21 +119,21 @@ const PermintaankuCardListUser = () => {
                 </div>
               </div>
 
-              <div className="flex items-center gap-4 lg:flex-col lg:gap-2">
-                <ButtonList
-                  label="Edit"
-                  variant="Edit"
-                  onClick={() => handleEditClick(need.id.toString())}
-                />
-                <ButtonList
-                  label="Delete"
-                  variant="Delete"
-                  onClick={() => handleDeleteClick(need)}
-                />
+                <div className="flex items-center gap-4 md:relative md:left-[35px] md:top-[10px] lg:gap-2">
+                  <ButtonList
+                    label="Edit"
+                    variant="Edit"
+                    onClick={() => handleEditClick(need.id.toString())}
+                  />
+                  <ButtonList
+                    label="Delete"
+                    variant="Delete"
+                    onClick={() => handleDeleteClick(need)}
+                  />
+                </div>
               </div>
-            </div>
           ) : null
-        ))
+        )
       )}
 
       {isModalVisible && selectedNeed && (

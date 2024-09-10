@@ -5,7 +5,7 @@ import ButtonList from "../ButtonList";
 import { UserProfile } from "./types";
 import { MyBusiness } from "../BisniskuCardListUser/types";
 import CircularIndeterminate from "../BisniskuCardListUser/CircularIndeterminate";
-import DOMPurify from 'dompurify';
+import DOMPurify from "dompurify";
 
 interface ProfileCardProps {
   buttonLabel: string;
@@ -45,10 +45,10 @@ const ProfileCardUser = ({
     <div className="flex flex-col justify-between bg-[#E5F5FF] rounded-[10px] p-10 w-[1200px] font-serif min-h-[500px] lg:max-w-[750px]">
       <div>
         <div>
-          <div className="flex justify-between gap-10">
-            <div className="flex justify-center gap-10">
+          <div className="flex justify-between gap-10 md:justify-center">
+            <div className="flex justify-center gap-10 md:flex-col">
               <div className="flex flex-col gap-2">
-                <div>
+                <div className="sm:flex sm:justify-center">
                   <Image
                     src={profile.photo_url || "/default-gray-photo.webp"}
                     alt="foto-munaroh"
@@ -56,11 +56,13 @@ const ProfileCardUser = ({
                     height={250}
                   />
                 </div>
-                <div className="flex gap-2 items-center">
+                <div className="flex gap-2 items-center sm:justify-center">
                   <Image src="/star.svg" alt="star" width={40} height={40} />
                   <div className="flex items-end">
                     <p className="text-[41px] font-bold">
-                      {business?.avg_rating !== undefined ? business.avg_rating : "0"}
+                      {business?.avg_rating !== undefined
+                        ? business.avg_rating
+                        : "0"}
                       {/* <span className="text-[#FD5F00]">/</span> */}
                     </p>
                     <p className="text-[#FD5F00] text-[24px] font-bold">/5</p>
@@ -68,44 +70,59 @@ const ProfileCardUser = ({
                 </div>
               </div>
 
-              <div className="flex flex-col gap-4">
-                <div>
-                  <h1 className="text-[41px] font-bold lg:text-[28px]">{profile.fullname}</h1>
-                </div>
-                <div className="flex">
-                  <div className="flex flex-col gap-4">
-                    <div>
-                      <p className="text-[#40ABFF] font-bold">
-                        Contact
-                      </p>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                      <div className="flex items-start gap-2">
-                        <p className="w-20">Email:</p>
-                        <p className="text-[#40ABFF]">
-                          <a href={`mailto:${profile.email}`}>
-                            {profile.email}
-                          </a>
-                        </p>
+              <div className="flex gap-10">
+                <div className="flex flex-col gap-4">
+                  <div>
+                    <h1 className="text-[41px] font-bold lg:text-[28px]">
+                      {profile.fullname}
+                    </h1>
+                  </div>
+                  <div className="flex">
+                    <div className="flex flex-col gap-4">
+                      <div>
+                        <p className="text-[#40ABFF] font-bold">Contact</p>
                       </div>
-                      <div className="flex items-start gap-2">
-                        <p className="w-20">Phone:</p>
-                        <p className="text-[#40ABFF]">
-                          {profile.phone ? (
-                            <a href={`https://wa.me/${profile.phone}`}>
-                              {profile.phone}
+                      <div className="flex flex-col gap-2 md:max-w-[700px]">
+                        <div className="flex items-start gap-2">
+                          <p className="w-20">Email:</p>
+                          <p className="text-[#40ABFF]">
+                            <a href={`mailto:${profile.email}`}>
+                              {profile.email}
                             </a>
-                          ) : (
-                            <span style={{ color: 'black' }}>-</span>
-                          )}
-                        </p>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <p className="w-20">Alamat:</p>
-                        <p className="max-w-[500px] text-justify lg:max-w-[200px]">{profile.address || "-"}</p>
+                          </p>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <p className="w-20">Phone:</p>
+                          <p className="text-[#40ABFF]">
+                            {profile.phone ? (
+                              <a href={`https://wa.me/${profile.phone}`}>
+                                {profile.phone}
+                              </a>
+                            ) : (
+                              <span style={{ color: "black" }}>-</span>
+                            )}
+                          </p>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <p className="w-20">Alamat:</p>
+                          <p className="max-w-[500px] text-justify lg:w-[300px]">
+                            {profile.address || "-"}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
+                </div>
+
+                <div className="pt-2 hidden sm:block md:block">
+                  <Image
+                    className="cursor-pointer"
+                    src="/icon-pencil.svg"
+                    alt="icon-pencil"
+                    width={24}
+                    height={24}
+                    onClick={handleEditProfile}
+                  />
                 </div>
               </div>
             </div>
