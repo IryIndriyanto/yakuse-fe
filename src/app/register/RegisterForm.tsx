@@ -72,7 +72,7 @@ const RegisterForm = ({ className }: { className: string }) => {
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
         toast.error(`${error.response.data.detail}`);
-        setIsDisable(true);
+        setIsDisable(false);
       }
     } finally {
       setIsLoading(false);
