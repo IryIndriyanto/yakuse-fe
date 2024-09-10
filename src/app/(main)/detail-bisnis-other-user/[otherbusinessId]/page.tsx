@@ -9,6 +9,8 @@ import CircularIndeterminate from "@/components/BisniskuCardListUser/CircularInd
 import { useState, useEffect } from "react";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
+import ContactButton from "@/components/ContactButton";
+import ModalContact from "@/components/ModalContact";
 
 const DetailBisnisOtherUser = ({
   params,
@@ -20,6 +22,7 @@ const DetailBisnisOtherUser = ({
   const router = useRouter();
   const [isButtonLoading, setIsButtonLoading] = useState<boolean>(false);
   const [errorModalOpen, setErrorModalOpen] = useState(false);
+  const [contactModalOpen, setContactModalOpen] = useState(false);
 
   useEffect(() => {
     if (error) {
@@ -36,7 +39,12 @@ const DetailBisnisOtherUser = ({
 
   const handleContactClick = () => {
     setIsButtonLoading(true);
-    router.push(`/profile-other-user/${business?.owner_info.user_id}`);
+    setContactModalOpen(true);
+  };
+
+  const handleContactModalClose = () => {
+    setContactModalOpen(false);
+    setIsButtonLoading(false);
   };
 
   if (loading)
@@ -99,19 +107,11 @@ const DetailBisnisOtherUser = ({
               }}
             />
           </div>
-          <div className="flex justify-center items-center">
-            {isButtonLoading ? (
-              <CircularIndeterminate />
-            ) : (
-              <button
-                onClick={handleContactClick}
-                className="mt-4 px-4 py-2 w-full bg-blue-600 text-white rounded hover:bg-blue-500 transition-all duration-300"
-                disabled={loading}
-              >
-                Hubungi Kami
-              </button>
-            )}
-          </div>
+          <ContactButton
+            isButtonLoading={isButtonLoading}
+            loading={loading}
+            handleContactClick={handleContactClick}
+          />
         </div>
       </div>
       <Modal open={errorModalOpen} onClose={handleErrorModalClose}>
@@ -127,6 +127,11 @@ const DetailBisnisOtherUser = ({
           </div>
         </div>
       </Modal>
+      <ModalContact
+        open={contactModalOpen}
+        onClose={handleContactModalClose}
+        userId={business?.owner_info.user_id || ""}
+      />
     </div>
   );
 };
