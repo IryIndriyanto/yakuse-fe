@@ -97,7 +97,7 @@ const ProfileCardUser = ({
                           <p className="w-20 text-xl">Phone:</p>
                           <p className="text-[#40ABFF] text-xl">
                             {profile.phone ? (
-                              <a href={`https://wa.me/${profile.phone}`}>
+                              <a href={`https://wa.me/${profile.phone}`} target="_blank">
                                 {profile.phone}
                               </a>
                             ) : (
