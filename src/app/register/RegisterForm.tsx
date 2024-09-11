@@ -81,7 +81,7 @@ const RegisterForm = ({ className }: { className: string }) => {
 
   return (
     <div className={`w-full h-full ${className}`}>
-      <h1 className="text-[33px] font-[700] text-primary-p-one">
+      <h1 className="text-[33px] font-[600] text-primary-p-one">
         Welcome to YAKUSE!
       </h1>
 
@@ -89,14 +89,15 @@ const RegisterForm = ({ className }: { className: string }) => {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleRegister}
+        validateOnBlur={true}
       >
-        {({ values, handleChange, handleSubmit }) => {
+        {({ values, handleChange, handleSubmit, handleBlur }) => {
           return (
             <form
               onSubmit={handleSubmit}
-              className="flex flex-col justify-center items-center gap-6 mt-[50px]"
+              className="flex flex-col justify-center items-center gap-6 mt-[30px]"
             >
-              <div className="w-full flex flex-col gap-4">
+              <div className="w-full flex flex-col gap-2">
                 <div>
                   <Field
                     component={InputForm}
@@ -107,6 +108,7 @@ const RegisterForm = ({ className }: { className: string }) => {
                     placeholder="Full Name"
                     value={values.fullname}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                   />
                   <ErrorMessage
                     name="fullname"
@@ -124,6 +126,7 @@ const RegisterForm = ({ className }: { className: string }) => {
                     placeholder="Username"
                     value={values.username}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                   />
                   <ErrorMessage
                     name="username"
@@ -142,6 +145,7 @@ const RegisterForm = ({ className }: { className: string }) => {
                     placeholder="Email"
                     value={values.email}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                   />
                   <ErrorMessage
                     name="email"
@@ -160,6 +164,7 @@ const RegisterForm = ({ className }: { className: string }) => {
                     placeholder="Password"
                     value={values.password}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                   />
                   <ErrorMessage
                     name="password"
@@ -177,6 +182,7 @@ const RegisterForm = ({ className }: { className: string }) => {
                     type="password"
                     placeholder="Password"
                     onChange={handleChange}
+                    onBlur={handleBlur}
                   />
                   <ErrorMessage
                     name="confirmPassword"

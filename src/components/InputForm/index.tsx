@@ -9,6 +9,7 @@ interface InputFormProps {
   className?: string;
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
 
 const InputForm = ({
@@ -20,10 +21,11 @@ const InputForm = ({
   className,
   value,
   onChange,
+  onBlur,
 }: InputFormProps) => {
   return (
     <div className={`flex flex-col w-full ${className}`}>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-1">
         <label className="text-[#333333] font-bold">{label}</label>
         <input
           id={id}
@@ -33,6 +35,7 @@ const InputForm = ({
           placeholder={placeholder}
           value={value}
           onChange={onChange}
+          onBlur={onBlur}
         />
       </div>
     </div>
