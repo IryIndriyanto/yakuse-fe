@@ -80,20 +80,22 @@ const ProfileCardUser = ({
                   <div className="flex">
                     <div className="flex flex-col gap-4">
                       <div>
-                        <p className="text-[#40ABFF] font-bold">Contact</p>
+                        <p className="text-[#40ABFF] font-bold text-xl">
+                          Contact
+                        </p>
                       </div>
                       <div className="flex flex-col gap-2 md:max-w-[700px]">
                         <div className="flex items-start gap-2">
-                          <p className="w-20">Email:</p>
-                          <p className="text-[#40ABFF]">
+                          <p className="w-20 text-xl">Email:</p>
+                          <p className="text-[#40ABFF] text-xl">
                             <a href={`mailto:${profile.email}`}>
                               {profile.email}
                             </a>
                           </p>
                         </div>
                         <div className="flex items-start gap-2">
-                          <p className="w-20">Phone:</p>
-                          <p className="text-[#40ABFF]">
+                          <p className="w-20 text-xl">Phone:</p>
+                          <p className="text-[#40ABFF] text-xl">
                             {profile.phone ? (
                               <a href={`https://wa.me/${profile.phone}`}>
                                 {profile.phone}
@@ -104,8 +106,8 @@ const ProfileCardUser = ({
                           </p>
                         </div>
                         <div className="flex items-start gap-2">
-                          <p className="w-20">Alamat:</p>
-                          <p className="max-w-[500px] text-justify lg:w-[300px]">
+                          <p className="w-20 text-xl">Alamat:</p>
+                          <p className="max-w-[500px] text-justify lg:w-[300px] text-xl">
                             {profile.address || "-"}
                           </p>
                         </div>
