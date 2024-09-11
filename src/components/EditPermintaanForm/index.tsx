@@ -34,7 +34,7 @@ const EditPermintaanForm: React.FC<{ needId: string }> = ({ needId }) => {
     title: need?.title,
     description: need?.description,
     fk_business_category_id: need?.category.id,
-    is_visible: need?.is_visible ?? true, // Tambahkan field is_visible
+    is_visible: need?.is_visible ?? true,
   };
   console.log(initialValues);
 
@@ -42,7 +42,7 @@ const EditPermintaanForm: React.FC<{ needId: string }> = ({ needId }) => {
     title: Yup.string().required("Title wajib diisi."),
     description: Yup.string().required("Deskripsi wajib diisi."),
     fk_business_category_id: Yup.number(),
-    is_visible: Yup.boolean().required("Visibility wajib diisi."), // Tambahkan validasi untuk is_visible
+    is_visible: Yup.boolean().required("Visibility wajib diisi."),
   });
 
   async function handleSubmit(values: typeof initialValues) {
