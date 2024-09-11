@@ -90,6 +90,7 @@ const LandingMainContain = () => {
           {/* Temukan Kebutuhan Card Benefit */}
           <a href="#Temukan-Kebutuhan" className="block">
             <div
+              data-testid="action-temukan-kebutuhan"
               className={`w-[200px] shrink-0 flex flex-col items-end justify-start gap-[13px] z-[4] text-center text-9xl text-black font-para-date`}
             >
               <Image
@@ -108,6 +109,7 @@ const LandingMainContain = () => {
           {/* Temukan Pembeli Card Benefit */}
           <a href="#Temukan-Pembeli" className="block">
             <div
+              data-testid="action-temukan-pembeli"
               className={`w-[200px] shrink-0 flex flex-col items-end justify-start gap-[13px] z-[4] text-center text-9xl text-black font-para-date`}
             >
               <Image
@@ -126,6 +128,7 @@ const LandingMainContain = () => {
           {/* Info UMKM Card Benefit */}
           <a href="#Info-UMKM" className="block">
             <div
+              data-testid="action-info-umkm"
               className={`w-[200px] shrink-0 flex flex-col items-end justify-start gap-[13px] z-[4] text-center text-9xl text-black font-para-date`}
             >
               <Image
