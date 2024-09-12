@@ -12,7 +12,15 @@ const EditBisnis3 = ({ submit, prev, data }: any) => {
   };
 
   const validationSchema = Yup.object({
-    photo_url: Yup.mixed().required('Foto bisnis wajib diunggah.'),
+    photo_url: Yup.mixed()
+      .required('Foto bisnis wajib diunggah.')
+      .test(
+        'fileFormat',
+        'Format file tidak didukung. Hanya file .jpg, .jpeg, .png, dan .webp yang diperbolehkan.',
+        (value) => {
+          return value instanceof File && ['image/jpg', 'image/jpeg', 'image/png', 'image/webp'].includes(value.type);
+        }
+      ),
   });
 
   const handleSubmit = (values: any) => {
@@ -43,6 +51,7 @@ const EditBisnis3 = ({ submit, prev, data }: any) => {
                   id="photo_url_edit"
                   name="photo_url"
                   type="file"
+                  accept=".jpg,.jpeg,.png,.webp"
                   onChange={(event) => {
                     if (
                       event.currentTarget.files &&
