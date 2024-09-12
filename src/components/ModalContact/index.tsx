@@ -3,6 +3,7 @@ import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import { ContactInfo } from "./types";
 import useFetchProfileId from "@/hooks/useFetchProfileId";
+import Image from "next/image"; // Tambahkan import ini
 
 interface ModalContactProps {
   open: boolean;
@@ -30,26 +31,32 @@ const ModalContact: React.FC<ModalContactProps> = ({
             <>
               <p className="mb-6">Anda ingin menghubungi kami via:</p>
               <div className="flex flex-col gap-4">
-                <Button
-                  variant="contained"
-                  color="primary"
+                <a
                   href={`mailto:${profileId?.email}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  disabled={!profileId}
+                  className="flex justify-center items-center"
                 >
-                  {profileId?.email || "Email"}
-                </Button>
-                <Button
-                  variant="contained"
-                  color="primary"
+                  <Image
+                    src="/outlook.svg"
+                    alt="Email Icon"
+                    width={60}
+                    height={60}
+                  />
+                </a>
+                <a
                   href={`https://wa.me/${profileId?.phone}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  disabled={!profileId}
+                  className="flex justify-center items-center"
                 >
-                  {profileId?.phone || "Phone"}
-                </Button>
+                  <Image
+                    src="/whatsapp.svg"
+                    alt="Phone Icon"
+                    width={60}
+                    height={60}
+                  />
+                </a>
               </div>
             </>
           )}
