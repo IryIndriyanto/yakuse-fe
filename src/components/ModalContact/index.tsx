@@ -21,7 +21,7 @@ const ModalContact: React.FC<ModalContactProps> = ({
   return (
     <Modal open={open} onClose={onClose}>
       <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-        <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+        <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md mx-4 sm:w-96 md:w-1/2 lg:w-1/3">
           <h2 className="text-xl font-bold mb-4">Hubungi Kami</h2>
           {loadingId ? (
             <p>Loading...</p>
@@ -60,7 +60,7 @@ const ModalContact: React.FC<ModalContactProps> = ({
               </div>
             </>
           )}
-          <div className="flex justify-end mt-4">
+          <div className="flex justify-end mt-4 md:justify-center sm:justify-center">
             <Button onClick={onClose} variant="outlined">
               Tutup
             </Button>
