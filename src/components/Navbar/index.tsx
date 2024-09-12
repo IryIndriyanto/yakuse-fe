@@ -5,21 +5,21 @@ import { useRouter } from "next/navigation";
 import useFetchProfile from "../../hooks/useFetchProfile";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { FaBars, FaTimes } from "react-icons/fa"; // Import icon hamburger dan close
+import { FaBars, FaTimes } from "react-icons/fa";
 
 const Navbar = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
-  const [menuVisible, setMenuVisible] = useState(false); // State untuk visibilitas menu
+  const [menuVisible, setMenuVisible] = useState(false);
   const router = useRouter();
   const dropdownRef = useRef(null);
-  const menuRef = useRef(null); // Ref untuk menu dropdown
+  const menuRef = useRef(null);
   const { profile, loading } = useFetchProfile();
 
   const currentPath = usePathname();
 
   const tabs = [
-    { name: "Temukan Kebutuhan", href: "/kebutuhan" },
-    { name: "Temukan Pembeli", href: "/pembeli" },
+    { name: "Temukan Bisnis", href: "/kebutuhan" },
+    { name: "Temukan Permintaan", href: "/pembeli" },
     // { name: "Info UMKM", href: "/umkm" }, // Belum ada
   ];
 
