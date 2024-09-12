@@ -6,7 +6,10 @@ interface ProfileCardOtherUserProps {
   business: OtherUserBusiness | null;
 }
 
-const ProfileCardOtherUser = ({ profileId, business }: ProfileCardOtherUserProps) => {
+const ProfileCardOtherUser = ({
+  profileId,
+  business,
+}: ProfileCardOtherUserProps) => {
   if (!profileId) {
     return <div>No profile data available</div>;
   }
@@ -30,30 +33,36 @@ const ProfileCardOtherUser = ({ profileId, business }: ProfileCardOtherUserProps
                   <Image src="/star.svg" alt="star" width={50} height={50} />
                   <div className="flex items-end">
                     <p className="text-[41px] font-bold">
-                      {business?.avg_rating !== undefined ? business.avg_rating : "0.0"}
+                      {business?.avg_rating !== undefined
+                        ? business.avg_rating
+                        : "0"}
                       <span className="text-[#FD5F00]">/</span>
                     </p>
-                    <p className="text-[#FD5F00] text-[24px] font-bold">5.0</p>
+                    <p className="text-[#FD5F00] text-[24px] font-bold">5</p>
                   </div>
                 </div>
               </div>
 
               <div className="flex flex-col gap-4">
                 <div>
-                  <h1 className="text-[41px] font-bold">{profileId?.fullname}</h1>
+                  <h1 className="text-[41px] font-bold">
+                    {profileId?.fullname}
+                  </h1>
                 </div>
                 <div className="flex">
                   <div className="flex flex-col gap-4">
                     <div>
-                      <p className="text-[#40ABFF] font-bold">
-                        Contact
-                      </p>
+                      <p className="text-[#40ABFF] font-bold">Contact</p>
                     </div>
                     <div className="flex flex-col gap-2">
                       <div className="flex items-start gap-2">
                         <p className="w-20">Email:</p>
                         <p className="text-[#40ABFF]">
-                          <a href={`mailto:${profileId?.email}`}>
+                          <a
+                            href={`mailto:${profileId?.email}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
                             {profileId?.email}
                           </a>
                         </p>
@@ -62,17 +71,23 @@ const ProfileCardOtherUser = ({ profileId, business }: ProfileCardOtherUserProps
                         <p className="w-20">Phone:</p>
                         <p className="text-[#40ABFF]">
                           {profileId?.phone ? (
-                            <a href={`https://wa.me/${profileId?.phone}`}>
+                            <a
+                              href={`https://wa.me/${profileId?.phone}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
                               {profileId?.phone}
                             </a>
                           ) : (
-                            <span style={{ color: 'black' }}>-</span>
+                            <span style={{ color: "black" }}>-</span>
                           )}
                         </p>
                       </div>
                       <div className="flex items-start gap-2">
                         <p className="w-20">Alamat:</p>
-                        <p className="max-w-[500px]">{profileId?.address || "-"}</p>
+                        <p className="max-w-[500px]">
+                          {profileId?.address || "-"}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -85,7 +100,9 @@ const ProfileCardOtherUser = ({ profileId, business }: ProfileCardOtherUserProps
         <div className="font-serif my-5">
           <h3 className="text-xl font-semibold">Tentang Saya</h3>
           <p className="text-lg text-justify py-4">
-            {profileId?.about_me_list ? profileId?.about_me_list : "Belum ada informasi tentang saya."}
+            {profileId?.about_me_list
+              ? profileId?.about_me_list
+              : "Belum ada informasi tentang saya."}
           </p>
         </div>
       </div>
