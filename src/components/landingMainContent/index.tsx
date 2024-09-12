@@ -22,7 +22,7 @@ const LandingMainContain = () => {
         {/* Main description */}
         <div className="self-stretch flex flex-col items-start justify-start gap-[50px] sm:gap-[25px]">
           <h2 className="m-0 self-stretch relative text-inherit font-semibold font-[inherit] text-29xl leading-[54px] sm:text-19xl sm:leading-[43px] xs:text-5xl xs:leading-[24px] text-center">
-            Temukan kebutuhan bisnismu bersama YAKUSE!
+            Temukan Bisnismu bersama YAKUSE!
           </h2>
 
           {/* Main description */}
@@ -87,38 +87,38 @@ const LandingMainContain = () => {
         </h3>
 
         <div className="w-[1185px] overflow-x-auto flex flex-row items-center justify-between gap-[-200px] max-w-full text-lg">
-          {/* Temukan Kebutuhan Card Benefit */}
-          <a href="#Temukan-Kebutuhan" className="block">
+          {/* Temukan Bisnis Card Benefit */}
+          <a href="#Temukan-Bisnis" className="block">
             <div
               className={`w-[200px] shrink-0 flex flex-col items-end justify-start gap-[13px] z-[4] text-center text-9xl text-black font-para-date`}
             >
               <Image
                 className="relative overflow-hidden shrink-0 object-cover"
                 src="/cardbenefit-1@2x.png"
-                alt="Temukan Kebutuhan"
+                alt="Temukan Bisnis"
                 width={200}
                 height={195}
               />
               <div className="self-stretch relative leading-[34px] mq450:text-3xl mq450:leading-[27px]">
-                Temukan Kebutuhan
+                Temukan Bisnis
               </div>
             </div>
           </a>
 
-          {/* Temukan Pembeli Card Benefit */}
-          <a href="#Temukan-Pembeli" className="block">
+          {/* Temukan Permintaan Card Benefit */}
+          <a href="#Temukan-Permintaan" className="block">
             <div
               className={`w-[200px] shrink-0 flex flex-col items-end justify-start gap-[13px] z-[4] text-center text-9xl text-black font-para-date`}
             >
               <Image
                 className="relative overflow-hidden shrink-0 object-cover"
                 src="/cardbenefit-2@2x.png"
-                alt="Temukan Pembeli"
+                alt="Temukan Permintaan"
                 width={200}
                 height={195}
               />
               <div className="self-stretch relative leading-[34px] mq450:text-3xl mq450:leading-[27px]">
-                Temukan Pembeli
+                Temukan Permintaan
               </div>
             </div>
           </a>
@@ -145,14 +145,14 @@ const LandingMainContain = () => {
 
       {/* Benefit List with description Section */}
       <section className="w-[1520px] rounded-[50px] overflow-hidden flex flex-col items-center justify-start py-[100px] px-5 box-border gap-[100px] max-w-full text-center  font-para-date gap-[50px] mq825:pt-[65px] mq825:pb-[65px] mq825:box-border gap-[25px]">
-        {/*  Temukan Kebutuhan */}
+        {/*  Temukan Bisnis */}
         <div
-          id="Temukan-Kebutuhan"
+          id="Temukan-Bisnis"
           className="w-[1520px] flex flex-row items-start justify-start gap-[50px] max-w-full gap-[25px] mq1450:flex-wrap"
         >
           <div className="flex-1 flex flex-col items-center justify-start gap-[20px] pt-[118.5px] px-0 pb-0 box-border min-w-[695px] max-w-full mq825:min-w-full">
             <h4 className="text-29xl text-black font-semibold">
-              Temukan Kebutuhan
+              Temukan Bisnis
             </h4>
             <div className="text-14xl text-black">
               Fitur yang memungkinkan UMKM untuk mencari dan menemukan produk
@@ -162,30 +162,30 @@ const LandingMainContain = () => {
           <Image
             className="relative max-h-full max-w-full shrink-0 object-cover  mq1450:flex-1"
             src="/frame-80-1@2x.png"
-            alt="Temukan Kebutuhan"
+            alt="Temukan Bisnis"
             width={400}
             height={400}
           />
         </div>
 
-        {/* Temukan Pembeli */}
+        {/* Temukan Permintaan */}
         <div
-          id="Temukan-Pembeli"
+          id="Temukan-Permintaan"
           className="w-[1520px] flex flex-row-reverse items-start justify-start gap-[50px] max-w-full gap-[25px] mq1450:flex-wrap"
         >
           <div className="flex-1 flex flex-col items-center justify-start gap-[20px] pt-[118.5px] px-0 pb-0 box-border min-w-[695px] max-w-full mq825:min-w-full">
             <h4 className="text-29xl text-black font-semibold">
-              Temukan Pembeli
+              Temukan Permintaan
             </h4>
             <div className="text-14xl text-black">
               Fitur yang memungkinkan UMKM untuk menemukan peluang bisnis dengan
-              melihat kebutuhan pelaku UMKM lainnya
+              melihat Bisnis UMKM lainnya
             </div>
           </div>
           <Image
             className="relative max-h-full shrink-0 object-cover max-w-full mq1450:flex-1"
             src="/frame-80-2@2x.png"
-            alt="Temukan Pembeli"
+            alt="Temukan Permintaan"
             width={400}
             height={400}
           />
