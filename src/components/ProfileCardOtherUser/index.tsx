@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { OtherUserProfile, OtherUserBusiness } from "./types";
+import DOMPurify from "dompurify";
 
 interface ProfileCardOtherUserProps {
   profileId: OtherUserProfile | null;
@@ -14,14 +15,18 @@ const ProfileCardOtherUser = ({
     return <div>No profile data available</div>;
   }
 
+  const sanitizedAboutMe = DOMPurify.sanitize(
+    (profileId.about_me_list?.join("\n") || "").replace(/\n/g, "<br><br>")
+  );
+
   return (
-    <div className="flex flex-col justify-between bg-[#E5F5FF] rounded-[10px] p-10 w-[1200px] font-serif min-h-[500px]">
+    <div className="flex flex-col justify-between bg-[#E5F5FF] rounded-[10px] p-10 w-[1200px] font-serif min-h-[500px] lg:max-w-[750px]">
       <div>
         <div>
-          <div className="flex justify-between gap-10">
-            <div className="flex justify-center gap-10">
+          <div className="flex justify-between gap-10 md:justify-center">
+            <div className="flex justify-center gap-10 md:flex-col">
               <div className="flex flex-col gap-2">
-                <div>
+                <div className="sm:flex sm:justify-center">
                   <Image
                     src={profileId?.photo_url || "/default-gray-photo.webp"}
                     alt="foto-user"
@@ -29,65 +34,69 @@ const ProfileCardOtherUser = ({
                     height={250}
                   />
                 </div>
-                <div className="flex gap-2 items-center">
-                  <Image src="/star.svg" alt="star" width={50} height={50} />
+                <div className="flex gap-2 items-center sm:justify-center">
+                  <Image src="/star.svg" alt="star" width={40} height={40} />
                   <div className="flex items-end">
                     <p className="text-[41px] font-bold">
                       {business?.avg_rating !== undefined
                         ? business.avg_rating
                         : "0"}
-                      <span className="text-[#FD5F00]">/</span>
+                      {/* <span className="text-[#FD5F00]">/</span> */}
                     </p>
-                    <p className="text-[#FD5F00] text-[24px] font-bold">5</p>
+                    <p className="text-[#FD5F00] text-[24px] font-bold">/5</p>
                   </div>
                 </div>
               </div>
 
-              <div className="flex flex-col gap-4">
-                <div>
-                  <h1 className="text-[41px] font-bold">
-                    {profileId?.fullname}
-                  </h1>
-                </div>
-                <div className="flex">
-                  <div className="flex flex-col gap-4">
-                    <div>
-                      <p className="text-[#40ABFF] font-bold">Contact</p>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                      <div className="flex items-start gap-2">
-                        <p className="w-20">Email:</p>
-                        <p className="text-[#40ABFF]">
-                          <a
-                            href={`mailto:${profileId?.email}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            {profileId?.email}
-                          </a>
+              <div className="flex gap-10">
+                <div className="flex flex-col gap-4">
+                  <div>
+                    <h1 className="text-[41px] font-bold lg:text-[28px]">
+                      {profileId?.fullname}
+                    </h1>
+                  </div>
+                  <div className="flex">
+                    <div className="flex flex-col gap-4">
+                      <div>
+                        <p className="text-[#40ABFF] font-bold text-xl">
+                          Contact
                         </p>
                       </div>
-                      <div className="flex items-start gap-2">
-                        <p className="w-20">Phone:</p>
-                        <p className="text-[#40ABFF]">
-                          {profileId?.phone ? (
+                      <div className="flex flex-col gap-2 md:max-w-[700px]">
+                        <div className="flex items-start gap-2">
+                          <p className="w-20 text-xl">Email:</p>
+                          <p className="text-[#40ABFF] text-xl">
                             <a
-                              href={`https://wa.me/${profileId?.phone}`}
+                              href={`mailto:${profileId?.email}`}
                               target="_blank"
                               rel="noopener noreferrer"
                             >
-                              {profileId?.phone}
+                              {profileId?.email}
                             </a>
-                          ) : (
-                            <span style={{ color: "black" }}>-</span>
-                          )}
-                        </p>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <p className="w-20">Alamat:</p>
-                        <p className="max-w-[500px]">
-                          {profileId?.address || "-"}
-                        </p>
+                          </p>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <p className="w-20 text-xl">Phone:</p>
+                          <p className="text-[#40ABFF] text-xl">
+                            {profileId?.phone ? (
+                              <a
+                                href={`https://wa.me/${profileId?.phone}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {profileId?.phone}
+                              </a>
+                            ) : (
+                              <span style={{ color: "black" }}>-</span>
+                            )}
+                          </p>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <p className="w-20 text-xl">Alamat:</p>
+                          <p className="max-w-[500px] text-justify lg:w-[300px] text-xl">
+                            {profileId?.address || "-"}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -99,11 +108,15 @@ const ProfileCardOtherUser = ({
 
         <div className="font-serif my-5">
           <h3 className="text-xl font-semibold">Tentang Saya</h3>
-          <p className="text-lg text-justify py-4">
+          <p
+            className="text-lg text-justify py-4"
+            dangerouslySetInnerHTML={{ __html: sanitizedAboutMe }}
+          />
+          {/* <p className="text-lg text-justify py-4">
             {profileId?.about_me_list
               ? profileId?.about_me_list
               : "Belum ada informasi tentang saya."}
-          </p>
+          </p> */}
         </div>
       </div>
     </div>
