@@ -78,7 +78,7 @@ const BusinessCard = ({ business }: BusinessCardProps) => {
         />
       </div>
 
-      <div className="flex flex-col gap-3 hover:cursor-pointer" onClick={handleBusinessClick}>
+      <div className="flex flex-col gap-3 hover:cursor-pointer overflow-auto max-h-[700px] hide-scrollbar" onClick={handleBusinessClick}>
         <Image
           src={business.photo_url || "/empty-business-image.png" }
           alt="business"

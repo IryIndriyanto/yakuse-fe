@@ -105,7 +105,7 @@
 
     return (
       <>
-        <main className="w-full h-screen flex justify-between place-items-start gap-10 p-10">
+        <main className="w-full h-auto flex justify-between place-items-start gap-10 p-10">
           <Toaster />
           <div className="w-1/3 sm:w-full md:w-full flex flex-col justify-center flex-wrap gap-5 ">
             <Searchbar
