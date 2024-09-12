@@ -58,7 +58,7 @@ const BisniskuCardListOtherUser = ({
               <p className="text-[18px] text-[#005792]">
                 #{businessId.category}
               </p>
-              <p className="text-[18px] text-[#525455]">
+              <p className="text-[18px] text-[#525455] md:hidden">
                 {businessId.location}
               </p>
             </div>

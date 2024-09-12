@@ -11,6 +11,7 @@ import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import ContactButton from "@/components/ContactButton";
 import ModalContact from "@/components/ModalContact";
+import DOMPurify from "dompurify";
 
 const DetailBisnisOtherUser = ({
   params,
@@ -46,6 +47,10 @@ const DetailBisnisOtherUser = ({
     setContactModalOpen(false);
     setIsButtonLoading(false);
   };
+
+  const sanitizedDescription = DOMPurify.sanitize(
+    (business?.description_list?.join("\n") || "").replace(/\n/g, "<br><br>")
+  );
 
   if (loading)
     return (
@@ -100,10 +105,7 @@ const DetailBisnisOtherUser = ({
           <div className="w-[500px] text-justify lg:w-[700px] lg:mb-10">
             <p
               dangerouslySetInnerHTML={{
-                __html: (business?.description_list?.join("\n") || "").replace(
-                  /\n/g,
-                  "<br><br>"
-                ),
+                __html: sanitizedDescription,
               }}
             />
           </div>
