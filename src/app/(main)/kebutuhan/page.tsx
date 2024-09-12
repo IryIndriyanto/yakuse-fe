@@ -4,7 +4,8 @@
   import Recommendation from "@/components/Recommendation";
   import BusinessCard from "@/components/BusinessCard";
   import { useState, useEffect } from "react";
-  // import { bisnis } from "@/data/mock";
+  import ButtonList from "@/components/ButtonList";
+  import { useRouter } from "next/navigation";
   import { bisnisType } from "@/data/type";
   import { Toaster } from "react-hot-toast";
   import { fetchAllBusiness, fetchBusinessById } from "@/data/api";
@@ -18,6 +19,7 @@
       useState<bisnisType | null>(null);
     const [shown, setShown] = useState<boolean>(false);
     const [activeFilters, setFilters] = useState<string[]>([]);
+    const router = useRouter();
 
     async function fetchData() {
       try {
@@ -102,9 +104,9 @@
 
     return (
       <>
-        <main className="w-5/6 sm:w-full max-w-[1500px] flex justify-start gap-5 p-10 min-h-[75vh]">
+        <main className="w-full sm:w-full flex justify-between place-items-start gap-10 p-10">
           <Toaster />
-          <div className="w-2/5 flex flex-col flex-wrap gap-3 ">
+          <div className="w-1/3 flex flex-col flex-wrap gap-5 ">
             <Searchbar
               search={search}
               shown={shown}
@@ -117,6 +119,15 @@
               filter={activeFilters}
               onClick={handleBusinessClick}
             />
+            <div className="flex flex-col gap-5 justify-start">
+            <p className="text-xl text-center text-b-two font-semibold capitalize">Belum menemukan keiinginanmu</p>
+             <ButtonList
+              onClick={() => router.push("/need-form")}
+              label={"Daftarin Permintaan"}
+              iconSrc="/icon-plus.svg"
+              variant="Daftar"
+            />
+            </div>
           </div>
           <BusinessCard business={activeBusinessData} />
         </main>

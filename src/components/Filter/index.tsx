@@ -1,7 +1,8 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { BASE_URL } from "@/utils/constant";
+import React, { useState, useEffect } from "react";
+import useFetchCategory from "@/hooks/useFetchCategory";
+import { CategoryProps } from "./types";
+import { Skeleton } from "../ui/skeleton";
 
 interface FilterProps {
   setFilter: (filter: string[]) => void;
@@ -17,29 +18,20 @@ export default function Filter({ setFilter }: FilterProps) {
   const [tabs, setTabs] = useState<Tab[]>([]);
   const [activeTabs, setActiveTabs] = useState<string[]>([]);
   
+  // Fetching categories using the custom hook
+  const { category, loadingCategory, errorCategory } = useFetchCategory();
+
   useEffect(() => {
-    const fetchTabs = async () => {
-      try {
-        const token = localStorage.getItem("access_token");
-        console.log("Access Token:", token);
-        const response = await axios.get(`${BASE_URL}/business_category/`, {
-          headers: {
-            Authorization: `Bearer ${token}`, 
-          },
-        }); 
-        const tabData = response.data.map((item: any) => ({
-          id: item.id,
-          name: item.name,
-          path: item.name.toLowerCase(),
-        }));
-        setTabs(tabData);
-      } catch (err) {
-        console.error("Error fetching data:", err);
-      }
-    };
-  
-    fetchTabs();
-  }, []);
+    if (category) {
+      const tabData = category.map((item: CategoryProps) => ({
+        id: item.id,
+        name: item.name,
+        path: item.name.toLowerCase(),
+      }));
+      setTabs(tabData);
+    }
+  }, [category]);
+
   const handleFilter = (item: string) => {
     const updatedTabs = activeTabs.includes(item)
       ? activeTabs.filter((tab) => tab !== item)
@@ -49,23 +41,30 @@ export default function Filter({ setFilter }: FilterProps) {
     setFilter(updatedTabs);
   };
 
+  if (loadingCategory) return (
+  <div className="flex justify-items-start overflow-x-auto gap-5 max-w-full pt-2 hide-scrollbar">
+      {Array.from({ length: 5 }).map((_, index) => (
+        <Skeleton key={index} className="rounded-2xl w-[6vw] h-4" />
+      ))}
+  </div>
+  )
+  if (errorCategory) return <p>{errorCategory}</p>;
+
   return (
-    <>
-      <div className="flex justify-items-start overflow-x-auto gap-5 max-w-full pt-2 hide-scrollbar">
-        {tabs.map((tab, index) => (
-          <button
-            key={index}
-            onClick={() => handleFilter(tab.path)}  
-            className={`${
-              activeTabs.includes(tab.path)
-                ? "bg-orange-500 text-white"
-                : "bg-white text-[#525455] border-[#948A8A]"
-            } rounded-full py-2 px-4 border-[1px]`}
-          >
-            {tab.name}
-          </button>
-        ))}
-      </div>
-    </>
+    <div className="flex justify-items-start overflow-x-auto gap-5 max-w-full pt-2 hide-scrollbar">
+      {tabs.map((tab, index) => (
+        <button
+          key={index}
+          onClick={() => handleFilter(tab.path)}
+          className={`${
+            activeTabs.includes(tab.path)
+              ? "bg-orange-500 text-white"
+              : "bg-white text-[#525455] border-[#948A8A]"
+          } rounded-full py-2 px-4 border-[1px]`}
+        >
+          {tab.name}
+        </button>
+      ))}
+    </div>
   );
 }
