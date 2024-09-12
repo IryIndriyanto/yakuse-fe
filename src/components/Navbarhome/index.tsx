@@ -9,8 +9,8 @@ const Navbar = () => {
   const currentPath = usePathname();
   
   const tabs = [
-    { name: "Temukan Kebutuhan", href: "/kebutuhan" },
-    { name: "Temukan Pembeli", href: "/pembeli" },
+    { name: "Temukan Kebutuhan", href: "/bisnis" },
+    { name: "Temukan Pembeli", href: "/permintaan" },
     { name: "Info UMKM", href: "/umkm" }
   ]; 
 

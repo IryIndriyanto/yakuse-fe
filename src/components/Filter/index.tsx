@@ -17,6 +17,7 @@ interface Tab {
 export default function Filter({ setFilter }: FilterProps) {
   const [tabs, setTabs] = useState<Tab[]>([]);
   const [activeTabs, setActiveTabs] = useState<string[]>([]);
+  const [length, setLength] = useState(5);
   
   // Fetching categories using the custom hook
   const { category, loadingCategory, errorCategory } = useFetchCategory();
@@ -42,9 +43,9 @@ export default function Filter({ setFilter }: FilterProps) {
   };
 
   if (loadingCategory) return (
-  <div className="flex justify-items-start overflow-x-auto gap-5 max-w-full pt-2 hide-scrollbar">
-      {Array.from({ length: 5 }).map((_, index) => (
-        <Skeleton key={index} className="rounded-2xl w-[6vw] h-4" />
+  <div className="flex justify-center items-center overflow-x-auto gap-5 max-w-full pt-2 hide-scrollbar">
+      {Array.from({length:3}).map((_, index) => (
+        <Skeleton key={index} className="rounded-2xl w-20 h-7 " />
       ))}
   </div>
   )

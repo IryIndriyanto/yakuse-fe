@@ -15,8 +15,8 @@ const Navbar = () => {
   const currentPath = usePathname();
 
   const tabs = [
-    { name: "Temukan Kebutuhan", href: "/kebutuhan" },
-    { name: "Temukan Pembeli", href: "/pembeli" },
+    { name: "Temukan Kebutuhan", href: "/bisnis" },
+    { name: "Temukan Pembeli", href: "/permintaan" },
     { name: "Info UMKM", href: "/umkm" },
   ];
 
@@ -70,7 +70,7 @@ const Navbar = () => {
     <div className="font-serif bg-[#FCFCFC] py-8 flex justify-between items-center px-[48px]">
       <div className="flex flex-col justify-center">
         <div>
-          <h1 className="text-[38px] font-bold text-[#40ABFF] cursor-pointer" onClick={() => handleNavigation('/kebutuhan')}>YAKUSE</h1>
+          <h1 className="text-[38px] font-bold text-[#40ABFF] cursor-pointer" onClick={() => handleNavigation('/bisnis')}>YAKUSE</h1>
         </div>
       </div>
 

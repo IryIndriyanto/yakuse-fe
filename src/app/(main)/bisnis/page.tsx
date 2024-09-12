@@ -9,6 +9,7 @@
   import { bisnisType } from "@/data/type";
   import { Toaster } from "react-hot-toast";
   import { fetchAllBusiness, fetchBusinessById } from "@/data/api";
+  import AccordionBusinessDetail from "@/components/AccordionBusinessDetail";
 
   export default function PageKebutuhan() {
     const [search, setSearch] = useState<string>("");
@@ -104,9 +105,9 @@
 
     return (
       <>
-        <main className="w-full sm:w-full flex justify-between place-items-start gap-10 p-10">
+        <main className="w-full h-screen flex justify-between place-items-start gap-10 p-10">
           <Toaster />
-          <div className="w-1/3 flex flex-col flex-wrap gap-5 ">
+          <div className="w-1/3 sm:w-full md:w-full flex flex-col justify-center flex-wrap gap-5 ">
             <Searchbar
               search={search}
               shown={shown}
@@ -114,12 +115,16 @@
               fetchData={handleSearch}
             />
             <Filter setFilter={setFilters} />
+            <AccordionBusinessDetail
+               data={filteredData}
+               filter={activeFilters}
+               />
             <Recommendation
               data={filteredData}
               filter={activeFilters}
               onClick={handleBusinessClick}
             />
-            <div className="flex flex-col gap-5 justify-start">
+            <div className="flex flex-col gap-5 justify-start pt-14">
             <p className="text-xl text-center text-b-two font-semibold capitalize">Belum menemukan keiinginanmu</p>
              <ButtonList
               onClick={() => router.push("/need-form")}

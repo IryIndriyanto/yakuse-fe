@@ -11,7 +11,7 @@ import {
 async function apiGetRequest<T>(url: string, token: string): Promise<T> {
   try {
     const response = await axios.get(url, {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { Authorization: `Bearer ${localStorage.getItem("access_token")}` },
     });
     return response.data;
   } catch (error) {
