@@ -11,16 +11,18 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import * as Yup from "yup";
+import useFetchProfile from "@/hooks/useFetchProfile";
 
 const EditProfile = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isDisable, setIsDisable] = useState(false);
+  const { profile } = useFetchProfile();
   const router = useRouter();
 
   const initialValues = {
-    phone: "",
-    address: "",
-    about_me: "",
+    phone: profile?.phone || "",
+    address: profile?.address || "",
+    about_me: Array.isArray(profile?.about_me_list) ? profile?.about_me_list.join(", ") : profile?.about_me_list || "",
   };
 
   const validationSchema = Yup.object({
@@ -35,9 +37,12 @@ const EditProfile = () => {
   });
 
   async function handleEditProfile(values: typeof initialValues) {
+    if (Array.isArray(values.about_me)) {
+      values.about_me = values.about_me.join(", ");
+    }
     setIsLoading(true);
     setIsDisable(true);
-
+    
     try {
       const response = await axios.put(`${BASE_URL}/user/edit`, values, {
         headers: {
@@ -73,11 +78,17 @@ const EditProfile = () => {
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={handleEditProfile}
+          enableReinitialize={true}
         >
           {({ values, handleChange, handleSubmit }) => {
             return (
               <form
-                onSubmit={handleSubmit}
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  console.log("Submit button clicked");
+                  console.log("Form values on submit:", values);
+                  handleSubmit(e);
+                }}
                 className="flex flex-col justify-center items-center gap-6 w-full mt-[50px]"
               >
                 <div className="w-full">
