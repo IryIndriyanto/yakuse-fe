@@ -41,7 +41,7 @@ const PermintaankuCardListOtherUser = ({
       {visibleNeeds.map((needsId: MyNeedId) => (
         <div
           key={needsId.id}
-          className="flex items-center justify-between font-serif bg-[#E5F5FF] rounded-[8px] p-4 transform hover:scale-105 transition-all duration-300 lg:mx-5"
+          className="flex items-center justify-between font-serif bg-[#E5F5FF] rounded-[8px] p-4 transform hover:scale-105 transition-all duration-300 md:flex-col"
           onClick={() => handleCardClick(needsId.id.toString())} // Convert id to string
         >
           <div className="flex items-center gap-8">
