@@ -10,6 +10,7 @@ import { FaBars, FaTimes } from "react-icons/fa";
 const Navbar = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
+  const [profileDropdownVisible, setProfileDropdownVisible] = useState(false);
   const router = useRouter();
   const dropdownRef = useRef(null);
   const menuRef = useRef(null);
@@ -29,19 +30,22 @@ const Navbar = () => {
 
   const handleProfile = () => {
     router.push("/profile-user");
-    setDropdownVisible(false);
+    setProfileDropdownVisible(false);
+    setMenuVisible(false);
   };
 
   const handlePhotoProfile = () => {
     router.push("/edit-profile-photo");
-    setDropdownVisible(false);
+    setProfileDropdownVisible(false);
+    setMenuVisible(false);
   };
 
   const handleLogout = () => {
     localStorage.removeItem("access_token");
     console.log("Token telah dihapus, user logout");
     router.push("/login");
-    setDropdownVisible(false);
+    setProfileDropdownVisible(false);
+    setMenuVisible(false);
   };
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -66,6 +70,10 @@ const Navbar = () => {
 
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
+  };
+
+  const toggleProfileDropdown = () => {
+    setProfileDropdownVisible(!profileDropdownVisible);
   };
 
   useEffect(() => {
@@ -109,7 +117,7 @@ const Navbar = () => {
         ))}
       </div>
 
-      <div className="flex items-center gap-4 sm:relative sm:left-[40px]">
+      <div className="flex items-center gap-4 sm:relative sm:left-[40px] md:hidden">
         <div className="cursor-pointer text-right" onClick={toggleDropdown}>
           <p className="text-[18px] font-bold">{profile?.username}</p>
           <p className="text-[12px]">UMKM</p>
@@ -169,6 +177,46 @@ const Navbar = () => {
                   {tab.name}
                 </li>
               ))}
+              <li
+                className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                onClick={toggleProfileDropdown}
+              >
+                <div className="flex items-center">
+                  <Image
+                    className="rounded-full w-[40px] h-[40px] bg-image bg-cover bg-center object-cover cursor-pointer"
+                    src={profile?.photo_url || "/default-gray-photo.webp"}
+                    alt="user"
+                    width={40}
+                    height={40}
+                  />
+                  <div className="ml-2">
+                    <p className="text-[18px] font-bold">{profile?.username}</p>
+                    <p className="text-[12px]">UMKM</p>
+                  </div>
+                </div>
+              </li>
+              {profileDropdownVisible && (
+                <ul className="pl-4">
+                  <li
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                    onClick={handleProfile}
+                  >
+                    <p>Profile</p>
+                  </li>
+                  <li
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                    onClick={handlePhotoProfile}
+                  >
+                    <p>Ubah Foto Profile</p>
+                  </li>
+                  <li
+                    className="px-4 py-2 text-red-500 hover:bg-gray-100 cursor-pointer"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </li>
+                </ul>
+              )}
             </ul>
           </div>
         )}
