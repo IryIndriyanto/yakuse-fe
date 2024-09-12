@@ -3,6 +3,7 @@ import { bisnisType } from "@/data/type";
 import useFetchBusinesses from "@/hooks/useFetchBusiness";
 import Image from "next/image";
 import React, { useState } from "react";
+import { Skeleton } from "@/components/ui/skeleton"
 
 interface rekomendasiDetailProps {
   id: string;
@@ -27,52 +28,48 @@ export function RekomendasiCard({
   handleClick,
   isActive,
 }: rekomendasiDetailProps) {
-  // const { loadingBusiness, errorBusiness } = useFetchBusinesses();
+  const { loadingBusiness, errorBusiness } = useFetchBusinesses();
 
-  // if (loadingBusiness)
-  //   return (
-  //     <div className="flex flex-col justify-center items-center gap-4">
-  //       <Image
-  //         src="/loading-spinner-orange.gif"
-  //         alt="loading"
-  //         width={100}
-  //         height={100}
-  //       />
-  //       <p className="text-[20px] font-bold">Loading</p>
-  //     </div>
-  //   );
+  if (loadingBusiness)
+    return (
+      <div className={`flex justify-between items-center py-5 px-3 rounded-xl cursor-pointer  border-separate border-2`}>
+      <div className="flex flex-col rounded-2xl gap-2">
+        <Skeleton className="h-4 w-[17vw]"/>
+          <Skeleton className="h-4 w-[6vw]"/>
+      </div>
+      <Skeleton className="w-[50px] h-[50px] rounded-2xl"/>
+    </div>
+    );
 
-  // if (errorBusiness)
-  //   return (
-  //     <div className="flex flex-col justify-center items-center text-[20px] font-bold gap-4">
-  //       <Image src="/icon-error.png" alt="error" width={100} height={100} />
-  //       <p>Error: {errorBusiness}</p>
-  //     </div>
-  //   );
+  if (errorBusiness)
+    return (
+      <div className="flex flex-col justify-center items-center text-[20px] font-bold gap-4">
+        <Image src="/icon-error.png" alt="error" width={100} height={100} />
+        <p>Error: {errorBusiness}</p>
+      </div>
+    );
 
   return (
     <div
       onClick={() => handleClick(id.toString())}
-      className={`flex flex-col py-5 px-3 rounded-xl cursor-pointer ${
+      className={`flex justify-between items-center py-5 px-3 rounded-xl cursor-pointer shadow-md ${
         isActive ? "bg-blue-200" : "bg-white"
       }`}
     >
-      <div className="flex justify-between items-center rounded-2xl">
+      <div className="flex flex-col rounded-2xl">
         <h3 className="text-xl font-bold">{name}</h3>
-        <Image
-          src="/vector.png"
-          alt="vector"
-          width={8}
-          height={14}
-          className="w-2 h-2"
-        />
+        {category && (
+          <p className="w-fit h-fit font-normal text-[16px] md:text-[14px] text-b-two">
+            #{category}
+          </p>
+        )}
       </div>
-      {category && (
-        <p className="w-fit h-fit font-normal text-[16px] md:text-[14px] text-b-two">
-          #{category}
-        </p>
-      )}
-      {/* <p className="text-sm text-justify">{desc}</p> */}
+      <Image
+          src="/chevron-right.svg"
+          alt="chevron-right"
+          width={50}
+          height={50}
+        />
     </div>
   );
 }
