@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="w-full bg-[#FCFCFC] py-8 px-12 flex justify-between border-t-[1px] border-[#FD5F00]">
+    <footer className="w-full bg-[#FCFCFC] py-8 px-12 flex justify-between border-t-[1px] border-[#FD5F00] inset-x-0 bottom-0">
       <div className="flex flex-col justify-center gap-4">
         <div>
           <h1 className="text-[38px] text-blue-400 font-bold">YAKUSE</h1>

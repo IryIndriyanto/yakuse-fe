@@ -32,7 +32,7 @@ export function RekomendasiCard({
 
   if (loadingBusiness)
     return (
-      <div className={`flex justify-between items-center py-5 px-3 rounded-xl cursor-pointer  border-separate border-2`}>
+      <div className={`flex justify-between items-center py-5 px-3 rounded-xl cursor-pointer  border-separate border-2 md:hidden`}>
       <div className="flex flex-col rounded-2xl gap-2">
         <Skeleton className="h-4 w-[17vw]"/>
           <Skeleton className="h-4 w-[6vw]"/>
@@ -52,7 +52,7 @@ export function RekomendasiCard({
   return (
     <div
       onClick={() => handleClick(id.toString())}
-      className={`flex justify-between items-center py-5 px-3 rounded-xl cursor-pointer shadow-md ${
+      className={`flex justify-between items-center py-5 px-3 rounded-xl cursor-pointer shadow-md md:hidden ${
         isActive ? "bg-blue-200" : "bg-white"
       }`}
     >

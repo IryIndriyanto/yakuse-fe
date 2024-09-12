@@ -50,7 +50,7 @@ const LoginForm = ({ className }: { className: string }) => {
         if (accessToken) {
           toast.success("Login success");
           localStorage.setItem("access_token", accessToken);
-          router.push("/kebutuhan");
+          router.push("/bisnis");
         }
       } catch (error) {
         if (axios.isAxiosError(error) && error.response) {

@@ -18,8 +18,8 @@ const Navbar = () => {
   const currentPath = usePathname();
 
   const tabs = [
-    { name: "Temukan Bisnis", href: "/kebutuhan" },
-    { name: "Temukan Permintaan", href: "/pembeli" },
+    { name: "Temukan Bisnis", href: "/bisnis" },
+    { name: "Temukan Permintaan", href: "/permintaan" },
     // { name: "Info UMKM", href: "/umkm" }, // Belum ada
   ];
 

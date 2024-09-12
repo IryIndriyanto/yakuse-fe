@@ -27,7 +27,7 @@ export interface bisnisType {
     fullname: string,
     photo_url: string
   },
-  rating: number,
+  avg_rating: number,
   total_rater: number,
   rating_list: [
     {

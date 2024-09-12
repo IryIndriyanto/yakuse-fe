@@ -10,7 +10,7 @@ const config: Config = {
   theme: {
   	extend: {
   		colors: {
-  			'black': '#000',
+  			black: '#000',
   			'b-one': '#1b1c1d',
   			'b-two': '#525455',
   			'p-one': '#40abff',
@@ -19,11 +19,11 @@ const config: Config = {
   			'p-four': '#fd5f00',
   			'w-one': '#f6fceb',
   			'w-two': '#e5f5ff',
-  			'steelblue': {
+  			steelblue: {
   				'100': '#267db8',
   				'200': 'rgba(38, 125, 184, 0.09)'
   			},
-  			'orangered': '#e34500',
+  			orangered: '#e34500',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
@@ -72,12 +72,34 @@ const config: Config = {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
+  		},
+  		keyframes: {
+  			'accordion-down': {
+  				from: {
+  					height: '0'
+  				},
+  				to: {
+  					height: 'var(--radix-accordion-content-height)'
+  				}
+  			},
+  			'accordion-up': {
+  				from: {
+  					height: 'var(--radix-accordion-content-height)'
+  				},
+  				to: {
+  					height: '0'
+  				}
+  			}
+  		},
+  		animation: {
+  			'accordion-down': 'accordion-down 0.2s ease-out',
+  			'accordion-up': 'accordion-up 0.2s ease-out'
   		}
   	},
   	fontSize: {
-  		'xs': '12px',
-  		'lg': '18px',
-  		'xl': '20px',
+  		xs: '12px',
+  		lg: '18px',
+  		xl: '20px',
   		'3xl': '22px',
   		'4xl': '23px',
   		'5xl': '24px',
@@ -89,31 +111,31 @@ const config: Config = {
   		'19xl': '38px',
   		'21xl': '40px',
   		'29xl': '48px',
-  		'inherit': 'inherit'
+  		inherit: 'inherit'
   	},
   	screens: {
   		'2sm': {
   			max: '375px'
   		},
-  		'sm': {
+  		sm: {
   			max: '425px'
   		},
-  		'md': {
+  		md: {
   			max: '768px'
   		},
-  		'lg': {
+  		lg: {
   			max: '1024px'
   		},
-  		'xl': {
+  		xl: {
   			max: '1280px'
   		},
-  		'mq1450': {
+  		mq1450: {
   			raw: 'screen and (max-width: 1450px)'
   		},
-  		'mq825': {
+  		mq825: {
   			raw: 'screen and (max-width: 825px)'
   		},
-  		'mq450': {
+  		mq450: {
   			raw: 'screen and (max-width: 450px)'
   		}
   	}

@@ -21,7 +21,7 @@ const BusinessCard = ({ business }: BusinessCardProps) => {
   const router = useRouter();
 
   if (!business) return (
-    <div className="w-full h-full bg-w-two rounded-xl flex flex-col justify-items-center space-y-4 p-7">
+    <div className="w-full h-full bg-w-two rounded-xl flex flex-col justify-items-center space-y-4 p-7 md:hidden">
       <h2 className="text-5xl font-normal text-gray-800 ">
         {`<- Pilih Kebutuhanmu`}
       </h2>
@@ -48,10 +48,9 @@ const BusinessCard = ({ business }: BusinessCardProps) => {
   };
 
   return (
-    <div className="w-full h-fit bg-w-two rounded-xl flex flex-col space-y-4 p-7" >
+    <div className="w-full h-fit bg-w-two rounded-xl flex flex-col space-y-4 p-7 md:hidden" >
       <div className="flex justify-between items-center pb-5">
-        <div className="flex flex-row space-x-5 items-center">
-          <div className="flex gap-1 justify-center hover:cursor-pointer" onClick={handleProfileClick}>
+        <div className="flex gap-2 items-center">
             <Image
               src={business.owner_info.photo_url || "/default-gray-photo.webp"}
               alt="user-profile"
@@ -59,6 +58,7 @@ const BusinessCard = ({ business }: BusinessCardProps) => {
               height={96}
               className="rounded-full w-[96px] h-[96px] object-scale-down border-blue-500 border-4"
             />
+          <div className="flex gap-1 justify-center hover:cursor-pointer" onClick={handleProfileClick}>
           </div>
           <div className="flex flex-col justify-start">
             <h2 className="text-5xl font-normal text-b-two">
@@ -68,7 +68,6 @@ const BusinessCard = ({ business }: BusinessCardProps) => {
               <p className="text-sm text-gray-800 font-semibold"> {`Recommended Business `} </p>
               <RiVerifiedBadgeFill className="text-blue-500" />
             </div>
-
           </div>
         </div>
         <Image
@@ -79,7 +78,7 @@ const BusinessCard = ({ business }: BusinessCardProps) => {
         />
       </div>
 
-      <div className="flex flex-col gap-3 hover:cursor-pointer" onClick={handleBusinessClick}>
+      <div className="flex flex-col gap-3 hover:cursor-pointer overflow-auto max-h-[700px] hide-scrollbar" onClick={handleBusinessClick}>
         <Image
           src={business.photo_url || "/empty-business-image.png" }
           alt="business"
@@ -90,7 +89,7 @@ const BusinessCard = ({ business }: BusinessCardProps) => {
         <div className="flex flex-col gap-3">
           <h1 className="text-4xl font-extrabold">{business.name}</h1>
           <div className="flex gap-3 items-center">
-            <Rating name="size-small" defaultValue={business.rating} readOnly />
+            <Rating name="size-small" defaultValue={business.avg_rating} readOnly />
             <p className="text-lg font-bold">
               {business.rating_list.length} pengulas
             </p>
