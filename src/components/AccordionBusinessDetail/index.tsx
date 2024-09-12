@@ -117,10 +117,11 @@ const BusinessAccordion: React.FC<bisnisDetailProps> = ({filter,data}) => {
                           alt="user-profile"
                           width={50}
                           height={50}
-                          className="rounded-full w-[50px] h-[50px] object-scale-down border-blue-500 border-4"
+                          className="rounded-full w-[50px] h-[50px] object-scale-down border-blue-500 border-4 hover:cursor-pointer"
+                          onClick={handleProfileClick}
                         />
                         <div
-                          className="flex gap-1 justify-center hover:cursor-pointer" onClick={handleProfileClick}>
+                          className="flex gap-1 justify-center">
                         </div>
                         <div className="flex flex-col justify-start">
                           <h2 className="text-xl font-normal text-b-two">
