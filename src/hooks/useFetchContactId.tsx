@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { BASE_URL } from "../utils/constant";
-import { OtherUserProfile } from "../components/ProfileCardOtherUser/types";
+import { ContactInfo } from "../components/ModalContact/types";
 import { useRouter } from "next/navigation";
 
-const useFetchProfileId = (userId: string) => {
-  const [profileId, setProfileId] = useState<OtherUserProfile | null>(null);
-  const [fetchErrorId, setFetchErrorId] = useState<string | null>(null);
+const useFetchContactId = (userId: string) => {
+  const [contactId, setContactId] = useState<ContactInfo | null>(null);
+  const [fetchContactId, setFetchContactId] = useState<string | null>(null);
   const [loadingId, setLoadingId] = useState<boolean>(true);
   const router = useRouter();
 
   useEffect(() => {
-    const fetchProfileId = async () => {
+    const fetchContactId = async () => {
       try {
         console.log("masuk sini");
         const response = await axios.get(`${BASE_URL}/user/profile/${userId}`, {
@@ -19,15 +19,15 @@ const useFetchProfileId = (userId: string) => {
             Authorization: `Bearer ${localStorage.getItem("access_token")}`,
           },
         });
-        setProfileId(response.data);
+        setContactId(response.data);
       } catch (error) {
         if (axios.isAxiosError(error)) {
           switch (error.response?.status) {
             case 400:
-              setFetchErrorId("Bad Request - Permintaan tidak valid.");
+              setFetchContactId("Bad Request - Permintaan tidak valid.");
               break;
             case 401:
-              setFetchErrorId(
+              setFetchContactId(
                 "Unauthorized - Anda tidak memiliki akses. Silahkan login kembali"
               );
               setTimeout(() => {
@@ -35,7 +35,7 @@ const useFetchProfileId = (userId: string) => {
               }, 10000);
               break;
             case 403:
-              setFetchErrorId(
+              setFetchContactId(
                 "Forbidden - Anda tidak memiliki izin untuk mengakses sumber daya ini. Silahkan login kembali"
               );
               setTimeout(() => {
@@ -43,42 +43,42 @@ const useFetchProfileId = (userId: string) => {
               }, 10000);
               break;
             case 404:
-              setFetchErrorId("Not Found - Profil tidak ditemukan.");
+              setFetchContactId("Not Found - Profil tidak ditemukan.");
               break;
             case 408:
-              setFetchErrorId(
+              setFetchContactId(
                 "Request Timeout - Permintaan ke server telah habis waktu."
               );
               break;
             case 429:
-              setFetchErrorId(
+              setFetchContactId(
                 "Too Many Requests - Terlalu banyak permintaan dalam waktu singkat."
               );
               break;
             case 500:
-              setFetchErrorId(
+              setFetchContactId(
                 "Internal Server Error - Terjadi kesalahan pada server."
               );
               break;
             default:
-              setFetchErrorId(
+              setFetchContactId(
                 `${error.response?.status} - ${error.response?.statusText} ${error.message}`
               );
           }
         } else if (error instanceof Error) {
-          setFetchErrorId(error.message);
+          setFetchContactId(error.message);
         } else {
-          setFetchErrorId("Terjadi kesalahan yang tidak diketahui");
+          setFetchContactId("Terjadi kesalahan yang tidak diketahui");
         }
       } finally {
         setLoadingId(false);
       }
     };
 
-    fetchProfileId();
-  }, [userId]);
+    fetchContactId();
+  }, [router, userId]);
 
-  return { profileId, fetchErrorId, loadingId };
+  return { contactId, fetchContactId, loadingId };
 };
 
-export default useFetchProfileId;
+export default useFetchContactId;

@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { BASE_URL } from "../utils/constant";
 import { UserProfile } from "../components/ProfileCardUser/types";
+import { useRouter } from "next/navigation";
 
 const useFetchProfile = () => {
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [fetchError, setFetchError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -24,10 +26,16 @@ const useFetchProfile = () => {
               setFetchError("Bad Request - Permintaan tidak valid.");
               break;
             case 401:
-              setFetchError("Unauthorized - Anda tidak memiliki akses.");
+              setFetchError("Unauthorized - Anda tidak memiliki akses. Silahkan login kembali");
+              setTimeout(() => {
+                router.push("/login");
+              }, 10000);
               break;
             case 403:
-              setFetchError("Forbidden - Anda tidak memiliki izin untuk mengakses sumber daya ini.");
+              setFetchError("Forbidden - Anda tidak memiliki izin untuk mengakses sumber daya ini. Silahkan login kembali");
+              setTimeout(() => {
+                router.push("/login");
+              }, 10000);
               break;
             case 404:
               setFetchError("Not Found - Profil tidak ditemukan.");
@@ -55,7 +63,7 @@ const useFetchProfile = () => {
     };
 
     fetchProfile();
-  }, []);
+  }, [router]);
 
   return { profile, fetchError, loading };
 };

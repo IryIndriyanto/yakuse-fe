@@ -7,19 +7,33 @@ import useFetchBusinessById from "../../../../hooks/useFetchBusinessById";
 import { formatRupiah } from "../../../../utils/currencyFormatter";
 import { BASE_URL } from "@/utils/constant";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import CircularIndeterminate from "@/components/BisniskuCardListUser/CircularIndeterminate";
+import DOMPurify from 'dompurify';
 
 const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
   const { businessId } = params;
   const router = useRouter();
   const { business, loading, error } = useFetchBusinessById(businessId);
   const [open, setOpen] = useState(false);
+  const [errorModalOpen, setErrorModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (error) {
+      setErrorModalOpen(true);
+    }
+  }, [error]);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const handleErrorModalClose = () => {
+    if (error?.includes("Unauthorized") || error?.includes("Forbidden")) {
+      router.push("/login");
+    }
+    setErrorModalOpen(false);
+  };
 
   const handleEdit = () => {
     router.push(`/edit-bisnis/${businessId}`);
@@ -40,30 +54,33 @@ const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
     handleClose();
   };
 
+  const sanitizedDescription = DOMPurify.sanitize(
+    (business?.description_list?.join("\n") || "").replace(/\n/g, "<br><br>")
+  );
+
   if (loading)
     return (
       <div className="flex flex-col justify-center items-center h-[80vh]">
         <CircularIndeterminate />
       </div>
     );
-  if (error) return <p>{error}</p>;
 
   return (
     <div className="bg-[#FCFCFC] font-serif">
-      <div className="grid grid-cols-2 gap-20 p-10">
-        <div>
+      <div className="grid grid-cols-2 gap-20 p-10 lg:flex lg:flex-col lg:gap-10 lg:p-0 lg:max-w-[800px] lg:mx-auto">
+        <div className="lg:flex lg:justify-center">
           <Image
             className="sticky top-8"
             src={business?.photo_url || "/default-gray-photo.png"}
-            alt="detail-bisnis-1"
+            alt="Foto Bisnis"
             width={500}
             height={300}
           />
         </div>
 
         <div className="flex flex-col gap-6">
-          <div className="flex justify-between">
-            <div className="max-w-[400px]">
+          <div className="flex justify-between lg:w-[700px]">
+            <div className="max-w-[400px] lg:max-w-[700px]">
               <h1 className="text-5xl font-bold">{business?.name}</h1>
             </div>
             <div className="flex justify-center items-start gap-4">
@@ -86,7 +103,7 @@ const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
             </div>
           </div>
 
-          <div className="flex items-start max-w-[400px] gap-20">
+          <div className="flex items-start max-w-[400px] gap-20 lg:max-w-[700px]">
             <div className="flex flex-col justify-center gap-2">
               <p className="text-[18px] font-bold">Omset</p>
               <Rating value={business?.avg_rating} precision={0.5} readOnly />
@@ -109,13 +126,10 @@ const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
             </p>
           </div>
 
-          <div className="w-[500px] text-justify">
+          <div className="w-[500px] text-justify lg:w-[700px] lg:mb-10">
             <p
               dangerouslySetInnerHTML={{
-                __html: (business?.description_list?.join("\n") || "").replace(
-                  /\n/g,
-                  "<br><br>"
-                ),
+                __html: sanitizedDescription,
               }}
             />
           </div>
@@ -134,6 +148,19 @@ const DetailBisnis = ({ params }: { params: { businessId: string } }) => {
               </Button>
               <Button onClick={handleClose} variant="outlined">
                 Batal
+              </Button>
+            </div>
+          </div>
+        </div>
+      </Modal>
+      <Modal open={errorModalOpen} onClose={handleErrorModalClose}>
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+            <h2 className="text-xl font-bold mb-4">Error</h2>
+            <p className="mb-6">{error}</p>
+            <div className="flex justify-end">
+              <Button onClick={handleErrorModalClose} variant="outlined">
+                Tutup
               </Button>
             </div>
           </div>

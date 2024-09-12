@@ -34,6 +34,7 @@ const EditPermintaanForm: React.FC<{ needId: string }> = ({ needId }) => {
     title: need?.title,
     description: need?.description,
     fk_business_category_id: need?.category.id,
+    is_visible: need?.is_visible ?? true,
   };
   console.log(initialValues);
 
@@ -41,6 +42,7 @@ const EditPermintaanForm: React.FC<{ needId: string }> = ({ needId }) => {
     title: Yup.string().required("Title wajib diisi."),
     description: Yup.string().required("Deskripsi wajib diisi."),
     fk_business_category_id: Yup.number(),
+    is_visible: Yup.boolean().required("Visibility wajib diisi."),
   });
 
   async function handleSubmit(values: typeof initialValues) {
@@ -120,6 +122,19 @@ const EditPermintaanForm: React.FC<{ needId: string }> = ({ needId }) => {
                     className="text-red-500 text-[14px] font-[500] h-[20px] w-full"
                   />
                 </div>
+
+                <div className="w-full hidden">
+                  <label>
+                    <Field type="checkbox" name="is_visible" />
+                    Visible
+                  </label>
+                  <ErrorMessage
+                    name="is_visible"
+                    component="div"
+                    className="text-red-500 text-[14px] font-[500] h-[20px] text-wrap"
+                  />
+                </div>
+
                 <div className="flex flex-wrap justify-center gap-4">
                   {categories.map((category, index) => (
                     <button
@@ -138,6 +153,7 @@ const EditPermintaanForm: React.FC<{ needId: string }> = ({ needId }) => {
                     </button>
                   ))}
                 </div>
+
                 <FormButton
                   text="Perbarui"
                   type="submit"
