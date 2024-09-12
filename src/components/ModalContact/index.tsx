@@ -34,6 +34,8 @@ const ModalContact: React.FC<ModalContactProps> = ({
                   variant="contained"
                   color="primary"
                   href={`mailto:${profileId?.email}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   disabled={!profileId}
                 >
                   {profileId?.email || "Email"}
@@ -42,6 +44,8 @@ const ModalContact: React.FC<ModalContactProps> = ({
                   variant="contained"
                   color="primary"
                   href={`https://wa.me/${profileId?.phone}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   disabled={!profileId}
                 >
                   {profileId?.phone || "Phone"}
