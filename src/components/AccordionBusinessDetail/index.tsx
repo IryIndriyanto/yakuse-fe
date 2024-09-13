@@ -3,7 +3,7 @@ import { fetchAllBusiness, fetchBusinessById } from "@/data/api";
 import { bisnisType } from "@/data/type";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import Image from "next/image";
-import { Rating } from "@mui/material";
+// import { Rating } from "@mui/material";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { useRouter } from "next/navigation";
 import { Skeleton } from "../ui/skeleton";
@@ -15,38 +15,18 @@ interface bisnisDetailProps {
 
 const BusinessAccordion: React.FC<bisnisDetailProps> = ({filter,data}) => {
   
+  const [selectedBusiness, setSelectedBusiness] = useState<bisnisType>();
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [loadingBusinessDetails, setLoadingBusinessDetails] = useState<boolean>(false);
+  
+  const {push} = useRouter();
+  
   const filteredItems = data.filter(
     (item) =>
       filter.length === 0 ||
       filter.some((f) => item.category.toLowerCase().includes(f.toLowerCase()))
   );
-
-  const [businesses, setBusinesses] = useState<bisnisType[]>([]);
-  const [selectedBusiness, setSelectedBusiness] = useState<bisnisType>();
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [loadingBusinessDetails, setLoadingBusinessDetails] = useState<boolean>(false);
-
-  const {push} = useRouter();
-
-  const getAllBusinesses = async () => {
-    setLoading(true);
-    try {
-      const data = await fetchAllBusiness("");
-      setBusinesses(data);
-      console.log(data)
-    } catch (err) {
-      setError("Failed to load businesses");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Fetch all businesses
-  useEffect(() => {  
-    getAllBusinesses();
-  }, []);
-
   const handleBusinessChange = async (businessId: string) => {
     setLoadingBusinessDetails(true);
     try {
@@ -64,8 +44,8 @@ const BusinessAccordion: React.FC<bisnisDetailProps> = ({filter,data}) => {
   };
 
   const handleProfileClick = () => {
-    const {owner_info} = selectedBusiness || {};
-    const {user_id} = owner_info || {};
+    const { owner_info } = selectedBusiness || {};
+    const { user_id } = owner_info || {};
     if (user_id) {
       push(`/profile-other-user/${user_id}`);
     }
@@ -152,7 +132,7 @@ const BusinessAccordion: React.FC<bisnisDetailProps> = ({filter,data}) => {
                         <h1 className="text-xl font-extrabold">
                           {selectedBusiness.name}
                         </h1>
-                        <div className="flex gap-3 items-center">
+                        {/* <div className="flex gap-3 items-center">
                           <Rating
                             name="size-small"
                             defaultValue={selectedBusiness.avg_rating}
@@ -161,7 +141,7 @@ const BusinessAccordion: React.FC<bisnisDetailProps> = ({filter,data}) => {
                           <p className="text-sm font-bold">
                             {selectedBusiness.total_rater} pengulas
                           </p>
-                        </div>
+                        </div> */}
                         <div className="flex gap-3 flex-wrap pb-5">
                           <p className="w-fit h-fit font-normal text-[16px] md:text-[14px] text-b-two border-[1px] border-b-two rounded-full py-2 px-4">
                             {selectedBusiness.category}
