@@ -56,18 +56,6 @@ const ProfileCardUser = ({
                     height={250}
                   />
                 </div>
-                <div className="flex gap-2 items-center sm:justify-center">
-                  <Image src="/star.svg" alt="star" width={40} height={40} />
-                  <div className="flex items-end">
-                    <p className="text-[41px] font-bold">
-                      {business?.avg_rating !== undefined
-                        ? business.avg_rating
-                        : "0"}
-                      {/* <span className="text-[#FD5F00]">/</span> */}
-                    </p>
-                    <p className="text-[#FD5F00] text-[24px] font-bold">/5</p>
-                  </div>
-                </div>
               </div>
 
               <div className="flex gap-10 md:gap-0">
@@ -97,7 +85,10 @@ const ProfileCardUser = ({
                           <p className="w-20 text-xl">Phone:</p>
                           <p className="text-[#40ABFF] text-xl">
                             {profile.phone ? (
-                              <a href={`https://wa.me/${profile.phone}`} target="_blank">
+                              <a
+                                href={`https://wa.me/${profile.phone}`}
+                                target="_blank"
+                              >
                                 {profile.phone}
                               </a>
                             ) : (
