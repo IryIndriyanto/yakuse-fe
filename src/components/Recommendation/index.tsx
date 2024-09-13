@@ -36,7 +36,7 @@ export default function Recommendation({
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full md:hidden">
     <div className="flex flex-col overflow-auto max-h-[525px] hide-scrollbar justify-start gap-5 ">
       {data.map((business) => (
         <div
