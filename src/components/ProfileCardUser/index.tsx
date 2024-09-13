@@ -51,7 +51,7 @@ const ProfileCardUser = ({
                 <div className="sm:flex sm:justify-center">
                   <Image
                     src={profile.photo_url || "/default-gray-photo.webp"}
-                    alt="foto-munaroh"
+                    alt="photo-profile"
                     width={250}
                     height={250}
                   />
