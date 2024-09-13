@@ -120,7 +120,7 @@
               loading={loading} 
             />
             <div className="flex flex-col gap-5 justify-start pt-14">
-            <p className="text-xl text-center text-b-two font-semibold capitalize">Belum menemukan keiinginanmu</p>
+            <p className="text-xl text-center text-b-two font-semibold capitalize">Belum menemukan keinginanmu?</p>
              <ButtonList
               onClick={() => router.push("/need-form")}
               label={"Daftarin Permintaan"}
@@ -129,7 +129,9 @@
             />
             </div>
           </div>
+          <div className="w-2/3">
           <BusinessCard business={activeBusinessData} />
+          </div>
         </main>
       </>
     );

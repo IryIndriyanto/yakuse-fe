@@ -15,6 +15,7 @@ export default function PagePembeli() {
   const [data, setData] = useState<permintaanType[]>([]);
   const [shown, setShown] = useState<boolean>(false);
   const [activeFilters, setFilters] = useState<string[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   async function fetchData() {
     try {
@@ -28,6 +29,8 @@ export default function PagePembeli() {
       // setFilteredData(permintaan);
     } catch (err) {
       console.log(err);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -81,7 +84,7 @@ export default function PagePembeli() {
           // setFilter={setFilter}
         />
         <Filter setFilter={setFilters} />
-        <PermintaanList data={filteredData} filter={activeFilters} />
+        <PermintaanList data={filteredData} filter={activeFilters} loading={loading} />
       </main>
       {/* <Footer /> */}
     </>
