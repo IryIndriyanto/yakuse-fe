@@ -27,23 +27,23 @@ const EditBisnis1 = ({ next, data }: any) => {
   }
 
   return (
-    <main className="flex items-center justify-center">
+    <main className="flex items-center justify-center w-[100vw]">
       <div
         key={data.id}
-        className="max-w-[600px] flex flex-col justify-center items-center"
+        className="w-full min-w-[420px] max-w-[700px] flex flex-col justify-center items-center md:px-4"
       >
         <Formik
           initialValues={data}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
-          enableReinitialize={true} // Add this line
+          enableReinitialize={true}
         >
           {({ values, handleChange, handleSubmit }) => {
             console.log("ini data ketika klik edit bisnis", data);
             return (
               <form
                 onSubmit={handleSubmit}
-                className="m-0 w-[715px] flex flex-col items-center justify-center p-10 box-border gap-10 max-w-full mq750:gap-[25px] shadow-[0_0_10px_rgba(0,0,0,0.1)] rounded-[10px]"
+                className="m-0 w-full flex flex-col items-center justify-center p-10 box-border gap-10 mq750:gap-[25px] shadow-[0_0_10px_rgba(0,0,0,0.1)] rounded-[10px]"
               >
                 <div className="w-full">
                   <Field
