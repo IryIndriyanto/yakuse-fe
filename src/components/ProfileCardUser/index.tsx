@@ -42,12 +42,12 @@ const ProfileCardUser = ({
   );
 
   return (
-    <div className="flex flex-col justify-between bg-[#E5F5FF] rounded-[10px] p-10 w-[1200px] font-serif min-h-[500px] lg:max-w-[750px]">
+    <div className="flex flex-col justify-between bg-[#E5F5FF] rounded-[10px] p-10 w-[1200px] font-serif min-h-[500px] md:min-w-[400px] lg:max-w-[750px]">
       <div>
         <div>
           <div className="flex justify-between gap-10 md:justify-center">
             <div className="flex justify-center gap-10 md:flex-col">
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 md:items-center md:justify-center">
                 <div className="sm:flex sm:justify-center">
                   <Image
                     src={profile.photo_url || "/default-gray-photo.webp"}
@@ -70,7 +70,7 @@ const ProfileCardUser = ({
                 </div>
               </div>
 
-              <div className="flex gap-10">
+              <div className="flex gap-10 md:gap-0">
                 <div className="flex flex-col gap-4">
                   <div>
                     <h1 className="text-[41px] font-bold lg:text-[28px]">
@@ -107,7 +107,7 @@ const ProfileCardUser = ({
                         </div>
                         <div className="flex items-start gap-2">
                           <p className="w-20 text-xl">Alamat:</p>
-                          <p className="max-w-[500px] text-justify lg:w-[300px] text-xl">
+                          <p className="max-w-[500px] text-justify md:w-[300px] lg:w-[300px] text-xl">
                             {profile.address || "-"}
                           </p>
                         </div>
@@ -116,7 +116,7 @@ const ProfileCardUser = ({
                   </div>
                 </div>
 
-                <div className="pt-2 hidden sm:block md:block">
+                <div className="pt-2 hidden sm:block md:block md:w-[30px]">
                   <Image
                     className="cursor-pointer"
                     src="/icon-pencil.svg"
@@ -129,7 +129,7 @@ const ProfileCardUser = ({
               </div>
             </div>
 
-            <div className="pt-4">
+            <div className="pt-4 md:hidden">
               <Image
                 className="cursor-pointer"
                 src="/icon-pencil.svg"

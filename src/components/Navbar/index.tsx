@@ -89,7 +89,7 @@ const Navbar = () => {
   }, [dropdownVisible, menuVisible]);
 
   return (
-    <div className="font-serif bg-[#FCFCFC] py-8 flex justify-between items-center px-[48px] sm:px-2">
+    <div className="font-serif bg-[#FCFCFC] py-8 flex justify-between items-center px-[48px] sm:px-2 lg:px-[24px]">
       <div className="flex flex-col justify-center">
         <div>
           <h1
@@ -105,7 +105,7 @@ const Navbar = () => {
         {tabs.map((tab, index) => (
           <li
             key={index}
-            className={`text-[20px] list-none cursor-pointer hover:text-[#FD5F00] mr-10 ${
+            className={`text-[20px] list-none cursor-pointer hover:text-[#FD5F00] mr-10 lg:text-[18px] ${
               currentPath === tab.href
                 ? "text-[#FD5F00] underline underline-offset-8"
                 : ""
