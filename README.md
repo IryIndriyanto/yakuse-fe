@@ -58,7 +58,7 @@ Selamat datang di Aplikasi YAKUSE! Aplikasi ini dirancang untuk membantu Usaha M
 - **Pencarian**: Gunakan kotak pencarian di bagian atas halaman untuk mencari bisnis atau permintaan berdasarkan kata kunci.
 - **Filter**: Gunakan opsi filter di sisi kiri halaman hasil pencarian untuk memfilter berdasarkan kategori.
 
-### 6. Memberikan Rating dan Ulasan
+### 6. Memberikan Rating dan Ulasan (Coming Soon)
 - **Rating dan Ulasan**: Klik pada bisnis yang ingin Anda beri rating dan ulasan. Pilih jumlah bintang yang ingin Anda berikan dan tulis ulasan Anda di kolom yang disediakan. Klik "Kirim" untuk menyimpan ulasan Anda.
 
 ### 7. Menghubungi Pemilik Bisnis
