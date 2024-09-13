@@ -51,23 +51,23 @@ const ProfileCardUser = ({
                 <div className="sm:flex sm:justify-center">
                   <Image
                     src={profile.photo_url || "/default-gray-photo.webp"}
-                    alt="foto-munaroh"
+                    alt="photo-profile"
                     width={250}
                     height={250}
                   />
                 </div>
-                <div className="flex gap-2 items-center sm:justify-center">
+                {/* <div className="flex gap-2 items-center sm:justify-center">
                   <Image src="/star.svg" alt="star" width={40} height={40} />
                   <div className="flex items-end">
                     <p className="text-[41px] font-bold">
                       {business?.avg_rating !== undefined
                         ? business.avg_rating
                         : "0"}
-                      {/* <span className="text-[#FD5F00]">/</span> */}
+                      <span className="text-[#FD5F00]">/</span>
                     </p>
                     <p className="text-[#FD5F00] text-[24px] font-bold">/5</p>
                   </div>
-                </div>
+                </div> */}
               </div>
 
               <div className="flex gap-10 md:gap-0">

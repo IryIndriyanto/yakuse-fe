@@ -82,11 +82,11 @@ const Navbar = () => {
   }, [dropdownVisible, menuVisible]);
 
   return (
-    <div className="font-serif bg-[#FCFCFC] py-8 flex justify-between items-center px-[48px] sm:px-2 lg:px-[24px]">
+    <div className="font-serif bg-[#FCFCFC] flex justify-between items-center px-8 pt-8 sm:px-2 lg:px-[24px]">
       <div className="flex flex-col justify-center">
         <div>
           <h1
-            className="text-[38px] font-bold text-[#40ABFF] cursor-pointer"
+            className="text-[38px] font-bold text-[#40ABFF] cursor-pointer md:text-[32px]"
             onClick={() => handleNavigation("/bisnis")}
           >
             YAKUSE
