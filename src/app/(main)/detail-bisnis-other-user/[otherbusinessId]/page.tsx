@@ -82,7 +82,7 @@ const DetailBisnisOtherUser = ({
           <div className="flex items-start max-w-[400px] gap-20 lg:max-w-[700px]">
             <div className="flex flex-col justify-center gap-2">
               <p className="text-[18px] font-bold">Omset</p>
-              <Rating value={business?.avg_rating} precision={0.5} readOnly />
+              {/* <Rating value={business?.avg_rating} precision={0.5} readOnly /> */}
               <p className="text-[18px] font-bold">Alamat</p>
             </div>
 
@@ -90,9 +90,9 @@ const DetailBisnisOtherUser = ({
               <p className="text-[18px]">
                 {formatRupiah(business?.omset || 0)}
               </p>
-              <p className="text-[18px]">
+              {/* <p className="text-[18px]">
                 {business?.avg_rating} dari {business?.total_rater} pengulas
-              </p>
+              </p> */}
               <p className="text-[18px] text-justify">{business?.location}</p>
             </div>
           </div>
