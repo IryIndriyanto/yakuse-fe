@@ -122,11 +122,11 @@ const EditBisnisForm: React.FC<{ businessId: string }> = ({ businessId }) => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div className="flex flex-col justify-center items-center">
-      <h1 className="text-[33px] font-[700] text-blue-400 flex justify-center mb-8">
+    <div className="flex flex-col justify-center items-center w-[100vw]">
+      <h1 className="text-[33px] font-[700] text-blue-400 flex justify-center mb-8 md:text-[28px]">
         Perbarui Bisnis
       </h1>
-      <div className="flex justify-center mb-8">
+      <div className="flex justify-center mb-8 sm:text-[11px] md:text-[14px]">
         <div
           className={`mx-4 ${
             step === 1

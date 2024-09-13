@@ -10,7 +10,6 @@ import { FaBars, FaTimes } from "react-icons/fa";
 const Navbar = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
-  const [profileDropdownVisible, setProfileDropdownVisible] = useState(false);
   const router = useRouter();
   const dropdownRef = useRef(null);
   const menuRef = useRef(null);
@@ -30,22 +29,20 @@ const Navbar = () => {
 
   const handleProfile = () => {
     router.push("/profile-user");
-    setProfileDropdownVisible(false);
+    setDropdownVisible(false);
     setMenuVisible(false);
   };
 
   const handlePhotoProfile = () => {
     router.push("/edit-profile-photo");
-    setProfileDropdownVisible(false);
-    setMenuVisible(false);
+    setDropdownVisible(false);
   };
 
   const handleLogout = () => {
     localStorage.removeItem("access_token");
     console.log("Token telah dihapus, user logout");
     router.push("/login");
-    setProfileDropdownVisible(false);
-    setMenuVisible(false);
+    setDropdownVisible(false);
   };
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -70,10 +67,6 @@ const Navbar = () => {
 
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
-  };
-
-  const toggleProfileDropdown = () => {
-    setProfileDropdownVisible(!profileDropdownVisible);
   };
 
   useEffect(() => {
@@ -166,20 +159,9 @@ const Navbar = () => {
         {menuVisible && (
           <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50">
             <ul>
-              {tabs.map((tab, index) => (
-                <li
-                  key={index}
-                  className={`px-4 py-2 hover:bg-gray-100 cursor-pointer ${
-                    currentPath === tab.href ? "text-[#FD5F00]" : ""
-                  }`}
-                  onClick={() => handleNavigation(tab.href)}
-                >
-                  {tab.name}
-                </li>
-              ))}
               <li
                 className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                onClick={toggleProfileDropdown}
+                onClick={handleProfile}
               >
                 <div className="flex items-center">
                   <Image
@@ -195,28 +177,29 @@ const Navbar = () => {
                   </div>
                 </div>
               </li>
-              {profileDropdownVisible && (
-                <ul className="pl-4">
-                  <li
-                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                    onClick={handleProfile}
-                  >
-                    <p>Profile</p>
-                  </li>
-                  <li
-                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                    onClick={handlePhotoProfile}
-                  >
-                    <p>Ubah Foto Profile</p>
-                  </li>
-                  <li
-                    className="px-4 py-2 text-red-500 hover:bg-gray-100 cursor-pointer"
-                    onClick={handleLogout}
-                  >
-                    Logout
-                  </li>
-                </ul>
-              )}
+              {tabs.map((tab, index) => (
+                <li
+                  key={index}
+                  className={`px-4 py-2 hover:bg-gray-100 cursor-pointer ${
+                    currentPath === tab.href ? "text-[#FD5F00]" : ""
+                  }`}
+                  onClick={() => handleNavigation(tab.href)}
+                >
+                  {tab.name}
+                </li>
+              ))}
+              <li
+                className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                onClick={handlePhotoProfile}
+              >
+                <p>Ubah Foto Profile</p>
+              </li>
+              <li
+                className="px-4 py-2 text-red-500 hover:bg-gray-100 cursor-pointer"
+                onClick={handleLogout}
+              >
+                Logout
+              </li>
             </ul>
           </div>
         )}

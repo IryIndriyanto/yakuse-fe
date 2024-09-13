@@ -28,8 +28,8 @@ const EditBisnis3 = ({ submit, prev, data }: any) => {
   };
 
   return (
-    <main className="flex items-center justify-center">
-      <div className="max-w-[600px] flex flex-col justify-center items-center rounded-[10px] p-10 shadow-[0_0_10px_rgba(0,0,0,0.1)]">
+    <main className="flex items-center justify-center w-[100vw]">
+      <div className="w-full min-w-[420px] max-w-[700px] flex flex-col justify-center items-center md:px-4">
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -38,7 +38,7 @@ const EditBisnis3 = ({ submit, prev, data }: any) => {
           {({ setFieldValue, handleSubmit }) => (
             <form
               onSubmit={handleSubmit}
-              className="m-0 w-[715px] flex flex-col items-center justify-center box-border gap-10 max-w-full mq750:gap-[25px]"
+              className="m-0 w-full flex flex-col items-center justify-center p-10 box-border gap-10 mq750:gap-[25px] shadow-[0_0_10px_rgba(0,0,0,0.1)] rounded-[10px]"
             >
               <div className="w-full flex flex-col gap-4">
                 <label
@@ -85,17 +85,17 @@ const EditBisnis3 = ({ submit, prev, data }: any) => {
                   </div>
                 )}
               </div>
-              <div className="flex flex-row gap-4">
+              <div className="flex flex-row gap-4 w-full">
                 <button
                   type="button"
-                  className="w-[150px] h-[40px] flex justify-center items-center rounded-[10px] p-4 bg-[#40ABFF] hover:bg-[#40ABFF]/80 text-[18px] text-[#FFFFFF]"
+                  className="w-full h-[40px] flex justify-center items-center rounded-[10px] p-4 bg-[#40ABFF] hover:bg-[#40ABFF]/80 text-[18px] text-[#FFFFFF]"
                   onClick={prev}
                 >
                   sebelumnya
                 </button>
                 <button
                   type="submit"
-                  className="w-[150px] h-[40px] flex justify-center items-center rounded-[10px] p-4 bg-[#FD5F00] hover:bg-[#FD5F00]/80 text-[18px] text-[#FFFFFF]"
+                  className="w-full h-[40px] flex justify-center items-center rounded-[10px] p-4 bg-[#FD5F00] hover:bg-[#FD5F00]/80 text-[18px] text-[#FFFFFF]"
                 >
                   Perbarui
                 </button>
