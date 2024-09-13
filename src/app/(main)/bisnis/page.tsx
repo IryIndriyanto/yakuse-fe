@@ -20,6 +20,7 @@
       useState<bisnisType | null>(null);
     const [shown, setShown] = useState<boolean>(false);
     const [activeFilters, setFilters] = useState<string[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
     const router = useRouter();
 
     async function fetchData() {
@@ -30,13 +31,12 @@
           setData(data);
           setFilteredData(data);
         }
-        // setData(bisnis);
-        // setFilteredData(bisnis);
       } catch (err) {
         console.log(err);
+      } finally {
+        setLoading(false);
       }
     }
-
     useEffect(() => {
       fetchData();
     }, []);
@@ -84,12 +84,6 @@
           if (token) {
             const data = await fetchBusinessById(activeBusinessId, token);
             setActiveBusinessData(data);
-            // }
-            // const businessData = bisnis.find(
-            //   (bisnis) => bisnis.id === activeBusinessId
-            // );
-            // if (businessData) {
-            //   setActiveBusinessData(businessData);
           } else {
             console.log(`No mock data found for ID ${activeBusinessId}`);
           }
@@ -123,6 +117,7 @@
               data={filteredData}
               filter={activeFilters}
               onClick={handleBusinessClick}
+              loading={loading} 
             />
             <div className="flex flex-col gap-5 justify-start pt-14">
             <p className="text-xl text-center text-b-two font-semibold capitalize">Belum menemukan keiinginanmu</p>

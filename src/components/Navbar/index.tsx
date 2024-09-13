@@ -94,7 +94,7 @@ const Navbar = () => {
         <div>
           <h1
             className="text-[38px] font-bold text-[#40ABFF] cursor-pointer"
-            onClick={() => handleNavigation("/kebutuhan")}
+            onClick={() => handleNavigation("/bisnis")}
           >
             YAKUSE
           </h1>

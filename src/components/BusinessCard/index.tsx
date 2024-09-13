@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import React from "react";
-import Rating from "@mui/material/Rating";
+// import Rating from "@mui/material/Rating";
 import { bisnisType } from "@/data/type";
 import { useRouter } from "next/navigation";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
@@ -56,9 +56,10 @@ const BusinessCard = ({ business }: BusinessCardProps) => {
               alt="user-profile"
               width={96}
               height={96}
-              className="rounded-full w-[96px] h-[96px] object-scale-down border-blue-500 border-4"
+              className="rounded-full w-[96px] h-[96px] object-cover border-blue-500 border-4 hover:cursor-pointer"
+              onClick={handleProfileClick}
             />
-          <div className="flex gap-1 justify-center hover:cursor-pointer" onClick={handleProfileClick}>
+          <div className="flex gap-1 justify-center" >
           </div>
           <div className="flex flex-col justify-start">
             <h2 className="text-5xl font-normal text-b-two">
@@ -88,19 +89,16 @@ const BusinessCard = ({ business }: BusinessCardProps) => {
         />
         <div className="flex flex-col gap-3">
           <h1 className="text-4xl font-extrabold">{business.name}</h1>
-          <div className="flex gap-3 items-center">
+          {/* <div className="flex gap-3 items-center">
             <Rating name="size-small" defaultValue={business.avg_rating} readOnly />
             <p className="text-lg font-bold">
               {business.rating_list.length} pengulas
             </p>
-          </div>
+          </div> */}
           <div className="flex gap-3 flex-wrap pb-5">
             {/* {business.tags.map((tag: string, index: number) => ( */}
             {business.category && (
-              <p
-                // key={index}
-                className="w-fit h-fit font-normal text-[16px] md:text-[14px] text-b-two border-[1px] border-b-two rounded-full py-2 px-4 "
-              >
+              <p className="w-fit h-fit font-normal text-[16px] md:text-[14px] text-b-two border-[1px] border-b-two rounded-full py-2 px-4 ">
                 {business.category}
               </p>
             )}
