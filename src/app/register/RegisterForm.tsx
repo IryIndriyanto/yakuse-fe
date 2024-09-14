@@ -12,6 +12,8 @@ import { useState, useEffect } from "react";
 import { setupInterceptors } from "@/utils/AxiosInterceptor";
 import { BASE_URL } from "@/utils/constant";
 import toast from "react-hot-toast";
+import { FaRegEye, FaEyeSlash } from "react-icons/fa";
+
 
 const RegisterForm = ({ className }: { className: string }) => {
   const initialValues = {
@@ -164,10 +166,10 @@ const RegisterForm = ({ className }: { className: string }) => {
                   />
                   <span
               className="eye-icon"
-              style={{ cursor: 'pointer', position: 'absolute', right: '10px', top: '50%', transform: 'translateY(20%)' }}
+              style={{ cursor: 'pointer', position: 'absolute', right: '10px', top: '50%', transform: 'translateY(50%)' }}
               onClick={() => setShowPassword(!showPassword)}
             >
-                    {showPassword ? "🙈" : "👁️"}
+                    {showPassword ? <FaRegEye /> : <FaEyeSlash />}
                   </span>
                   <ErrorMessage
                     name="password"
@@ -188,10 +190,10 @@ const RegisterForm = ({ className }: { className: string }) => {
                   />
                   <span
               className="eye-icon"
-              style={{ cursor: 'pointer', position: 'absolute', right: '10px', top: '50%', transform: 'translateY(20%)' }}
+              style={{ cursor: 'pointer', position: 'absolute', right: '10px', top: '50%', transform: 'translateY(50%)' }}
               onClick={() => setShowPassword(!showPassword)}
             >
-                    {showPassword ? "🙈" : "👁️"}
+                    {showPassword ? <FaRegEye /> : <FaEyeSlash />}
                   </span>
                   <ErrorMessage
                     name="confirmPassword"
