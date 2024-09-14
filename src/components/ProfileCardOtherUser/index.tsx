@@ -20,12 +20,12 @@ const ProfileCardOtherUser = ({
   );
 
   return (
-    <div className="flex flex-col justify-between bg-[#E5F5FF] rounded-[10px] p-10 w-[1200px] font-serif min-h-[500px] lg:max-w-[750px]">
+    <div className="flex flex-col justify-between bg-[#E5F5FF] rounded-[10px] p-10 w-[1200px] font-serif min-h-[500px] md:min-w-[400px] lg:max-w-[750px]">
       <div>
         <div>
           <div className="flex justify-between gap-10 md:justify-center">
             <div className="flex justify-center gap-10 md:flex-col">
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 md:items-center md:justify-center">
                 <div className="sm:flex sm:justify-center">
                   <Image
                     src={profileId?.photo_url || "/default-gray-photo.webp"}
@@ -48,7 +48,7 @@ const ProfileCardOtherUser = ({
                 </div> */}
               </div>
 
-              <div className="flex gap-10">
+              <div className="flex gap-10 md:gap-0">
                 <div className="flex flex-col gap-4">
                   <div>
                     <h1 className="text-[41px] font-bold lg:text-[28px]">
@@ -66,11 +66,7 @@ const ProfileCardOtherUser = ({
                         <div className="flex items-start gap-2">
                           <p className="w-20 text-xl">Email:</p>
                           <p className="text-[#40ABFF] text-xl">
-                            <a
-                              href={`mailto:${profileId?.email}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
+                            <a href={`mailto:${profileId?.email}`}>
                               {profileId?.email}
                             </a>
                           </p>
@@ -82,7 +78,6 @@ const ProfileCardOtherUser = ({
                               <a
                                 href={`https://wa.me/${profileId?.phone}`}
                                 target="_blank"
-                                rel="noopener noreferrer"
                               >
                                 {profileId?.phone}
                               </a>
@@ -93,7 +88,7 @@ const ProfileCardOtherUser = ({
                         </div>
                         <div className="flex items-start gap-2">
                           <p className="w-20 text-xl">Alamat:</p>
-                          <p className="max-w-[500px] text-justify lg:w-[300px] text-xl">
+                          <p className="max-w-[500px] text-justify md:w-[300px] lg:w-[300px] text-xl">
                             {profileId?.address || "-"}
                           </p>
                         </div>
