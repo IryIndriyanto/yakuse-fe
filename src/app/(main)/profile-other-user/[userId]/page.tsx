@@ -58,8 +58,8 @@ const ProfilePage = () => {
       <div className="flex justify-center items-center mt-10">
         <ProfileCardOtherUser profileId={profileId} business={null} />
       </div>
-      <div className="my-20 w-[1200px] mx-auto lg:w-[800px] lg:mt-10 lg:mb-10">
-        <div className="flex justify-between w-[800px] mx-auto pb-4 lg:w-[600px]">
+      <div className="my-20 max-w-[1200px] mx-auto lg:max-w-[800px] lg:mt-10 lg:mb-10">
+        <div className="flex justify-between max-w-[800px] mx-auto pb-4 md:w-[400px] lg:max-w-[600px]">
           <p
             className={`text-[24px] font-bold cursor-pointer transition-all duration-300 relative lg:text-[20px] ${
               activeSection === "Bisnisku" ? "text-[#FD5F00]" : "text-black"

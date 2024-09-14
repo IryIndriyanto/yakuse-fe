@@ -1,108 +1,170 @@
-# Aplikasi YAKUSE
+# YAKUSE Application 🌏
 
-Selamat datang di Aplikasi YAKUSE! Aplikasi ini dirancang untuk membantu Usaha Mikro, Kecil, dan Menengah (UMKM) dalam mengelola profil bisnis mereka, menemukan peluang bisnis, dan mengelola permintaan kebutuhan. Berikut adalah panduan lengkap untuk menggunakan aplikasi ini.
+Welcome to the YAKUSE's Application! 👋 This application is designed to help Micro, Small, and Medium Enterprises / Usaha Kecil, Mikro dan Menengah (UMKM) manage their business profiles, find business opportunities, and manage demand requests. Here is a complete guide to using this application. 💻
 
-## Fitur Utama
+## Main Features ⚒️
 
-### 1. Manajemen Profil Pengguna
-- **Edit Profil**: Anda dapat mengedit informasi profil Anda, termasuk nama, email, nomor telepon, alamat, dan deskripsi tentang diri Anda.
-- **Lihat Profil**: Profil Anda dapat dilihat oleh pengguna lain di platform ini.
-- **Unggah Foto Profil**: Anda dapat mengunggah foto profil Anda untuk mempercantik profil Anda.
+### 1. User Profile Management 👥
 
-### 2. Manajemen Bisnis
-- **Daftarkan Bisnis**: Anda dapat mendaftarkan bisnis baru dengan mengisi informasi seperti nama bisnis, omset, deskripsi, lokasi, dan kontak.
-- **Edit Bisnis**: Anda dapat mengedit informasi bisnis yang sudah didaftarkan kapan saja.
-- **Unggah Foto Bisnis**: Anda dapat mengunggah foto bisnis untuk mempercantik profil bisnis Anda.
-- **Hapus Bisnis**: Anda dapat menghapus bisnis yang sudah didaftarkan kapan saja.
-- **Lihat Bisnis**: Anda dapat melihat bisnis dari pengguna lain dan menemukan peluang bisnis.
-- **Filter Bisnis**: Anda dapat memfilter bisnis berdasarkan kategori.
-- **Pencarian Bisnis**: Anda dapat mencari bisnis berdasarkan kata kunci.
+- **Edit Profile**: You can edit your profile information, including name, email, phone number, address, and description about yourself.
+- **View Profile**: Your profile can be viewed by other users on this platform.
+- **Upload Profile Photo**: You can upload your profile photo to enhance your profile.
 
-### 3. Manajemen Permintaan
-- **Buat Permintaan**: Anda dapat membuat permintaan kebutuhan yang akan dilihat oleh pengguna lain.
-- **Edit Permintaan**: Anda dapat mengedit permintaan yang sudah dibuat.
-- **Lihat Permintaan**: Anda dapat melihat permintaan dari pengguna lain dan menemukan peluang bisnis.
-- **Hapus Permintaan**: Anda dapat menghapus permintaan yang sudah dibuat kapan saja.
-- **Filter Permintaan**: Anda dapat memfilter permintaan berdasarkan kategori.
-- **Pencarian Permintaan**: Anda dapat mencari permintaan berdasarkan kata kunci.
+### 2. Business Management 📂
 
-### 4. Pencarian dan Filter
-- **Pencarian**: Anda dapat mencari bisnis dan permintaan berdasarkan kata kunci.
-- **Filter**: Anda dapat memfilter hasil pencarian berdasarkan kategori.
+- **Register Business**: You can register a new business by filling in information such as business name, turnover, description, location, and contact.
+- **Edit Business**: You can edit the information of a registered business at any time.
+- **Upload Business Photo**: You can upload business photos to enhance your business profile.
+- **Delete Business**: You can delete a registered business at any time.
+- **View Business**: You can view businesses from other users and find business opportunities.
+- **Filter Business**: You can filter businesses by category.
+- **Search Business**: You can search for businesses by keywords.
 
-### 5. Interaksi Pengguna
-- **Rating dan Ulasan**: Anda dapat memberikan rating dan ulasan terhadap bisnis yang ada di platform ini.
-- **Hubungi Pemilik Bisnis**: Anda dapat menghubungi pemilik bisnis melalui platform ini.
+### 3. Request Management 📝
 
-## Cara Menggunakan Aplikasi
+- **Create Request**: You can create a demand request that will be seen by other users.
+- **Edit Request**: You can edit a created request.
+- **View Request**: You can view requests from other users and find business opportunities.
+- **Delete Request**: You can delete a created request at any time.
+- **Filter Request**: You can filter requests by category.
+- **Search Request**: You can search for requests by keywords.
 
-### 1. Mendaftar dan Masuk
-- **Mendaftar**: Klik tombol "Register" di halaman utama dan isi formulir pendaftaran dengan informasi yang diperlukan.
-- **Masuk**: Jika Anda sudah memiliki akun, klik tombol "Login" dan masukkan email dan kata sandi Anda.
+### 4. Search and Filter 🔍
 
-### 2. Mengelola Profil
-- **Edit Profil**: Setelah masuk, klik pada nama Anda di pojok kanan atas dan pilih "Edit Profil (icon pensil)". Isi informasi yang ingin Anda ubah dan klik "Simpan".
-- **Edit Foto Profil**: Klik pada foto profil Anda dan unggah foto baru dari perangkat Anda.
+- **Search**: You can search for businesses and requests by keywords.
+- **Filter**: You can filter search results by category.
 
-### 3. Mengelola Bisnis
-- **Daftarkan Bisnis**: Klik pada profile anda di pojok kanan atas dan pilih "Daftarkan Bisnis". Isi informasi bisnis Anda dan klik "Simpan".
-- **Edit Bisnis**: Di halaman "Profile", klik "Bisnisku" pilih bisnis yang ingin Anda edit dan pilih "Edit (icon pensil)". Ubah informasi yang diperlukan dan klik "Simpan".
-- **Hapus Bisnis**: Di halaman "Profile", klik "Bisnisku" pilih bisnis yang ingin Anda hapus dan pilih "Hapus (icon tong sampah)".
+### 5. User Interaction 👨‍💻
 
-### 4. Mengelola Permintaan
-- **Buat Permintaan**: Klik pada profile anda di pojok kanan atas dan pilih "Buat Permintaan". Isi informasi permintaan Anda dan klik "Simpan".
-- **Edit Permintaan**: Di halaman "Profile", klik "Permintaanku" pilih permintaan yang ingin Anda edit dan pilih "Tombol Edit". Ubah informasi yang diperlukan dan klik "Simpan".
-- **Hapus Permintaan**: Di halaman "Profile", klik "Permintaanku" pilih permintaan yang ingin Anda hapus dan pilih "Tombol Delete".
+- **Rating and Review**: You can give ratings and reviews to businesses on this platform.
+- **Contact Business Owner**: You can contact business owners through this platform.
 
-### 5. Mencari dan Memfilter
-- **Pencarian**: Gunakan kotak pencarian di bagian atas halaman untuk mencari bisnis atau permintaan berdasarkan kata kunci.
-- **Filter**: Gunakan opsi filter di sisi kiri halaman hasil pencarian untuk memfilter berdasarkan kategori.
+## How to Use the Application 📔
 
-### 6. Memberikan Rating dan Ulasan (Coming Soon)
-- **Rating dan Ulasan**: Klik pada bisnis yang ingin Anda beri rating dan ulasan. Pilih jumlah bintang yang ingin Anda berikan dan tulis ulasan Anda di kolom yang disediakan. Klik "Kirim" untuk menyimpan ulasan Anda.
+### 1. Register and Login 📋
 
-### 7. Menghubungi Pemilik Bisnis
-- **Hubungi Pemilik Bisnis**: Klik pada bisnis yang ingin Anda hubungi. Di halaman detail bisnis, klik tombol "Hubungi Kami".
+- **Register**: Click the "Register" button on the main page and fill out the registration form with the required information.
+- **Login**: If you already have an account, click the "Login" button and enter your email and password.
 
-## Bantuan dan Dukungan
-Jika Anda mengalami kesulitan atau memiliki pertanyaan, silakan hubungi tim dukungan kami melalui email di support@yakuse.com atau melalui fitur bantuan di aplikasi.
+### 2. Manage Profile 🕵️‍♂️
 
-## Kesimpulan
-Aplikasi YAKUSE ini dirancang untuk memudahkan Anda dalam mengelola bisnis dan kebutuhan Anda. Dengan fitur-fitur yang lengkap, Anda dapat dengan mudah mengelola profil, bisnis, dan permintaan Anda, serta berinteraksi dengan pengguna lain untuk menemukan peluang bisnis baru. Selamat menggunakan aplikasi YAKUSE!
+- **Edit Profile**: After logging in, click on your name in the top right corner and select "Edit Profile (pencil icon)". Fill in the information you want to change and click "Save".
+- **Edit Profile Photo**: Click on your profile photo and upload a new photo from your device.
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### 3. Manage Business 💸
 
-## Getting Started
+- **Register Business**: Click on your profile in the top right corner and select "Register Business". Fill in your business information and click "Save".
+- **Edit Business**: On the "Profile" page, click "My Business", select the business you want to edit, and select "Edit (pencil icon)". Change the necessary information and click "Save".
+- **Delete Business**: On the "Profile" page, click "My Business", select the business you want to delete, and select "Delete (trash icon)".
 
-First, run the development server:
+### 4. Manage Requests 🙋‍♂️
+
+- **Create Request**: Click on your profile in the top right corner and select "Create Request". Fill in your request information and click "Save".
+- **Edit Request**: On the "Profile" page, click "My Requests", select the request you want to edit, and select "Edit Button". Change the necessary information and click "Save".
+- **Delete Request**: On the "Profile" page, click "My Requests", select the request you want to delete, and select "Delete Button".
+
+### 5. Search and Filter 🔎
+
+- **Search**: Use the search box at the top of the page to search for businesses or requests by keywords.
+- **Filter**: Use the filter options on the left side of the search results page to filter by category.
+
+### 6. Give Ratings and Reviews (Coming Soon) 🔜
+
+- **Rating and Review**: Click on the business you want to rate and review. Select the number of stars you want to give and write your review in the provided column. Click "Submit" to save your review.
+
+### 7. Contact Business Owner 📞
+
+- **Contact Business Owner**: Click on the business you want to contact. On the business detail page, click the "Contact Us" button.
+
+## Features 📲
+
+- **Dependencies Frontend**: Tailwind CSS, Typescript, Formik, Yup, React, Eslint, Material UI, Dompurify, Axios and Next.
+- **Dependencies Backend**: Python, Poetry, SQL Alchemy, FastAPI, Swagger, Railway, SQL Lite.
+
+## Technologies Used 📡
+
+### Frontend 💻
+
+- React as a library for web and native user interfaces.
+- Next JS as a flexible React framework that gives you building blocks to create fast, full-stack web applications.
+- Typescript as a strongly typed, object-oriented, compiled programming language that builds on JavaScript.
+- Tailwind CSS as a utility-first framework that allows users to define components.
+- Vercel as a cloud platform that provides hosting and deployment services for web applications.
+
+### Backend 🖥
+
+- Python as a high-level programming language.
+- FastAPI as a modern, fast (high-performance), web framework for building APIs with Python 3.8+ based on standard Python type hints.
+- Swagger as a powerful and flexible tool for API documentation.
+- Railway as a platform for deploying and running applications.
+- SQL Lite as a lightweight database that is easy to set up and use.
+- PostgreSQL as a powerful, open-source object-relational database system.
+- Supabase as a powerful, open-source object-relational database system.
+
+## Environment Setup 🏞️
+
+Ensure you have React and Next JS installed. You also need to have many dependencies required to set up and running this project on your local computer.
+
+## Installation ⬇️
+
+- Clone this repository.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+   git https://github.com/IryIndriyanto/yakuse-fe
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Install dependencies using npm.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+   npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Run the application.
 
-## Learn More
+```bash
+   npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Deployment 🚀
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+YAKUSE's website also deployed on Vercel, you can accessed it via browser [here](https://yakuse.vercel.app/).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Project Team Contributors 📃
 
-## Deploy on Vercel
+This project would not have been possible without the outstanding contributions from our dedicated team. We have two main teams working together to develop this application: the Front-End Team and the Back-End Team, as well as the invaluable guidance from our Student Development Carrier (SDC).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Front-End Team (FE Team) 💻
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The Front-End Team is responsible for designing and implementing an interactive and responsive user interface. They use technologies such as React, Next.js, and Tailwind CSS to ensure an optimal user experience.
+
+- **Gusti Treshana Herman** as a Team Lead - [GitHub](https://github.com/Gustitreshana)
+- **Iry Indriyanto** as a Front End Lead - [GitHub](https://github.com/IryIndriyanto)
+- **Arisa Raezurra Zahra** as a Front End Developer - [GitHub](https://github.com/arisarae)
+- **Irfan Prima Lazuardi** as a Front End Developer - [GitHub](https://github.com/irfanplazuardi)
+- **Isnendyan Kresna Purnama** as a Front End Developer - [GitHub](https://github.com/isnendyankp)
+- **Sarra Nutrisia** as a Front End Developer - [GitHub](https://github.com/SarraNutrisia)
+
+### Back-End Team (BE Team) 🖥
+
+The Back-End Team is responsible for developing and maintaining the server, database, and APIs that support this application. They use technologies such as Python, FastAPI, and PostgreSQL to ensure high performance and security.
+
+- **Dewa Surya Ariesta** as a Back End Lead - [GitHub](https://github.com/DewaSRY)
+- **Iman Maris** as a Back End Developer- [GitHub](https://github.com/imanmaris99)
+- **Muhammad Haikal Bintang** as a Back End Developer - [GitHub](https://github.com/haikalbintang)
+- **Yosaphat Harwindra** as a Back End Developer - [GitHub](https://github.com/Blackpossum)
+
+## Student Development Carrier (SDC) 👨‍🏫
+
+Special thanks to our Student Development Carrier (SDC) for the guidance to develop this application. His support and mentorship have been invaluable in helping us navigate the challenges and complexities of this project. We are deeply grateful for his dedication and expertise, which have significantly contributed to the success of this application.
+
+- **Febiansyah Prima Nasution** as a Student Development Carrier (SDC) - [GitHub](https://github.com/febianprima)
+
+We greatly appreciate the hard work and dedication of each team member. Despite their busy schedules, they took the time to complete this project. Their commitment and effort have been instrumental in making this project possible. Thank you for your invaluable contributions! ✨✨✨
+
+## Help and Support 📧
+
+If you experience difficulties or have questions, please contact our support team via email at support@yakuse.com or through the help feature in the application.
+
+## Conclusion 📑
+
+The YAKUSE application is designed to make it easier for you to manage your business and needs. With complete features, you can easily manage your profile, business, and requests, as well as interact with other users to find new business opportunities. Enjoy using the YAKUSE application!👏
