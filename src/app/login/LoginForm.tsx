@@ -13,6 +13,7 @@ import { BASE_URL } from "@/utils/constant";
 import toast, { Toaster } from "react-hot-toast";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { FaRegEye, FaEyeSlash } from "react-icons/fa";
 
 const LoginForm = ({ className }: { className: string }) => {
   const [showPopup, setShowPopup] = useState(false);
@@ -96,10 +97,10 @@ const LoginForm = ({ className }: { className: string }) => {
               />
               <span
               className="eye-icon"
-              style={{ cursor: 'pointer', position: 'absolute', right: '10px', top: '50%', transform: 'translateY(20%)' }}
+              style={{ cursor: 'pointer', position: 'absolute', right: '10px', top: '50%', transform: 'translateY(50%)' }}
               onClick={() => setShowPassword(!showPassword)}
             >
-                    {showPassword ? "🙈" : "👁️"}
+                    {showPassword ? <FaRegEye /> : <FaEyeSlash />}
                   </span>
               {formik.touched.password && formik.errors.password ? (
                 <div className="text-red-500 text-sm">
