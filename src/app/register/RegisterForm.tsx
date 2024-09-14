@@ -47,6 +47,7 @@ const RegisterForm = ({ className }: { className: string }) => {
   const [popupMessage, setPopupMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isDisable, setIsDisable] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const router = useRouter();
 
@@ -75,6 +76,7 @@ const RegisterForm = ({ className }: { className: string }) => {
       }
     } finally {
       setIsLoading(false);
+      setIsDisable(false);
     }
   };
 
@@ -149,17 +151,24 @@ const RegisterForm = ({ className }: { className: string }) => {
                   />
                 </div>
 
-                <div>
+                <div className="relative">
                   <Field
                     component={InputForm}
                     id="password"
                     name="password"
                     label="Password"
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     placeholder="Password"
                     value={values.password}
                     onChange={handleChange}
                   />
+                  <span
+              className="eye-icon"
+              style={{ cursor: 'pointer', position: 'absolute', right: '10px', top: '50%', transform: 'translateY(20%)' }}
+              onClick={() => setShowPassword(!showPassword)}
+            >
+                    {showPassword ? "🙈" : "👁️"}
+                  </span>
                   <ErrorMessage
                     name="password"
                     component="div"
@@ -167,16 +176,23 @@ const RegisterForm = ({ className }: { className: string }) => {
                   />
                 </div>
 
-                <div>
+                <div className="relative">
                   <Field
                     component={InputForm}
                     id="confirmPassword"
                     name="confirmPassword"
                     label="Confirm Password"
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     placeholder="Password"
                     onChange={handleChange}
                   />
+                  <span
+              className="eye-icon"
+              style={{ cursor: 'pointer', position: 'absolute', right: '10px', top: '50%', transform: 'translateY(20%)' }}
+              onClick={() => setShowPassword(!showPassword)}
+            >
+                    {showPassword ? "🙈" : "👁️"}
+                  </span>
                   <ErrorMessage
                     name="confirmPassword"
                     component="div"

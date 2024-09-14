@@ -19,6 +19,7 @@ const LoginForm = ({ className }: { className: string }) => {
   const [popupMessage, setPopupMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isDisable, setIsDisable] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const router = useRouter();
 
@@ -58,6 +59,7 @@ const LoginForm = ({ className }: { className: string }) => {
         }
       } finally {
         setIsLoading(false);
+        setIsDisable(false);
       }
     },
   });
@@ -83,15 +85,22 @@ const LoginForm = ({ className }: { className: string }) => {
               <div className="text-red-500 text-sm">{formik.errors.email}</div>
             ) : null}
 
-            <div className="flex flex-col w-full my-4">
+            <div className="flex flex-col w-full my-4 relative">
               <InputForm
                 label="Password"
-                type="password"
+                type={showPassword ? "text" : "password"}
                 placeholder="Password"
                 value={formik.values.password}
                 onChange={formik.handleChange}
                 name="password"
               />
+              <span
+              className="eye-icon"
+              style={{ cursor: 'pointer', position: 'absolute', right: '10px', top: '50%', transform: 'translateY(20%)' }}
+              onClick={() => setShowPassword(!showPassword)}
+            >
+                    {showPassword ? "🙈" : "👁️"}
+                  </span>
               {formik.touched.password && formik.errors.password ? (
                 <div className="text-red-500 text-sm">
                   {formik.errors.password}
