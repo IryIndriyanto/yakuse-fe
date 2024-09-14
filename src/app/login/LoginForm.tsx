@@ -113,7 +113,7 @@ const LoginForm = ({ className }: { className: string }) => {
               <FormButton
                 text="Login"
                 type="submit"
-                disabled={isDisable}
+                disabled={!formik.isValid || !formik.dirty || isDisable} // Tambahkan !formik.dirty
                 isLoading={isLoading}
               />
             </div>

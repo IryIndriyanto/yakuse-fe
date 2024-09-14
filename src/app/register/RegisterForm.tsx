@@ -93,7 +93,7 @@ const RegisterForm = ({ className }: { className: string }) => {
         validationSchema={validationSchema}
         onSubmit={handleRegister}
       >
-        {({ values, handleChange, handleSubmit }) => {
+        {({ values, handleChange, handleSubmit, isValid }) => {
           return (
             <form
               onSubmit={handleSubmit}
@@ -206,7 +206,7 @@ const RegisterForm = ({ className }: { className: string }) => {
               <FormButton
                 text="Register"
                 type="submit"
-                disabled={isDisable}
+                disabled={!isValid || isDisable}
                 isLoading={isLoading}
               />
             </form>
