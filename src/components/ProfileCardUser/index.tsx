@@ -63,6 +63,7 @@ const ProfileCardUser = ({
                       {business?.avg_rating !== undefined
                         ? business.avg_rating
                         : "0"}
+                      <span className="text-[#FD5F00]">/</span>
                     </p>
                     <p className="text-[#FD5F00] text-[24px] font-bold">/5</p>
                   </div>
