@@ -151,7 +151,6 @@ The Back-End Team is responsible for developing and maintaining the server, data
 - **Dewa Surya Ariesta** as a Back End Lead - [GitHub](https://github.com/DewaSRY)
 - **Iman Maris** as a Back End Developer- [GitHub](https://github.com/imanmaris99)
 - **Muhammad Haikal Bintang** as a Back End Developer - [GitHub](https://github.com/haikalbintang)
-- **Yosaphat Harwindra** as a Back End Developer - [GitHub](https://github.com/Blackpossum)
 
 ## Student Development Carrier (SDC) 👨‍🏫
 
